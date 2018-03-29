@@ -3,8 +3,8 @@
 
 int main()
 {
-	std::vector<int> first = { 1, 3, 5, 7, 9, 25, 30 };
-	std::vector<int> second = { 2, 4, 6, 8, 10, 12, 14, 16, 21, 23, 24 };
+	std::vector<int> first = {1, 3, 5, 7, 9, 25, 30};
+	std::vector<int> second = {2, 4, 6, 8, 10, 12, 14, 16, 21, 23, 24};
 
 	for (int i = 1; i < 16; i++)
 	{
@@ -12,44 +12,6 @@ int main()
 		std::cout << findkth(first, second, i) << std::endl;
 	}
 	return 0;
-}
-
-int findkth(std::vector<int> &first, std::vector<int> &second, int k) // buggy code 
-{
-	int sizeFirst = first.size();
-	int sizeSecond = second.size();
-
-	if (sizeFirst + sizeSecond < k)
-	{
-		throw std::exception("OutOfBoundException");
-	}
-
-	if (k == 1)
-	{
-		return min(first[0], second[0]);
-	}
-
-	int i = min(sizeFirst, k / 2);
-	int j = min(sizeSecond, k - i);
-
-	int step = max(1, min(i, j) / 2);
-
-	while (step > 0)
-	{
-		if (first[i - 1] > second[j - 1] && first[i - 1] > second[min(second.size(), j + step) - 1])
-		{
-			j = min(second.size(), j + step);
-			i = k - j;
-
-		}
-		else if (first[i - 1] < second[j - 1] && first[min(first.size(), i + step) - 1] < second[j - 1])
-		{
-			i = min(first.size(), i + step);
-			j = k - i;
-		}
-		step = step / 2;
-	}
-	return max(first[i - 1], second[j - 1]);
 }
 
 bool linearSearchUnsorted(std::vector<int> &data, int value)
@@ -91,7 +53,7 @@ bool Binarysearch(std::vector<int> &data, int value)
 
 	while (low <= high)
 	{
-		mid = low + (high - low) / 2; // To avoid the overflow
+		mid = (low + high) \ 2;
 		if (data[mid] == value)
 		{
 			return true;
@@ -114,7 +76,7 @@ bool BinarySearchRecursive(std::vector<int> &data, int low, int high, int value)
 	{
 		return false;
 	}
-	int mid = low + (high - low) / 2; // To avoid the overflow
+	int mid = (low + high) \ 2;
 	if (data[mid] == value)
 	{
 		return true;
@@ -132,13 +94,13 @@ bool BinarySearchRecursive(std::vector<int> &data, int low, int high, int value)
 void printRepeating(std::vector<int> &data)
 {
 	int size = data.size();
-	std::cout << " Repeating elements are : " ;
+	std::cout << " Repeating elements are : ";
 	for (int i = 0; i < size; i++)
 	{
 		for (int j = i + 1; j < size; j++)
 		{
 			if (data[i] == data[j])
-				std::cout << " " << data[i] ;
+				std::cout << " " << data[i];
 		}
 	}
 }
@@ -636,7 +598,7 @@ int findLastIndex(std::vector<int> &data, int start, int end, int key)
 	if (key == data[mid] && (mid == end || data[mid + 1] != key))
 		return mid;
 
-	if (key < data[mid]) 
+	if (key < data[mid])
 		return findLastIndex(data, start, mid - 1, key);
 	else
 		return findLastIndex(data, mid + 1, end, key);
@@ -885,7 +847,7 @@ int removeDuplicates(std::vector<int> &data)
 	if (size == 0)
 		return 0;
 
-	sort(data.begin(), data.end());	// Sort(array,size);
+	sort(data.begin(), data.end()); // Sort(array,size);
 	for (int i = 1; i < size; i++)
 	{
 		if (data[i] != data[j])
@@ -897,7 +859,7 @@ int removeDuplicates(std::vector<int> &data)
 	return j + 1;
 }
 
-bool FindElementIn2DArray(int** data, int r, int c, int value)
+bool FindElementIn2DArray(int **data, int r, int c, int value)
 {
 	int row = 0;
 	int column = c - 1;
