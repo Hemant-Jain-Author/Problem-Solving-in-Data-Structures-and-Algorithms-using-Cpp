@@ -1,7 +1,6 @@
-#include "stdafx.h"
 #include "StringAlgo.h"
 
-bool matchExpUtil(std::string &exp, std::string &str, int i, int j)
+bool matchExpUtil(const std::string exp, const std::string str, int i, int j)
 {
 	if (i == exp.size() && j == str.size())
 	{
@@ -22,12 +21,16 @@ bool matchExpUtil(std::string &exp, std::string &str, int i, int j)
 	return false;
 }
 
-bool matchExp(std::string &exp, std::string &str)
+bool matchExp(const std::string exp, const std::string str)
 {
 	return matchExpUtil(exp, str, 0, 0);
 }
 
-int match(std::string &source, std::string &pattern)
+void main1() {
+    std::cout << matchExp("*llo,?World?", "Hello, World!") << std::endl;
+}
+
+int match(const std::string &source, const std::string &pattern)
 {
 	int iSource = 0;
 	int iPattern = 0;
@@ -47,9 +50,11 @@ int match(std::string &source, std::string &pattern)
 	return 0;
 }
 
+void main2() {
+    std::cout << match("harrypottermustnotgotoschool", "pottergo") << std::endl;
+}
 
-
-bool isPrime(int n)
+bool isPrime(const int n)
 {
 	bool answer = (n > 1) ? true : false;
 
@@ -62,6 +67,14 @@ bool isPrime(int n)
 		}
 	}
 	return answer;
+}
+
+void main3() {
+    std::cout << "Prime numbers under 100 :: ";
+    for (int i = 0; i < 100; i++)
+        if (isPrime(i))
+            std::cout << i << " ";
+    std::cout << std::endl;
 }
 
 int myAtoi(const std::string &str)
@@ -77,13 +90,13 @@ int myAtoi(const std::string &str)
 	return value;
 }
 
+void main4() {
+    std::cout << myAtoi("1000") << std::endl;
+}
+
 bool isUniqueChar(const std::string &str)
 {
-	std::vector<int> bitarr(26);
-	for (int i = 0; i < 26; i++)
-	{
-		bitarr[i] = 0;
-	}
+	std::vector<int> bitarr(26, 0);
 	int size = str.length();
 	for (int i = 0; i < size; i++)
 	{
@@ -106,40 +119,57 @@ bool isUniqueChar(const std::string &str)
 			std::cout << "Duplicate detected!" << std::endl;
 			return false;
 		}
+		bitarr[c] = 1;
 	}
 	std::cout << "No duplicate detected!" << std::endl;
 	return true;
 }
 
-char ToUpper(char s)
-{
-	if (s >= 97 && s <= (97 + 25))
-	{
-		s = static_cast<char>(s - 32);
-	}
-	return s;
+void main5() {
+    std::cout << isUniqueChar("aple") << std::endl;
+    std::cout << isUniqueChar("apple") << std::endl;
 }
 
-char ToLower(char s)
+
+char ToUpper(const char s)
 {
+	char t;
+	if (s >= 97 && s <= (97 + 25))
+	{
+		t = static_cast<char>(s - 32);
+	}
+	return t;
+}
+
+char ToLower(const char s)
+{
+	char t;
 	if (s >= 65 && s <= (65 + 25))
 	{
-		s = static_cast<char>(s + 32);
+		t = static_cast<char>(s + 32);
 	}
-	return s;
+	return t;
 }
 
-char LowerUpper(char s)
+char LowerUpper(const char s)
 {
+	char t;
 	if (s >= 97 && s <= (97 + 25))
 	{
-		s = static_cast<char>(s - 32);
+		t = static_cast<char>(s - 32);
 	}
 	else if (s >= 65 && s <= (65 + 25))
 	{
-		s = static_cast<char>(s + 32);
+		t = static_cast<char>(s + 32);
 	}
-	return s;
+	return t;
+}
+
+void main6() {
+    std::cout << ToLower('A') << std::endl;
+    std::cout << ToUpper('a') << std::endl;
+    std::cout << LowerUpper('s') << std::endl;
+    std::cout << LowerUpper('S') << std::endl;
 }
 
 bool isPermutation(const std::string &s1, const std::string &s2)
@@ -174,6 +204,10 @@ bool isPermutation(const std::string &s1, const std::string &s2)
 	return true;
 }
 
+void main7() {
+    std::cout << isPermutation("apple", "plepa");
+}
+
 bool isPalindrome(const std::string &str)
 {
 	int i = 0, j = str.length() - 1;
@@ -194,7 +228,12 @@ bool isPalindrome(const std::string &str)
 	}
 }
 
-int pow(int x, int n)
+void main8() {
+    std::cout << isPalindrome("hello") << std::endl;
+    std::cout << isPalindrome("eoloe") << std::endl;
+}
+
+int pow(const int x, const int n)
 {
 	int value;
 	if (n == 0)
@@ -211,6 +250,10 @@ int pow(int x, int n)
 		value = pow(x, n / 2);
 		return (x * value * value);
 	}
+}
+
+void main9() {
+    std::cout << pow(5, 2) << std::endl;
 }
 
 int myStrcmp(const std::string &a, const std::string &b)
@@ -245,6 +288,10 @@ int myStrcmp(const std::string &a, const std::string &b)
 	{
 		return a[index] - b[index];
 	}
+}
+
+void main10() {
+    std::cout << myStrcmp("abs", "abs") << std::endl;
 }
 
 void reverseString(std::string &a)
@@ -296,6 +343,15 @@ void reverseWords(std::string &a)
 	reverseString(a, 0, length - 1);
 }
 
+void main11() {
+	std::string first = "apple";
+	reverseString(first);
+    std::cout << first << std::endl;
+    std::string second = "hello world";
+    reverseWords(second);
+    std::cout << second << std::endl;
+}
+
 void printAnagram(std::string  &a)
 {
 	int n = a.size();
@@ -308,6 +364,7 @@ void printAnagram(std::string &a, int max, int n)
 	{
 		for(auto ch : a)
 			std::cout << ch;
+		std::cout << std::endl;
 	}
 	for (int i = -1; i < max - 1; i++)
 	{
@@ -321,6 +378,11 @@ void printAnagram(std::string &a, int max, int n)
 			a[i] ^= a[max - 1] ^= a[i] ^= a[max - 1];
 		}
 	}
+}
+
+void main12() {
+	std::string first = "123"; 
+    printAnagram(first);
 }
 
 void shuffle(std::string &ar)
@@ -346,7 +408,13 @@ void shuffle(std::string &ar)
 	}
 }
 
-std::string addBinary(std::string &first, std::string &second)
+void main13() {
+    std::string first = "ABCDE12345"; 
+    shuffle(first);
+    std::cout << first << std::endl;
+}
+
+std::string addBinary(const std::string &first, const std::string &second)
 {
 	int size1 = first.size();
 	int size2 = second.size();
@@ -354,12 +422,12 @@ std::string addBinary(std::string &first, std::string &second)
 	std::string total;
 	if (size1 > size2)
 	{
-		total = std::string('0',size1 + 2);
+		total = std::string('0',size1 + 1);
 		totalIndex = size1;
 	}
 	else
-	{
-		total = std::string('0', size2 + 2);
+	{ 
+		total = std::string('0', size2 + 1);
 		totalIndex = size2;
 	}
 	total[totalIndex + 1] = '\0';
@@ -380,4 +448,26 @@ std::string addBinary(std::string &first, std::string &second)
 	}
 	total[totalIndex] = (carry == 0) ? '0' : '1';
 	return total;
+}
+
+void main14() {
+	std::string first = "1000", second = "11111111";
+    std::cout << addBinary(first, second);
+}
+
+int main() {
+    main1();
+    main2();
+    main3();
+    main4();
+    main5();
+    main6();
+    main7();
+    main8();
+    main9();
+    main10();
+    main11();
+    main12();
+    main13();
+    main14();
 }

@@ -1,82 +1,94 @@
-#include "stdafx.h"
 #include "HeapInt.h"
 
 int main()
 {
 	std::vector<int> a = { 1, 9, 6, 7, 8, -1, 2, 4, 5, 3 };
-	Heap *hp = new Heap(a);
+	Heap *hp = new Heap(a, true);
 	hp->print();
-	std::cout << "value pop from heap::" << std::endl;
-	for (int i = 0; i < a.size(); i++) {
-		std::cout << "pop value :: " << hp->remove() << std::endl;
-	}
+	std::cout << std::endl;
 
-	Heap::heapSort(a);
-	std::cout << "value after heap sort::" << std::endl;
+	std::cout << "value pop from heap::";
+	
+	for (int i = 0; i < a.size(); i++) {
+		std::cout << " " << hp->remove();
+	}
+	std::cout << std::endl;
+	
+
+	Heap::heapSort(a, true);
+	std::cout << "value after heap sort::";
 	for (int i = 0; i < a.size(); i++) {
 		std::cout << " " << a[i];
 	}
+	std::cout << std::endl;
+		
 	return 0;
 }
 
-Heap::Heap()
+Heap::Heap(bool isMin)
 {
 	arr = std::vector<int>(CAPACITY);
 	size = 0;
+	isMinHeap = isMin;
 }
 
-Heap::Heap(std::vector<int> &array_in)
+Heap::Heap(std::vector<int> &array_in, bool isMin)
 {
 	size = array_in.size();
-	arr = std::vector<int>(array_in.size() + 1);
-	auto it = arr.begin();
-
-	copy(array_in.begin(), array_in.end(), ++it); // we do not use 0 index
+	arr = array_in;
+	isMinHeap = isMin;
 
 	// Build Heap operation over array
-	for (int i = (size / 2); i > 0; i--)
+	for (int i = (size / 2); i >= 0; i--)
 	{
 		proclateDown(i);
 	}
 }
 
-void Heap::proclateDown(int position)
+bool Heap::compare(int first, int second) {
+	if (isMinHeap)
+		return (first - second) > 0; // Min heap compare
+	else
+		return (first - second) < 0; // Max heap compare
+}
+
+void Heap::proclateDown(int parent)
 {
-	int lChild = 2 * position;
+	int lChild = 2 * parent + 1;
 	int rChild = lChild + 1;
-	int small = -1;
+	int child = -1;
 	int temp;
 
-	if (lChild <= size)
+	if (lChild < size)
 	{
-		small = lChild;
+		child = lChild;
 	}
 
-	if (rChild <= size && (arr[rChild] - arr[lChild]) < 0)
+	if (rChild < size && compare(arr[lChild], arr[rChild]))
 	{
-		small = rChild;
+		child = rChild;
 	}
 
-	if (small != -1 && (arr[small] - arr[position]) < 0)
+	if (child != -1 && compare(arr[parent], arr[child]))
 	{
-		temp = arr[position];
-		arr[position] = arr[small];
-		arr[small] = temp;
-		proclateDown(small);
+
+		temp = arr[parent];
+		arr[parent] = arr[child];
+		arr[child] = temp;
+		proclateDown(child);
 	}
 }
 
-void Heap::proclateUp(int position)
-{
-	int parent = position / 2;
+void Heap::proclateUp(int child) {
+	int parent = (child - 1) / 2;
 	int temp;
-	if (parent == 0)
+	if (parent < 0) {
 		return;
+	}
 
-	if ((arr[parent] - arr[position]) < 0)
-	{
-		temp = arr[position];
-		arr[position] = arr[parent];
+	if (compare(arr[parent], arr[child])) {
+		temp = arr[child];
+		arr[child] = arr[parent];
 		arr[parent] = temp;
 		proclateUp(parent);
 	}
@@ -84,28 +96,44 @@ void Heap::proclateUp(int position)
 
 void Heap::add(int value)
 {
-	arr[++size] = value;
-	proclateUp(size);
+	if (size == arr.size()) {
+		doubleSize();
+	}
+
+	arr[size++] = value;
+	proclateUp(size-1);
 }
+
+void Heap::doubleSize()
+{
+	std::vector<int> old = arr;
+	arr = std::vector<int>(arr.size() * 2);
+	for (int i =0;i<size;i++)
+	{
+		arr[i] = old[i];	
+	}
+}
+
+
 
 int Heap::remove()
 {
-	if (isEmpty())
-		throw std::exception("HeapEmptyException.");
+	if (isEmpty())		
+		throw "HeapEmptyException.";
 
-	int value = arr[1];
-	arr[1] = arr[size];
+	int value = arr[0];
+	arr[0] = arr[size-1];
 	size--;
-	proclateDown(1);
+	proclateDown(0);
 	return value;
 }
 
 void Heap::print()
 {
-	std::cout << "Printing content of heap::" << std::endl;
-	for (int i = 1; i <= size; i++)
+	std::cout << "Printing content of heap :: " ;
+	for (int i = 0; i < size; i++)
 	{
-		std::cout << arr[i] << std::endl;
+		std::cout << arr[i] << " ";
 	}
 
 }
@@ -162,16 +190,16 @@ bool Heap::isEmpty()
 int Heap::peek()
 {
 	if (isEmpty())
-		throw std::exception("Heap empty exception.");
+		throw "Heap empty exception.";
 
-	return arr[1];
+	return arr[0];
 }
 
-void Heap::heapSort(std::vector<int> &array_in)
+void Heap::heapSort(std::vector<int> &array, bool inc)
 {
-	Heap *hp = new Heap(array_in);
-	for (int i = 0; i < array_in.size(); i++)
+	Heap *hp = new Heap(array, !inc);
+	for (int i = 0; i < array.size(); i++)
 	{
-		array_in[i] = hp->remove();
+			array[array.size() - i - 1] = hp->remove();
 	}
 }

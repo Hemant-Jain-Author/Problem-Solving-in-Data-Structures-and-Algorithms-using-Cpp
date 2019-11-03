@@ -1,10 +1,9 @@
-#include "stdafx.h"
 #include <string>
 #include <iostream>
 #include <vector>
 #include <stack>
 
-int main3()
+int main()
 {
 	std::stack<int> stk;
 	std::vector<int> arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };

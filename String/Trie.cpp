@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "Trie.h"
 #include <algorithm>
 
@@ -15,16 +14,16 @@ Trie::Trie()
 	root = new Node(); // first node with dummy value.
 }
 
-void Trie::Insert(const std::string &s)
+void Trie::add(const std::string &s)
 {
 	if (s == "")
 		return;
 	std::string str = s;
 	transform(str.begin(), str.end(), str.begin(), ::tolower);
-	Insert(root, str, 0);
+	add(root, str, 0);
 }
 
-Trie::Node *Trie::Insert(Node *curr, const std::string &str, int index)
+Trie::Node *Trie::add(Node *curr, const std::string &str, int index)
 {
 	if (curr == nullptr)
 	{
@@ -37,22 +36,22 @@ Trie::Node *Trie::Insert(Node *curr, const std::string &str, int index)
 	}
 	else
 	{
-		curr->child[str[index] - 'a'] = Insert(curr->child[str[index] - 'a'], str, index + 1);
+		curr->child[str[index] - 'a'] = add(curr->child[str[index] - 'a'], str, index + 1);
 	}
 
 	return curr;
 }
 
-void Trie::Remove(const std::string &s)
+void Trie::remove(const std::string &s)
 {
 	if (s == "")
 		return;
 	std::string str = s;
 	transform(str.begin(), str.end(), str.begin(), ::tolower);
-	Remove(root, str, 0);
+	remove(root, str, 0);
 }
 
-void Trie::Remove(Node *curr, const std::string &str, int index)
+void Trie::remove(Node *curr, const std::string &str, int index)
 {
 	if (curr == nullptr)		
 		return;
@@ -66,20 +65,20 @@ void Trie::Remove(Node *curr, const std::string &str, int index)
 		return;
 	}
 
-	Remove(curr->child[str[index] - 'a'], str, index + 1);
+	remove(curr->child[str[index] - 'a'], str, index + 1);
 }
 
-bool Trie::Find(const std::string &s)
+bool Trie::find(const std::string &s)
 {
 	if (s == "")
 		return false;
 
 	std::string str = s;
 	transform(str.begin(), str.end(), str.begin(), ::tolower);
-	return Find(root, str, 0);
+	return find(root, str, 0);
 }
 
-bool Trie::Find(Node *curr, const std::string &str, int index)
+bool Trie::find(Node *curr, const std::string &str, int index)
 {
 	if (curr == nullptr)
 	{
@@ -89,23 +88,23 @@ bool Trie::Find(Node *curr, const std::string &str, int index)
 	{
 		return curr->isLastChar;
 	}
-	return Find(curr->child[str[index] - 'a'], str, index + 1);
+	return find(curr->child[str[index] - 'a'], str, index + 1);
 }
 
-int mainhgfh()
+int main()
 {
 	Trie *t = new Trie();
 	std::string a = "hemant";
 	std::string b = "heman";
 	std::string c = "hemantjain";
 	std::string d = "jain";
-	t->Insert(a);
-	t->Insert(d);
-	std::cout << t->Find(a) << std::endl;
-	t->Remove(a);
-	t->Remove(d);
-	std::cout << t->Find(a) << std::endl;
-	std::cout << t->Find(c) << std::endl;
-	std::cout << t->Find(d) << std::endl;
+	t->add(a);
+	t->add(d);
+	std::cout << t->find(a) << std::endl;
+	t->remove(a);
+	t->remove(d);
+	std::cout << t->find(a) << std::endl;
+	std::cout << t->find(c) << std::endl;
+	std::cout << t->find(d) << std::endl;
 	return 0;
 }

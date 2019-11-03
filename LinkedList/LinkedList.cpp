@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "LinkedList.h"
 #include <exception>
 
@@ -16,19 +15,19 @@ LinkedList::Node::Node(int v)
 
 int LinkedList::size()
 {
-	return list_size;
+	return length;
 }
 
 bool LinkedList::isEmpty()
 {
-	return list_size == 0;
+	return length == 0;
 }
 
 int LinkedList::peek()
 {
 	if (isEmpty())
 	{
-		throw std::exception("EmptyListException");
+		throw ("EmptyListException");
 	}
 	return head->value;
 }
@@ -36,7 +35,7 @@ int LinkedList::peek()
 void LinkedList::addHead(int value)
 {
 	head = new Node(value, head);
-	list_size++;
+	length++;
 }
 
 void LinkedList::addTail(int value)
@@ -69,17 +68,17 @@ int LinkedList::removeHead()
 {
 	if (isEmpty())
 	{
-		throw std::exception("EmptyListException");
+		throw ("EmptyListException");
 	}
 	Node* deleteMe = head;
 	int value = head->value;
 	head = head->next;
-	list_size--;
+	length--;
 	delete deleteMe;
 	return value;
 }
 
-bool LinkedList::isPresent(int data)
+bool LinkedList::searchList(int data)
 {
 	Node *temp = head;
 	while (temp != nullptr)
@@ -98,13 +97,13 @@ bool LinkedList::deleteNode(int delValue)
 	Node *temp = head;
 	Node *deleteMe;
 	if (isEmpty())
-		throw std::exception("EmptyListException");
+		throw ("EmptyListException");
 
 	if (delValue == head->value)
 	{
 		deleteMe = head;
 		head = head->next;
-		list_size--;
+		length--;
 		delete deleteMe;
 		return true;
 	}
@@ -115,7 +114,7 @@ bool LinkedList::deleteNode(int delValue)
 		{
 			deleteMe = temp->next;
 			temp->next = temp->next->next;
-			list_size--;
+			length--;
 			delete deleteMe;
 			return true;
 		}
@@ -273,7 +272,7 @@ int LinkedList::nthNodeFromBegining(int index)
 {
 	if (index > size() || index < 1)
 	{
-		throw std::exception("TooFewNodes");
+		throw ("TooFewNodes");
 	}
 	int count = 0;
 	Node *curr = head;
@@ -291,7 +290,7 @@ int LinkedList::nthNodeFromEnd(int index)
 	int startIndex;
 	if (size != 0 && size < index)
 	{
-		throw std::exception("TooFewNodes");
+		throw ("TooFewNodes");
 	}
 	startIndex = size - index + 1;
 	return nthNodeFromBegining(startIndex);
@@ -310,7 +309,7 @@ int LinkedList::nthNodeFromEnd2(int index)
 
 	if (forward == nullptr)
 	{
-		throw std::exception("TooFewNodes");
+		throw ("TooFewNodes");
 	}
 
 	while (forward != nullptr)
@@ -375,7 +374,7 @@ void LinkedList::freeList()
 		curr = next;
 	}
 	head = nullptr;
-	list_size = 0;
+	length = 0;
 }
 
 

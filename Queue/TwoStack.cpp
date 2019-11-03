@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "TwoStack.h"
 
 int main()
@@ -32,7 +31,7 @@ void TwoStack::StackPush1(int value)
 	}
 	else
 	{
-		throw std::exception("StackFullException");
+		throw ("StackFullException");
 	}
 }
 
@@ -44,7 +43,7 @@ void TwoStack::StackPush2(int value)
 	}
 	else
 	{
-		throw std::exception("StackFullException");
+		throw ("StackFullException");
 	}
 }
 
@@ -57,7 +56,7 @@ int TwoStack::StackPop1()
 	}
 	else
 	{
-		throw std::exception("StackEmptyException");
+		throw ("StackEmptyException");
 	}
 }
 
@@ -70,6 +69,6 @@ int TwoStack::StackPop2()
 	}
 	else
 	{
-		throw std::exception("StackEmptyException");
+		throw ("StackEmptyException");
 	}
 }

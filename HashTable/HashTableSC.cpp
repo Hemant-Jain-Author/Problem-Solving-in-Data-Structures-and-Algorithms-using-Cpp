@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "HashTableSC.h"
 
 int main()
@@ -24,7 +23,7 @@ HashTableSC::Node::Node(int v, Node *n)
 
 HashTableSC::HashTableSC()
 {
-	tableSize = 37;
+	tableSize = 23;// some odd value
 	listArray = std::vector<Node*>(tableSize);
 	for (int i = 0; i < tableSize; i++)
 	{
@@ -81,11 +80,11 @@ void HashTableSC::Print()
 	{
 		Node *head = listArray[i];
 		if (head)
-			std::cout << "Printing for index value :: " << i << "List of value Printing :: " << std::endl;
+			std::cout << "\nPrinting for index value :: " << i << " List of value Printing :: ";
 
 		while (head != nullptr)
 		{
-			std::cout << head->value << std::endl;
+			std::cout << head->value << " ";
 			head = head->next;
 		}
 	}

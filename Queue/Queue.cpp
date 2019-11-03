@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "Queue.h"
 
 int main()
@@ -16,20 +15,20 @@ int main()
 
 Queue::Queue()
 {
-	queue_size = 0;
+	length = 0;
 	data = new int[100];
 }
 
 bool Queue::add(int value)
 {
-	if (queue_size >= Capacity)
+	if (length >= Capacity)
 	{
-		throw std::exception("QueueFullException");
+		throw ("QueueFullException");
 		return false;
 	}
 	else
 	{
-		queue_size++;
+		length++;
 		data[back] = value;
 		back = (++back) % (Capacity - 1);
 	}
@@ -39,13 +38,13 @@ bool Queue::add(int value)
 int Queue::remove()
 {
 	int value;
-	if (queue_size <= 0)
+	if (length <= 0)
 	{
-		throw std::exception("QueueEmptyException");
+		throw ("QueueEmptyException");
 	}
 	else
 	{
-		queue_size--;
+		length--;
 		value = data[front];
 		front = (++front) % (Capacity - 1);
 	}
@@ -54,10 +53,10 @@ int Queue::remove()
 
 bool Queue::isEmpty()
 {
-	return queue_size == 0;
+	return length == 0;
 }
 
 int Queue::size()
 {
-	return queue_size;
+	return length;
 }

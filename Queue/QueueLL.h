@@ -14,7 +14,7 @@ private:
 
 	Node *head = nullptr;
 	Node *tail = nullptr;
-	int queue_size = 0;
+	int length = 0;
 
 public:
 	virtual int size();

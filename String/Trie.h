@@ -17,13 +17,13 @@ private:
 
 	static const int CharCount = 26;
 	Node *root = nullptr;
-	virtual Node *Insert(Node *curr, const std::string &str, int index);
-	virtual void Remove(Node *curr, const std::string &str, int index);
-	virtual bool Find(Node *curr, const std::string &str, int index);
+	virtual Node *add(Node *curr, const std::string &str, int index);
+	virtual void remove(Node *curr, const std::string &str, int index);
+	virtual bool find(Node *curr, const std::string &str, int index);
 
 public:
 	Trie();
-	virtual void Insert(const std::string &str);
-	virtual void Remove(const std::string &str);
-	virtual bool Find(const std::string &str);
+	virtual void add(const std::string &str);
+	virtual void remove(const std::string &str);
+	virtual bool find(const std::string &str);
 };

@@ -8,7 +8,7 @@
 class Queue
 {
 private:
-	int queue_size = 0;
+	int length = 0;
 	int Capacity = 100;
 	int* data;
 	int front = 0;

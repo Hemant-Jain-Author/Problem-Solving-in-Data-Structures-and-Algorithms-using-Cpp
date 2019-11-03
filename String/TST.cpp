@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "TST.h"
 
 TST::Node::Node(TST *outerInstance, char d)
@@ -8,12 +7,12 @@ TST::Node::Node(TST *outerInstance, char d)
 	left = equal = right = nullptr;
 }
 
-void TST::insert(const std::string &word)
+void TST::add(const std::string &word)
 {
-	root = insert(root, word, 0);
+	root = add(root, word, 0);
 }
 
-TST::Node *TST::insert(Node *curr, const std::string &word, int wordIndex)
+TST::Node *TST::add(Node *curr, const std::string &word, int wordIndex)
 {
 	if (curr == nullptr)
 	{
@@ -21,17 +20,17 @@ TST::Node *TST::insert(Node *curr, const std::string &word, int wordIndex)
 	}
 	if (word[wordIndex] < curr->data)
 	{
-		curr->left = insert(curr->left, word, wordIndex);
+		curr->left = add(curr->left, word, wordIndex);
 	}
 	else if (word[wordIndex] > curr->data)
 	{
-		curr->right = insert(curr->right, word, wordIndex);
+		curr->right = add(curr->right, word, wordIndex);
 	}
 	else
 	{
 		if (wordIndex < word.length() - 1)
 		{
-			curr->equal = insert(curr->equal, word, wordIndex + 1);
+			curr->equal = add(curr->equal, word, wordIndex + 1);
 		}
 		else
 		{
@@ -80,16 +79,17 @@ bool TST::find(const std::string &word)
 	return ret;
 }
 
-void mainfdsfs(std::vector<std::string> &args)
+int main()
 {
 
 	TST *tt = new TST();
-	tt->insert("banana");
-	tt->insert("apple");
-	tt->insert("mango");
+	tt->add("banana");
+	tt->add("apple");
+	tt->add("mango");
 	std::cout << "Search results for apple, banana, grapes and mango :" << std::endl;
 	tt->find("apple");
 	tt->find("banana");
 	tt->find("mango");
 	tt->find("grapes");
+	return 0;
 }

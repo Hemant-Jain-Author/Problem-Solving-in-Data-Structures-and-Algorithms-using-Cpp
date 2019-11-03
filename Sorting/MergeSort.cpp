@@ -1,8 +1,7 @@
-#include "stdafx.h"
 #include "MergeSort.h"
 #include <iostream>
 
-int main4()
+int main()
 {
 	std::vector<int> data = { 3, 4, 2, 1, 6, 5, 7, 8, 1, 1 };
 	MergeSort *m = new MergeSort(data);

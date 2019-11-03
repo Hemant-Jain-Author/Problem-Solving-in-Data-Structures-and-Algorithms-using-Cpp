@@ -15,9 +15,9 @@ private:
 		Node(TST *outerInstance, char d);
 	};
 	Node *root;
-	Node *insert(Node *curr, const std::string &word, int wordIndex);
+	Node *add(Node *curr, const std::string &word, int wordIndex);
 public:
-	virtual void insert(const std::string &word);
+	virtual void add(const std::string &word);
 	bool find(Node *curr, const std::string &word, int wordIndex);
 	virtual bool find(const std::string &word);
 };

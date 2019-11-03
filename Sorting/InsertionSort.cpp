@@ -1,8 +1,7 @@
-#include "stdafx.h"
 #include "InsertionSort.h"
 #include <iostream>
 
-int main3()
+int main()
 {
 	std::vector<int> data = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
 	InsertionSort *bs = new InsertionSort(data);

@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "HashTable.h"
 
 int HashTable::EMPTY_NODE = -1;
@@ -9,11 +8,7 @@ HashTable::HashTable(int tSize)
 {
 	tableSize = tSize;
 	Arr = std::vector<int>(tSize + 1);
-	Flag = std::vector<int>(tSize + 1);
-	for (int i = 0; i <= tSize; i++)
-	{
-		Flag[i] = EMPTY_NODE;
-	}
+	Flag = std::vector<int>(tSize + 1, EMPTY_NODE);
 }
 
 int HashTable::ComputeHash(int key)
@@ -96,11 +91,22 @@ void HashTable::Print()
 int main()
 {
 	HashTable *ht = new HashTable(1000);
-	ht->Add(89);	ht->Add(18);	ht->Add(49);	ht->Add(58);	ht->Add(69);
-	ht->Add(89);	ht->Add(18);	ht->Add(49);	ht->Add(58);	ht->Add(69);
+	ht->Add(89);	
+	ht->Add(18);	
+	ht->Add(49);	
+	ht->Add(58);	
+	ht->Add(69);
+	ht->Add(89);	
+	ht->Add(18);	
+	ht->Add(49);	
+	ht->Add(58);	
+	ht->Add(69);
 	ht->Print();
 
-	ht->Remove(89);		ht->Remove(18);		ht->Remove(49);		ht->Remove(58);
+	ht->Remove(89);		
+	ht->Remove(18);		
+	ht->Remove(49);		
+	ht->Remove(58);
 	ht->Remove(69);
 	ht->Print();
 	return 0;

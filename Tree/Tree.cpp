@@ -1,7 +1,6 @@
-#include "stdafx.h"
 #include "Tree.h"
 
-int main()
+int main1()
 {
 	Tree t;
 	int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -19,6 +18,41 @@ int main()
 	std::cout << "is bst " << (t.isBST2());
 	return 0;
 }
+
+int main() {
+        Tree t;
+        int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        t.levelOrderBinaryTree(arr, 10);
+        std::cout << t.isHeap() << std::endl;
+        std::cout << t.isHeap2() << std::endl;
+        std::cout << t.isCompleteTree() << std::endl;
+
+        std::cout << std::endl;;
+        t.PrintBredthFirst();
+        std::cout << std::endl;;
+        t.PrintPreOrder();
+        std::cout << std::endl;;
+        t.PrintLevelOrderLineByLine();
+        std::cout << std::endl;;
+        t.PrintLevelOrderLineByLine2();
+        std::cout << std::endl;;
+        t.PrintSpiralTree();
+        std::cout << std::endl;;
+        t.printAllPath();
+        std::cout << std::endl;;
+        t.NthInOrder(4);
+        std::cout << std::endl;;
+        t.NthPostOrder(4);
+        std::cout << std::endl;;
+        t.NthPreOrder(4);
+        std::cout << std::endl;;
+        /*
+         * t.PrintPostOrder(); std::cout << ); t.iterativePostOrder();
+         * t.PrintBredthFirst(); // t.treeToListRec(); t.printAllPath();
+         * std::cout << t.LCA(10, 3) << std::endl; t.iterativePreOrder(); t.PrintPreOrder();
+         * // t.CreateBinaryTree(arr); // std::cout << t.isBST2());
+         */
+    }
 
 
 Tree::Node::Node(int v, Node *l, Node *r)
@@ -248,6 +282,88 @@ void Tree::PrintDepthFirst()
 	}
 }
 
+
+    void Tree::PrintLevelOrderLineByLine() {
+        std::queue<Node*> que1;
+        std::queue<Node*> que2;
+        Node* temp = nullptr;
+        if (root != nullptr)
+            que1.push(root);
+        while (que1.size() != 0 || que2.size() != 0) {
+            while (que1.size() != 0) {
+                temp = que1.front();
+                que1.pop();
+                std::cout << " " << temp->value;
+                if (temp->lChild != nullptr)
+                    que2.push(temp->lChild);
+                if (temp->rChild != nullptr)
+                    que2.push(temp->rChild);
+            }
+            std::cout << std::endl;
+
+            while (que2.size() != 0) {
+                temp = que2.front();que2.pop();
+                std::cout << " " << temp->value;
+                if (temp->lChild != nullptr)
+                    que1.push(temp->lChild);
+                if (temp->rChild != nullptr)
+                    que1.push(temp->rChild);
+            }
+            std::cout << std::endl;
+        }
+    }
+
+    void Tree::PrintLevelOrderLineByLine2() {
+        std::queue<Node*> que;
+        Node* temp = nullptr;
+        int count = 0;
+
+        if (root != nullptr)
+            que.push(root);
+        while (que.size() != 0) {
+            count = que.size();
+            while (count > 0) {
+                temp = que.front();que.pop();
+                std::cout << " " << temp->value;
+                if (temp->lChild != nullptr)
+                    que.push(temp->lChild);
+                if (temp->rChild != nullptr)
+                    que.push(temp->rChild);
+                count -= 1;
+            }
+            std::cout << std::endl;
+        }
+    }
+
+    void Tree::PrintSpiralTree() {
+        std::stack<Node*> stk1;
+        std::stack<Node*> stk2;
+
+        Node* temp;
+        if (root != nullptr)
+            stk1.push(root);
+        while (stk1.size() != 0 || stk2.size() != 0) {
+            while (stk1.size() != 0) {
+            	temp = stk1.top();
+                stk1.pop();
+                std::cout << " " + temp->value;
+                if (temp->rChild != nullptr)
+                    stk2.push(temp->rChild);
+                if (temp->lChild != nullptr)
+                    stk2.push(temp->lChild);
+            }
+            while (stk2.size() != 0) {
+                temp = stk2.top();
+                stk2.pop();
+                std::cout << " " + temp->value;
+                if (temp->lChild != nullptr)
+                    stk1.push(temp->lChild);
+                if (temp->rChild != nullptr)
+                    stk1.push(temp->rChild);
+            }
+        }
+    }
+
 bool Tree::Find(int value)
 {
 	Node *curr = root;
@@ -285,7 +401,7 @@ int Tree::FindMin()
 	Node *node = root;
 	if (node == nullptr)
 	{
-		throw std::exception("EmptyTreeException");
+		throw ("EmptyTreeException");
 	}
 
 	while (node->lChild != nullptr)
@@ -300,7 +416,7 @@ int Tree::FindMax()
 	Node *node = root;
 	if (node == nullptr)
 	{
-		throw std::exception("EmptyTreeException");
+		throw ("EmptyTreeException");
 	}
 
 	while (node->rChild != nullptr)
@@ -315,7 +431,7 @@ Tree::Node *Tree::FindMax(Node *curr)
 	Node *node = curr;
 	if (node == nullptr)
 	{
-		throw std::exception("EmptyTreeException");
+		throw ("EmptyTreeException");
 	}
 
 	while (node->rChild != nullptr)
@@ -330,7 +446,7 @@ Tree::Node *Tree::FindMin(Node *curr)
 	Node *node = curr;
 	if (node == nullptr)
 	{
-		throw std::exception("EmptyTreeException");
+		throw ("EmptyTreeException");
 	}
 
 	while (node->lChild != nullptr)
@@ -789,6 +905,77 @@ bool Tree::isBST2(Node *root, int& count)
 	return true;
 }
 
+
+bool Tree::isCompleteTree() {
+    std::queue<Node*> que;
+    Node* temp = nullptr;
+    int noChild = 0;
+    if (root != nullptr)
+        que.push(root);
+    while (que.size() != 0) {
+        temp = que.front();que.pop();
+        if (temp->lChild != nullptr) {
+            if (noChild == 1)
+                return false;
+            que.push(temp->lChild);
+        } else
+            noChild = 1;
+
+        if (temp->rChild != nullptr) {
+            if (noChild == 1)
+                return false;
+            que.push(temp->rChild);
+        } else
+            noChild = 1;
+    }
+    return true;
+}
+
+bool Tree::isCompleteTreeUtil(Node* curr, int index, int count) {
+    if (curr == nullptr)
+        return true;
+    if (index > count)
+        return false;
+    return isCompleteTreeUtil(curr->lChild, index * 2 + 1, count)
+            && isCompleteTreeUtil(curr->rChild, index * 2 + 2, count);
+}
+
+bool Tree::isCompleteTree2() {
+    int count = numNodes();
+    return isCompleteTreeUtil(root, 0, count);
+}
+
+bool Tree::isHeapUtil(Node* curr, int parentValue) {
+    if (curr == nullptr)
+        return true;
+    if (curr->value < parentValue)
+        return false;
+    return (isHeapUtil(curr->lChild, curr->value) && isHeapUtil(curr->rChild, curr->value));
+}
+
+bool Tree::isHeap() {
+    int infi = -9999999;
+    return (isCompleteTree() && isHeapUtil(root, infi));
+}
+
+bool Tree::isHeapUtil2(Node* curr, int index, int count, int parentValue) {
+    if (curr == nullptr)
+        return true;
+    if (index > count)
+        return false;
+    if (curr->value < parentValue)
+        return false;
+    return isHeapUtil2(curr->lChild, index * 2 + 1, count, curr->value)
+            && isHeapUtil2(curr->rChild, index * 2 + 2, count, curr->value);
+}
+
+bool Tree::isHeap2() {
+    int count = numNodes();
+    int parentValue = -9999999;
+    return isHeapUtil2(root, 0, count, parentValue);
+}
+
+
 Tree::Node *Tree::treeToListRec()
 {
 	Node *head = treeToListRec(root);
@@ -876,7 +1063,7 @@ int Tree::LCA(int first, int second)
 	}
 	else
 	{
-		throw std::exception("NotFoundException");
+		throw ("NotFoundException");
 	}
 }
 
@@ -920,7 +1107,7 @@ int Tree::LcaBST(Node *curr, int first, int second)
 {
 	if (curr == nullptr)
 	{
-		throw std::exception("NotFoundException");
+		throw ("NotFoundException");
 	}
 
 	if (curr->value > first && curr->value > second)
@@ -1082,3 +1269,26 @@ Tree::Node *Tree::CreateBinaryTree(int arr[], int start, int end)
 	curr->rChild = CreateBinaryTree(arr, mid + 1, end);
 	return curr;
 }
+
+bool isBSTArray(int preorder[], int size) {
+    std::stack<int> stk;
+    int value;
+    int root = -999999;
+    for (int i = 0; i < size; i++) {
+        value = preorder[i];
+
+        // If value of the right child is less than root.
+        if (value < root)
+            return false;
+        // First left child values will be popped
+        // Last popped value will be the root.
+        while (stk.size() > 0 && stk.top() < value)
+        {    
+        	root = stk.top(); stk.pop();
+        }
+        // add current value to the stack.
+        stk.push(value);
+    }
+    return true;
+}
+

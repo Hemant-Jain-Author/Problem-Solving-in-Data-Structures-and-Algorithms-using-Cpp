@@ -1,7 +1,6 @@
-#include "stdafx.h"
 #include "CountMap.h"
 
-int main3()
+int main()
 {
 	CountMap<int> *cm = new CountMap<int>();
 	cm->add(2);

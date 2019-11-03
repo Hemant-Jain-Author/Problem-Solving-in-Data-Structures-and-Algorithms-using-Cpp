@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "Stringclass.h"
 
 Stringclass::Stringclass()
@@ -12,7 +11,7 @@ Stringclass::Stringclass()
 
 }
 
-void main()
+int main1()
 {
 	std::string str1 = "hello";
 	std::string str2 = "hello";
@@ -20,11 +19,11 @@ void main()
 
 	std::cout << "str1 equals str2 :" << (str1 == str2) << std::endl;
 	std::cout << "str1 equals str3 :" << (str1 == str3) << std::endl;
-
+	return 0;
 }
 
 
-void main22222()
+int main()
 {
 	std::string str;
 	std::string text = "Hello, World!";

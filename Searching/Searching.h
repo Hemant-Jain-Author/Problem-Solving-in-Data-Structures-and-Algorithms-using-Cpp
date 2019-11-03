@@ -6,9 +6,11 @@
 #include <iostream>
 #include <unordered_set>
 #include <exception>
+#include <set>
+#include <map>
 
 // buggy implementation.
-static int findkth(std::vector<int> &first, std::vector<int> &second, int k);
+//static int findkth(std::vector<int> &first, std::vector<int> &second, int k);
 bool linearSearchUnsorted(std::vector<int> &data, int value);
 bool linearSearchSorted(std::vector<int> &data, int value);
 // Binary Search Algorithm - Iterative Way
@@ -26,7 +28,8 @@ int getMajority(std::vector<int> &data);
 int getMajority2(std::vector<int> &data);
 int getMajority3(std::vector<int> &data);
 int findMissingNumber(std::vector<int> &data);
-int findMissingNumber(std::vector<int> &data, int range);
+int findMissingNumber2(std::vector<int> &data, int range);
+int findMissingNumber3(std::vector<int> &data, int range);
 bool FindPair(std::vector<int> &data, int value);
 bool FindPair2(std::vector<int> &data, int value);
 bool FindPair3(std::vector<int> &data, int value);
@@ -42,7 +45,7 @@ int findFirstIndex(std::vector<int> &data, int start, int end, int key);
 int findLastIndex(std::vector<int> &data, int start, int end, int key);
 void swap(std::vector<int> &data, int first, int second);
 void seperateEvenAndOdd(std::vector<int> &data);
-void maxProfit(std::vector<int> &stocks);
+int maxProfit(std::vector<int> &stocks);
 int getMedian(std::vector<int> &data);
 int findMedian(std::vector<int> &dataFirst, int sizeFirst, std::vector<int> &dataSecond, int sizeSecond);
 static int min(int a, int b);
@@ -55,5 +58,5 @@ int FirstRepeated(std::vector<int> &data);
 void transformArrayAB1(std::vector<int> &data);
 bool checkPermutation(std::vector<int> &data1, std::vector<int> &data2);
 bool checkPermutation2(std::vector<int> &data1, std::vector<int> &data2);
-int removeDuplicates(std::vector<int> &data);
+void removeDuplicates(std::vector<int> &data);
 bool FindElementIn2DArray(int** data, int r, int c, int value);

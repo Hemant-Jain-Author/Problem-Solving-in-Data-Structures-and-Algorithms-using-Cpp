@@ -1,9 +1,9 @@
-#include "stdafx.h"
 #include "CountMap.h"
 #include <unordered_set>
 #include <string>
 #include <vector>
 #include <iostream>
+#include <limits>
 
 bool isAnagram(std::string &str1, std::string &str2)
 {

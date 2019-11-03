@@ -1,10 +1,9 @@
-#include "stdafx.h"
 #include "HashMapDemo.h"
 #include <iostream>
 
 #include <map>
 
-int main454()
+int main1()
 {
 	// Create a hash map.
 	std::map<std::string, int> tm;
@@ -62,3 +61,4 @@ int main()
 	std::cout <<"John present in class :: " << result << std::endl;
 	return 0;
 }
+

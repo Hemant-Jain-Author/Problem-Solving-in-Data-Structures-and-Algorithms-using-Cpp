@@ -4,10 +4,13 @@
 #include <vector>
 #include <stack>
 #include <iostream>
+#include <queue>
+#include <ostream>
+#include <math.h>
 
 bool isBalancedParenthesis(const std::string &expn);
-template<typename T>  void insertAtBottom(stack<T>& stk, T value);
-template<typename T>  void reverseStack(stack<T>& stk);
+template<typename T>  void insertAtBottom(std::stack<T>& stk, T value);
+template<typename T>  void reverseStack(std::stack<T>& stk);
 int postfixEvaluate(const std::string &expn);
 int precedence(char x);
 std::string infixToPostfix(std::string &expn);

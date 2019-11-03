@@ -1,31 +1,32 @@
 #include "TreeMapDemo.h"
 
-void TreeMapDemo::main(std::vector<std::wstring> &args)
+int main()
 {
 	// Create a hash map.
-	std::map<std::wstring, int> tm;
+	std::map<std::string, int> tm;
 
 	// Put elements into the map
-	tm[L"Mason"] = boost::optional<int>(55);
-	tm[L"Jacob"] = boost::optional<int>(77);
-	tm[L"William"] = boost::optional<int>(99);
-	tm[L"Alexander"] = boost::optional<int>(80);
-	tm[L"Michael"] = boost::optional<int>(50);
-	tm[L"Emma"] = boost::optional<int>(65);
-	tm[L"Olivia"] = boost::optional<int>(77);
-	tm[L"Sophia"] = boost::optional<int>(88);
-	tm[L"Emily"] = boost::optional<int>(99);
-	tm[L"Isabella"] = boost::optional<int>(100);
+	tm["Mason"] = 55;
+	tm["Jacob"] = 77;
+	tm["William"] = 99;
+	tm["Alexander"] = 80;
+	tm["Michae"] = 50;
+	tm["Emma"] = 65;
+	tm["Olivia"] = 77;
+	tm["Sophia"] = 88;
+	tm["Emily"] = 99;
+	tm["Isabella"] = 100;
 
-	std::wcout << std::wstring(L"Total number of students in class :: ") << tm.size() << std::endl;
+	std::cout << "Total number of students in class :: " << tm.size() << std::endl;
 	for (auto key : tm)
 	{
-		std::wcout << key.first << std::wstring(L" score marks :") << tm[key.first] << std::endl;
+		std::cout << key.first << " score marks :" << tm[key.first] << std::endl;
 	}
 
-	std::wcout << std::wstring(L"Emma present in class :: ") << tm.find(L"Emma") != tm.end() << std::endl;
-	std::wcout << std::wstring(L"John present in class :: ") << tm.find(L"John") != tm.end() << std::endl;
-	tm.erase(L"Emma");
-	std::wcout << std::wstring(L"Emma present in class :: ") << tm.find(L"Emma") != tm.end() << std::endl;
+	std::cout << "Emma present in class :: " << (tm.find("Emma") != tm.end()) << std::endl;
+
+	std::cout << "John present in class :: " << (tm.find("John") != tm.end()) << std::endl;
+	tm.erase("Emma");
+	std::cout << "Emma present in class :: " << (tm.find("Emma") != tm.end()) << std::endl;
 
 }

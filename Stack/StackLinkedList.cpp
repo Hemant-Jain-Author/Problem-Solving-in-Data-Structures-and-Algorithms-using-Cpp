@@ -15,12 +15,12 @@ int Stack::size()
 bool Stack::isEmpty()
 {
 	return stack_size == 0;
-}
+}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 
 int Stack::peek()
 {
 	if (isEmpty())
-		throw  std::exception("StackEmptyException");
+		throw  "StackEmptyException";
 
 	return head->value;
 }
@@ -34,7 +34,7 @@ void Stack::push(int value)
 int Stack::pop()
 {
 	if (isEmpty())
-		throw  std::exception("StackEmptyException");
+		throw  "StackEmptyException";
 
 	int value = head->value;
 	Node* delMe = head;
@@ -66,16 +66,18 @@ void Stack::print()
 		std::cout << temp->value << " ";
 		temp = temp->next;
 	}
+	std::cout << std::endl;
 }
 
 int main()
 {
 	Stack s;
-	for (int i = 1; i <= 100; i++)
-		s.push(i);
-	
-	for (int i = 1; i <= 50; i++)
-		s.pop();
-	
-	s.print();
+    s.push(1);
+    s.push(2);
+    s.push(3);
+    s.print();
+    std::cout << s.pop() << std::endl;
+    std::cout << s.pop() << std::endl;
+    s.print();
+	return 0;
 }

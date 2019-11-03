@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "StringTree.h"
 
 StringTree::Node::Node(std::string val)
@@ -24,12 +23,12 @@ void StringTree::print(Node *curr)
 	}
 }
 
-void StringTree::insert(const std::string &value)
+void StringTree::add(const std::string &value)
 {
-	root = insert(value, root);
+	root = add(value, root);
 }
 
-StringTree::Node *StringTree::insert(const std::string &value, Node *curr)
+StringTree::Node *StringTree::add(const std::string &value, Node *curr)
 {
 	int compare;
 	if (curr == nullptr)
@@ -45,11 +44,11 @@ StringTree::Node *StringTree::insert(const std::string &value, Node *curr)
 		}
 		else if (compare == 1)
 		{
-			curr->lChild = insert(value, curr->lChild);
+			curr->lChild = add(value, curr->lChild);
 		}
 		else
 		{
-			curr->rChild = insert(value, curr->rChild);
+			curr->rChild = add(value, curr->rChild);
 		}
 	}
 	return curr;
@@ -135,15 +134,15 @@ int StringTree::frequency(Node *curr, const std::string &value)
 	}
 }
 
-int main6()
+int main()
 {
 	StringTree *tt = new StringTree();
-	tt->insert("banana");
-	tt->insert("apple");
-	tt->insert("mango");
-	tt->insert("banana");
-	tt->insert("apple");
-	tt->insert("mango");
+	tt->add("banana");
+	tt->add("apple");
+	tt->add("mango");
+	tt->add("banana");
+	tt->add("apple");
+	tt->add("mango");
 	std::cout << "Search results for apple, banana, grapes and mango :" << std::endl;
 	tt->find("apple");
 	tt->find("banana");

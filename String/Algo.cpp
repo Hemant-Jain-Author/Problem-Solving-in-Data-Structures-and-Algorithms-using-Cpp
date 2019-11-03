@@ -1,7 +1,6 @@
-#include "stdafx.h"
 #include "Algo.h"
 
-int main1()
+int main()
 {
 	std::string st1 = "hello, world!";
 	std::string st2 = "world";

@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include <iostream>
 
 #include <functional>
@@ -41,6 +40,6 @@ int maxheapdemo()
 int main()
 {
 	minheapdemo();
-	//maxheapdemo();
+	maxheapdemo();
 	return 0;
 }

@@ -17,7 +17,7 @@ private:
 	};
 
 	Node *head;
-	int list_size;
+	int length;
 
 public:
 	virtual int size();
@@ -29,7 +29,7 @@ public:
 
 
 	virtual void addTail(int value);
-	virtual bool isPresent(int data);
+	virtual bool searchList(int data);
 	virtual bool deleteNode(int delValue);
 	virtual void deleteNodes(int delValue);
 	virtual Node *reverseRecurseUtil(Node *currentNode, Node *nextNode);

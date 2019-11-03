@@ -1,6 +1,6 @@
 #include "ArrayListDemo.h"
 
-void ArrayListDemo::main(std::vector<std::wstring> &args)
+int main()
 {
 	std::vector<int> al;
 
@@ -8,20 +8,32 @@ void ArrayListDemo::main(std::vector<std::wstring> &args)
 	al.push_back(2);
 	al.push_back(3);
 	al.push_back(4);
-	std::wcout << std::wstring(L"Contents of Array: ") << al << std::endl;
+	std::cout << "Contents of Array: ";
+	for (auto  i = al.begin();i != al.end(); i++)
+	{
+		std::cout << *i << " ";
+	}
+	std::cout << std::endl;
 
-	al.push_back(2, 9);
-	al.push_back(5, 9);
-	std::wcout << std::wstring(L"Contents of Array: ") << al << std::endl;
 
-	std::wcout << std::wstring(L"Array Size: ") << al.size() << std::endl;
+	al.push_back(8);
+	al.push_back(9);
+	std::cout << "Contents of Array:" ;
 
-	std::wcout << std::wstring(L"Array IsEmpty: ") << al.empty() << std::endl;
+	for (auto  i = al.begin();i != al.end(); ++i)
+	{
+		std::cout << *i << " ";
+	}
+	std::cout << std::endl;
+	std::cout << "Array Size: " << al.size() << std::endl;
+
+	std::cout << "Array IsEmpty: "<< al.empty() << std::endl;
 
 	al.pop_back();
 
-	std::wcout << std::wstring(L"Array Size: ") << al.size() << std::endl;
-	al.removeAll(al);
+	std::cout << "Array Size: " << al.size() << std::endl;
+	al.clear();
 
-	std::wcout << std::wstring(L"Array IsEmpty: ") << al.empty() << std::endl;
+	std::cout << "Array IsEmpty: " << al.empty() << std::endl;
+	return 0;
 }

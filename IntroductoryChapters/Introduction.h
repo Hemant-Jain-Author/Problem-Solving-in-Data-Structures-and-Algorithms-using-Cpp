@@ -4,13 +4,12 @@
 #include <vector>
 #include <iostream>
 
-class MyInt
-{
-public:
-	int value = 0;
-};
+#include <functional> // for greater<int>
+#include <algorithm>
 
-void printArray(int data[], int count);
+
+/*
+void printArray(std::vector<int> &data);
 void printVector(std::vector<int> &data, int count);
 
 void swap(std::vector<int> &data, int x, int y);
@@ -82,3 +81,4 @@ int fibonacci(int n);
 
 // Binary Search Algorithm - Recursive
 int BinarySearchRecursive(std::vector<int> &data, int low, int high, int value);
+*/

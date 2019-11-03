@@ -1,6 +1,5 @@
 // HeapMedian.cpp : Defines the entry point for the console application.
 
-#include "stdafx.h"
 #include "HeapMedian.h"
 
 void MedianHeap::insert(int value)
@@ -29,7 +28,7 @@ void MedianHeap::insert(int value)
 int MedianHeap::getMedian()
 {
 	if (maxHeap.size() == 0 && minHeap.size() == 0)
-		throw std::exception("HeapEmptyException");
+		throw "HeapEmptyException";
 
 	if (maxHeap.size() == minHeap.size())
 		return (maxHeap.top() + minHeap.top()) / 2;

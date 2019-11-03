@@ -1,8 +1,7 @@
-#include "stdafx.h"
 #include "QuickSelect.h"
 #include <iostream>
 
-int main5()
+int main()
 {
 	std::vector<int> data = { 3, 4, 2, 1, 6, 5, 7, 8, 10, 9 };
 	QuickSelect::quickSelect(data, 5);

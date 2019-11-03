@@ -1,4 +1,3 @@
-#pragma once
 
 #include <string>
 #include <vector>
@@ -12,15 +11,19 @@ private:
 	static const int CAPACITY = 16;
 	int size; // Number of elements in heap
 	std::vector<int> arr; // The heap array
+	bool isMinHeap;
 
 public:
-	Heap();
-	Heap(std::vector<int> &array_in);
+	Heap(bool isMin);
+	Heap(std::vector<int> &array_in, bool isMin);
 	// Other Methods.
 
 private:
 	void proclateDown(int position);
 	void proclateUp(int position);
+	bool compare(int first, int second);
+	void doubleSize();
+
 
 public:
 	virtual void add(int value);
@@ -30,5 +33,5 @@ public:
 	virtual bool IsMaxHeap(std::vector<int> &arr, int size);
 	virtual bool isEmpty();
 	virtual int peek();
-	static void heapSort(std::vector<int> &array_in);
+	static void heapSort(std::vector<int> &array, bool inc);
 };

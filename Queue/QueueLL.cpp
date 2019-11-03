@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "QueueLL.h"
 
 int main()
@@ -22,18 +21,18 @@ Queue::Node::Node(int v, Node *n)
 
 int Queue::size()
 {
-	return queue_size;
+	return length;
 }
 
 bool Queue::isEmpty()
 {
-	return queue_size == 0;
+	return length == 0;
 }
 
 int Queue::peek()
 {
 	if (isEmpty())
-		throw std::exception("QueueEmptyException");
+		throw ("QueueEmptyException");
 
 	return head->value;
 }
@@ -51,19 +50,19 @@ void Queue::push(int value)
 		tail->next = temp;
 		tail = temp;
 	}
-	queue_size++;
+	length++;
 }
 
 int Queue::pop()
 {
 	if (isEmpty())
-		throw std::exception("QueueEmptyException");
+		throw ("QueueEmptyException");
 	
 	int value = head->value;
 	Node* delMe = head;
 	head = head->next;
 	delete delMe;
-	queue_size--;
+	length--;
 	return value;
 }
 

@@ -1,5 +1,5 @@
-﻿#include "stdafx.h"
-#include <iostream>
+﻿#include <iostream>
+#include <math.h>
 
 int fun1(int n)
 {

@@ -1,8 +1,7 @@
-#include "stdafx.h"
 #include "BucketSort.h"
 #include <iostream>
 
-int main2()
+int main()
 {
 	std::vector<int> data = { 23, 24, 22, 21, 26, 25, 27, 28, 21, 21 };
 

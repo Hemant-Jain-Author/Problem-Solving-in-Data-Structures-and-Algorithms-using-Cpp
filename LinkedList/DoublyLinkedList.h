@@ -16,7 +16,7 @@ private:
 
 	Node *head;
 	Node *tail;
-	int list_size;
+	int length;
 
 public:
 	DoublyLinkedList();
@@ -29,7 +29,7 @@ public:
 
 	virtual void addTail(int value);
 	virtual bool removeNode(int key);
-	virtual bool isPresent(int key);
+	virtual bool searchList(int key);
 	virtual void freeList();
 	virtual void print();
 	virtual void sortedInsert(int value);

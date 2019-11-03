@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "DoublyLinkedList.h"
 #include <exception>
 
@@ -42,23 +41,23 @@ DoublyLinkedList::Node::Node(int v)
 
 DoublyLinkedList::DoublyLinkedList()
 {
-	list_size = 0;
+	length = 0;
 }
 
 int DoublyLinkedList::size()
 {
-	return list_size;
+	return length;
 }
 
 bool DoublyLinkedList::isEmpty()
 {
-	return list_size == 0;
+	return length == 0;
 }
 
 int DoublyLinkedList::peek()
 {
 	if (isEmpty())
-		throw std::exception("EmptyListException");
+		throw ("EmptyListException");
 
 	return head->value;
 }
@@ -66,7 +65,7 @@ int DoublyLinkedList::peek()
 void DoublyLinkedList::addHead(int value)
 {
 	Node *newNode = new Node(value, nullptr, nullptr);
-	if (list_size == 0)
+	if (length == 0)
 	{
 		tail = head = newNode;
 	}
@@ -76,13 +75,13 @@ void DoublyLinkedList::addHead(int value)
 		newNode->next = head;
 		head = newNode;
 	}
-	list_size++;
+	length++;
 }
 
 void DoublyLinkedList::addTail(int value)
 {
 	Node *newNode = new Node(value, nullptr, nullptr);
-	if (list_size == 0)
+	if (length == 0)
 	{
 		head = tail = newNode;
 	}
@@ -92,13 +91,13 @@ void DoublyLinkedList::addTail(int value)
 		tail->next = newNode;
 		tail = newNode;
 	}
-	list_size++;
+	length++;
 }
 
 int DoublyLinkedList::removeHead()
 {
 	if (isEmpty())
-		throw std::exception("EmptyListException");
+		throw ("EmptyListException");
 	Node* deleteMe;
 	int value = head->value;
 	deleteMe = head;
@@ -113,7 +112,7 @@ int DoublyLinkedList::removeHead()
 		head->prev = nullptr;
 	}
 	delete deleteMe;
-	list_size--;
+	length--;
 	return value;
 }
 
@@ -129,7 +128,7 @@ bool DoublyLinkedList::removeNode(int key)
 		deleteMe = curr;
 		curr = curr->next;
 		delete deleteMe;
-		list_size--;
+		length--;
 		if (curr != nullptr)
 		{
 			head = curr;
@@ -152,7 +151,7 @@ bool DoublyLinkedList::removeNode(int key)
 			else
 				curr->next->prev = curr;
 			delete deleteMe;
-			list_size--;
+			length--;
 			return true;
 		}
 		curr = curr->next;
@@ -160,7 +159,7 @@ bool DoublyLinkedList::removeNode(int key)
 	return false;
 }
 
-bool DoublyLinkedList::isPresent(int key)
+bool DoublyLinkedList::searchList(int key)
 {
 	Node *temp = head;
 	while (temp != nullptr)
@@ -184,7 +183,7 @@ void DoublyLinkedList::freeList()
 		curr = next;
 	}
 	tail = head = nullptr;
-	list_size = 0;
+	length = 0;
 }
 
 void DoublyLinkedList::print()

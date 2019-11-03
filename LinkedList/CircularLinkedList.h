@@ -17,7 +17,7 @@ private:
 
 private:
 	Node *tail;
-	int list_size;
+	int length;
 
 public:
 	CircularLinkedList();
@@ -33,7 +33,7 @@ public:
 	virtual bool removeNode(int key);
 	virtual CircularLinkedList* copyListReversed();
 	virtual CircularLinkedList* copyList();
-	virtual bool isPresent(int data);
+	virtual bool searchList(int data);
 	virtual void freeList();
 	virtual void print();
 };

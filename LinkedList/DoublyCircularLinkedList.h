@@ -17,7 +17,7 @@ private:
 
 	Node *head = nullptr;
 	Node *tail = nullptr;
-	int list_size = 0;
+	int length = 0;
 
 public:
 	DoublyCircularLinkedList();
@@ -31,7 +31,7 @@ public:
 	virtual void addTail(int value);
 
 	virtual int removeTail();
-	virtual bool isPresent(int key);
+	virtual bool searchList(int key);
 	virtual void freeList();
 	virtual void print();
 };

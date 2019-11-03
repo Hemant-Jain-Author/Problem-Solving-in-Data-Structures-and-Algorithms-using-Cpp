@@ -18,13 +18,13 @@ private:
 
 	Node *root = nullptr;
 	virtual void print(Node *curr); // pre order
-	virtual Node *insert(const std::string &value, Node *curr);
+	virtual Node *add(const std::string &value, Node *curr);
 	virtual void freeTree(Node *curr);
 	virtual bool find(Node *curr, const std::string &value);
 	virtual int frequency(Node *curr, const std::string &value);
 public:
 	virtual void print();
-	virtual void insert(const std::string &value);
+	virtual void add(const std::string &value);
 	virtual void freeTree();
 	virtual bool find(const std::string &value);
 	virtual int frequency(const std::string &value);

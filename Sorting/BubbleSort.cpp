@@ -1,7 +1,6 @@
-#include "stdafx.h"
 #include "BubbleSort.h"
 
-int main1()
+int main()
 {
 	std::vector<int> data = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
 	BubbleSort *bs = new BubbleSort(data);

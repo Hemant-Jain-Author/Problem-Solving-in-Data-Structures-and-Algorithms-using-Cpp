@@ -1,8 +1,7 @@
-#include "stdafx.h"
 #include "QuickSort.h"
 #include <iostream>
 
-int main6()
+int main()
 {
 	std::vector<int> data = { 3, 4, 2, 1, 6, 5, 7, 8, 1, 1 };
 	QuickSort *m = new QuickSort(data);

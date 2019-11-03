@@ -6,7 +6,7 @@
 #include <stack>
 #include <queue>
 #include <exception>
-
+#include <limits>
 class Tree
 {
 private:
@@ -219,4 +219,17 @@ public:
 	virtual void CreateBinaryTree(int arr[], int size);
 
 	virtual Node *CreateBinaryTree(int arr[], int start, int end);
+
+virtual void PrintLevelOrderLineByLine();
+virtual void PrintLevelOrderLineByLine2();
+virtual void PrintSpiralTree();
+bool isCompleteTree();
+bool isCompleteTreeUtil(Node* curr, int index, int count);
+bool isCompleteTree2();
+bool isHeapUtil(Node* curr, int parentValue);
+bool isHeap();
+bool isHeapUtil2(Node* curr, int index, int count, int parentValue);
+bool isHeap2();
+
+
 };

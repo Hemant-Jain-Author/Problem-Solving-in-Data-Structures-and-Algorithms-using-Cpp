@@ -1,18 +1,19 @@
 #include "TreeSetDemo.h"
 
-void TreeSetDemo::main(std::vector<std::wstring> &args)
+int main()
 {
 	// Create a tree set.
-	std::set<std::wstring> ts;
+	std::set<std::string> ts;
 	// Add elements to the tree set.
-	ts.insert(L"India");
-	ts.insert(L"USA");
-	ts.insert(L"Brazile");
-	ts.insert(L"Canada");
-	ts.insert(L"UK");
-	ts.insert(L"China");
-	ts.insert(L"France");
-	ts.insert(L"Spain");
-	ts.insert(L"Italy");
-	std::wcout << ts << std::endl;
+	ts.insert("India");
+	ts.insert("USA");
+	ts.insert("Brazile");
+	ts.insert("Canada");
+	ts.insert("UK");
+	ts.insert("China");
+	ts.insert("France");
+	ts.insert("Spain");
+	ts.insert("Italy");
+	for (auto i : ts)
+		std::cout << i << std::endl;
 }

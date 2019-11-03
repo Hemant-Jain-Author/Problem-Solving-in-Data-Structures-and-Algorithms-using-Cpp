@@ -1,11 +1,9 @@
-#include "stdafx.h"
-
 #include <string>
 #include <iostream>
 #include <list>
 
 
-int main1()
+int main()
 {
 	std::list<int> ll;
 

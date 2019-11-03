@@ -1,23 +1,23 @@
-#pragma once
-#include "stdafx.h"
+
 #include "Heap.h"
 #include <exception>
 
 template<typename T>
-Heap<T>::Heap()
+Heap<T>::Heap(int (*cmp)(T , T))
 {
 	arr = std::vector<T>(CAPACITY);
 	size = 0;
 }
 
 template<typename T>
-Heap<T>::Heap(std::vector<T> &array_variable)
+Heap<T>::Heap(std::vector<T> &input_array, int (*cmp)(T , T))
 {
-	size = array_variable.size();
-	arr = std::vector<T>(array_variable.size() + 1);
+	size = input_array.size();
+	arr = std::vector<T>(input_array.size() + 1);
+	compare = cmp;
 	for (int i = 0; i < size; i++)
 	{
-		arr[i + 1] = array_variable[i];
+		arr[i + 1] = input_array[i];
 	}
 
 	// Build Heap operation over array
@@ -40,12 +40,12 @@ void Heap<T>::proclateDown(int position)
 		small = lChild;
 	}
 
-	if (rChild < size && arr[rChild]->compare(arr[lChild]) < 0)
+	if (rChild < size && compare(arr[rChild], arr[lChild]) < 0)
 	{
 		small = rChild;
 	}
 
-	if (small != -1 && arr[small]->compare(arr[position]) < 0)
+	if (small != -1 && compare(arr[small], arr[position]) < 0)
 	{
 		temp = arr[position];
 		arr[position] = arr[small];
@@ -64,7 +64,7 @@ void Heap<T>::proclateUp(int position)
 		return;
 	}
 
-	if (arr[parent]->compare(arr[position]) < 0)
+	if (compare(arr[parent], arr[position]) < 0)
 	{
 		temp = arr[position];
 		arr[position] = arr[parent];
@@ -89,8 +89,11 @@ template<typename T>
 void Heap<T>::doubleSize()
 {
 	std::vector<T> old = arr;
-	arr = static_cast<std::vector<T>>(std::vector<Comparable>(arr.size() * 2));
-	System::arraycopy(old, 1, arr, 1, size);
+	arr = std::vector<T>(arr.size() * 2);
+	for (int i =1;i<size;i++)
+	{
+		arr[i] = old[i];	
+	}
 }
 
 template<typename T>
@@ -98,7 +101,7 @@ T Heap<T>::remove()
 {
 	if (isEmpty())
 	{
-		throw std::exception("HeapEmptyException");
+		throw "HeapEmptyException";
 	}
 
 	T value = arr[1];
@@ -113,8 +116,9 @@ void Heap<T>::print()
 {
 	for (int i = 1; i < size; i++)
 	{
-		std::cout << "value is :: " << arr[i] << std::endl;
+		std::cout << " " << arr[i];
 	}
+	std::cout << std::endl;
 
 }
 
@@ -129,37 +133,41 @@ T Heap<T>::peek()
 {
 	if (isEmpty())
 	{
-		throw std::exception("HeapEmptyException");
+		throw "HeapEmptyException";
 	}
 	return arr[1];
 }
 
 template<typename T>
-void Heap<T>::heapSort(std::vector<int> &array_variable)
+void Heap<T>::heapSort(std::vector<int> &array_variable, int (*cmp)(T , T) )
 {
-	Heap<int> *hp = new Heap<int>(array_variable);
+	Heap<int> *hp = new Heap<int>(array_variable, cmp);
 	for (int i = 0; i < array_variable.size(); i++)
 	{
 		array_variable[i] = hp->remove();
 	}
 }
-
+int compare(int a, int b){
+	return a - b;
+}
 
 int main()
 {
-	int num[] = { 1, 9, 6, 7, 8, 0, 2, 4, 5, 3 };
-	std::vector<int> a(num, num + sizeof(num));
-	Heap<int> *hp = new Heap<int>(a);
+	
+	std::vector<int> a = { 1, 9, 6, 7, 8, 0, 2, 4, 5, 3 };
+	Heap<int> *hp = new Heap<int>(a, &compare);
 	hp->print();
 	for (unsigned int i = 0; i < a.size(); i++)
 	{
 		std::cout << "pop value :: " << hp->remove() << std::endl;
 	}
 
-	Heap<int>::heapSort(a);
+	int num[] = { 1, 9, 6, 7, 8, 0, 2, 4, 5, 3 };
+	Heap<int>::heapSort(a, &compare);
 	for (unsigned int i = 0; i < a.size(); i++)
 	{
 		std::cout << "value is :: " << a[i] << std::endl;
 	}
+	
 	return 0;
 }

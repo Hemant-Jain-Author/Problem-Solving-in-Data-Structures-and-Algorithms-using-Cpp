@@ -1,7 +1,6 @@
 // CircularLinkedList.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
 #include "CircularLinkedList.h"
 
 int main()
@@ -31,23 +30,23 @@ CircularLinkedList::Node::Node(int v)
 
 CircularLinkedList::CircularLinkedList()
 {
-	list_size = 0;
+	length = 0;
 }
 
 int CircularLinkedList::size()
 {
-	return list_size;
+	return length;
 }
 
 bool CircularLinkedList::isEmpty()
 {
-	return list_size == 0;
+	return length == 0;
 }
 
 int CircularLinkedList::peek()
 {
 	if (isEmpty())
-		throw std::exception("EmptyListException");
+		throw "EmptyListException";
 
 	return tail->next->value;
 }
@@ -66,18 +65,17 @@ void CircularLinkedList::addHead(int value)
 		temp->next = tail->next;
 		tail->next = temp;
 	}
-	list_size++;
+	length++;
 }
 
 int CircularLinkedList::removeHead()
 {
-	Node* delMe;
 	if (isEmpty())
 	{
-		throw std::exception("EmptyListException");
+		throw ("EmptyListException");
 	}
 	int value = tail->next->value;
-	delMe = tail->next;
+	Node* delMe = tail->next;
 
 	if (tail == tail->next)
 		tail = nullptr;
@@ -85,7 +83,7 @@ int CircularLinkedList::removeHead()
 		tail->next = tail->next->next;
 
 	delete delMe;
-	list_size--;
+	length--;
 	return value;
 }
 
@@ -103,7 +101,7 @@ void CircularLinkedList::addTail(int value)
 		tail->next = temp;
 		tail = temp;
 	}
-	list_size++;
+	length++;
 }
 
 bool CircularLinkedList::removeNode(int key)
@@ -189,10 +187,10 @@ CircularLinkedList* CircularLinkedList::copyList()
 	return cl;
 }
 
-bool CircularLinkedList::isPresent(int data)
+bool CircularLinkedList::searchList(int data)
 {
 	Node *temp = tail;
-	for (int i = 0; i < list_size; i++)
+	for (int i = 0; i < length; i++)
 	{
 		if (temp->value == data)
 			return true;
@@ -217,7 +215,7 @@ void CircularLinkedList::freeList()
 	}
 	delete tail;
 	tail = nullptr;
-	list_size = 0;
+	length = 0;
 }
 
 void CircularLinkedList::print()

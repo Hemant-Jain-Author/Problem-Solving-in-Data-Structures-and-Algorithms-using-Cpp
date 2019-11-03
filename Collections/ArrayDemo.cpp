@@ -1,11 +1,17 @@
 #include "ArrayDemo.h"
 
-void main()
+int main()
 {
 	std::vector<int> arr(10);
 	for (int i = 0; i < 10; i++)
 	{
 		arr[i] = i;
 	}
-	std::wcout << arr << std::endl;
+
+	for (auto  i = arr.begin();i != arr.end(); i++)
+	{
+		std::cout << *i << " ";
+	}
+	std::cout << std::endl;
+	return 0;
 }
