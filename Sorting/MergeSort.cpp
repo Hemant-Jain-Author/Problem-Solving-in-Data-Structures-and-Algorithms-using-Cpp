@@ -4,8 +4,8 @@
 int main()
 {
 	std::vector<int> data = { 3, 4, 2, 1, 6, 5, 7, 8, 1, 1 };
-	MergeSort *m = new MergeSort(data);
-	m->sort();
+	MergeSort m = MergeSort(data);
+	m.sort();
 	for (int i = 0; i < data.size(); i++)
 	{
 		std::cout << data[i] << " ";

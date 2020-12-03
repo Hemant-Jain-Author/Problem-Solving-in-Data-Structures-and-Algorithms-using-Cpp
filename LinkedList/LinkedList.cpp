@@ -189,7 +189,7 @@ void LinkedList::reverse()
 	head = prev;
 }
 
-LinkedList* LinkedList::CopyListReversed()
+LinkedList* LinkedList::copyListReversed()
 {
 	Node *tempNode = nullptr;
 	Node *tempNode2 = nullptr;
@@ -205,7 +205,7 @@ LinkedList* LinkedList::CopyListReversed()
 	return ll2;
 }
 
-LinkedList* LinkedList::CopyList()
+LinkedList* LinkedList::copyList()
 {
 	Node *headNode = nullptr;
 	Node *tailNode = nullptr;
@@ -552,7 +552,6 @@ int main()
 	ll->print();
 	std::cout << std::endl;
 
-	LinkedList* l2 = ll->CopyListReversed();
+	LinkedList* l2 = ll->copyListReversed();
 	l2->print();
-
 }

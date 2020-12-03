@@ -35,8 +35,8 @@ public:
 	virtual Node *reverseRecurseUtil(Node *currentNode, Node *nextNode);
 	virtual void reverseRecurse();
 	virtual void reverse();
-	virtual LinkedList* CopyListReversed();
-	virtual LinkedList* CopyList();
+	virtual LinkedList* copyListReversed();
+	virtual LinkedList* copyList();
 	virtual bool compareList(LinkedList* ll);
 	virtual bool compareList(Node *head1, Node *head2);
 	virtual int findLength();

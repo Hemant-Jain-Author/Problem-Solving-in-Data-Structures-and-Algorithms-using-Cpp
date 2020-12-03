@@ -5,7 +5,7 @@
 #include <deque>
 #include <queue>
 
-int CircularTour(std::vector<std::vector<int>> &arr, int n) {
+int circularTour(std::vector<std::vector<int>> &arr, int n) {
     std::queue<int> que;
     int nextPump = 0, prevPump;
     int count = 0;
@@ -40,7 +40,7 @@ int CircularTour(std::vector<std::vector<int>> &arr, int n) {
 int main1() {
     // Testing code
     std::vector<std::vector<int>> tour = { { 8, 6 }, { 1, 4 }, { 7, 6 } };
-    std::cout << " Circular Tour : " << CircularTour(tour, 3) << std::endl;
+    std::cout << " Circular Tour : " << circularTour(tour, 3) << std::endl;
 	return 0;
 }
 

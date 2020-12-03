@@ -1,7 +1,9 @@
-#include "StackExercise.h"
+#include <vector>
+#include <stack>
+#include <iostream>
+#include <queue>
+#include <math.h>
 #include<iostream>
-#include<string>
-#include<sstream>
 #include<algorithm>
 #include<iterator>
 
@@ -281,7 +283,7 @@ int main()
 	return 0;
 }
 
-std::vector<int> StockSpanRange(std::vector<int> &arr)
+std::vector<int> stockSpanRange(std::vector<int> &arr)
 {
 	std::vector<int> SR(arr.size());
 	SR[0] = 1;
@@ -295,7 +297,22 @@ std::vector<int> StockSpanRange(std::vector<int> &arr)
 	}
 	return SR;
 }
+#pragma once
 
+
+bool isBalancedParenthesis(const std::string &expn);
+template<typename T>  void insertAtBottom(std::stack<T>& stk, T value);
+template<typename T>  void reverseStack(std::stack<T>& stk);
+int postfixEvaluate(const std::string &expn);
+int precedence(char x);
+std::string infixToPostfix(std::string &expn);
+std::string infixToPrefix(std::string expn);
+void replaceParanthesis(std::string &expn);
+void reverseString(std::string &expn);
+std::vector<int> stockSpanRange(std::vector<int> &arr);
+std::vector<int> stockSpanRange2(std::vector<int> &arr);
+int getMaxArea(std::vector<int> &arr);
+int getMaxArea2(std::vector<int> &arr);
 std::vector<int> StockSpanRange2(std::vector<int> &arr)
 {
 	std::stack<int> stk;
@@ -318,17 +335,17 @@ std::vector<int> StockSpanRange2(std::vector<int> &arr)
 int main5() {
     std::vector<int> arr = { 6, 5, 4, 3, 2, 4, 5, 7, 9 };
     int size = arr.size();
-    std::vector<int> value =  StockSpanRange(arr);
+    std::vector<int> value =  stockSpanRange(arr);
     std::cout << "\nStockSpanRange : ";
     for (int val : value)
         std::cout << " " << val;
-    value = StockSpanRange2(arr);
+    value = stockSpanRange2(arr);
     std::cout << "\nStockSpanRange : ";
     for (int val : value)
         std::cout << " " << val;
 }
 
-int GetMaxArea(std::vector<int> &arr)
+int getMaxArea(std::vector<int> &arr)
 {
 	int size = arr.size();
 	int maxArea = -1;
@@ -353,7 +370,7 @@ int GetMaxArea(std::vector<int> &arr)
 	return maxArea;
 }
 
-int GetMaxArea2(std::vector<int> &arr)
+int getMaxArea2(std::vector<int> &arr)
 {
 	int size = arr.size();
 	std::stack<int> stk;
@@ -385,10 +402,10 @@ int GetMaxArea2(std::vector<int> &arr)
 int main6() {
     std::vector<int> arr = { 7, 6, 5, 4, 4, 1, 6, 3, 1 };
     int size = arr.size();
-    int value = GetMaxArea(arr);
-    std::cout <<"GetMaxArea :: " + value << std::endl;
-    value = GetMaxArea2(arr);
-    std::cout <<"GetMaxArea :: " + value << std::endl;
+    int value = getMaxArea(arr);
+    std::cout <<"getMaxArea :: " + value << std::endl;
+    value = getMaxArea2(arr);
+    std::cout <<"getMaxArea :: " + value << std::endl;
 }
 
 void sortedInsert(std::stack<int>& stk, int element) {
@@ -872,7 +889,7 @@ int main15() {
     nextLargerElementCircular(arr);
 }
 
-void RottenFruitUtil(std::vector<std::vector<int>> &arr, int maxCol, 
+void rottenFruitUtil(std::vector<std::vector<int>> &arr, int maxCol, 
 	int maxRow, int currCol, int currRow, std::vector<std::vector<int>> &traversed,
         int day) { // Range check
     if (currCol < 0 || currCol >= maxCol || currRow < 0 || currRow >= maxRow)
@@ -883,13 +900,13 @@ void RottenFruitUtil(std::vector<std::vector<int>> &arr, int maxCol,
     // Update rot time.
     traversed[currCol][currRow] = day;
     // each line corresponding to 4 direction.
-    RottenFruitUtil(arr, maxCol, maxRow, currCol - 1, currRow, traversed, day + 1);
-    RottenFruitUtil(arr, maxCol, maxRow, currCol + 1, currRow, traversed, day + 1);
-    RottenFruitUtil(arr, maxCol, maxRow, currCol, currRow + 1, traversed, day + 1);
-    RottenFruitUtil(arr, maxCol, maxRow, currCol, currRow - 1, traversed, day + 1);
+    rottenFruitUtil(arr, maxCol, maxRow, currCol - 1, currRow, traversed, day + 1);
+    rottenFruitUtil(arr, maxCol, maxRow, currCol + 1, currRow, traversed, day + 1);
+    rottenFruitUtil(arr, maxCol, maxRow, currCol, currRow + 1, traversed, day + 1);
+    rottenFruitUtil(arr, maxCol, maxRow, currCol, currRow - 1, traversed, day + 1);
 }
 
-int RottenFruit(std::vector<std::vector<int>> &arr, int maxCol, int maxRow) {
+int rottenFruit(std::vector<std::vector<int>> &arr, int maxCol, int maxRow) {
     std::vector<std::vector<int>> traversed(maxCol) ;
     for (int i = 0; i < maxCol; i++) {
     	traversed[i] = std::vector<int>(maxRow, std::numeric_limits<int>::max());
@@ -901,7 +918,7 @@ int RottenFruit(std::vector<std::vector<int>> &arr, int maxCol, int maxRow) {
     for (int i = 0; i < maxCol - 1; i++) {
         for (int j = 0; j < maxRow - 1; j++) {
             if (arr[i][j] == 2)
-                RottenFruitUtil(arr, maxCol, maxRow, i, j, traversed, 0);
+                rottenFruitUtil(arr, maxCol, maxRow, i, j, traversed, 0);
         }
     }
 
@@ -921,10 +938,10 @@ int RottenFruit(std::vector<std::vector<int>> &arr, int maxCol, int maxRow) {
 
 int main16() {
     std::vector<std::vector<int>> arr = { { 1, 0, 1, 1, 0 }, { 2, 1, 0, 1, 0 }, { 0, 0, 0, 2, 1 }, { 0, 2, 0, 0, 1 }, { 1, 1, 0, 0, 1 } };
-    std::cout <<RottenFruit(arr, 5, 5) << std::endl;
+    std::cout <<rottenFruit(arr, 5, 5) << std::endl;
 }
 
-void StepsOfKnightUtil(int size, int currCol, int currRow, std::vector<std::vector<int>> &traversed, int dist) {
+void stepsOfKnightUtil(int size, int currCol, int currRow, std::vector<std::vector<int>> &traversed, int dist) {
     // Range check
     if (currCol < 0 || currCol >= size || currRow < 0 || currRow >= size)
         return;
@@ -936,17 +953,17 @@ void StepsOfKnightUtil(int size, int currCol, int currRow, std::vector<std::vect
     // Update rot time.
     traversed[currCol][currRow] = dist;
     // each line corresponding to 4 direction.
-    StepsOfKnightUtil(size, currCol - 2, currRow - 1, traversed, dist + 1);
-    StepsOfKnightUtil(size, currCol - 2, currRow + 1, traversed, dist + 1);
-    StepsOfKnightUtil(size, currCol + 2, currRow - 1, traversed, dist + 1);
-    StepsOfKnightUtil(size, currCol + 2, currRow + 1, traversed, dist + 1);
-    StepsOfKnightUtil(size, currCol - 1, currRow - 2, traversed, dist + 1);
-    StepsOfKnightUtil(size, currCol + 1, currRow - 2, traversed, dist + 1);
-    StepsOfKnightUtil(size, currCol - 1, currRow + 2, traversed, dist + 1);
-    StepsOfKnightUtil(size, currCol + 1, currRow + 2, traversed, dist + 1);
+    stepsOfKnightUtil(size, currCol - 2, currRow - 1, traversed, dist + 1);
+    stepsOfKnightUtil(size, currCol - 2, currRow + 1, traversed, dist + 1);
+    stepsOfKnightUtil(size, currCol + 2, currRow - 1, traversed, dist + 1);
+    stepsOfKnightUtil(size, currCol + 2, currRow + 1, traversed, dist + 1);
+    stepsOfKnightUtil(size, currCol - 1, currRow - 2, traversed, dist + 1);
+    stepsOfKnightUtil(size, currCol + 1, currRow - 2, traversed, dist + 1);
+    stepsOfKnightUtil(size, currCol - 1, currRow + 2, traversed, dist + 1);
+    stepsOfKnightUtil(size, currCol + 1, currRow + 2, traversed, dist + 1);
 }
 
-int StepsOfKnight(int size, int srcX, int srcY, int dstX, int dstY) {
+int stepsOfKnight(int size, int srcX, int srcY, int dstX, int dstY) {
     std::vector<std::vector<int>> traversed(size);
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
@@ -954,16 +971,16 @@ int StepsOfKnight(int size, int srcX, int srcY, int dstX, int dstY) {
         }
     }
 
-    StepsOfKnightUtil(size, srcX - 1, srcY - 1, traversed, 0);
+    stepsOfKnightUtil(size, srcX - 1, srcY - 1, traversed, 0);
     int retval = traversed[dstX - 1][dstY - 1];
     return retval;
 }
 
 int main17() {
-    std::cout <<StepsOfKnight(20, 10, 10, 20, 20) << std::endl;
+    std::cout <<stepsOfKnight(20, 10, 10, 20, 20) << std::endl;
 }
 
-void DistNearestFillUtil(std::vector<std::vector<int>> &arr, int maxCol, int maxRow, int currCol, int currRow,
+void distNearestFillUtil(std::vector<std::vector<int>> &arr, int maxCol, int maxRow, int currCol, int currRow,
         std::vector<std::vector<int>> &traversed, int dist) { // Range check
     if (currCol < 0 || currCol >= maxCol || currRow < 0 || currRow >= maxRow)
         return;
@@ -973,13 +990,13 @@ void DistNearestFillUtil(std::vector<std::vector<int>> &arr, int maxCol, int max
     // Update distance.
     traversed[currCol][currRow] = dist;
     // each line corresponding to 4 direction.
-    DistNearestFillUtil(arr, maxCol, maxRow, currCol - 1, currRow, traversed, dist + 1);
-    DistNearestFillUtil(arr, maxCol, maxRow, currCol + 1, currRow, traversed, dist + 1);
-    DistNearestFillUtil(arr, maxCol, maxRow, currCol, currRow + 1, traversed, dist + 1);
-    DistNearestFillUtil(arr, maxCol, maxRow, currCol, currRow - 1, traversed, dist + 1);
+    distNearestFillUtil(arr, maxCol, maxRow, currCol - 1, currRow, traversed, dist + 1);
+    distNearestFillUtil(arr, maxCol, maxRow, currCol + 1, currRow, traversed, dist + 1);
+    distNearestFillUtil(arr, maxCol, maxRow, currCol, currRow + 1, traversed, dist + 1);
+    distNearestFillUtil(arr, maxCol, maxRow, currCol, currRow - 1, traversed, dist + 1);
 }
 
-void DistNearestFill(std::vector<std::vector<int>> &arr, int maxCol, int maxRow) {
+void distNearestFill(std::vector<std::vector<int>> &arr, int maxCol, int maxRow) {
     std::vector<std::vector<int>> traversed(maxCol);
     for (int i = 0; i < maxCol; i++) {
         for (int j = 0; j < maxRow; j++) {
@@ -989,7 +1006,7 @@ void DistNearestFill(std::vector<std::vector<int>> &arr, int maxCol, int maxRow)
     for (int i = 0; i < maxCol; i++) {
         for (int j = 0; j < maxRow; j++) {
             if (arr[i][j] == 1)
-                DistNearestFillUtil(arr, maxCol, maxRow, i, j, traversed, 0);
+                distNearestFillUtil(arr, maxCol, maxRow, i, j, traversed, 0);
         }
     }
 
@@ -1003,7 +1020,7 @@ void DistNearestFill(std::vector<std::vector<int>> &arr, int maxCol, int maxRow)
 
 int main18() {
     std::vector<std::vector<int>> arr= { { 1, 0, 1, 1, 0 }, { 1, 1, 0, 1, 0 }, { 0, 0, 0, 0, 1 }, { 0, 0, 0, 0, 1 }, { 0, 0, 0, 0, 1 } };
-    DistNearestFill(arr, 5, 5);
+    distNearestFill(arr, 5, 5);
 }
 
 int findLargestIslandUtil(std::vector<std::vector<int>> &arr, int maxCol, int maxRow, int currCol, int currRow, int value,
@@ -1102,7 +1119,7 @@ int main20() {
     std::cout <<"Celebrity : " + findCelebrity2(arr, 5) << std::endl;
 }
 
-int IsMinHeap(std::vector<int> &arr) {
+int isMinHeap(std::vector<int> &arr) {
 	int size = arr.size();
     for (int i = 0; i <= (size - 2) / 2; i++) {
         if (2 * i + 1 < size) {
@@ -1117,7 +1134,7 @@ int IsMinHeap(std::vector<int> &arr) {
     return 1;
 }
 
-int IsMaxHeap(std::vector<int> &arr) {
+int isMaxHeap(std::vector<int> &arr) {
 	int size = arr.size();
     for (int i = 0; i <= (size - 2) / 2; i++) {
         if (2 * i + 1 < size) {

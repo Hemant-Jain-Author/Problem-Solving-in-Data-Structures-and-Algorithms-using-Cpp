@@ -22,7 +22,7 @@ public:
 
 	void push(int value);
 	bool pop(int& value);
-	bool Min(int& min);
+	bool min(int& min);
 	void print()
 	{
 
@@ -67,12 +67,12 @@ bool Stack::pop(int& value)
 	return true;
 }
 
-bool Stack::Min(int& min)
+bool Stack::min(int& min)
 {
 	if(top == -1)
 		return false;
 	min = arr[top].min;
-	cout<< "Min value is " << min << endl;
+	cout<< "min value is " << min << endl;
 	return true;
 }
 
@@ -83,23 +83,23 @@ int main9()
 
 	s.push(100);
 	s.push(101);
-	s.Min(value);
+	s.min(value);
 	s.push(102);
 	s.push(11);
-	s.Min(value);
+	s.min(value);
 	s.push(100);
 	s.push(10);
-	s.Min(value);
+	s.min(value);
 	s.push(101);
-	s.Min(value);
+	s.min(value);
 	s.push(102);
 	s.pop(value);
-	s.Min(value);
+	s.min(value);
 	s.pop(value);
 	s.pop(value);
 	s.pop(value);
 	s.pop(value);
-	s.Min(value);
+	s.min(value);
 	s.pop(value);
 	s.pop(value);
 

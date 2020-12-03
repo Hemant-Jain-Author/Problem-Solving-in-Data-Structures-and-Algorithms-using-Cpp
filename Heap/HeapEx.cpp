@@ -10,7 +10,6 @@
 #include <cmath>
 
 int main1() {
-
     std::priority_queue<int, std::vector<int>, std::greater<int>> pq;;
     int arr[] = { 1, 2, 10, 8, 7, 3, 4, 6, 5, 9 };
     int value;
@@ -19,7 +18,7 @@ int main1() {
         pq.push(i);
     }
     
-    std::cout << "\n Dequeue elements of Priority Queue ::";
+    std::cout << "Dequeue elements of Priority Queue ::";
     while (pq.empty() == false) {
     	value = pq.top(); 
 		pq.pop();
@@ -92,7 +91,7 @@ int main2() {
 }
 
 int KSmallestProduct(int arr[], int size, int k) {
-    std::sort(arr, arr+size);// , size, 1);
+    std::sort(arr, arr+size);
     int product = 1;
     for (int i = 0; i < k; i++)
         product *= arr[i];
@@ -167,7 +166,7 @@ int main3() {
 }
 
 void PrintLargerHalf(int arr[], int size) {
-    std::sort(arr, arr+size);// , size, 1);
+    std::sort(arr, arr+size);
     for (int i = size / 2; i < size; i++)
         std::cout << (arr[i]);
     std::cout << std::endl;
@@ -366,33 +365,12 @@ int main6() {
     return 0;
 }
 
-/*
-    * int kthAbsDiff(int arr[], int size, int k) { Sort(arr, size,1);
-    * int diff[1000]; int index = 0; for (int i = 0; i < size - 1; i++) { for (int
-    * j = i + 1; j < size; j++) diff[index++] = abs(arr[i] - arr[j]); } Sort(diff,
-    * index); return diff[k - 1]; }
-    * 
-    * int kthAbsDiff(int arr[], int size, int k) { Sort(arr, size, 1); Heap hp; int
-    * value = 0;
-    * 
-    * for (int i = k + 1; i < size - 1; i++) HeapAdd(&hp,(abs(arr[i] - arr[i + 1]),
-    * i, i + 1)); heapify(hp);
-    * 
-    * for (int i = 0; i < k; i++) { tp = heapq.heappop(hp); value = tp[0]; src =
-    * tp[1]; dst = tp[2]; if (dst + 1 < size) heapq.heappush(hp, (abs(arr[src] -
-    * arr[dst + 1]), src, dst + 1)); } return value; }
-    * 
-    * int main7() { int arr[] = { 1, 2, 3, 4 };
-    * std::cout << "", kthAbsDiff(arr, 4, 5)); return 0; }
-*/
-
 int kthLargestStream(int k) {
     std::priority_queue<int, std::vector<int>, std::greater<int>> pq;;
     int size = 0;
     int data = 0;
     while (true) {
         std::cout << "Enter data: ";
-        // data = System.in.read();
 
         if (size < k - 1)
             pq.push(data);
@@ -413,15 +391,3 @@ int main8() {
     kthLargestStream(3);
     return 0;
 }
-/*
-    * int minJumps(int arr[], int size) { int *jumps = (int
-    * *)malloc(sizeof(int) * size); //all jumps to maxint. int steps, j; jumps[0] =
-    * 0;
-    * 
-    * for (int i = 0; i < size; i++) { steps = arr[i]; // error checks can be added
-    * hear. j = i + 1; while (j <= i + steps && j < size) { jumps[j] =
-    * min(jumps[j], jumps[i] + 1); j += 1; } std::cout << "%s", jumps); }
-    * return jumps[size - 1]; } int main2() { int arr[]
-    * = {1, 4, 3, 7, 6, 1, 0, 3, 5, 1, 10}; std::cout << "%d", minJumps(arr,
-    * sizeof(arr) / sizeof(int))); return 0; }
-    */

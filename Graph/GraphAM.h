@@ -34,17 +34,14 @@ private:
 
 public:
     GraphAM(int cnt);
-	void AddDirectedEdge(int src, int dst, int cost);
-	void AddUndirectedEdge(int src, int dst, int cost);
-	void Print();
-	void Dijkstra(int source);
-	void Prims();
+	void addDirectedEdge(int src, int dst, int cost);
+	void addUndirectedEdge(int src, int dst, int cost);
+	void print();
+	void dijkstra(int source);
+	void prims();
 	bool hamiltonianPath();
-bool hamiltonianPathUtil(std::vector<int>& path, int pSize, std::vector<int>& added);
+	bool hamiltonianPathUtil(std::vector<int>& path, int pSize, std::vector<int>& added);
 	bool hamiltonianCycle();
-bool hamiltonianCycleUtil(std::vector<int>& path, int pSize, std::vector<int>& added);
-
-
-
+	bool hamiltonianCycleUtil(std::vector<int>& path, int pSize, std::vector<int>& added);
 
 };

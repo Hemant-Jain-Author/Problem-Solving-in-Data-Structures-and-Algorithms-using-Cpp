@@ -4,8 +4,8 @@
 int main()
 {
 	std::vector<int> data = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
-	InsertionSort *bs = new InsertionSort(data);
-	bs->sort();
+	InsertionSort is = InsertionSort(data);
+	is.sort();
 	for (int i = 0; i < data.size(); i++)
 	{
 		std::cout << data[i] << " ";
@@ -27,7 +27,6 @@ bool InsertionSort::more(int value1, int value2)
 void InsertionSort::sort()
 {
 	int size = arr.size();
-
 	int temp, j;
 	for (int i = 1; i < size; i++)
 	{

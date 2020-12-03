@@ -1,4 +1,7 @@
-#include "LinkedHashSetDemo.h"
+#include <string>
+#include <vector>
+#include <iostream>
+#include <unordered_set>
 
 int main()
 {

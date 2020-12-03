@@ -4,8 +4,8 @@
 int main()
 {
 	std::vector<int> data = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
-	SelectionSort *bs = new SelectionSort(data);
-	bs->sort2();
+	SelectionSort ss = SelectionSort(data);
+	ss.sort2();
 	for (int i = 0; i < data.size(); i++)
 	{
 		std::cout << data[i] << " ";

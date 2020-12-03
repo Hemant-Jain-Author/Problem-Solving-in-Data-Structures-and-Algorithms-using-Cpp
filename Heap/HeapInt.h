@@ -29,8 +29,8 @@ public:
 	virtual void add(int value);
 	virtual int remove();
 	virtual void print();
-	virtual bool IsMinHeap(std::vector<int> &arr, int size);
-	virtual bool IsMaxHeap(std::vector<int> &arr, int size);
+	virtual bool isMinHeapArr(std::vector<int> &arr, int size);
+	virtual bool isMaxHeapArr(std::vector<int> &arr, int size);
 	virtual bool isEmpty();
 	virtual int peek();
 	static void heapSort(std::vector<int> &array, bool inc);

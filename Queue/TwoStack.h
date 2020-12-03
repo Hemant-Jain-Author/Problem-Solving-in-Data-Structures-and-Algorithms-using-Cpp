@@ -14,8 +14,8 @@ private:
 
 public:
 	TwoStack();
-	virtual void StackPush1(int value);
-	virtual void StackPush2(int value);
-	virtual int StackPop1();
-	virtual int StackPop2();
+	virtual void push1(int value);
+	virtual void push2(int value);
+	virtual int pop1();
+	virtual int pop2();
 };

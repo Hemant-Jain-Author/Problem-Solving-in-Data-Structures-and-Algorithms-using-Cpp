@@ -1,4 +1,7 @@
-#include "HashSetDemo.h"
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <iostream>
 #include <unordered_set>
 #include <set>
 

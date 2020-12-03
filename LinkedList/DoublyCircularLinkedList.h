@@ -29,7 +29,6 @@ public:
 	// Other Methods.
 
 	virtual void addTail(int value);
-
 	virtual int removeTail();
 	virtual bool searchList(int key);
 	virtual void freeList();

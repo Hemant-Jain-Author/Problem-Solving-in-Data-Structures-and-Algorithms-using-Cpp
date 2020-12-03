@@ -1,6 +1,7 @@
-#include "HashMapDemo.h"
+#include <string>
+#include <unordered_map>
+#include <vector>
 #include <iostream>
-
 #include <map>
 
 int main1()

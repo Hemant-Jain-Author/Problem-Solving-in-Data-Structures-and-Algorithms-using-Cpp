@@ -1,6 +1,7 @@
-#include "Stringclass.h"
+#include <string>
+#include <iostream>
 
-Stringclass::Stringclass()
+int main1()
 {
 	std::string str1 = "hello";
 	std::string str2 = "hello";
@@ -8,14 +9,6 @@ Stringclass::Stringclass()
 
 	std::cout << "str1 equals str2 :" << str1.compare(str2);
 	std::cout << "str1 equals str3 :" << str1.compare(str3);
-
-}
-
-int main1()
-{
-	std::string str1 = "hello";
-	std::string str2 = "hello";
-	std::string str3 = "Hello";
 
 	std::cout << "str1 equals str2 :" << (str1 == str2) << std::endl;
 	std::cout << "str1 equals str3 :" << (str1 == str3) << std::endl;
@@ -42,4 +35,3 @@ int main()
 	std::string helloworld = first + second;
 	first.append(second);
 }
-

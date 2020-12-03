@@ -1,4 +1,6 @@
-#include "ArrayListDemo.h"
+#include <string>
+#include <vector>
+#include <iostream>
 
 int main()
 {
@@ -14,7 +16,6 @@ int main()
 		std::cout << *i << " ";
 	}
 	std::cout << std::endl;
-
 
 	al.push_back(8);
 	al.push_back(9);

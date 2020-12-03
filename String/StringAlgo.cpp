@@ -1,4 +1,6 @@
-#include "StringAlgo.h"
+#include <string>
+#include <vector>
+#include <iostream>
 
 bool matchExpUtil(const std::string exp, const std::string str, int i, int j)
 {
@@ -130,8 +132,7 @@ void main5() {
     std::cout << isUniqueChar("apple") << std::endl;
 }
 
-
-char ToUpper(const char s)
+char toUpper(const char s)
 {
 	char t;
 	if (s >= 97 && s <= (97 + 25))
@@ -141,7 +142,7 @@ char ToUpper(const char s)
 	return t;
 }
 
-char ToLower(const char s)
+char toLower(const char s)
 {
 	char t;
 	if (s >= 65 && s <= (65 + 25))
@@ -151,7 +152,7 @@ char ToLower(const char s)
 	return t;
 }
 
-char LowerUpper(const char s)
+char lowerUpper(const char s)
 {
 	char t;
 	if (s >= 97 && s <= (97 + 25))
@@ -166,10 +167,10 @@ char LowerUpper(const char s)
 }
 
 void main6() {
-    std::cout << ToLower('A') << std::endl;
-    std::cout << ToUpper('a') << std::endl;
-    std::cout << LowerUpper('s') << std::endl;
-    std::cout << LowerUpper('S') << std::endl;
+    std::cout << toLower('A') << std::endl;
+    std::cout << toUpper('a') << std::endl;
+    std::cout << lowerUpper('s') << std::endl;
+    std::cout << lowerUpper('S') << std::endl;
 }
 
 bool isPermutation(const std::string &s1, const std::string &s2)

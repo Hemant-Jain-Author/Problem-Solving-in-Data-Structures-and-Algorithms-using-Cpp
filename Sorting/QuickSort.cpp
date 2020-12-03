@@ -4,8 +4,8 @@
 int main()
 {
 	std::vector<int> data = { 3, 4, 2, 1, 6, 5, 7, 8, 1, 1 };
-	QuickSort *m = new QuickSort(data);
-	m->sort();
+	QuickSort q = QuickSort(data);
+	q.sort();
 	for (int i = 0; i < data.size(); i++)
 	{
 		std::cout << data[i] << " ";

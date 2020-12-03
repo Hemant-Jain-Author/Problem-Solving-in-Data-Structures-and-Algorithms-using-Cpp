@@ -4,15 +4,15 @@ int main()
 {
 	TwoStack st;
 	for (int i = 0; i < 10; i++)
-		st.StackPush1(i);
+		st.push1(i);
 	
 	for (int j = 0; j < 10; j++)
-		st.StackPush2(j + 10);
+		st.push2(j + 10);
 	
 	for (int i = 0; i < 10; i++)
 	{
-		std::cout << "stack one pop value is : " << st.StackPop1() << std::endl;
-		std::cout << "stack two pop value is : " << st.StackPop2() << std::endl;
+		std::cout << "stack one pop value is : " << st.pop1() << std::endl;
+		std::cout << "stack two pop value is : " << st.pop2() << std::endl;
 	}
 	return 0;
 }
@@ -23,7 +23,7 @@ TwoStack::TwoStack()
 	top2 = MAX_SIZE;
 }
 
-void TwoStack::StackPush1(int value)
+void TwoStack::push1(int value)
 {
 	if (top1 < top2 - 1)
 	{
@@ -35,7 +35,7 @@ void TwoStack::StackPush1(int value)
 	}
 }
 
-void TwoStack::StackPush2(int value)
+void TwoStack::push2(int value)
 {
 	if (top1 < top2 - 1)
 	{
@@ -47,7 +47,7 @@ void TwoStack::StackPush2(int value)
 	}
 }
 
-int TwoStack::StackPop1()
+int TwoStack::pop1()
 {
 	if (top1 >= 0)
 	{
@@ -60,7 +60,7 @@ int TwoStack::StackPop1()
 	}
 }
 
-int TwoStack::StackPop2()
+int TwoStack::pop2()
 {
 	if (top2 < MAX_SIZE)
 	{

@@ -5,8 +5,8 @@ int main()
 {
 	std::vector<int> data = { 23, 24, 22, 21, 26, 25, 27, 28, 21, 21 };
 
-	BucketSort *m = new BucketSort(data, 20, 30);
-	m->sort();
+	BucketSort m = BucketSort(data, 20, 30);
+	m.sort();
 	for (int i = 0; i < data.size(); i++)
 	{
 		std::cout << data[i] << " ";

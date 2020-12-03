@@ -31,7 +31,7 @@ void swap(std::vector<int> &arr, int x, int y) {
     return;
 }
 
-int Partition01(std::vector<int> &arr) {
+int partition01(std::vector<int> &arr) {
 	int size = arr.size();
     int left = 0;
     int right = size - 1;
@@ -51,7 +51,7 @@ int Partition01(std::vector<int> &arr) {
     return count;
 }
 
-void Partition012(std::vector<int> &arr) {
+void partition012(std::vector<int> &arr) {
 	int size = arr.size();
     int left = 0;
     int right = size - 1;
@@ -73,14 +73,14 @@ void Partition012(std::vector<int> &arr) {
 // Testing code
 int main1() {
     std::vector<int> arr = { 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1 };
-    Partition01(arr);
+    partition01(arr);
     printArray(arr);
     std::vector<int> arr2 = { 0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1 };
-    Partition012(arr2);
+    partition012(arr2);
     printArray(arr2);
 }
 
-void RangePartition(std::vector<int> &arr, int lower, int higher) {
+void rangePartition(std::vector<int> &arr, int lower, int higher) {
     int size = arr.size();
     int start = 0;
     int end = size - 1;
@@ -102,7 +102,7 @@ void RangePartition(std::vector<int> &arr, int lower, int higher) {
 // Testing code
 int main2() {
     std::vector<int> arr = { 1, 21, 2, 20, 3, 19, 4, 18, 5, 17, 6, 16, 7, 15, 8, 14, 9, 13, 10, 12, 11 };
-    RangePartition(arr, 9, 12);
+    rangePartition(arr, 9, 12);
     printArray(arr);
 }
 
@@ -143,15 +143,15 @@ void seperateEvenAndOdd(std::vector<int> &data) {
     }
 }
 
-bool AbsMore(int value1, int value2, int ref) {
+bool absMore(int value1, int value2, int ref) {
     return (std::abs(value1 - ref) > std::abs(value2 - ref));
 }
 
-void AbsBubbleSort(std::vector<int> &arr, int ref) {
+void absBubbleSort(std::vector<int> &arr, int ref) {
 	int size = arr.size();
     for (int i = 0; i < (size - 1); i++) {
         for (int j = 0; j < (size - i - 1); j++) {
-            if (AbsMore(arr[j], arr[j + 1], ref)) {
+            if (absMore(arr[j], arr[j + 1], ref)) {
                 swap(arr, j, j + 1);
             }
         }
@@ -162,17 +162,17 @@ void AbsBubbleSort(std::vector<int> &arr, int ref) {
 int main3() {
     std::vector<int> array = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
     int ref = 5;
-    AbsBubbleSort(array, ref);
+    absBubbleSort(array, ref);
     printArray(array);
 }
 
-bool EqMore(int value1, int value2, int A) {
+bool eqMore(int value1, int value2, int A) {
     value1 = A * value1 * value1;
     value2 = A * value2 * value2;
     return value1 > value2;
 }
 
-void ArrayReduction(std::vector<int> &arr) {
+void arrayReduction(std::vector<int> &arr) {
 	int size = arr.size();
     std::sort(arr.begin(), arr.end());
     int count = 1;
@@ -190,26 +190,11 @@ void ArrayReduction(std::vector<int> &arr) {
 // Testing code
 int main4() {
     std::vector<int> arr = { 5, 1, 1, 1, 2, 3, 5 };
-    ArrayReduction(arr);
+    arrayReduction(arr);
     return 0;
 }
-/*
- * void SortFrequency(std::vector<int> &arr) { HashMap<Integer,
- * Integer> ht = new HashMap<Integer, Integer>(); int value; for (int i = 0; i <
- * size; i++) { if (ht.containsKey(arr[i])) { ht.put(arr[i], ht.get(arr[i]) +
- * 1); } else { ht.put(arr[i], 1); } } ht.sort ht.SortFrequency(arr, size);
- * 
- * // User is recommended to write his own sorting function. // For convenience
- * author is using inbuilt functions.
- * 
- * for key,value in reversed(sorted(mp.iteritems(), key = lambda (k, v):(v,k))):
- * for i in range(value): print key ,
- * 
- * // Testing code arr = [2, 3, 2, 4, 5, 12, 2, 3, 3, 3, 12] SortFrequency(arr)
- * 
- */
 
-void SortByOrder(std::vector<int> &arr, std::vector<int> &arr2) {
+void sortByOrder(std::vector<int> &arr, std::vector<int> &arr2) {
 	int size = arr.size();
 	int size2 = arr2.size();
     std::map<int, int> ht;
@@ -249,7 +234,7 @@ void SortByOrder(std::vector<int> &arr, std::vector<int> &arr2) {
 int main5() {
     std::vector<int> arr = { 2, 1, 2, 5, 7, 1, 9, 3, 6, 8, 8 };
     std::vector<int> arr2 = { 2, 1, 8, 3 };
-    SortByOrder(arr, arr2);
+    sortByOrder(arr, arr2);
 }
 
 void merge(std::vector<int> &arr1, std::vector<int> &arr2) {
@@ -328,7 +313,7 @@ int min(int X, int Y) {
     return Y;
 }
 
-void UnionIntersectionSorted(std::vector<int> &arr1, std::vector<int> &arr2) {
+void unionIntersectionSorted(std::vector<int> &arr1, std::vector<int> &arr2) {
     int size1 = arr1.size();
     int size2 = arr2.size();
     int first = 0, second = 0;
@@ -365,16 +350,16 @@ void UnionIntersectionSorted(std::vector<int> &arr1, std::vector<int> &arr2) {
     printArray2(interArr, iIndex);
 }
 
-void UnionIntersectionUnsorted(std::vector<int> &arr1, std::vector<int> &arr2) {
+void unionIntersectionUnsorted(std::vector<int> &arr1, std::vector<int> &arr2) {
     std::sort(arr1.begin(), arr1.end());
     std::sort(arr2.begin(), arr2.end());
-    UnionIntersectionSorted(arr1, arr2);
+    unionIntersectionSorted(arr1, arr2);
 }
 
 int main7() {
     std::vector<int> arr1 = { 1, 11, 2, 3, 14, 5, 6, 8, 9 };
     std::vector<int> arr2 = { 2, 4, 5, 12, 7, 8, 13, 10 };
-    UnionIntersectionUnsorted(arr1, arr2);
+    unionIntersectionUnsorted(arr1, arr2);
     return 0;
 }
 

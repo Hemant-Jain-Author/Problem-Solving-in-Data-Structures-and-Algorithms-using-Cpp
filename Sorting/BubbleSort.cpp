@@ -3,8 +3,8 @@
 int main()
 {
 	std::vector<int> data = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
-	BubbleSort *bs = new BubbleSort(data);
-	bs->sort2();
+	BubbleSort bs = BubbleSort(data);
+	bs.sort2();
 	for (int i = 0; i < data.size(); i++)
 	{
 		std::cout << data[i] << " ";
@@ -30,7 +30,6 @@ bool BubbleSort::more(int value1, int value2)
 void BubbleSort::sort()
 {
 	int size = arr.size();
-
 	int i, j, temp;
 	for (i = 0; i < (size - 1); i++)
 	{

@@ -1,23 +1,25 @@
-#include "Algo.h"
+#include <string>
+#include <vector>
+#include <iostream>
 
 int main()
 {
 	std::string st1 = "hello, world!";
 	std::string st2 = "world";
-	std::cout << "BruteForceSearch return : " << BruteForceSearch(st1, st2) << std::endl;
-	std::cout << "RobinKarp return : " << RobinKarp(st1, st2) << std::endl;
-	std::cout << "KMP return : " << KMP(st1, st2) << std::endl;
+	std::cout << "BruteForceSearch return : " << bruteForceSearch(st1, st2) << std::endl;
+	std::cout << "RobinKarp return : " << robinKarp(st1, st2) << std::endl;
+	std::cout << "KMP return : " << kmp(st1, st2) << std::endl;
 	return 0;
 }
 
-int BruteForceSearch(const std::string &text, const std::string &pattern)
+int bruteForceSearch(const std::string &text, const std::string &pattern)
 {
 	std::vector<char> txt(text.begin(), text.end());
 	std::vector<char> ptn(pattern.begin(), pattern.end());
-	return BruteForceSearch(txt, ptn);
+	return bruteForceSearch(txt, ptn);
 }
 
-int BruteForceSearch(std::vector<char> &text, std::vector<char> &pattern)
+int bruteForceSearch(std::vector<char> &text, std::vector<char> &pattern)
 {
 	int i = 0, j = 0;
 	const int n = text.size();
@@ -38,14 +40,14 @@ int BruteForceSearch(std::vector<char> &text, std::vector<char> &pattern)
 	return -1;
 }
 
-int RobinKarp(const std::string &text, const std::string &pattern)
+int robinKarp(const std::string &text, const std::string &pattern)
 {
 	std::vector<char> txt(text.begin(), text.end());
 	std::vector<char> ptn(pattern.begin(), pattern.end());
-	return RobinKarp(txt, ptn);
+	return robinKarp(txt, ptn);
 }
 
-int RobinKarp(std::vector<char> &text, std::vector<char> &pattern)
+int robinKarp(std::vector<char> &text, std::vector<char> &pattern)
 {
 	int n = text.size();
 	int m = pattern.size();
@@ -94,7 +96,7 @@ int RobinKarp(std::vector<char> &text, std::vector<char> &pattern)
 	return -1;
 }
 
-void KMPPreprocess(std::vector<char> &pattern, std::vector<int> &ShiftArr)
+void kmpPreprocess(std::vector<char> &pattern, std::vector<int> &ShiftArr)
 {
 	const int m = pattern.size();
 	int i = 0, j = -1;
@@ -111,20 +113,20 @@ void KMPPreprocess(std::vector<char> &pattern, std::vector<int> &ShiftArr)
 	}
 }
 
-int KMP(const std::string &text, const std::string &pattern)
+int kmp(const std::string &text, const std::string &pattern)
 {
 	std::vector<char> txt(text.begin(), text.end());
 	std::vector<char> ptn(pattern.begin(), pattern.end());
-	return KMP(txt, ptn);
+	return kmp(txt, ptn);
 }
 
-int KMP(std::vector<char> &text, std::vector<char> &pattern)
+int kmp(std::vector<char> &text, std::vector<char> &pattern)
 {
 	int i = 0, j = 0;
 	const int n = text.size();
 	const int m = pattern.size();
 	std::vector<int> ShiftArr(m + 1);
-	KMPPreprocess(pattern, ShiftArr);
+	kmpPreprocess(pattern, ShiftArr);
 	while (i < n)
 	{
 		while (j >= 0 && text[i] != pattern[j])
@@ -141,13 +143,13 @@ int KMP(std::vector<char> &text, std::vector<char> &pattern)
 	return -1;
 }
 
-int KMPFindCount(std::vector<char> &text, std::vector<char> &pattern)
+int kmpFindCount(std::vector<char> &text, std::vector<char> &pattern)
 {
 	int i = 0, j = 0, count = 0;
 	const int n = text.size();
 	const int m = pattern.size();
 	std::vector<int> ShiftArr(m + 1);
-	KMPPreprocess(pattern, ShiftArr);
+	kmpPreprocess(pattern, ShiftArr);
 	while (i < n)
 	{
 		while (j >= 0 && text[i] != pattern[j])

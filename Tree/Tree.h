@@ -30,102 +30,102 @@ public:
 
 	virtual Node *levelOrderBinaryTree(int arr[], int start, int size);
 
-	virtual void InsertNode(int value);
+	virtual void insertNode(int value);
 
 private:
-	Node *InsertNode(int value, Node *node);
+	Node *insertNode(int value, Node *node);
 
 public:
-	virtual void PrintPreOrder();
+	virtual void printPreOrder();
 
 private:
-	void PrintPreOrder(Node *node); // pre order
+	void printPreOrder(Node *node); // pre order
 
 public:
-	virtual void NthPreOrder(int index);
+	virtual void nthPreOrder(int index);
 
 private:
-	void NthPreOrder(Node *node, int index, int& counter); // pre order
+	void nthPreOrder(Node *node, int index, int& counter); // pre order
 
 public:
-	virtual void PrintPostOrder();
+	virtual void printPostOrder();
 
 private:
-	void PrintPostOrder(Node *node); // post order
+	void printPostOrder(Node *node); // post order
 
 public:
-	virtual void NthPostOrder(int index);
+	virtual void nthPostOrder(int index);
 
 private:
-	void NthPostOrder(Node *node, int index, int& counter); // post order
+	void nthPostOrder(Node *node, int index, int& counter); // post order
 
 public:
-	virtual void PrintInOrder();
+	virtual void printInOrder();
 
 private:
-	void PrintInOrder(Node *node); // In order
+	void printInOrder(Node *node); // In order
 
 public:
-	virtual void NthInOrder(int index);
+	virtual void nthInOrder(int index);
 
 private:
-	void NthInOrder(Node *node, int index, int& counter);
+	void nthInOrder(Node *node, int index, int& counter);
 
 public:
-	virtual void PrintBredthFirst();
+	virtual void printBredthFirst();
 
-	virtual void PrintDepthFirst();
+	virtual void printDepthFirst();
 
-	virtual bool Find(int value);
+	virtual bool find(int value);
 
-	virtual bool Find2(int value);
+	virtual bool find2(int value);
 
-	virtual int FindMin();
+	virtual int findMin();
 
-	virtual int FindMax();
+	virtual int findMax();
 
-	virtual Node *FindMax(Node *curr);
+	virtual Node *findMax(Node *curr);
 
-	virtual Node *FindMin(Node *curr);
+	virtual Node *findMin(Node *curr);
 
-	virtual void Free();
+	virtual void free();
 
-	virtual void FreeTree(Node* node);
+	virtual void freeTree(Node* node);
 
-	virtual void DeleteNode(int value);
+	virtual void deleteNode(int value);
 
 private:
-	Node *DeleteNode(Node *node, int value);
+	Node *deleteNode(Node *node, int value);
 
 public:
-	virtual int TreeDepth();
+	virtual int treeDepth();
 
 private:
-	int TreeDepth(Node *root);
+	int treeDepth(Node *root);
 
 public:
 	virtual bool isEqual(Tree *T2);
 
 private:
-	bool Identical(Node *node1, Node *node2);
+	bool identical(Node *node1, Node *node2);
 
 public:
-	virtual Node *Ancestor(int first, int second);
+	virtual Node *ancestor(int first, int second);
 
 private:
-	Node *Ancestor(Node *curr, int first, int second);
+	Node *ancestor(Node *curr, int first, int second);
 
 public:
-	virtual Tree *CopyTree();
+	virtual Tree *copyTree();
 
 private:
-	Node *CopyTree(Node *curr);
+	Node *copyTree(Node *curr);
 
 public:
-	virtual Tree *CopyMirrorTree();
+	virtual Tree *copyMirrorTree();
 
 private:
-	Node *CopyMirrorTree(Node *curr);
+	Node *copyMirrorTree(Node *curr);
 
 public:
 	virtual int numNodes();
@@ -184,15 +184,15 @@ private:
 	void printAllPath(Node *curr, std::vector<int>& stk);
 
 public:
-	virtual int LCA(int first, int second);
+	virtual int lca(int first, int second);
 
 private:
-	Node *LCA(Node *curr, int first, int second);
+	Node *lca(Node *curr, int first, int second);
 
 public:
-	virtual int LcaBST(int first, int second);
+	virtual int lcaBST(int first, int second);
 
-	virtual int LcaBST(Node *curr, int first, int second);
+	virtual int lcaBST(Node *curr, int first, int second);
 
 	virtual void trimOutsideRange(int min, int max);
 
@@ -204,9 +204,9 @@ private:
 	void printInRange(Node *root, int min, int max);
 
 public:
-	virtual int FloorBST(int val);
+	virtual int floorBST(int val);
 
-	virtual int CeilBST(int val);
+	virtual int ceilBST(int val);
 
 	virtual int findMaxBT();
 
@@ -216,13 +216,13 @@ private:
 public:
 	virtual bool searchBT(Node *root, int value);
 
-	virtual void CreateBinaryTree(int arr[], int size);
+	virtual void createBinaryTree(int arr[], int size);
 
-	virtual Node *CreateBinaryTree(int arr[], int start, int end);
+	virtual Node *createBinaryTree(int arr[], int start, int end);
 
-virtual void PrintLevelOrderLineByLine();
-virtual void PrintLevelOrderLineByLine2();
-virtual void PrintSpiralTree();
+virtual void printLevelOrderLineByLine();
+virtual void printLevelOrderLineByLine2();
+virtual void printSpiralTree();
 bool isCompleteTree();
 bool isCompleteTreeUtil(Node* curr, int index, int count);
 bool isCompleteTree2();

@@ -1,8 +1,8 @@
 #include <string>
 #include <vector>
-
-#include "Introduction.h"
-
+#include <iostream>
+#include <functional> // for greater<int>
+#include <algorithm>
 #include <iostream>
 #include <map>
 
@@ -24,7 +24,7 @@ void swap(std::vector<int> &data, int x, int y)
 	return;
 }
 
-int SumArray(std::vector<int> &data)
+int sumArray(std::vector<int> &data)
 {
 	int size = data.size();
 	int total = 0;
@@ -38,7 +38,7 @@ int SumArray(std::vector<int> &data)
 int main1()
 {
 	std::vector<int> data = { 1,2,3,4,5,6,7,8,9 };
-	std::cout << "sum of all the values in array:" << SumArray(data) << std::endl;
+	std::cout << "sum of all the values in array:" << sumArray(data) << std::endl;
 	return 0;
 }
 
@@ -61,7 +61,7 @@ void main2()
 	std::cout << "main line 2" << std::endl;
 }
 
-int SequentialSearch(std::vector<int> &data, int value)
+int sequentialSearch(std::vector<int> &data, int value)
 {
 	int size = data.size();
 	for (int i = 0; i < size; i++)
@@ -72,7 +72,7 @@ int SequentialSearch(std::vector<int> &data, int value)
 	return -1;
 }
 
-int BinarySearch(std::vector<int> &data, int value)
+int binarySearch(std::vector<int> &data, int value)
 {
 	int size = data.size();
 	int mid;
@@ -102,8 +102,8 @@ int BinarySearch(std::vector<int> &data, int value)
 
 int main3() {
     std::vector<int> arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-    std::cout << "Sum of values in array:" << SequentialSearch(arr, 7) << std::endl;
-    std::cout << "Sum of values in array:" << BinarySearch(arr, 7) << std::endl;
+    std::cout << "Sum of values in array:" << sequentialSearch(arr, 7) << std::endl;
+    std::cout << "Sum of values in array:" << binarySearch(arr, 7) << std::endl;
     return 0;
 }
 
@@ -165,7 +165,7 @@ int main5() {
 	return 0;
 }
 
-void WaveArray2(std::vector<int> &arr) {
+void waveArray2(std::vector<int> &arr) {
     int size = arr.size();
     /* Odd elements are lesser then even elements. */
     for (int i = 1; i < size; i += 2) {
@@ -178,7 +178,7 @@ void WaveArray2(std::vector<int> &arr) {
     }
 }
 
-void WaveArray(std::vector<int> &arr)
+void waveArray(std::vector<int> &arr)
 { 
     int size = arr.size(); 
     std::sort(arr.begin(), arr.end()); 
@@ -193,10 +193,10 @@ void WaveArray(std::vector<int> &arr)
 int main6() {
     std::vector<int> arr = { 8, 1, 2, 3, 4, 5, 6, 4, 2 };
     printArray(arr);;
-    WaveArray(arr);
+    waveArray(arr);
     printArray(arr);;
     std::vector<int> arr2 = { 8, 1, 2, 3, 4, 5, 6, 4, 2 };
-    WaveArray2(arr2);
+    waveArray2(arr2);
     printArray(arr2);
 }
 
@@ -244,7 +244,7 @@ int main7() {
     return 0;
 }
 
-void Sort1toN(std::vector<int> &arr, int size) {
+void sort1toN(std::vector<int> &arr, int size) {
     int curr, value, next;
     for (int i = 0; i < size; i++) {
         curr = i;
@@ -259,7 +259,7 @@ void Sort1toN(std::vector<int> &arr, int size) {
     }
 }
 
-void Sort1toN2(std::vector<int> &arr, int size) {
+void sort1toN2(std::vector<int> &arr, int size) {
     int temp;
     for (int i = 0; i < size; i++) {
         while (arr[i] != i + 1 && arr[i] > 1) {
@@ -273,16 +273,16 @@ void Sort1toN2(std::vector<int> &arr, int size) {
 int main8() {
     std::vector<int> arr = { 8, 5, 6, 1, 9, 3, 2, 7, 4, 10 };
     int size = arr.size();
-    Sort1toN2(arr, size);
+    sort1toN2(arr, size);
     printArray(arr);
     std::vector<int> arr2 = { 8, 5, 6, 1, 9, 3, 2, 7, 4, 10 };
     size = arr2.size();
-    Sort1toN(arr2, size);
+    sort1toN(arr2, size);
     printArray(arr2);
     return 0;
 }
 
-int SmallestPositiveMissingNumber(std::vector<int> &arr, int size) {
+int smallestPositiveMissingNumber(std::vector<int> &arr, int size) {
     int found;
     for (int i = 1; i < size + 1; i++) {
         found = 0;
@@ -299,7 +299,7 @@ int SmallestPositiveMissingNumber(std::vector<int> &arr, int size) {
     return -1;
 }
 
-int SmallestPositiveMissingNumber2(std::vector<int> &arr, int size) {
+int smallestPositiveMissingNumber2(std::vector<int> &arr, int size) {
     std::map<int, int> hs;
     for (int i = 0; i < size; i++) {
         hs[arr[i]] = 1;
@@ -312,7 +312,7 @@ int SmallestPositiveMissingNumber2(std::vector<int> &arr, int size) {
     return -1;
 }
 
-int SmallestPositiveMissingNumber3(std::vector<int> &arr, int size) {
+int smallestPositiveMissingNumber3(std::vector<int> &arr, int size) {
     std::vector<int> aux(size, -1);
 
     for (int i = 0; i < size; i++) {
@@ -328,7 +328,7 @@ int SmallestPositiveMissingNumber3(std::vector<int> &arr, int size) {
     return -1;
 }
 
-int SmallestPositiveMissingNumber4(std::vector<int> &arr, int size) {
+int smallestPositiveMissingNumber4(std::vector<int> &arr, int size) {
     int temp;
     for (int i = 0; i < size; i++) {
         while (arr[i] != i + 1 && arr[i] > 0 && arr[i] <= size) {
@@ -349,14 +349,14 @@ int main9() {
     std::vector<int> arr = { 8, 5, 6, 1, 9, 11, 2, 7, 4, 10 };
     int size = arr.size();
 
-    std::cout << "Max sub array sum :" << SmallestPositiveMissingNumber(arr, size) << std::endl;
-    std::cout << "Max sub array sum :" << SmallestPositiveMissingNumber2(arr, size) << std::endl;
-    std::cout << "Max sub array sum :" << SmallestPositiveMissingNumber3(arr, size) << std::endl;
-    std::cout << "Max sub array sum :" << SmallestPositiveMissingNumber4(arr, size) << std::endl;
+    std::cout << "Max sub array sum :" << smallestPositiveMissingNumber(arr, size) << std::endl;
+    std::cout << "Max sub array sum :" << smallestPositiveMissingNumber2(arr, size) << std::endl;
+    std::cout << "Max sub array sum :" << smallestPositiveMissingNumber3(arr, size) << std::endl;
+    std::cout << "Max sub array sum :" << smallestPositiveMissingNumber4(arr, size) << std::endl;
     return 0;
 }
 
-    void MaxMinArr(std::vector<int> &arr, int size) {
+    void maxMinArr(std::vector<int> &arr, int size) {
         std::vector<int> aux = arr;
         int start = 0;
         int stop = size - 1;
@@ -371,7 +371,7 @@ int main9() {
         }
     }
 
-    void ReverseArr(std::vector<int> &arr, int start, int stop) {
+    void reverseArr(std::vector<int> &arr, int start, int stop) {
         while (start < stop) {
             swap(arr, start, stop);
             start += 1;
@@ -379,9 +379,9 @@ int main9() {
         }
     }
 
-    void MaxMinArr2(std::vector<int> &arr, int size) {
+    void maxMinArr2(std::vector<int> &arr, int size) {
         for (int i = 0; i < (size - 1); i++) {
-            ReverseArr(arr, i, size - 1);
+            reverseArr(arr, i, size - 1);
         }
     }
 
@@ -389,11 +389,11 @@ int main9() {
     int main10() {
         std::vector<int> arr = { 1, 2, 3, 4, 5, 6, 7 };
         int size = arr.size();
-        MaxMinArr(arr, size);
+        maxMinArr(arr, size);
         printArray(arr);
         std::vector<int> arr2 = { 1, 2, 3, 4, 5, 6, 7 };
         int size2 = arr.size();
-        MaxMinArr2(arr2, size2);
+        maxMinArr2(arr2, size2);
         printArray(arr2);
     }
 
@@ -423,7 +423,7 @@ int main9() {
         return 0;
     }
 
-    int ArrayIndexMaxDiff(std::vector<int> &arr, int size) {
+    int arrayIndexMaxDiff(std::vector<int> &arr, int size) {
         int maxDiff = -1;
         int j;
         for (int i = 0; i < size; i++) {
@@ -439,7 +439,7 @@ int main9() {
         return maxDiff;
     }
 
-    int ArrayIndexMaxDiff2(std::vector<int> &arr, int size) {
+    int arrayIndexMaxDiff2(std::vector<int> &arr, int size) {
         std::vector<int> leftMin(size);
         std::vector<int> rightMax(size);
         leftMin[0] = arr[0];
@@ -476,15 +476,11 @@ int main9() {
 
         int main12() {
         std::vector<int> arr = { 33, 9, 10, 3, 2, 60, 30, 33, 1 };
-        std::cout << "ArrayIndexMaxDiff : " << ArrayIndexMaxDiff(arr, arr.size()) << std::endl;
-        std::cout << "ArrayIndexMaxDiff : " << ArrayIndexMaxDiff2(arr, arr.size()) << std::endl;
+        std::cout << "ArrayIndexMaxDiff : " << arrayIndexMaxDiff(arr, arr.size()) << std::endl;
+        std::cout << "ArrayIndexMaxDiff : " << arrayIndexMaxDiff2(arr, arr.size()) << std::endl;
       //  std::cout << "ArrayIndexMaxDiff : " + ArrayIndexMaxDiff3(arr, arr.length));
     }
 
-
-int main(){
-
-}
 
     int maxPathSum(int arr1[], int size1, int arr2[], int size2) {
         int i = 0, j = 0, result = 0, sum1 = 0, sum2 = 0;
@@ -582,17 +578,17 @@ int main14()
 	return 0;
 }
 
-int GCD(int m, int n)
+int gcd(int m, int n)
 {
 	if (m < n)
 	{
-		return (GCD(n, m));
+		return gcd(n, m);
 	}
 	if (m % n == 0)
 	{
 		return (n);
 	}
-	return (GCD(n, m % n));
+	return gcd(n, m % n);
 }
 
 
@@ -661,7 +657,7 @@ void print2DArray(T(&data)[R][C])
 }
 
 
-int BinarySearchRecursive(std::vector<int> &data, int low, int high, int value)
+int binarySearchRecursive(std::vector<int> &data, int low, int high, int value)
 {
 	int mid = low + (high - low) / 2; // To avoid the overflow
 	if (data[mid] == value)
@@ -670,18 +666,18 @@ int BinarySearchRecursive(std::vector<int> &data, int low, int high, int value)
 	}
 	else if (data[mid] < value)
 	{
-		return BinarySearchRecursive(data, mid + 1, high, value);
+		return binarySearchRecursive(data, mid + 1, high, value);
 	}
 	else
 	{
-		return BinarySearchRecursive(data, low, mid - 1, value);
+		return binarySearchRecursive(data, low, mid - 1, value);
 	}
 }
 
     /* Testing code */
     int main16() {
         std::vector<int> arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        std::cout << BinarySearchRecursive(arr, 0, arr.size() - 1, 6) << std::endl;
-        std::cout << BinarySearchRecursive(arr, 0, arr.size() - 1, 16) << std::endl;
+        std::cout << binarySearchRecursive(arr, 0, arr.size() - 1, 6) << std::endl;
+        std::cout << binarySearchRecursive(arr, 0, arr.size() - 1, 16) << std::endl;
         return 0;
     }

@@ -3,14 +3,14 @@
 int main()
 {
 	std::vector<int> a = { 1, 9, 6, 7, 8, -1, 2, 4, 5, 3 };
-	Heap *hp = new Heap(a, true);
-	hp->print();
+	Heap hp = Heap(a, true);
+	hp.print();
 	std::cout << std::endl;
 
 	std::cout << "value pop from heap::";
 	
 	for (int i = 0; i < a.size(); i++) {
-		std::cout << " " << hp->remove();
+		std::cout << " " << hp.remove();
 	}
 	std::cout << std::endl;
 	
@@ -114,8 +114,6 @@ void Heap::doubleSize()
 	}
 }
 
-
-
 int Heap::remove()
 {
 	if (isEmpty())		
@@ -138,7 +136,7 @@ void Heap::print()
 
 }
 
-bool Heap::IsMinHeap(std::vector<int> &arr, int size)
+bool Heap::isMinHeapArr(std::vector<int> &arr, int size)
 {
 	for (int i = 0; i <= (size - 2) / 2; i++)
 	{
@@ -160,7 +158,7 @@ bool Heap::IsMinHeap(std::vector<int> &arr, int size)
 	return true;
 }
 
-bool Heap::IsMaxHeap(std::vector<int> &arr, int size)
+bool Heap::isMaxHeapArr(std::vector<int> &arr, int size)
 {
 	for (int i = 0; i <= (size - 2) / 2; i++)
 	{
@@ -197,9 +195,9 @@ int Heap::peek()
 
 void Heap::heapSort(std::vector<int> &array, bool inc)
 {
-	Heap *hp = new Heap(array, !inc);
+	Heap hp = Heap(array, !inc);
 	for (int i = 0; i < array.size(); i++)
 	{
-			array[array.size() - i - 1] = hp->remove();
+			array[array.size() - i - 1] = hp.remove();
 	}
 }

@@ -18,10 +18,10 @@ Stack::Stack() : Stack(MIN_CAPACITY)
 {
 }
 
-Stack::Stack(int MaxCapacity)
+Stack::Stack(int maxCapacity)
 {
-	data = new int[MaxCapacity];
-	capacity = MaxCapacity;
+	data = new int[maxCapacity];
+	capacity = maxCapacity;
 }
 
 Stack::~Stack()
@@ -72,9 +72,8 @@ int Stack::pop()
 void Stack::print()
 {
 	for (int i = stack_top; i > -1; i--)
-	{
 		std::cout << data[i] << " ";
-	}
+
 	std::cout << std::endl;
 }
 
@@ -91,7 +90,6 @@ void Stack::gPush(int value)
 		}
 		delete[] delMe;
 		std::cout << "stack size doubled" << std::endl;
-		//throw std::exception("StackOvarflowException");
 	}
 	stack_top++;
 	data[stack_top] = value;

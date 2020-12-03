@@ -1,105 +1,118 @@
 #include "HashTableSC.h"
 
-int main()
-{
-	HashTableSC *ht = new HashTableSC();
-	for (int i = 1; i < 110; i++)
-		ht->Add(i);
+int main() {
+	HashTableSC ht = HashTableSC();
+	ht.add(1, 10);
+	ht.add(2, 10);
+	ht.add(3, 30);
+	ht.print();
 
-	std::cout << "Search 100 :: " << ht->Find(100) << std::endl;
-	std::cout << "Remove 100 :: " << ht->Remove(100) << std::endl;
-	std::cout << "Search 100 :: " << ht->Find(100) << std::endl;
-	std::cout << "Remove 100 :: " << ht->Remove(100) << std::endl;
-	ht->Print();
+	std::cout<< "find key 2 : " << ht.find(2) << std::endl;
+	std::cout<< "Value at key 2 : " << ht.get(2) << std::endl;
+
+	ht.remove(2);
+	std::cout<< "After deleting node with key 2.." << std::endl;
+	std::cout<< "find key 2 : " << ht.find(2) << std::endl;
 	return 0;
 }
 
+/*
+Printing for index [ 1 ] are :: (1,10) 
+Printing for index [ 2 ] are :: (2,10) 
+Printing for index [ 3 ] are :: (3,30) 
+find key 2 : 1
+Value at key 2 : 10
+After deleting node with key 2..
+find key 2 : 0
+*/
 
-HashTableSC::Node::Node(int v, Node *n)
+HashTableSC::Node::Node(int k, int v)
 {
+	key = k;
 	value = v;
-	next = n;
 }
 
 HashTableSC::HashTableSC()
 {
 	tableSize = 23;// some odd value
-	listArray = std::vector<Node*>(tableSize);
-	for (int i = 0; i < tableSize; i++)
-	{
-		listArray[i] = nullptr;
-	}
+	listArray = std::vector<std::vector<Node>>(tableSize);
 }
 
-int HashTableSC::ComputeHash(int key)
+int HashTableSC::computeHash(int key)
 {
-	int hashValue = 0;
-	hashValue = key;
+	int hashValue = key;
 	return hashValue % tableSize;
 }
 
-void HashTableSC::Add(int value)
+void HashTableSC::add(int value)
 {
-	int index = ComputeHash(value);
-	listArray[index] = new Node(value, listArray[index]);
+	add(value, value);
 }
 
-bool HashTableSC::Remove(int value)
+void HashTableSC::add(int key, int value)
 {
-	int index = ComputeHash(value);
-	Node *nextNode, *head = listArray[index];
-	Node *delMe;
-	if (head != nullptr && head->value == value)
+	int index = computeHash(key);
+	listArray[index].push_back(Node(key, value));
+	// find and replace.
+}
+
+bool HashTableSC::remove(int key)
+{
+	int hash = computeHash(key);
+	std::vector<Node> &lst = listArray[hash];
+
+	for(auto it=lst.begin(); it != lst.end() ; it++)
 	{
-		delMe = head;
-		listArray[index] = head->next;
-		delete(delMe);
-		return true;
-	}
-	while (head != nullptr)
-	{
-		nextNode = head->next;
-		if (nextNode != nullptr && nextNode->value == value)
+		if(it->key == key)
 		{
-			delMe = head->next;
-			head->next = nextNode->next;
-			delete(delMe);
+			lst.erase(it);
 			return true;
-		}
-		else
-		{
-			head = nextNode;
-		}
+		}	
 	}
 	return false;
+	
 }
 
-void HashTableSC::Print()
+void HashTableSC::print()
 {
 	for (int i = 0; i < tableSize; i++)
 	{
-		Node *head = listArray[i];
-		if (head)
-			std::cout << "\nPrinting for index value :: " << i << " List of value Printing :: ";
-
-		while (head != nullptr)
+		std::vector<Node> lst = listArray[i];
+		if(lst.size() > 0)
 		{
-			std::cout << head->value << " ";
-			head = head->next;
-		}
+			std::cout << "Printing for index [ " << i << " ] are :: ";
+			for(auto iter : lst)
+			{
+				std::cout <<"("<< iter.key <<","<< iter.value << ") ";
+			}
+			std::cout<< std::endl;
+		}	
 	}
+	
 }
 
-bool HashTableSC::Find(int value)
+bool HashTableSC::find(int key)
 {
-	int index = ComputeHash(value);
-	Node *head = listArray[index];
-	while (head != nullptr)
+	int hash = computeHash(key);
+	std::vector<Node> lst = listArray[hash];
+	
+	for(auto iter : lst)
 	{
-		if (head->value == value)
+		if(iter.key == key)
 			return true;
-
-		head = head->next;
 	}
 	return false;
+}
+
+int HashTableSC::get(int key)
+{
+	int hash = computeHash(key);
+	std::vector<Node> lst = listArray[hash];
+	
+	for(auto iter : lst)
+	{
+		if(iter.key == key)
+			return iter.value;
+	}
+	return -1;
 }

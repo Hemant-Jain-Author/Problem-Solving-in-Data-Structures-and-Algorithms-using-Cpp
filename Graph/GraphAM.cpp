@@ -5,16 +5,16 @@ GraphAM::GraphAM(int cnt) {
 	adj = std::vector<std::vector<int>>(cnt, std::vector<int>(cnt, 0));
 }
 
-void GraphAM::AddDirectedEdge(int src, int dst, int cost) {
+void GraphAM::addDirectedEdge(int src, int dst, int cost) {
     adj[src][dst] = cost;
 }
 
-void GraphAM::AddUndirectedEdge(int src, int dst, int cost) {
-    AddDirectedEdge(src, dst, cost);
-    AddDirectedEdge(dst, src, cost);
+void GraphAM::addUndirectedEdge(int src, int dst, int cost) {
+    addDirectedEdge(src, dst, cost);
+    addDirectedEdge(dst, src, cost);
 }
 
-void GraphAM::Print() {
+void GraphAM::print() {
     for (int i = 0; i < count; i++) {
         std::cout << "Node index [ " << i << " ] is connected with : " ;
         for (int j = 0; j < count; j++) {
@@ -26,14 +26,21 @@ void GraphAM::Print() {
 }
 
 int main1() {
-    GraphAM* graph = new GraphAM(4);
-    graph->AddUndirectedEdge(0, 1, 1);
-    graph->AddUndirectedEdge(0, 2, 1);
-    graph->AddUndirectedEdge(1, 2, 1);
-    graph->AddUndirectedEdge(2, 3, 1);
-    graph->Print();
+    GraphAM graph = GraphAM(4);
+    graph.addUndirectedEdge(0, 1, 1);
+    graph.addUndirectedEdge(0, 2, 1);
+    graph.addUndirectedEdge(1, 2, 1);
+    graph.addUndirectedEdge(2, 3, 1);
+    graph.print();
     return 0;
 }
+
+/*
+Node index [ 0 ] is connected with : 1 2 
+Node index [ 1 ] is connected with : 0 2 
+Node index [ 2 ] is connected with : 0 1 3 
+Node index [ 3 ] is connected with : 2 
+*/
 
 bool GraphAM::EdgeComparator::operator()(Edge *x, Edge *y)
 {
@@ -45,7 +52,7 @@ bool GraphAM::EdgeComparator::operator()(Edge *x, Edge *y)
 }
 
 
-void GraphAM::Dijkstra(int source) {
+void GraphAM::dijkstra(int source) {
     std::vector<int> previous(count, -1) ;
     std::vector<int> dist(count, std::numeric_limits<int>::max()) ;; // infinite
     std::vector<bool> visited(count, false) ;
@@ -54,8 +61,6 @@ void GraphAM::Dijkstra(int source) {
     previous[source] = -1;
 
  	std::priority_queue<Edge*, std::vector<Edge*>, EdgeComparator> queue;
-
-
     Edge* node = new Edge(source, 0);
     queue.push(node);
 
@@ -89,7 +94,7 @@ void GraphAM::Dijkstra(int source) {
     }
 }
 
-void GraphAM::Prims() {
+void GraphAM::prims() {
     std::vector<int> previous(count, -1) ;
     std::vector<int> dist(count, std::numeric_limits<int>::max()) ;; // infinite
     std::vector<bool> visited(count, false) ;
@@ -134,45 +139,50 @@ void GraphAM::Prims() {
 }
 
 int main2() {
-    GraphAM* gph = new GraphAM(9);
-    gph->AddUndirectedEdge(0, 1, 4);
-    gph->AddUndirectedEdge(0, 7, 8);
-    gph->AddUndirectedEdge(1, 2, 8);
-    gph->AddUndirectedEdge(1, 7, 11);
-    gph->AddUndirectedEdge(2, 3, 7);
-    gph->AddUndirectedEdge(2, 8, 2);
-    gph->AddUndirectedEdge(2, 5, 4);
-    gph->AddUndirectedEdge(3, 4, 9);
-    gph->AddUndirectedEdge(3, 5, 14);
-    gph->AddUndirectedEdge(4, 5, 10);
-    gph->AddUndirectedEdge(5, 6, 2);
-    gph->AddUndirectedEdge(6, 7, 1);
-    gph->AddUndirectedEdge(6, 8, 6);
-    gph->AddUndirectedEdge(7, 8, 7);
-    gph->Print();
-    gph->Prims();
-    //gph->Dijkstra(0);
+    GraphAM gph = GraphAM(9);
+    gph.addUndirectedEdge(0, 1, 4);
+    gph.addUndirectedEdge(0, 7, 8);
+    gph.addUndirectedEdge(1, 2, 8);
+    gph.addUndirectedEdge(1, 7, 11);
+    gph.addUndirectedEdge(2, 3, 7);
+    gph.addUndirectedEdge(2, 8, 2);
+    gph.addUndirectedEdge(2, 5, 4);
+    gph.addUndirectedEdge(3, 4, 9);
+    gph.addUndirectedEdge(3, 5, 14);
+    gph.addUndirectedEdge(4, 5, 10);
+    gph.addUndirectedEdge(5, 6, 2);
+    gph.addUndirectedEdge(6, 7, 1);
+    gph.addUndirectedEdge(6, 8, 6);
+    gph.addUndirectedEdge(7, 8, 7);
+    
+    gph.dijkstra(1);
+    gph.prims();
     return 0;
 }
 
-int main3() {
-    GraphAM* gph = new GraphAM(9);
-    gph->AddUndirectedEdge(0, 2, 1);
-    gph->AddUndirectedEdge(1, 2, 5);
-    gph->AddUndirectedEdge(1, 3, 7);
-    gph->AddUndirectedEdge(1, 4, 9);
-    gph->AddUndirectedEdge(3, 2, 2);
-    gph->AddUndirectedEdge(3, 5, 4);
-    gph->AddUndirectedEdge(4, 5, 6);
-    gph->AddUndirectedEdge(4, 6, 3);
-    gph->AddUndirectedEdge(5, 7, 1);
-    gph->AddUndirectedEdge(6, 7, 7);
-    gph->AddUndirectedEdge(7, 8, 17);
-    gph->Print();
-    gph->Prims();
-    gph->Dijkstra(1);
-    return 0;
-}
+/*
+ node id 0  prev 1 distance : 4
+ node id 1  prev -1 distance : 0
+ node id 2  prev 1 distance : 8
+ node id 3  prev 2 distance : 15
+ node id 4  prev 5 distance : 22
+ node id 5  prev 2 distance : 12
+ node id 6  prev 7 distance : 12
+ node id 7  prev 1 distance : 11
+ node id 8  prev 2 distance : 10
+ 
+ 
+ node id 0  prev -1 distance : 0
+ node id 1  prev 0 distance : 4
+ node id 2  prev 5 distance : 4
+ node id 3  prev 2 distance : 7
+ node id 4  prev 3 distance : 9
+ node id 5  prev 6 distance : 2
+ node id 6  prev 7 distance : 1
+ node id 7  prev 0 distance : 8
+ node id 8  prev 2 distance : 2
+ */
+
 
 bool GraphAM::hamiltonianPathUtil(std::vector<int>& path, int pSize, std::vector<int>& added) {
     // Base case full length path is found
@@ -250,26 +260,58 @@ bool GraphAM::hamiltonianCycle() {
     return false;
 }
 
-int main() {
+int main3() {
     int count = 5;
-    GraphAM* graph = new GraphAM(count);
+    GraphAM graph = GraphAM(count);
     std::vector<std::vector<int>> adj = { { 0, 1, 0, 1, 0 }, { 1, 0, 1, 1, 0 }, { 0, 1, 0, 0, 1 }, { 1, 1, 0, 0, 1 }, { 0, 1, 1, 1, 0 } };
 
     for (int i = 0; i < count; i++)
         for (int j = 0; j < count; j++)
             if (adj[i][j] == 1)
-                graph->AddDirectedEdge(i, j, 1);
-    graph->hamiltonianPath();
-    graph->hamiltonianCycle();
+                graph.addDirectedEdge(i, j, 1);
+    graph.hamiltonianPath();
 
-    GraphAM* graph2 = new GraphAM(count);
+    GraphAM graph2 = GraphAM(count);
     std::vector<std::vector<int>> adj2 = { { 0, 1, 0, 1, 0 }, { 1, 0, 1, 1, 0 }, { 0, 1, 0, 0, 1 }, { 1, 1, 0, 0, 0 },
             { 0, 1, 1, 0, 0 } };
     for (int i = 0; i < count; i++)
         for (int j = 0; j < count; j++)
             if (adj2[i][j] == 1)
-                graph2->AddDirectedEdge(i, j, 1);
+                graph2.addDirectedEdge(i, j, 1);
 
-    graph2->hamiltonianPath();
-    graph2->hamiltonianCycle();
+    graph2.hamiltonianPath();
+    return 0;
 }
+
+/*
+Hamiltonian Path found ::  0 1 2 4 3
+Hamiltonian Path found ::  0 3 1 2 4
+*/
+
+int main() {
+    int count = 5;
+    GraphAM graph = GraphAM(count);
+    std::vector<std::vector<int>> adj = { { 0, 1, 0, 1, 0 }, { 1, 0, 1, 1, 0 }, { 0, 1, 0, 0, 1 }, { 1, 1, 0, 0, 1 }, { 0, 1, 1, 1, 0 } };
+
+    for (int i = 0; i < count; i++)
+        for (int j = 0; j < count; j++)
+            if (adj[i][j] == 1)
+                graph.addDirectedEdge(i, j, 1);
+    graph.hamiltonianCycle();
+
+    GraphAM graph2 = GraphAM(count);
+    std::vector<std::vector<int>> adj2 = { { 0, 1, 0, 1, 0 }, { 1, 0, 1, 1, 0 }, { 0, 1, 0, 0, 1 }, { 1, 1, 0, 0, 0 },
+            { 0, 1, 1, 0, 0 } };
+    for (int i = 0; i < count; i++)
+        for (int j = 0; j < count; j++)
+            if (adj2[i][j] == 1)
+                graph2.addDirectedEdge(i, j, 1);
+
+    graph2.hamiltonianCycle();
+    return 0;
+}
+
+/*
+Hamiltonian Cycle found ::  0 1 2 4 3 0
+Hamiltonian Cycle not found
+*/
