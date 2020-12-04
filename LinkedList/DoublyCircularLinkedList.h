@@ -6,31 +6,31 @@
 class DoublyCircularLinkedList
 {
 private:
-	struct Node
-	{
-		int value;
-		Node *next;
-		Node *prev;
-		Node(int v, Node *nxt, Node *prv);
-		Node(int v);
-	};
+    struct Node
+    {
+        int value;
+        Node *next;
+        Node *prev;
+        Node(int v, Node *nxt, Node *prv);
+        Node(int v);
+    };
 
-	Node *head = nullptr;
-	Node *tail = nullptr;
-	int length = 0;
+    Node *head = nullptr;
+    Node *tail = nullptr;
+    int length = 0;
 
 public:
-	DoublyCircularLinkedList();
-	virtual int size();
-	virtual bool isEmpty();
-	virtual int peekHead();
-	virtual void addHead(int value);
-	virtual int removeHead();
-	// Other Methods.
+    DoublyCircularLinkedList();
+    virtual int size();
+    virtual bool isEmpty();
+    virtual int peekHead();
+    virtual void addHead(int value);
+    virtual int removeHead();
+    // Other Methods.
 
-	virtual void addTail(int value);
-	virtual int removeTail();
-	virtual bool searchList(int key);
-	virtual void freeList();
-	virtual void print();
+    virtual void addTail(int value);
+    virtual int removeTail();
+    virtual bool searchList(int key);
+    virtual void freeList();
+    virtual void print();
 };

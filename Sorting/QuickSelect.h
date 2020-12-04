@@ -5,8 +5,8 @@
 class QuickSelect
 {
 private:
-	static void swap(std::vector<int> &arr, int first, int second);
-	static void quickSelect(std::vector<int> &arr, int lower, int upper, int k);
+    static void swap(std::vector<int> &arr, int first, int second);
+    static void quickSelect(std::vector<int> &arr, int lower, int upper, int k);
 public:
-	static void quickSelect(std::vector<int> &arr, int k);
+    static void quickSelect(std::vector<int> &arr, int k);
 };

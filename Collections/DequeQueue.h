@@ -9,31 +9,31 @@ class DequeQueue
 {
 
 private:
-	deque<T> que;
+    deque<T> que;
 
 public:
-	virtual void enqueue(T obj)
-	{
-		que.add(obj);
-	}
+    virtual void enqueue(T obj)
+    {
+        que.add(obj);
+    }
 
-	virtual T dequeue()
-	{
-		return que.remove();
-	}
+    virtual T dequeue()
+    {
+        return que.remove();
+    }
 
-	virtual T peek()
-	{
-		return que.peekFirst();
-	}
+    virtual T peek()
+    {
+        return que.peekFirst();
+    }
 
-	virtual int size()
-	{
-		return que.size();
-	}
+    virtual int size()
+    {
+        return que.size();
+    }
 
-	virtual bool isEmpty()
-	{
-		return que.isEmpty();
-	}
+    virtual bool isEmpty()
+    {
+        return que.isEmpty();
+    }
 };

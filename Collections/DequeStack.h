@@ -9,31 +9,31 @@ class DequeStack
 {
 
 private:
-	deque<T> que;;
+    deque<T> que;;
 
 public:
-	virtual void push(T obj)
-	{
-		que.push(obj);
-	}
+    virtual void push(T obj)
+    {
+        que.push(obj);
+    }
 
-	virtual T pop()
-	{
-		return que.pop();
-	}
+    virtual T pop()
+    {
+        return que.pop();
+    }
 
-	virtual T top()
-	{
-		return que.peekLast();
-	}
+    virtual T top()
+    {
+        return que.peekLast();
+    }
 
-	virtual int size()
-	{
-		return que.size();
-	}
+    virtual int size()
+    {
+        return que.size();
+    }
 
-	virtual bool isEmpty()
-	{
-		return que.isEmpty();
-	}
+    virtual bool isEmpty()
+    {
+        return que.isEmpty();
+    }
 };

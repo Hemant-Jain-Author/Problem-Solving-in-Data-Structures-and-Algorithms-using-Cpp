@@ -3,7 +3,7 @@
 
 int main()
 {
-	Stack s(100);
+    Stack s(100);
     s.push(1);
     s.push(2);
     s.push(3);
@@ -11,7 +11,7 @@ int main()
     std::cout << s.pop() << std::endl;
     std::cout << s.pop() << std::endl;
     s.print();
-	return 0;
+    return 0;
 }
 
 Stack::Stack() : Stack(MIN_CAPACITY)
@@ -20,100 +20,100 @@ Stack::Stack() : Stack(MIN_CAPACITY)
 
 Stack::Stack(int maxCapacity)
 {
-	data = new int[maxCapacity];
-	capacity = maxCapacity;
+    data = new int[maxCapacity];
+    capacity = maxCapacity;
 }
 
 Stack::~Stack()
 {
-	delete[] data;
+    delete[] data;
 }
 
 int Stack::size()
 {
-	return (stack_top + 1);
+    return (stack_top + 1);
 }
 
 bool Stack::isEmpty()
 {
-	return (stack_top == -1);
+    return (stack_top == -1);
 }
 
 void Stack::push(int value)
 {
-	if (size() == capacity)
-	{
-		throw "StackOvarflowException";
-	}
-	stack_top++;
-	data[stack_top] = value;
+    if (size() == capacity)
+    {
+        throw "StackOvarflowException";
+    }
+    stack_top++;
+    data[stack_top] = value;
 }
 
 int Stack::top()
 {
-	if (isEmpty())
-	{
-		throw "StackEmptyException";
-	}
-	return data[stack_top];
+    if (isEmpty())
+    {
+        throw "StackEmptyException";
+    }
+    return data[stack_top];
 }
 
 int Stack::pop()
 {
-	if (isEmpty())
-	{
-		throw "StackEmptyException";
-	}
-	int topVal = data[stack_top];
-	stack_top--;
-	return topVal;
+    if (isEmpty())
+    {
+        throw "StackEmptyException";
+    }
+    int topVal = data[stack_top];
+    stack_top--;
+    return topVal;
 }
 
 void Stack::print()
 {
-	for (int i = stack_top; i > -1; i--)
-		std::cout << data[i] << " ";
+    for (int i = stack_top; i > -1; i--)
+        std::cout << data[i] << " ";
 
-	std::cout << std::endl;
+    std::cout << std::endl;
 }
 
 void Stack::gPush(int value)
 {
-	if (size() == capacity)
-	{
-		int *delMe = data;
-		capacity = 2 * capacity;
-		data = new int[capacity];
-		for (int i = stack_top; i > -1; i--)
-		{
-			data[i] = delMe[i];
-		}
-		delete[] delMe;
-		std::cout << "stack size doubled" << std::endl;
-	}
-	stack_top++;
-	data[stack_top] = value;
+    if (size() == capacity)
+    {
+        int *delMe = data;
+        capacity = 2 * capacity;
+        data = new int[capacity];
+        for (int i = stack_top; i > -1; i--)
+        {
+            data[i] = delMe[i];
+        }
+        delete[] delMe;
+        std::cout << "stack size doubled" << std::endl;
+    }
+    stack_top++;
+    data[stack_top] = value;
 }
 
 int Stack::gPop()
 {
-	if (isEmpty())
-	{
-		throw "StackEmptyException";
-	}
+    if (isEmpty())
+    {
+        throw "StackEmptyException";
+    }
 
-	int topVal = data[stack_top];
-	stack_top--;
-	if (stack_top < capacity / 2 && stack_top > MIN_CAPACITY)
-	{
-		capacity = capacity / 2;
-		int *delMe = data;
-		data = new int[capacity];
-		for (int i = stack_top; i > -1; i--)
-		{
-			data[i] = delMe[i];
-		}
-		std::cout << "stack size reduced" << std::endl;
-	}
-	return topVal;
+    int topVal = data[stack_top];
+    stack_top--;
+    if (stack_top < capacity / 2 && stack_top > MIN_CAPACITY)
+    {
+        capacity = capacity / 2;
+        int *delMe = data;
+        data = new int[capacity];
+        for (int i = stack_top; i > -1; i--)
+        {
+            data[i] = delMe[i];
+        }
+        std::cout << "stack size reduced" << std::endl;
+    }
+    return topVal;
 }
