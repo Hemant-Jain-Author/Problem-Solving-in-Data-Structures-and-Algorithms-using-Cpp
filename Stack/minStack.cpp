@@ -78,7 +78,7 @@ bool Stack::min(int& min)
     return true;
 }
 
-int main9()
+int main()
 {
     Stack s;
     int value;

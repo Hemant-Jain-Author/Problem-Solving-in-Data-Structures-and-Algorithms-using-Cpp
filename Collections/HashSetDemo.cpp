@@ -1,25 +1,18 @@
-#include <string>
-#include <vector>
+
 #include <algorithm>
 #include <iostream>
-#include <unordered_set>
 #include <set>
 
-int main1()
+int main()
 {
-    // Create a hash set.
+    // Create a tree set.
     std::set<std::string> ts;
 
-    // Add elements to the hash set.
+    // Add elements to the ttee set.
     ts.insert("India");
     ts.insert("USA");
     ts.insert("Brazile");
-    ts.insert("Canada");
-    ts.insert("UK");
-    ts.insert("China");
-    ts.insert("France");
-    ts.insert("Spain");
-    ts.insert("Italy");
+    ts.insert("India");
 
     for (auto var : ts)
     {
@@ -40,7 +33,17 @@ int main1()
     return 0;
 }
 
-int main()
+/*
+Brazile India USA 
+Hash Table contains USA : 1
+Hash Table contains Russia : 0
+Brazile India 
+Hash Table contains USA : 0
+*/
+
+#include <unordered_set>
+
+int main2()
 {
     // Create a hash set.
     std::unordered_set<std::string> hs;
@@ -49,12 +52,7 @@ int main()
     hs.insert("India");
     hs.insert("USA");
     hs.insert("Brazile");
-    hs.insert("Canada");
-    hs.insert("UK");
-    hs.insert("China");
-    hs.insert("France");
-    hs.insert("Spain");
-    hs.insert("Italy");
+    hs.insert("India");
 
     for (auto var : hs)
     {
@@ -74,3 +72,11 @@ int main()
     std::cout << "Hash Table contains USA : " << (std::find(hs.begin(), hs.end(), "USA") != hs.end() )<< std::endl;
     return 0;
 }
+
+/*
+USA Brazile India 
+Hash Table contains USA : 1
+Hash Table contains Russia : 0
+Brazile India 
+Hash Table contains USA : 0
+*/

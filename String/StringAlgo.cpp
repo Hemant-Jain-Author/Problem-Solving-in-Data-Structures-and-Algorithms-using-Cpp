@@ -32,6 +32,9 @@ void main1()
 {
     std::cout << matchExp("*llo,?World?", "Hello, World!") << std::endl;
 }
+/*
+1
+*/
 
 int match(const std::string &source, const std::string &pattern)
 {
@@ -58,11 +61,15 @@ void main2()
     std::cout << match("harrypottermustnotgotoschool", "pottergo") << std::endl;
 }
 
+/*
+1
+*/
+
 bool isPrime(const int n)
 {
     bool answer = (n > 1) ? true : false;
 
-    for (int i = 2; i * i < n; ++i)////////////// mistake
+    for (int i = 2; i * i < n; ++i)
     {
         if (n % i == 0)
         {
@@ -76,11 +83,15 @@ bool isPrime(const int n)
 void main3()
 {
     std::cout << "Prime numbers under 100 :: ";
-    for (int i = 0; i < 100; i++)
+    for (int i = 0; i < 20; i++)
         if (isPrime(i))
             std::cout << i << " ";
     std::cout << std::endl;
 }
+
+/*
+Prime numbers under 100 :: 2 3 4 5 7 9 11 13 17 19 
+*/
 
 int myAtoi(const std::string &str)
 {
@@ -99,6 +110,9 @@ void main4()
 {
     std::cout << myAtoi("1000") << std::endl;
 }
+/*
+1000
+*/
 
 bool isUniqueChar(const std::string &str)
 {
@@ -136,6 +150,13 @@ void main5()
     std::cout << isUniqueChar("aple") << std::endl;
     std::cout << isUniqueChar("apple") << std::endl;
 }
+
+/*
+No duplicate detected!
+1
+Duplicate detected!
+0
+*/
 
 char toUpper(const char s)
 {
@@ -179,6 +200,13 @@ void main6()
     std::cout << lowerUpper('S') << std::endl;
 }
 
+/*
+a
+A
+S
+s
+*/
+
 bool isPermutation(const std::string &s1, const std::string &s2)
 {
     std::vector<int> count(256);
@@ -216,6 +244,11 @@ void main7()
     std::cout << isPermutation("apple", "plepa");
 }
 
+/*
+is permutation return true
+1
+*/
+
 bool isPalindrome(const std::string &str)
 {
     int i = 0, j = str.length() - 1;
@@ -242,6 +275,13 @@ void main8()
     std::cout << isPalindrome("eoloe") << std::endl;
 }
 
+/*
+String is not a Palindrome
+0
+String is a Palindrome
+1
+*/
+
 int pow(const int x, const int n)
 {
     int value;
@@ -265,6 +305,11 @@ void main9()
 {
     std::cout << pow(5, 2) << std::endl;
 }
+
+/*
+25
+*/
+
 
 int myStrcmp(const std::string &a, const std::string &b)
 {
@@ -304,6 +349,10 @@ void main10()
 {
     std::cout << myStrcmp("abs", "abs") << std::endl;
 }
+
+/*
+0
+*/
 
 void reverseString(std::string &a)
 {
@@ -364,11 +413,10 @@ void main11()
     std::cout << second << std::endl;
 }
 
-void printAnagram(std::string  &a)
-{
-    int n = a.size();
-    printAnagram(a, n, n);
-}
+/*
+elppa
+world hello
+*/
 
 void printAnagram(std::string &a, int max, int n)
 {
@@ -392,11 +440,26 @@ void printAnagram(std::string &a, int max, int n)
     }
 }
 
+void printAnagram(std::string  &a)
+{
+    int n = a.size();
+    printAnagram(a, n, n);
+}
+
 void main12()
 {
     std::string first = "123";
     printAnagram(first);
 }
+
+/* 
+123
+213
+321
+231
+132
+312
+*/
 
 void shuffle(std::string &ar)
 {
@@ -428,6 +491,10 @@ void main13()
     shuffle(first);
     std::cout << first << std::endl;
 }
+
+/*
+A1B2C3D4E5
+*/
 
 std::string addBinary(const std::string &first, const std::string &second)
 {
@@ -470,6 +537,10 @@ void main14()
     std::string first = "1000", second = "11111111";
     std::cout << addBinary(first, second);
 }
+
+/*
+100000111
+*/
 
 int main()
 {

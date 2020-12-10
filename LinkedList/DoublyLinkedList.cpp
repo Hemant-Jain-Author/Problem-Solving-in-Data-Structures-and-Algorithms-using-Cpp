@@ -7,23 +7,33 @@ int main()
     ll->addHead(1);
     ll->addHead(2);
     ll->addHead(3);
-    ll->addHead(4);
-    ll->addHead(5);
-    ll->addHead(6);
+    ll->print();
+        
+    std::cout << "Size is :: " << ll->size() << std::endl;
+    std::cout << "IsEmpty :: " << ll->isEmpty() << std::endl;
+    std::cout << "Peek :: " << ll->peek() << std::endl;
+
+    ll->addTail(4);
     ll->print();
     ll->removeHead();
     ll->print();
+    std::cout << "Search List :: " << ll->searchList(5) << std::endl;
+    std::cout << "Search List :: " << ll->searchList(1) << std::endl;
     ll->freeList();
-    ll->print();
-    ll->addHead(11);
-    ll->addHead(21);
-    ll->addHead(31);
-    ll->addHead(41);
-    ll->addHead(51);
-    ll->addHead(61);
     ll->print();
     return 0;
 }
+
+/*
+3 2 1 
+Size is :: 3
+IsEmpty :: 0
+Peek :: 3
+3 2 1 4 
+2 1 4 
+Search List :: 0
+Search List :: 1
+*/
 
 DoublyLinkedList::Node::Node(int v, Node *nxt, Node *prv)
 {

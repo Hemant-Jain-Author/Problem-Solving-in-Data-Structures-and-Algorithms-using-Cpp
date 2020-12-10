@@ -74,6 +74,7 @@ void printRepeating(std::vector<int> &arr)
             hs.insert(val);
         }
     }
+    std::cout << std::endl;
 }
 
 void printFirstRepeating(std::vector<int> &arr)
@@ -124,13 +125,18 @@ int main()
     std::cout << std::endl;
 
     std::vector<int> arr = { 1, 2, 3, 5, 6, 7, 8, 9, 10 };
-    std::cout << findMissing(arr, 1, 10) << std::endl;
-    std::cout << std::endl;
+    std::cout << "Missing Number is :: " << findMissing(arr, 1, 10) << std::endl;
 
     std::vector<int> arr1 = { 1, 2, 3, 4, 4, 5, 6, 7, 8, 9, 1 };
     printRepeating(arr1);
-    std::cout << std::endl;
-
     printFirstRepeating(arr1);
     return 0;
 }
+/*
+isAnagram : 1
+isAnagram : 0
+helo
+Missing Number is :: 4
+Repeating elements are:4  1  
+First Repeating number is : 1
+*/

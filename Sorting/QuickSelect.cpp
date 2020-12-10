@@ -9,6 +9,10 @@ int main()
     return 0;
 }
 
+/*
+value at index 5 is : 5
+*/
+
 void QuickSelect::swap(std::vector<int> &arr, int first, int second)
 {
     int temp = arr[first];

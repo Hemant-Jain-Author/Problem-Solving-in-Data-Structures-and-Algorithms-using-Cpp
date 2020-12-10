@@ -29,6 +29,10 @@ int main1()
     return 0;
 }
 
+/*
+Dequeue elements of Priority Queue :: 1 2 3 4 5 6 7 8 9 10
+*/
+
 int KthSmallest(int arr[], int size, int k)
 {
     std::sort(arr, arr+size);
@@ -100,6 +104,14 @@ int main2()
     std::cout << "isMinHeap :: " << isMinHeap(arr4, 8) << std::endl;
     return 0;
 }
+
+/*
+Kth Smallest :: 5
+Kth Smallest :: 5
+isMaxHeap :: 1
+isMinHeap :: 0
+isMinHeap :: 1
+*/
 
 int KSmallestProduct(int arr[], int size, int k)
 {
@@ -186,13 +198,20 @@ int main3()
     std::cout << "Kth Smallest product:: " << KSmallestProduct2(arr2, 8, 3) << std::endl;
     int arr3[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
     std::cout << "Kth Smallest product:: " << KSmallestProduct3(arr3, 8, 3) << std::endl;
+    return 0;
 }
+
+/*
+Kth Smallest product:: 10
+Kth Smallest product:: 10
+Kth Smallest product:: 10
+*/
 
 void PrintLargerHalf(int arr[], int size)
 {
     std::sort(arr, arr+size);
     for (int i = size / 2; i < size; i++)
-        std::cout << (arr[i]);
+        std::cout << (arr[i]) << " ";
     std::cout << std::endl;
 }
 
@@ -210,7 +229,7 @@ void PrintLargerHalf2(int arr[], int size)
     {
         value = pq.top();
         pq.pop();
-        std::cout << value;
+        std::cout << value << " ";
     }
     std::cout << std::endl;
 }
@@ -219,7 +238,7 @@ void PrintLargerHalf3(int arr[], int size)
 {
     QuickSelectUtil(arr, 0, size - 1, size / 2);
     for (int i = size / 2; i < size; i++)
-        std::cout << arr[i];
+        std::cout << arr[i] << " ";
     std::cout << std::endl;
 }
 
@@ -234,11 +253,17 @@ int main4()
     return 0;
 }
 
+/*
+6 7 7 8 
+8 7 7 6 
+6 7 7 8 
+*/
+
 void sortK(int arr[], int size, int k)
 {
     std::priority_queue<int, std::vector<int>, std::greater<int>> pq;;
     int i = 0;
-    for (i = 0; i < size; i++)
+    for (i = 0; i < k; i++)
     {
         pq.push(arr[i]);
     }
@@ -253,14 +278,15 @@ void sortK(int arr[], int size, int k)
         pq.push(arr[i]);
     }
     while (pq.size() > 0)
+    {
         output[index++] = pq.top();
-    pq.pop();
+        pq.pop();
+    }    
 
-    for (i = k; i < size; i++)
+    for (i = 0; i < size; i++)
     {
         arr[i] = output[i];
     }
-    std::cout << output << std::endl;
 }
 
 // Testing Code
@@ -270,8 +296,15 @@ int main5()
     int arr[] = { 1, 5, 4, 10, 50, 9 };
     int size = sizeof(arr)/sizeof(int);
     sortK(arr, size, k);
+    for(auto i =0 ; i< size; i++)
+        std::cout << arr[i] << " ";
+
     return 0;
 }
+
+/*
+1 4 5 9 10 50
+*/
 
 int ChotaBhim(int cups[], int size)
 {
@@ -415,6 +448,14 @@ int main6()
     return 0;
 }
 
+/*
+Total : 76
+Total : 76
+Total : 76
+Total : 33
+Total : 33
+*/
+/*
 int kthLargestStream(int k)
 {
     std::priority_queue<int, std::vector<int>, std::greater<int>> pq;;
@@ -423,7 +464,6 @@ int kthLargestStream(int k)
     while (true)
     {
         std::cout << "Enter data: ";
-
         if (size < k - 1)
             pq.push(data);
         else
@@ -441,8 +481,9 @@ int kthLargestStream(int k)
     }
 }
 
-int main8()
+int main()
 {
     kthLargestStream(3);
     return 0;
 }
+*/

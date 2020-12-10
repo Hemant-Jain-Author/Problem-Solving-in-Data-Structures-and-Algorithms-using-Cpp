@@ -137,11 +137,6 @@ int main1()
     ht.add(49);
     ht.add(58);
     ht.add(69);
-    ht.add(89);
-    ht.add(18);
-    ht.add(49);
-    ht.add(58);
-    ht.add(69);
     ht.print();
 
     ht.remove(89);

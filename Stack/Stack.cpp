@@ -10,9 +10,16 @@ int main()
     s.print();
     std::cout << s.pop() << std::endl;
     std::cout << s.pop() << std::endl;
-    s.print();
+    std::cout << s.pop() << std::endl;
     return 0;
 }
+
+/*
+3 2 1 
+3
+2
+1 
+*/
 
 Stack::Stack() : Stack(MIN_CAPACITY)
 {

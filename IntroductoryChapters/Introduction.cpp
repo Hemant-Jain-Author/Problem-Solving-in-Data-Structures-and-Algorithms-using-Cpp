@@ -14,6 +14,7 @@ void printArray(std::vector<int> &data)
     {
         std::cout << " " << data[i];
     }
+    std::cout << std::endl;
 }
 
 void swap(std::vector<int> &data, int x, int y)
@@ -54,11 +55,12 @@ void function1()
     std::cout << "fun1 line 2" << std::endl;
 }
 
-void main2()
+int main2()
 {
     std::cout << "main line 1" << std::endl;
     function1();
     std::cout << "main line 2" << std::endl;
+    return 0;
 }
 
 int sequentialSearch(std::vector<int> &data, int value)
@@ -143,6 +145,7 @@ int main4()
     std::vector<int>  arr = { 1, 2, 3, 4, 5, 6 };
     rotateArray(arr, 2);
     printArray(arr);
+    return 0;
 }
 
 int maxSubArraySum(std::vector<int> &data)
@@ -207,6 +210,7 @@ int main6()
     std::vector<int> arr2 = { 8, 1, 2, 3, 4, 5, 6, 4, 2 };
     waveArray2(arr2);
     printArray(arr2);
+    return 0;
 }
 
 void indexArray(std::vector<int> arr, int size)
@@ -449,6 +453,7 @@ int main10()
     int size2 = arr.size();
     maxMinArr2(arr2, size2);
     printArray(arr2);
+    return 0;
 }
 
 int maxCircularSum(std::vector<int> &arr, int size)
@@ -556,6 +561,7 @@ int main12()
     std::cout << "ArrayIndexMaxDiff : " << arrayIndexMaxDiff(arr, arr.size()) << std::endl;
     std::cout << "ArrayIndexMaxDiff : " << arrayIndexMaxDiff2(arr, arr.size()) << std::endl;
     //  std::cout << "ArrayIndexMaxDiff : " + ArrayIndexMaxDiff3(arr, arr.length));
+    return 0;
 }
 
 
@@ -607,6 +613,7 @@ int main13()
     int arr1[] = { 12, 13, 18, 20, 22, 26, 70 };
     int arr2[] = { 11, 15, 18, 19, 20, 26, 30, 31 };
     std::cout << "Max Path Sum :: " << maxPathSum(arr1, 7, arr2, 8) << std::endl;
+    return 0;
 }
 
 
@@ -705,14 +712,15 @@ void permutation(std::vector<int> &data, int i, int length)
     return;
 }
 
-void main15()
+int main15()
 {
-    std::vector<int> data(5);
-    for (int i = 0; i < 5; i++)
+    std::vector<int> data(3);
+    for (int i = 0; i < 3; i++)
     {
         data[i] = i;
     }
-    permutation(data, 0, 5);
+    permutation(data, 0, 3);
+    return 0;
 }
 
 
@@ -744,12 +752,15 @@ void print2DArray(T(&data)[R][C])
 }
 
 
-int binarySearchRecursive(std::vector<int> &data, int low, int high, int value)
+bool binarySearchRecursive(std::vector<int> &data, int low, int high, int value)
 {
-    int mid = low + (high - low) / 2; // To avoid the overflow
+    if(low > high)
+        return false;
+    
+    int mid = (low + high) / 2;
     if (data[mid] == value)
     {
-        return mid;
+        return true;
     }
     else if (data[mid] < value)
     {
@@ -764,8 +775,34 @@ int binarySearchRecursive(std::vector<int> &data, int low, int high, int value)
 /* Testing code */
 int main16()
 {
-    std::vector<int> arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+    std::vector<int> arr = { 1, 2, 3, 4, 5, 6, 7, 9 };
     std::cout << binarySearchRecursive(arr, 0, arr.size() - 1, 6) << std::endl;
     std::cout << binarySearchRecursive(arr, 0, arr.size() - 1, 16) << std::endl;
+    return 0;
+}
+
+/*
+1
+0
+*/
+
+int main()
+{
+    main1();
+    main2();
+    main3();
+    main4();
+    main5();
+    main6();
+    main7();
+    main8();
+    main9();
+    main10();
+    main11();
+    main12();
+    main13();
+    main14();
+    main15();
+    main16();
     return 0;
 }

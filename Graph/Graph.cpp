@@ -375,9 +375,6 @@ void Graph::transitiveClosure(std::vector<std::vector<int>> &tc)
     }
 }
 
-
-
-
 int main6()
 {
     Graph gph = Graph(4);
@@ -488,7 +485,7 @@ int main7()
     gph.addUndirectedEdge(4, 5, 1);
     gph.addUndirectedEdge(4, 6, 1);
     gph.bfsLevelNode(1);
-    std::cout << gph.bfsDistance(1, 6);
+    std::cout << "BfsDistance(1, 6) :: " << gph.bfsDistance(1, 6) << std::endl;
     return 0;
 }
 
@@ -501,7 +498,7 @@ Node  - Level
 5 - 2
 3 - 3
 6 - 3
-3
+BfsDistance(1, 6) :: 3
 */
 
 bool Graph::isCyclePresentUndirecteddfs(int index, int parentIndex, std::vector<bool>& visited)
@@ -740,9 +737,6 @@ int main11()
 IsStronglyConnected:: 1
 */
 
-
-
-
 void Graph::stronglyConnectedComponent()
 {
 
@@ -868,14 +862,17 @@ int heightTreeParentArr2(int arr[], int count)
     return maxHeight;
 }
 
-int main13()
+int main14()
 {
     int parentArray[] = { -1, 0, 1, 2, 3 };
     std::cout << Graph::heightTreeParentArr(parentArray, 5) << std::endl;
     std::cout << heightTreeParentArr2(parentArray, 5) << std::endl;
     return 0;
 }
-
+/*
+4
+4
+*/
 
 bool Graph::isConnected()
 {
@@ -965,7 +962,7 @@ void Graph::prims()
     }
 }
 
-int main()
+int main14()
 {
     Graph graph = Graph(9);
     graph.addUndirectedEdge(0, 1, 4);

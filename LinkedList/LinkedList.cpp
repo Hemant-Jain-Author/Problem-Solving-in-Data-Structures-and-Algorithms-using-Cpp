@@ -548,10 +548,68 @@ int main()
     ll->addHead(1);
     ll->addHead(2);
     ll->addHead(3);
-    ll->addHead(3);
     ll->print();
-    std::cout << std::endl;
+    /*std::cout << "size" << ll->size() << std::endl;
+    std::cout << "isEmpty" << ll->isEmpty() << std::endl;
+    std::cout << "peek" << ll->peek() << std::endl;
+    std::cout << "searchList" << ll->searchList(4) << std::endl;
+    std::cout << "searchList" << ll->searchList(2) << std::endl;
+    ll->removeHead();
+    ll->print();
+    ll->addTail(4);
+    ll->addTail(2);
+    ll->print();
+    ll->deleteNode(4);
+    ll->print();
+    ll->deleteNodes(2);
+    ll->print();
+*/
+ll->reverse();
+ll->print();
+ll->reverseRecurse();
+ll->print();
+LinkedList* ll2 = ll->copyList();
+std::cout << "Compare list :: " << ll->compareList(ll2)<<std::endl;
+std::cout << "Length :: " << ll->findLength()<<std::endl;
+std::cout << "nthNodeFromBegining :: " << ll->nthNodeFromBegining(2)<<std::endl;
+std::cout << "nthNodeFromEnd :: " << ll->nthNodeFromEnd(2)<<std::endl;
+std::cout << "nthNodeFromEnd2 :: " << ll->nthNodeFromEnd2(2)<<std::endl;
 
-    LinkedList* l2 = ll->copyListReversed();
-    l2->print();
+ll->freeList();
+ll->print();
+ll->sortedInsert(2);
+ll->sortedInsert(1);
+ll->sortedInsert(3);
+ll->sortedInsert(3);
+ll->print();
+ll->removeDuplicate();
+ll->print();
+
+ll->makeLoop();
+ll->loopDetect() ;
+ll->reverseListLoopDetect();
+ll->loopTypeDetect() ;
+
+
+
+
+
 }
+
+/*
+3 2 1 
+1 2 3 
+3 2 1 
+Compare list :: 1
+Length :: 3
+nthNodeFromBegining :: 2
+nthNodeFromEnd :: 2
+nthNodeFromEnd2 :: 2
+
+1 2 3 3 
+1 2 3 
+loop found
+loop found
+circular list loop found
+
+*/

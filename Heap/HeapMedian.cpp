@@ -40,12 +40,25 @@ int MedianHeap::getMedian()
 
 int  main()
 {
-    std::vector<int> arr = { 1, 9, 2, 8, 3, 7, 4, 6, 5, 1, 9, 2, 8, 3, 7, 4, 6, 5, 10, 10 };
+    std::vector<int> arr = { 1, 9, 2, 8, 3, 7, 4, 6, 5, 1};
     MedianHeap hp;
 
-    for (int i = 0; i < 20; i++)
+    for (int i = 0; i < 10; i++)
     {
         hp.insert(arr[i]);
         std::cout << "Median after insertion of " << arr[i] << " is " << hp.getMedian() << std::endl;
     }
 }
+
+/*
+Median after insertion of 1 is 1
+Median after insertion of 9 is 5
+Median after insertion of 2 is 2
+Median after insertion of 8 is 5
+Median after insertion of 3 is 3
+Median after insertion of 7 is 5
+Median after insertion of 4 is 4
+Median after insertion of 6 is 5
+Median after insertion of 5 is 5
+Median after insertion of 1 is 4
+*/

@@ -1,20 +1,17 @@
-#include <string>
+
 #include <iostream>
-#include <vector>
-#include <deque>
 #include <queue>
 
-int main1()
+int main()
 {
     std::queue<int> que;
-    std::vector<int> arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-    for (auto i : arr)
+    for (auto i = 1; i <= 5 ; i++ )
     {
         que.push(i);
     }
 
-    for (unsigned int i = 0; i < arr.size(); i++)
+    for (auto i = 0; i < 5; i++)
     {
         std::cout << que.front() << " ";
         que.pop();
@@ -23,23 +20,24 @@ int main1()
 
     return 0;
 }
+/*
+1 2 3 4 5 
+*/
 
+#include <iostream>
+#include <deque>
 
-int main()
+int main2()
 {
     std::deque<int> que;
-    std::vector<int> arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-    for (auto i : arr)
+    for (auto i = 1; i <= 5 ; i++ )
     {
         que.push_back(i);
     }
 
-    for (unsigned int i = 0; i < arr.size(); i++)
+    for (auto i = 0; i < 5; i++)
     {
-        // cout << que.front() << " ";
-        // que.pop_front();  //queue behaviour.
-
         std::cout << que.back() << " ";
         que.pop_back();  //stack behaviour.
     }
@@ -48,3 +46,6 @@ int main()
     return 0;
 }
 
+/*
+5 4 3 2 1 
+*/

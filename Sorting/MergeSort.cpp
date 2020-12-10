@@ -13,6 +13,10 @@ int main()
     return 0;
 }
 
+/*
+1 1 1 2 3 4 5 6 7 8
+*/
+
 void MergeSort::merge(std::vector<int> &arr, std::vector<int> &tempArray, int lowerIndex, int middleIndex, int upperIndex)
 {
     int lowerStart = lowerIndex;

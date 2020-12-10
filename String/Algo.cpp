@@ -2,23 +2,6 @@
 #include <vector>
 #include <iostream>
 
-int main()
-{
-    std::string st1 = "hello, world!";
-    std::string st2 = "world";
-    std::cout << "BruteForceSearch return : " << bruteForceSearch(st1, st2) << std::endl;
-    std::cout << "RobinKarp return : " << robinKarp(st1, st2) << std::endl;
-    std::cout << "KMP return : " << kmp(st1, st2) << std::endl;
-    return 0;
-}
-
-int bruteForceSearch(const std::string &text, const std::string &pattern)
-{
-    std::vector<char> txt(text.begin(), text.end());
-    std::vector<char> ptn(pattern.begin(), pattern.end());
-    return bruteForceSearch(txt, ptn);
-}
-
 int bruteForceSearch(std::vector<char> &text, std::vector<char> &pattern)
 {
     int i = 0, j = 0;
@@ -40,11 +23,11 @@ int bruteForceSearch(std::vector<char> &text, std::vector<char> &pattern)
     return -1;
 }
 
-int robinKarp(const std::string &text, const std::string &pattern)
+int bruteForceSearch(const std::string &text, const std::string &pattern)
 {
     std::vector<char> txt(text.begin(), text.end());
     std::vector<char> ptn(pattern.begin(), pattern.end());
-    return robinKarp(txt, ptn);
+    return bruteForceSearch(txt, ptn);
 }
 
 int robinKarp(std::vector<char> &text, std::vector<char> &pattern)
@@ -96,6 +79,14 @@ int robinKarp(std::vector<char> &text, std::vector<char> &pattern)
     return -1;
 }
 
+int robinKarp(const std::string &text, const std::string &pattern)
+{
+    std::vector<char> txt(text.begin(), text.end());
+    std::vector<char> ptn(pattern.begin(), pattern.end());
+    return robinKarp(txt, ptn);
+}
+
+
 void kmpPreprocess(std::vector<char> &pattern, std::vector<int> &ShiftArr)
 {
     const int m = pattern.size();
@@ -111,13 +102,6 @@ void kmpPreprocess(std::vector<char> &pattern, std::vector<int> &ShiftArr)
         j++;
         ShiftArr[i] = j;
     }
-}
-
-int kmp(const std::string &text, const std::string &pattern)
-{
-    std::vector<char> txt(text.begin(), text.end());
-    std::vector<char> ptn(pattern.begin(), pattern.end());
-    return kmp(txt, ptn);
 }
 
 int kmp(std::vector<char> &text, std::vector<char> &pattern)
@@ -143,6 +127,14 @@ int kmp(std::vector<char> &text, std::vector<char> &pattern)
     return -1;
 }
 
+int kmp(const std::string &text, const std::string &pattern)
+{
+    std::vector<char> txt(text.begin(), text.end());
+    std::vector<char> ptn(pattern.begin(), pattern.end());
+    return kmp(txt, ptn);
+}
+
+
 int kmpFindCount(std::vector<char> &text, std::vector<char> &pattern)
 {
     int i = 0, j = 0, count = 0;
@@ -166,3 +158,19 @@ int kmpFindCount(std::vector<char> &text, std::vector<char> &pattern)
     }
     return count;
 }
+
+int main()
+{
+    std::string st1 = "hello, world!";
+    std::string st2 = "world";
+    std::cout << "BruteForceSearch return : " << bruteForceSearch(st1, st2) << std::endl;
+    std::cout << "RobinKarp return : " << robinKarp(st1, st2) << std::endl;
+    std::cout << "KMP return : " << kmp(st1, st2) << std::endl;
+    return 0;
+}
+
+/*
+BruteForceSearch return : 7
+RobinKarp return : 7
+KMP return : 7
+*/

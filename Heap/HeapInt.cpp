@@ -7,25 +7,30 @@ int main()
     hp.print();
     std::cout << std::endl;
 
-    std::cout << "value pop from heap::";
-
+    std::cout << "value pop from heap :: ";
     for (int i = 0; i < a.size(); i++)
     {
-        std::cout << " " << hp.remove();
+        std::cout << hp.remove() << " " ;
     }
     std::cout << std::endl;
 
 
     Heap::heapSort(a, true);
-    std::cout << "value after heap sort::";
+    std::cout << "value after heap sort :: ";
     for (int i = 0; i < a.size(); i++)
     {
-        std::cout << " " << a[i];
+        std::cout << a[i] << " ";
     }
     std::cout << std::endl;
 
     return 0;
 }
+
+/*
+Printing content of heap :: -1 3 1 4 8 6 2 7 5 9 
+value pop from heap :: -1 1 2 3 4 5 6 7 8 9 
+value after heap sort :: -1 1 2 3 4 5 6 7 8 9 
+*/
 
 Heap::Heap(bool isMin)
 {

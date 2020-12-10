@@ -1,6 +1,8 @@
 // Design.cpp : Defines the entry point for the console application.
 //
 
+#include <iostream>
+
 int fibonacci(int n)
 {
     if (n <= 1)
@@ -8,7 +10,7 @@ int fibonacci(int n)
     return fibonacci(n - 1) + fibonacci(n - 2);
 }
 
-int fibo(int n)
+int fibonacci2(int n)
 {
     int first = 0, second = 1;
     int temp = 0, i;
@@ -29,6 +31,12 @@ int fibo(int n)
 
 int main()
 {
+    std::cout << "fibonacci(6) is :: " << fibonacci(6) << std::endl;
+    std::cout << "fibonacci(6) is :: " << fibonacci2(6) << std::endl;
     return 0;
 }
 
+/*
+fibonacci(6) is :: 8
+fibonacci(6) is :: 8
+*/

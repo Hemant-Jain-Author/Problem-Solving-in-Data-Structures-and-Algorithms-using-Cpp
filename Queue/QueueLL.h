@@ -19,8 +19,8 @@ private:
 public:
     virtual int size();
     virtual bool isEmpty();
-    virtual int peek();
-    virtual void push(int value);
-    virtual int pop();
+    virtual int front();
+    virtual void add(int value);
+    virtual int remove();
     virtual void print();
 };

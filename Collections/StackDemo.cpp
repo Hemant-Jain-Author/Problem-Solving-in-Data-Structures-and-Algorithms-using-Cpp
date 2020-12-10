@@ -1,19 +1,16 @@
-#include <string>
 #include <iostream>
-#include <vector>
 #include <stack>
 
 int main()
 {
     std::stack<int> stk;
-    std::vector<int> arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-    for (auto i : arr)
+    for (auto i = 1; i <= 5 ; i++ )
     {
         stk.push(i);
     }
 
-    for (unsigned int i = 0; i < arr.size(); i++)
+    for (auto i = 0; i < 5; i++)
     {
         std::cout << stk.top() << " ";
         stk.pop();
@@ -22,3 +19,7 @@ int main()
 
     return 0;
 }
+
+/*
+5 4 3 2 1 
+*/

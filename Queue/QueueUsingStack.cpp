@@ -4,19 +4,17 @@ int main()
 {
     QueueUsingStack que;
     que.add(1);
-    que.add(11);
-    que.add(111);
-    std::cout << que.remove() << std::endl;
     que.add(2);
-    que.add(21);
-    que.add(211);
-    std::cout << que.remove() << std::endl;
-    std::cout << que.remove() << std::endl;
-    std::cout << que.remove() << std::endl;
-    std::cout << que.remove() << std::endl;
-    std::cout << que.remove() << std::endl;
+    que.add(3);
+
+    for (int i = 0; i < 3; i++)
+        std::cout << que.remove() << " ";
     return 0;
 }
+
+/*
+1 2 3
+*/
 
 void QueueUsingStack::add(int value)
 {

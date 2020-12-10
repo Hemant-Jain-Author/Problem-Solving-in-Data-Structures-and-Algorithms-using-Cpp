@@ -93,18 +93,22 @@ bool Trie::find(Node *curr, const std::string &str, int index)
 
 int main()
 {
-    Trie *t = new Trie();
-    std::string a = "hemant";
-    std::string b = "heman";
-    std::string c = "hemantjain";
-    std::string d = "jain";
-    t->add(a);
-    t->add(d);
-    std::cout << t->find(a) << std::endl;
-    t->remove(a);
-    t->remove(d);
-    std::cout << t->find(a) << std::endl;
-    std::cout << t->find(c) << std::endl;
-    std::cout << t->find(d) << std::endl;
+    Trie *tt = new Trie();
+    tt->add("banana");
+    tt->add("apple");
+    tt->add("mango");
+
+    std::cout << "find apple : "  << tt->find("apple") << std::endl;
+    std::cout << "find banana : "  << tt->find("banana") << std::endl;
+    std::cout << "find grapes : "  << tt->find("grapes") << std::endl;
+    std::cout << "find mango : "  << tt->find("mango") << std::endl;
+
     return 0;
 }
+
+/*
+find apple : 1
+find banana : 1
+find grapes : 0
+find mango : 1
+*/

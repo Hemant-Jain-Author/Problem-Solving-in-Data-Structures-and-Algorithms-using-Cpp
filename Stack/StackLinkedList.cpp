@@ -78,6 +78,6 @@ int main()
     s.print();
     std::cout << s.pop() << std::endl;
     std::cout << s.pop() << std::endl;
-    s.print();
+    std::cout << s.pop() << std::endl;
     return 0;
 }

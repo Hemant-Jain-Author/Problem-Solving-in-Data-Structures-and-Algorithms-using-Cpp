@@ -73,7 +73,6 @@ void StringTree::freeTree(Node* node)
 bool StringTree::find(const std::string &value)
 {
     bool ret = find(root, value);
-    std::cout << "Find " << value << " Return " << ret << std::endl;
     return ret;
 }
 
@@ -140,21 +139,18 @@ int main()
     tt->add("banana");
     tt->add("apple");
     tt->add("mango");
-    tt->add("banana");
-    tt->add("apple");
-    tt->add("mango");
-    std::cout << "Search results for apple, banana, grapes and mango :" << std::endl;
-    tt->find("apple");
-    tt->find("banana");
-    tt->find("banan");
-    tt->find("applkhjkhkj");
-    tt->find("grapes");
-    tt->find("mango");
 
-    tt->print();
-    std::cout << "frequency returned :: " << tt->frequency("apple") << std::endl;
-    std::cout << "frequency returned :: " << tt->frequency("banana") << std::endl;
-    std::cout << "frequency returned :: " << tt->frequency("mango") << std::endl;
-    std::cout << "frequency returned :: " << tt->frequency("hemant") << std::endl;
+    std::cout << "find apple : "  << tt->find("apple") << std::endl;
+    std::cout << "find banana : "  << tt->find("banana") << std::endl;
+    std::cout << "find grapes : "  << tt->find("grapes") << std::endl;
+    std::cout << "find mango : "  << tt->find("mango") << std::endl;
+
     return 0;
 }
+
+/*
+find apple : 1
+find banana : 1
+find grapes : 0
+find mango : 1
+*/

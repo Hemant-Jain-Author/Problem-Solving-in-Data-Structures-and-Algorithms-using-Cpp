@@ -67,15 +67,6 @@ bool TST::find(Node *curr, const std::string &word, int wordIndex)
 bool TST::find(const std::string &word)
 {
     bool ret = find(root, word, 0);
-    std::cout << word << " :: ";
-    if (ret)
-    {
-        std::cout << " Found " << std::endl;
-    }
-    else
-    {
-        std::cout << "Not Found " << std::endl;
-    }
     return ret;
 }
 
@@ -86,10 +77,17 @@ int main()
     tt->add("banana");
     tt->add("apple");
     tt->add("mango");
-    std::cout << "Search results for apple, banana, grapes and mango :" << std::endl;
-    tt->find("apple");
-    tt->find("banana");
-    tt->find("mango");
-    tt->find("grapes");
+
+    std::cout << "find apple : "  << tt->find("apple") << std::endl;
+    std::cout << "find banana : "  << tt->find("banana") << std::endl;
+    std::cout << "find grapes : "  << tt->find("grapes") << std::endl;
+    std::cout << "find mango : "  << tt->find("mango") << std::endl;
     return 0;
 }
+
+/*
+find apple : 1
+find banana : 1
+find grapes : 0
+find mango : 1
+*/

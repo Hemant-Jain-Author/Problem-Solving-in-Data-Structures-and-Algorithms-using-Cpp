@@ -41,13 +41,17 @@ int circularTour(std::vector<std::vector<int>> &arr, int n)
         return -1;
 }
 
-int main1()
+int main()
 {
     // Testing code
     std::vector<std::vector<int>> tour = { { 8, 6 }, { 1, 4 }, { 7, 6 } };
-    std::cout << " Circular Tour : " << circularTour(tour, 3) << std::endl;
+    std::cout << "Circular Tour : " << circularTour(tour, 3) << std::endl;
     return 0;
 }
+
+/*
+Circular Tour : 2
+*/
 
 int convertXY(int src, int dst)
 {
@@ -68,7 +72,7 @@ int convertXY(int src, int dst)
         {
             for (int i = 0; i < index; i++)
                 std::cout << arr[i] << std::endl;
-            std::cout << "Steps countr :: " << steps << std::endl;
+            std::cout << "Steps count :: " << steps << std::endl;
 
             return steps;
         }
@@ -81,11 +85,19 @@ int convertXY(int src, int dst)
     return -1;
 }
 
-int main3()
+int main2()
 {
     convertXY(2, 7);
     return 0;
 }
+
+/*
+2
+4
+8
+7
+Steps count :: 3
+*/
 
 void maxSlidingWindows(std::vector<int> arr, int size, int k)
 {
@@ -106,7 +118,7 @@ void maxSlidingWindows(std::vector<int> arr, int size, int k)
         // Largest value in window of size k is at index que[0]
         // It is displayed to the screen.
         if (i >= (k - 1))
-            std::cout << arr[que.front()] << std::endl;
+            std::cout << arr[que.front()] << " ";
     }
 }
 
@@ -115,9 +127,12 @@ int main4()
     std::vector<int> arr = { 11, 2, 75, 92, 59, 90, 55 };
     int k = 3;
     maxSlidingWindows(arr, 7, 3);
-    // Output 75, 92, 92, 92, 90
     return 0;
 }
+
+/*
+75 92 92 92 90
+*/
 
 int minOfMaxSlidingWindows(std::vector<int> arr, int size, int k)
 {
@@ -153,9 +168,12 @@ int main5()
     std::vector<int> arr = { 11, 2, 75, 92, 59, 90, 55 };
     int k = 3;
     minOfMaxSlidingWindows(arr, 7, 3);
-    // Output 75
     return 0;
 }
+
+/*
+Min of max is :: 75
+*/
 
 void maxOfMinSlidingWindows(std::vector<int> arr, int size, int k)
 {
@@ -191,6 +209,10 @@ int main6()
     return 0;
 }
 
+/*
+Max of min is :: 59
+*/
+
 void firstNegSlidingWindows(std::vector<int> arr, int size, int k)
 {
     std::queue<int> que;
@@ -210,18 +232,21 @@ void firstNegSlidingWindows(std::vector<int> arr, int size, int k)
         if (i >= (k - 1))
         {
             if (que.size() > 0)
-                std::cout << arr[que.front()] << std::endl;
+                std::cout << arr[que.front()] << " ";
             else
-                std::cout << "NAN" << std::endl;
+                std::cout << "NAN" << " ";
         }
     }
 }
 
-int main()
+int main7()
 {
     std::vector<int> arr = { 3, -2, -6, 10, -14, 50, 14, 21 };
     int k = 3;
     firstNegSlidingWindows(arr, 8, 3);
-    // Output [-2, -2, -6, -14, -14, NAN]
     return 0;
 }
+
+/*
+-2 -2 -6 -14 -14 NAN 
+*/

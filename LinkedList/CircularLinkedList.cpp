@@ -3,19 +3,6 @@
 
 #include "CircularLinkedList.h"
 
-int main()
-{
-    CircularLinkedList *ll = new CircularLinkedList();
-    ll->addHead(1);
-    ll->addHead(2);
-    ll->addHead(3);
-    ll->addHead(1);
-    ll->addHead(2);
-    ll->addHead(3);
-    ll->print();
-    return 0;
-}
-
 CircularLinkedList::Node::Node(int v, Node *n)
 {
     value = v;
@@ -51,6 +38,22 @@ int CircularLinkedList::peek()
     return tail->next->value;
 }
 
+void CircularLinkedList::print()
+{
+    if (isEmpty())
+    {
+        std::cout<<"List is empty"<<std::endl;
+        return;
+    }    
+
+    Node *temp = tail->next;
+    while (temp != tail)
+    {
+        std::cout << temp->value << " ";
+        temp = temp->next;
+    }
+    std::cout << temp->value << std::endl;
+}
 
 void CircularLinkedList::addHead(int value)
 {
@@ -149,6 +152,73 @@ bool CircularLinkedList::removeNode(int key)
     return false;
 }
 
+bool CircularLinkedList::searchList(int data)
+{
+    Node *temp = tail;
+    for (int i = 0; i < length; i++)
+    {
+        if (temp->value == data)
+            return true;
+
+        temp = temp->next;
+    }
+    return false;
+}
+
+void CircularLinkedList::freeList()
+{
+    if (tail == nullptr)
+        return;
+
+    Node* curr = tail->next;
+    Node* next;
+    while (curr != tail)
+    {
+        next = curr->next;
+        delete curr;
+        curr = next;
+    }
+    delete tail;
+    tail = nullptr;
+    length = 0;
+}
+
+int main()
+{
+    CircularLinkedList *ll = new CircularLinkedList();
+    ll->addHead(1);
+    ll->addHead(2);
+    ll->addHead(3);
+    ll->print();
+    /*    
+    std::cout << "Size is :: " << ll->size() << std::endl;
+    std::cout << "IsEmpty :: " << ll->isEmpty() << std::endl;
+    std::cout << "Peek :: " << ll->peek() << std::endl;
+    /*ll->addTail(4);
+    ll->print();
+    ll->removeHead();
+    ll->print();
+    std::cout << "Search List :: " << ll->searchList(5) << std::endl;
+    std::cout << "Search List :: " << ll->searchList(1) << std::endl;
+    ll->removeNode(1);
+    ll->print();
+    ll->freeList();
+    ll->print();
+    */
+    CircularLinkedList *cl1 = ll->copyList();
+    CircularLinkedList *cl2 = ll->copyListReversed();
+    cl1->print();
+    cl2->print();
+    return 0;
+}
+
+/*
+3 2 1
+Size is :: 3
+IsEmpty :: 0
+Peek :: 3
+*/
+
 CircularLinkedList* CircularLinkedList::copyListReversed()
 {
     CircularLinkedList *cl = new CircularLinkedList();
@@ -185,49 +255,4 @@ CircularLinkedList* CircularLinkedList::copyList()
         curr = curr->next;
     }
     return cl;
-}
-
-bool CircularLinkedList::searchList(int data)
-{
-    Node *temp = tail;
-    for (int i = 0; i < length; i++)
-    {
-        if (temp->value == data)
-            return true;
-
-        temp = temp->next;
-    }
-    return false;
-}
-
-void CircularLinkedList::freeList()
-{
-    if (tail == nullptr)
-        return;
-
-    Node* curr = tail->next;
-    Node* next;
-    while (curr != tail)
-    {
-        next = curr->next;
-        delete curr;
-        curr = next;
-    }
-    delete tail;
-    tail = nullptr;
-    length = 0;
-}
-
-void CircularLinkedList::print()
-{
-    if (isEmpty())
-        return;
-
-    Node *temp = tail->next;
-    while (temp != tail)
-    {
-        std::cout << temp->value << " ";
-        temp = temp->next;
-    }
-    std::cout << temp->value;
 }

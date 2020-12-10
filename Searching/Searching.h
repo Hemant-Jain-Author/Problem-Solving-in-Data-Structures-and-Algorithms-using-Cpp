@@ -56,7 +56,7 @@ int binarysearchRotateArrayUtil(std::vector<int> &data, int start, int end, int 
 int binarysearchRotateArray(std::vector<int> &data, int key);
 int firstRepeated(std::vector<int> &data);
 void transformArrayAB1(std::vector<int> &data);
-bool checkPermutation(std::vector<int> &data1, std::vector<int> &data2);
-bool checkPermutation2(std::vector<int> &data1, std::vector<int> &data2);
+bool checkPermutation(std::string, std::string );
+bool checkPermutation2(std::string , std::string);
 void removeDuplicates(std::vector<int> &data);
 bool findElementIn2DArray(int** data, int r, int c, int value);

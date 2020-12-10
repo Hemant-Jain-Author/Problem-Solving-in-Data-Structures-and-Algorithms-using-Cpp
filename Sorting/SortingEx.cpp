@@ -94,7 +94,13 @@ int main1()
     std::vector<int> arr2 = { 0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1 };
     partition012(arr2);
     printArray(arr2);
+    return 0;
 }
+
+/*
+[ 0 0 0 0 0 0 1 1 1 1 1 1 ]
+[ 0 0 0 0 0 1 1 1 1 1 2 2 ]
+*/
 
 void rangePartition(std::vector<int> &arr, int lower, int higher)
 {
@@ -128,7 +134,12 @@ int main2()
     std::vector<int> arr = { 1, 21, 2, 20, 3, 19, 4, 18, 5, 17, 6, 16, 7, 15, 8, 14, 9, 13, 10, 12, 11 };
     rangePartition(arr, 9, 12);
     printArray(arr);
+    return 0;
 }
+
+/*
+[ 1 2 3 4 5 8 6 7 11 10 12 9 15 16 14 17 13 18 19 20 21 ]
+*/
 
 int minSwaps(std::vector<int> &arr, int val)
 {
@@ -200,7 +211,12 @@ int main3()
     int ref = 5;
     absBubbleSort(array, ref);
     printArray(array);
+    return 0;
 }
+
+/*
+[ 5 6 4 7 3 8 2 9 1 ]
+*/
 
 bool eqMore(int value1, int value2, int A)
 {
@@ -234,6 +250,10 @@ int main4()
     arrayReduction(arr);
     return 0;
 }
+
+/*
+Total number of reductions 4
+*/
 
 void sortByOrder(std::vector<int> &arr, std::vector<int> &arr2)
 {
@@ -288,7 +308,12 @@ int main5()
     std::vector<int> arr = { 2, 1, 2, 5, 7, 1, 9, 3, 6, 8, 8 };
     std::vector<int> arr2 = { 2, 1, 8, 3 };
     sortByOrder(arr, arr2);
+    return 0;
 }
+
+/*
+2 2 1 1 8 8 3 5 7 9 6 
+*/
 
 void merge(std::vector<int> &arr1, std::vector<int> &arr2)
 {
@@ -327,7 +352,13 @@ int main6()
     merge(arr1, arr2);
     printArray(arr1);
     printArray(arr2);
+    return 0;
 }
+
+/*
+[ 1 2 3 5 8 9 ]
+[ 10 13 15 20 ]
+*/
 
 bool checkReverse(std::vector<int> &arr)
 {
@@ -442,6 +473,11 @@ int main7()
     unionIntersectionUnsorted(arr1, arr2);
     return 0;
 }
+
+/*
+[ 1 2 3 4 5 6 7 8 9 10 11 12 13 14 ]
+[ 2 5 8 ]
+*/
 
 int main()
 {

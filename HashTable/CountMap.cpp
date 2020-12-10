@@ -10,3 +10,7 @@ int main()
     std::cout << "count is : " << cm->get(3) << std::endl;
     return 0;
 }
+/*
+count is : 1
+count is : 0
+*/

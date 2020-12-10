@@ -113,7 +113,7 @@ T Heap<T>::remove()
 template<typename T>
 void Heap<T>::print()
 {
-    for (int i = 1; i < size; i++)
+    for (int i = 1; i <= size; i++)
     {
         std::cout << " " << arr[i];
     }
@@ -153,7 +153,6 @@ int compare(int a, int b)
 
 int main()
 {
-
     std::vector<int> a = { 1, 9, 6, 7, 8, 0, 2, 4, 5, 3 };
     Heap<int> *hp = new Heap<int>(a, &compare);
     hp->print();
@@ -166,8 +165,21 @@ int main()
     Heap<int>::heapSort(a, &compare);
     for (unsigned int i = 0; i < a.size(); i++)
     {
-        std::cout << "value is :: " << a[i] << std::endl;
+        std::cout << a[i] << " ";
     }
-
     return 0;
 }
+/*
+0 4 1 5 8 6 2 7 9 3
+pop value :: 0
+pop value :: 1
+pop value :: 2
+pop value :: 3
+pop value :: 4
+pop value :: 5
+pop value :: 6
+pop value :: 7
+pop value :: 8
+pop value :: 9
+0 1 2 3 4 5 6 7 8 9
+*/

@@ -2,10 +2,10 @@
 #include <functional>
 #include <queue>
 
-int minheapdemo()
+int main()
 {
     std::priority_queue<int, std::vector<int>, std::greater<int>> minHeap;
-    std::vector<int> arr = { 1, 2, 10, 8, 7, 3, 4, 6, 5, 9 };
+    std::vector<int> arr = { 1, 2, 3, 4, 6, 5 };
 
     for (auto i : arr)
         minHeap.push(i);
@@ -18,11 +18,15 @@ int minheapdemo()
     std::cout << std::endl;
     return 0;
 }
+/*
+1 2 3 4 5 6 
+*/
 
-int maxheapdemo()
+
+int main2()
 {
     std::priority_queue<int, std::vector<int>, std::less<int>> maxHeap;
-    std::vector<int> arr = { 1, 2, 10, 8, 7, 3, 4, 6, 5, 9 };
+    std::vector<int> arr = { 1, 2, 3, 4, 6, 5 };
 
     for (auto i : arr)
         maxHeap.push(i);
@@ -36,9 +40,6 @@ int maxheapdemo()
     return 0;
 }
 
-int main()
-{
-    minheapdemo();
-    maxheapdemo();
-    return 0;
-}
+/*
+6 5 4 3 2 1
+*/

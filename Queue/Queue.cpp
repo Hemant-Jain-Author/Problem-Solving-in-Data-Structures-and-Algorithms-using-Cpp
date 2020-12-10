@@ -4,14 +4,19 @@ int main()
 {
     Queue que;
 
-    for (int i = 0; i < 20; i++)
-        que.add(i);
-
-    for (int i = 0; i < 20; i++)
-        std::cout << que.remove() << std::endl;
+    que.add(1);
+    que.add(2);
+    que.add(3);
+        
+    for (int i = 0; i < 3; i++)
+        std::cout << que.remove() << " ";
 
     return 0;
 }
+
+/*
+1 2 3
+*/
 
 Queue::Queue()
 {

@@ -3,10 +3,10 @@
 int main()
 {
     TwoStack st;
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 3; i++)
         st.push1(i);
 
-    for (int j = 0; j < 10; j++)
+    for (int j = 0; j < 3; j++)
         st.push2(j + 10);
 
     for (int i = 0; i < 10; i++)

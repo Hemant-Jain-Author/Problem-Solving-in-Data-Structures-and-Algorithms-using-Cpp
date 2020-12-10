@@ -161,6 +161,7 @@ public:
     virtual void iterativeInOrder();
 
     virtual bool isBST3(Node *root);
+    virtual bool isBST3();
 
     virtual bool isBST();
 
