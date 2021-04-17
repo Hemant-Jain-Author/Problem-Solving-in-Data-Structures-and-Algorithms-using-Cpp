@@ -135,6 +135,22 @@ int kmp(const std::string &text, const std::string &pattern)
 }
 
 
+int main1()
+{
+    std::string st1 = "hello, world!";
+    std::string st2 = "world";
+    std::cout << "Using BruteForceSearch pattern found at index : " << bruteForceSearch(st1, st2) << std::endl;
+    std::cout << "Using RobinKarp pattern found at index : " << robinKarp(st1, st2) << std::endl;
+    std::cout << "Using KMP pattern found at index : " << kmp(st1, st2) << std::endl;
+    return 0;
+}
+
+/*
+Using BruteForceSearch pattern found at index : 7
+Using RobinKarp pattern found at index : 7
+Using KMP pattern found at index : 7
+*/
+
 int kmpFindCount(std::vector<char> &text, std::vector<char> &pattern)
 {
     int i = 0, j = 0, count = 0;
@@ -159,18 +175,20 @@ int kmpFindCount(std::vector<char> &text, std::vector<char> &pattern)
     return count;
 }
 
+int kmpFindCount(const std::string &text, const std::string &pattern)
+{
+    std::vector<char> txt(text.begin(), text.end());
+    std::vector<char> ptn(pattern.begin(), pattern.end());
+    return kmpFindCount(txt, ptn);
+}
+
 int main()
 {
-    std::string st1 = "hello, world!";
-    std::string st2 = "world";
-    std::cout << "BruteForceSearch return : " << bruteForceSearch(st1, st2) << std::endl;
-    std::cout << "RobinKarp return : " << robinKarp(st1, st2) << std::endl;
-    std::cout << "KMP return : " << kmp(st1, st2) << std::endl;
+    std::string str = "Only time will tell if we stand the test of time";
+    std::cout << "Frequency of 'time' is : " << kmpFindCount(str, "time") << std::endl;
     return 0;
 }
 
 /*
-BruteForceSearch return : 7
-RobinKarp return : 7
-KMP return : 7
+Frequency of 'time' is : 2
 */

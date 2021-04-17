@@ -78,7 +78,7 @@ int LinkedList::removeHead()
     return value;
 }
 
-bool LinkedList::searchList(int data)
+bool LinkedList::find(int data)
 {
     Node *temp = head;
     while (temp != nullptr)
@@ -144,7 +144,6 @@ void LinkedList::deleteNodes(int delValue)
             deleteMe = currNode->next;
             currNode->next = nextNode->next;
             delete deleteMe;
-
         }
         else
             currNode = nextNode;
@@ -255,6 +254,28 @@ bool LinkedList::compareList(Node *head1, Node *head2)
         return compareList(head1->next, head2->next);
     }
 }
+
+bool LinkedList::compareList2(LinkedList* ll)
+{
+    return compareList2(head, ll->head);
+}
+
+bool LinkedList::compareList2(Node *head1, Node *head2)
+{
+    while (head1 != nullptr && head2 != nullptr)
+    {
+        if(head1->value != head2->value)
+            return false;
+
+        head1 = head1->next;
+        head2 = head2->next;
+    } 
+    if (head1 == nullptr && head2 == nullptr) 
+    {
+        return true;
+    }
+    return false;
+}  
 
 int LinkedList::findLength()
 {
@@ -549,11 +570,13 @@ int main()
     ll->addHead(2);
     ll->addHead(3);
     ll->print();
+    return 0;
+}
     /*std::cout << "size" << ll->size() << std::endl;
     std::cout << "isEmpty" << ll->isEmpty() << std::endl;
     std::cout << "peek" << ll->peek() << std::endl;
-    std::cout << "searchList" << ll->searchList(4) << std::endl;
-    std::cout << "searchList" << ll->searchList(2) << std::endl;
+    std::cout << "find" << ll->find(4) << std::endl;
+    std::cout << "find" << ll->find(2) << std::endl;
     ll->removeHead();
     ll->print();
     ll->addTail(4);
@@ -563,7 +586,7 @@ int main()
     ll->print();
     ll->deleteNodes(2);
     ll->print();
-*/
+
 ll->reverse();
 ll->print();
 ll->reverseRecurse();
@@ -590,11 +613,11 @@ ll->loopDetect() ;
 ll->reverseListLoopDetect();
 ll->loopTypeDetect() ;
 
+*/
 
 
 
 
-}
 
 /*
 3 2 1 

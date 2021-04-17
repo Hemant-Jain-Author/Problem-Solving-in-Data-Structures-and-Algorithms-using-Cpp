@@ -98,12 +98,18 @@ int main1()
     return 0;
 }
 
-void Tree::insertNode(int value)
+/*
+1 2 4 8 9 5 10 3 6 7 
+8 9 4 10 5 2 6 7 3 1 
+8 4 9 2 10 5 1 6 3 7 
+*/
+
+void Tree::insert(int value)
 {
-    root = insertNode(value, root);
+    root = insert(value, root);
 }
 
-Tree::Node *Tree::insertNode(int value, Node *node)
+Tree::Node *Tree::insert(int value, Node *node)
 {
     if (node == nullptr)
     {
@@ -113,11 +119,11 @@ Tree::Node *Tree::insertNode(int value, Node *node)
     {
         if (node->value > value)
         {
-            node->lChild = insertNode(value, node->lChild);
+            node->lChild = insert(value, node->lChild);
         }
         else
         {
-            node->rChild = insertNode(value, node->rChild);
+            node->rChild = insert(value, node->rChild);
         }
     }
     return node;
@@ -126,19 +132,22 @@ Tree::Node *Tree::insertNode(int value, Node *node)
 int main2()
 {
     Tree t;
-    t.insertNode(5);
-    t.insertNode(3);
-    t.insertNode(7);
-    t.insertNode(2);
-    t.insertNode(1);
-    t.insertNode(4);
-    t.insertNode(6);
-    t.insertNode(8);
-    t.insertNode(9);
+    t.insert(5);
+    t.insert(3);
+    t.insert(7);
+    t.insert(2);
+    t.insert(1);
+    t.insert(4);
+    t.insert(6);
+    t.insert(8);
 
     t.printInOrder();
     return 0;
 }
+
+/*
+1 2 3 4 5 6 7 8 9 
+*/
 
 void Tree::nthPreOrder(int index)
 {
@@ -160,7 +169,6 @@ void Tree::nthPreOrder(Node *node, int index, int& counter)
     }
 }
 
-
 void Tree::nthPostOrder(int index)
 {
     int counter = 0;
@@ -180,8 +188,6 @@ void Tree::nthPostOrder(Node *node, int index, int& counter)
         }
     }
 }
-
-
 
 void Tree::nthInOrder(int index)
 {
@@ -214,11 +220,16 @@ int main3()
     return 0;
 }
 
+/*
+2
+10
+8
+*/
+
 void Tree::printBredthFirst()
 {
     std::queue<Node*> que;
     Node *temp;
-
     if (root != nullptr)
     {
         que.push(root);
@@ -269,7 +280,6 @@ void Tree::printDepthFirst()
     }
     std::cout << std::endl;
 }
-
 
 void Tree::printLevelOrderLineByLine()
 {
@@ -368,7 +378,6 @@ void Tree::printSpiralTree()
     std::cout << std::endl;
 }
 
-
 void Tree::printAllPath()
 {
     std::vector<int> stk;
@@ -390,7 +399,6 @@ void Tree::printAllPath(Node *curr, std::vector<int> &stk)
         stk.pop_back();
         return;
     }
-
     printAllPath(curr->rChild, stk);
     printAllPath(curr->lChild, stk);
     stk.pop_back();
@@ -410,6 +418,29 @@ int main4()
     return 0;
 }
 
+/*
+1 2 3 4 5 6 7 8 9 10 
+1 3 7 6 2 5 10 4 9 8 
+
+1 
+2 3 
+4 5 6 7 
+8 9 10
+
+1 
+2 3 
+4 5 6 7 
+8 9 10 
+
+1 2 3 7 6 5 4 8 9 10 
+
+1 3 7 
+1 3 6 
+1 2 5 10 
+1 2 4 9 
+1 2 4 8 
+
+*/
 
 void Tree::iterativePreOrder()
 {
@@ -528,6 +559,11 @@ int main5()
     return 0;
 }
 
+/*
+8 9 4 10 5 2 6 7 3 1 
+1 2 4 8 9 5 10 3 6 7 
+8 4 9 2 10 5 1 6 3 7
+*/
 
 bool Tree::find(int value)
 {
@@ -625,12 +661,18 @@ int main6()
 {
     Tree t;
     int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-    t.levelOrderBinaryTree(arr, 10);
-    std::cout << t.find(7) << std::endl;
-    std::cout << t.findMax() << std::endl;
-    std::cout << t.findMin() << std::endl;
+    t.createBinarySearchTree(arr, 10);
+    std::cout << "find:: " << t.find(7) << std::endl;
+    std::cout << "findMax:: " << t.findMax() << std::endl;
+    std::cout << "findMin:: " << t.findMin() << std::endl;
     return 0;
 }
+
+/*
+find:: 1
+findMax:: 10
+findMin:: 1
+*/
 
 void Tree::free()
 {
@@ -648,13 +690,12 @@ void Tree::freeTree(Node* node)
     }
 }
 
-
-void Tree::deleteNode(int value)
+void Tree::remove(int value)
 {
-    root = deleteNode(root, value);
+    root = remove(root, value);
 }
 
-Tree::Node *Tree::deleteNode(Node *node, int value)
+Tree::Node *Tree::remove(Node *node, int value)
 {
     Node *temp = nullptr;
 
@@ -686,18 +727,18 @@ Tree::Node *Tree::deleteNode(Node *node, int value)
                 Node *maxNode = findMax(node->lChild);
                 int maxValue = maxNode->value;
                 node->value = maxValue;
-                node->lChild = deleteNode(node->lChild, maxValue);
+                node->lChild = remove(node->lChild, maxValue);
             }
         }
         else
         {
             if (node->value > value)
             {
-                node->lChild = deleteNode(node->lChild, value);
+                node->lChild = remove(node->lChild, value);
             }
             else
             {
-                node->rChild = deleteNode(node->rChild, value);
+                node->rChild = remove(node->rChild, value);
             }
         }
     }
@@ -708,32 +749,17 @@ int main7()
 {
     Tree t;
     int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-    t.levelOrderBinaryTree(arr, 10);
-    t.deleteNode(6);
+    t.createBinarySearchTree(arr, 10);
+    t.remove(6);
     t.printPreOrder();
     t.free();
     t.printPreOrder();
     return 0;
 }
 
-int Tree::treeDepth()
-{
-    return treeDepth(root);
-}
-
-int Tree::treeDepth(Node *root)
-{
-    if (root == nullptr)
-        return 0;
-
-    int lDepth = treeDepth(root->lChild);
-    int rDepth = treeDepth(root->rChild);
-
-    if (lDepth > rDepth)
-        return lDepth + 1;
-    else
-        return rDepth + 1;
-}
+/*
+5 2 1 3 4 8 7 9 10 
+*/
 
 int Tree::numNodes()
 {
@@ -754,7 +780,7 @@ int Tree::numNodes(Node *curr)
 
 int Tree::numFullNodesBT()
 {
-    return numNodes(root);
+    return numFullNodesBT(root);
 }
 
 int Tree::numFullNodesBT(Node *curr)
@@ -791,6 +817,42 @@ int Tree::numLeafNodes(Node *curr)
     }
 }
 
+int Tree::sumAllBT()
+{
+    return sumAllBT(root);
+}
+
+int Tree::sumAllBT(Node *curr)
+{
+    int sum, leftSum, rightSum;
+    if (curr == nullptr)
+        return 0;
+
+    rightSum = sumAllBT(curr->rChild);
+    leftSum = sumAllBT(curr->lChild);
+    sum = rightSum + leftSum + curr->value;
+    return sum;
+}
+
+int Tree::treeDepth()
+{
+    return treeDepth(root);
+}
+
+int Tree::treeDepth(Node *root)
+{
+    if (root == nullptr)
+        return 0;
+
+    int lDepth = treeDepth(root->lChild);
+    int rDepth = treeDepth(root->rChild);
+
+    if (lDepth > rDepth)
+        return lDepth + 1;
+    else
+        return rDepth + 1;
+}
+
 int Tree::maxLengthPathBT()
 {
     return maxLengthPathBT(root);
@@ -822,36 +884,28 @@ int Tree::maxLengthPathBT(Node *curr)
     return max;
 }
 
-int Tree::sumAllBT()
-{
-    return sumAllBT(root);
-}
-
-int Tree::sumAllBT(Node *curr)
-{
-    int sum, leftSum, rightSum;
-    if (curr == nullptr)
-        return 0;
-
-    rightSum = sumAllBT(curr->rChild);
-    leftSum = sumAllBT(curr->lChild);
-    sum = rightSum + leftSum + curr->value;
-    return sum;
-}
-
 int main8()
 {
     Tree t;
     int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
     t.levelOrderBinaryTree(arr, 10);
-    std::cout << "treeDepth" << t.treeDepth() << std::endl;
-    std::cout << "numNodes" << t.numNodes() << std::endl;
-    std::cout << "numFullNodesBT" << t.numFullNodesBT() << std::endl;
-    std::cout << "numLeafNodes" << t.numLeafNodes() << std::endl;
-    std::cout << "maxLengthPathBT" << t.maxLengthPathBT() << std::endl;
-    std::cout << "sumAllBT" << t.sumAllBT() << std::endl;
+    std::cout << "numNodes:: " << t.numNodes() << std::endl;
+    std::cout << "numFullNodesBT:: " << t.numFullNodesBT() << std::endl;
+    std::cout << "numLeafNodes:: " << t.numLeafNodes() << std::endl;
+    std::cout << "treeDepth:: " << t.treeDepth() << std::endl;
+    std::cout << "maxLengthPathBT:: " << t.maxLengthPathBT() << std::endl;
+    std::cout << "sumAllBT:: " << t.sumAllBT() << std::endl;
     return 0;
 }
+
+/*
+numNodes:: 10
+numFullNodesBT:: 4
+numLeafNodes:: 5
+treeDepth:: 4
+maxLengthPathBT:: 6
+sumAllBT:: 55
+*/
 
 Tree *Tree::copyTree()
 {
@@ -870,10 +924,7 @@ Tree::Node *Tree::copyTree(Node *curr)
         temp->rChild = copyTree(curr->rChild);
         return temp;
     }
-    else
-    {
-        return nullptr;
-    }
+    return nullptr;
 }
 
 Tree *Tree::copyMirrorTree()
@@ -893,27 +944,24 @@ Tree::Node *Tree::copyMirrorTree(Node *curr)
         temp->lChild = copyMirrorTree(curr->rChild);
         return temp;
     }
-    else
-    {
-        return nullptr;
-    }
+    return nullptr;
 }
 
 bool Tree::isEqual(Tree *T2)
 {
-    return identical(root, T2->root);
+    return isEqual(root, T2->root);
 }
 
-bool Tree::identical(Node *node1, Node *node2)
+bool Tree::isEqual(Node *node1, Node *node2)
 {
     if (node1 == nullptr && node2 == nullptr)
         return true;
     else if (node1 == nullptr || node2 == nullptr)
         return false;
-    else
-        return (identical(node1->lChild, node2->lChild) &&
-                identical(node1->rChild, node2->rChild) &&
-                (node1->value == node2->value));
+    
+    return (isEqual(node1->lChild, node2->lChild) &&
+            isEqual(node1->rChild, node2->rChild) &&
+            (node1->value == node2->value));
 }
 
 int main9()
@@ -923,10 +971,23 @@ int main9()
     t.levelOrderBinaryTree(arr, 10);
     Tree* t1 = t.copyTree();
     Tree* t2 = t.copyMirrorTree();
+    t.printInOrder();
+    t1->printInOrder();
+    t2->printInOrder();
+
     std::cout << "Identical :: " << t.isEqual(t1) << std::endl;
     std::cout << "Identical :: " << t.isEqual(t2) << std::endl;
     return 0;
 }
+
+/*
+8 4 9 2 10 5 1 6 3 7 
+8 4 9 2 10 5 1 6 3 7 
+7 3 6 1 5 10 2 9 4 8 
+
+Identical :: 1
+Identical :: 0
+*/
 
 Tree::Node *Tree::ancestor(int first, int second)
 {
@@ -1048,10 +1109,15 @@ int main10()
     return 0;
 }
 
+/*
+isHeap :: 1
+isHeap :: 1
+isCompleteTree :: 1
+*/
+
 int Tree::findMaxBT()
 {
-    int ans = findMaxBT(root);
-    return ans;
+    return findMaxBT(root); 
 }
 
 int Tree::findMaxBT(Node *curr)
@@ -1071,12 +1137,20 @@ int Tree::findMaxBT(Node *curr)
     return max;
 }
 
+bool Tree::searchBT(int value)
+{
+    return searchBT(root, value);
+}
+
 bool Tree::searchBT(Node *root, int value)
 {
     bool left, right;
 
-    if (root == nullptr || root->value == value)
+    if (root == nullptr)
         return false;
+
+    if (root->value == value)
+        return true;
 
     left = searchBT(root->lChild, value);
     if (left)
@@ -1094,16 +1168,22 @@ int main11()
     Tree t;
     int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
     t.levelOrderBinaryTree(arr, 10);
+    std::cout << "searchBT :: " << t.searchBT(9) << std::endl;
     std::cout << "findMaxBT :: " << t.findMaxBT() << std::endl;
     return 0;
 }
 
-void Tree::createBinaryTree(int arr[], int size)
+/*
+searchBT :: 1
+findMaxBT :: 10
+*/
+
+void Tree::createBinarySearchTree(int arr[], int size)
 {
-    root = createBinaryTree(arr, 0, size - 1);
+    root = createBinarySearchTree(arr, 0, size - 1);
 }
 
-Tree::Node *Tree::createBinaryTree(int arr[], int start, int end)
+Tree::Node *Tree::createBinarySearchTree(int arr[], int start, int end)
 {
     Node *curr = nullptr;
     if (start > end)
@@ -1111,8 +1191,8 @@ Tree::Node *Tree::createBinaryTree(int arr[], int start, int end)
 
     int mid = (start + end) / 2;
     curr = new Node(arr[mid]);
-    curr->lChild = createBinaryTree(arr, start, mid - 1);
-    curr->rChild = createBinaryTree(arr, mid + 1, end);
+    curr->lChild = createBinarySearchTree(arr, start, mid - 1);
+    curr->rChild = createBinarySearchTree(arr, mid + 1, end);
     return curr;
 }
 
@@ -1156,7 +1236,7 @@ bool Tree::isBST(Node *curr, int min, int max)
 
 bool Tree::isBST2()
 {
-    int c;
+    int c = 0;
     return isBST2(root, c);
 }
 
@@ -1171,9 +1251,7 @@ bool Tree::isBST2(Node *root, int& count)
 
         if (count > root->value)
             return false;
-
         count = root->value;
-
         ret = isBST2(root->rChild, count);
         if (!ret)
             return false;
@@ -1225,15 +1303,23 @@ int main12()
 {
     Tree t;
     int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-    t.createBinaryTree(arr, 10);
+    t.createBinarySearchTree(arr, 10);
     std::cout << "isBST :: " << t.isBST() << std::endl;
     std::cout << "isBST2 :: " << t.isBST2() << std::endl;
     std::cout << "isBST3 :: " << t.isBST3() << std::endl;
     t.printInRange(4, 8);
     t.trimOutsideRange(4, 8);
-    t.printInOrder();
+    t.printInOrder(); 
     return 0;
 }
+
+/*
+isBST :: 1
+isBST2 :: 1
+isBST3 :: 1
+4 5 6 7 8 
+4 5 6 7 8 
+*/
 
 int Tree::floorBST(int val)
 {
@@ -1289,7 +1375,7 @@ int main13()
 {
     Tree t;
     int arr[] = { 1, 2, 4, 5, 6, 7, 9, 10 };
-    t.createBinaryTree(arr, 10);
+    t.createBinarySearchTree(arr, 10);
     t.printInOrder();
     std::cout<< "floorBST : " << t.floorBST(3)<<std::endl;
     std::cout<< "ceilBST : " << t.ceilBST(3)<<std::endl;
@@ -1298,40 +1384,12 @@ int main13()
     return 0;
 }
 
-int main()
-{
-    main1();
-    main2();
-    main3();
-    main4();
-    main5();
-    main6();
-    main7();
-    main8();
-    main9();
-    main10();
-    main11();
-    main12();
-    main13();
-    return 0;
-}
-
 /*
-    //t.treeToListRec();
-    std::cout << t.lca(10, 3)<< std::endl;
-    t.createBinaryTree(arr, 10);
-    std::cout << "is bst " << t.isBST2() << std::endl;
-    return 0;
-}
+floorBST : 2
+ceilBST : 4
+floorBST : 7
+ceilBST : 9
 */
-
-
-
-
-
-
-
-
 
 int Tree::lca(int first, int second)
 {
@@ -1400,6 +1458,22 @@ int Tree::lcaBST(Node *curr, int first, int second)
     return curr->value;
 }
 
+int main14()
+{
+    Tree t;
+    int arr[] = { 1, 2, 4, 5, 6, 7, 9, 10 };
+    t.createBinarySearchTree(arr, 10);
+    std::cout << t.lcaBST(3, 4) << std::endl;
+    std::cout << t.lcaBST(1, 4) << std::endl;
+    std::cout << t.lcaBST(10, 4) << std::endl;
+    return 0;
+}
+
+/*
+4
+2
+6
+*/
 bool isBSTArray(int preorder[], int size)
 {
     std::stack<int> stk;
@@ -1425,6 +1499,20 @@ bool isBSTArray(int preorder[], int size)
     return true;
 }
 
+int main15()
+{
+    int arr1[] = {5, 2, 4, 6, 9, 10}; 
+    std::cout << isBSTArray(arr1, 6) << std::endl;
+
+    int arr2[] = {5, 2, 6, 4, 7, 9, 10};
+    std::cout << isBSTArray(arr2, 6) << std::endl;
+    return 0;
+}
+
+/*
+1
+0
+*/
 
 Tree::Node *Tree::treeToListRec()
 {
@@ -1450,14 +1538,11 @@ Tree::Node *Tree::treeToListRec(Node *curr)
     {
         Head = treeToListRec(curr->lChild);
         Tail = Head->lChild;
-
         curr->lChild = Tail;
         Tail->rChild = curr;
     }
     else
-    {
         Head = curr;
-    }
 
     if (curr->rChild != nullptr)
     {
@@ -1468,66 +1553,59 @@ Tree::Node *Tree::treeToListRec(Node *curr)
         tempHead->lChild = curr;
     }
     else
-    {
         Tail = curr;
-    }
 
     Head->lChild = Tail;
     Tail->rChild = Head;
     return Head;
 }
 
-/*
-1 2 4 8 9 5 10 3 6 7 
-8 9 4 10 5 2 6 7 3 1 
-8 4 9 2 10 5 1 6 3 7 
-1 2 3 4 5 6 7 8 9 
-2
-10
-8
-1 2 3 4 5 6 7 8 9 10 
-1 3 7 6 2 5 10 4 9 8 
-1 
-2 3 
-4 5 6 7 
-8 9 10 
-1 
-2 3 
-4 5 6 7 
-8 9 10 
-1 2 3 7 6 5 4 8 9 10 
-1 3 7 
-1 3 6 
-1 2 5 10 
-1 2 4 9 
-1 2 4 8 
-8 9 4 10 5 2 6 7 3 1 
-1 2 4 8 9 5 10 3 6 7 
-8 4 9 2 10 5 1 6 3 7 1
-7
-8
-1 2 4 8 9 5 10 3 6 7 
+void  Tree::printDLL(Node *root) {
+    if (root == nullptr) {
+        return;
+    }
+    Node *curr = root;
+    Node *tail = curr->lChild;
+    std::cout<< "DLL nodes are : " ;
+    while (curr != tail) {
+        std::cout << curr->value << " ";
+        curr = curr->rChild;
+    };
+    std::cout<< curr->value << std::endl;
+}
 
-treeDepth4
-numNodes10
-numFullNodesBT10
-numLeafNodes5
-maxLengthPathBT6
-sumAllBT55
-Identical :: 1
-Identical :: 0
-isHeap :: 1
-isHeap :: 1
-isCompleteTree :: 1
-findMaxBT :: 10
-isBST :: 1
-isBST2 :: 0
-isBST3 :: 1
-4 5 6 7 8 
-4 5 6 7 8 
-1 2 4 5 6 7 9 10 9 10 
-floorBST : 2
-ceilBST : 4
-floorBST : 7
-ceilBST : 9
+int main16() {
+    Tree t;
+    int arr[] =  {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    t.createBinarySearchTree(arr, 10);
+    t.printInOrder();
+    Tree::Node *head = t.treeToListRec(); 
+    t.printDLL(head);
+    return 0;
+}
+
+/*
+1 2 3 4 5 6 7 8 9 10 
+DLL nodes are : 1 2 3 4 5 6 7 8 9 10
 */
+
+int main()
+{
+    main1();
+    main2();
+    main3();
+    main4();
+    main5();
+    main6();
+    main7();
+    main8();
+    main9();
+    main10();
+    main11();
+    main12();
+    main13();
+    main14();
+    main15();
+    main16();
+    return 0;
+}

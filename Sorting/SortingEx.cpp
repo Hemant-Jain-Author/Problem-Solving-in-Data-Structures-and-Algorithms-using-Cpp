@@ -1,21 +1,17 @@
-#include <string>
-#include <vector>
-#include <algorithm>
 #include <iostream>
-#include <unordered_set>
-#include <exception>
-#include <set>
+#include <vector>
 #include <map>
+#include <algorithm>
 
 void printArray(std::vector<int> &arr)
 {
     int size = arr.size();
-    std::cout << "[";
+    std::cout << "[ ";
     for (int i = 0; i < size; i++)
     {
-        std::cout << " " << arr[i];
+        std::cout << arr[i] << " ";
     }
-    std::cout << " ]\n";
+    std::cout << "]" << std::endl;
 }
 
 void printArray2(std::vector<int> &arr, int size)
@@ -91,6 +87,7 @@ int main1()
     std::vector<int> arr = { 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1 };
     partition01(arr);
     printArray(arr);
+
     std::vector<int> arr2 = { 0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1 };
     partition012(arr2);
     printArray(arr2);
@@ -131,14 +128,14 @@ void rangePartition(std::vector<int> &arr, int lower, int higher)
 // Testing code
 int main2()
 {
-    std::vector<int> arr = { 1, 21, 2, 20, 3, 19, 4, 18, 5, 17, 6, 16, 7, 15, 8, 14, 9, 13, 10, 12, 11 };
+    std::vector<int> arr = { 15, 16, 19, 18, 5, 17, 6, 7, 8, 14, 9, 13, 10, 12, 11 };
     rangePartition(arr, 9, 12);
     printArray(arr);
     return 0;
 }
 
 /*
-[ 1 2 3 4 5 8 6 7 11 10 12 9 15 16 14 17 13 18 19 20 21 ]
+[ 5 8 6 7 11 12 10 9 14 17 13 18 19 16 15 ]
 */
 
 int minSwaps(std::vector<int> &arr, int val)
@@ -165,6 +162,20 @@ int minSwaps(std::vector<int> &arr, int val)
     return swapCount;
 }
 
+// Testing code
+int main3()
+{
+    std::vector<int> arr = { 2, 7, 5, 6, 1, 3, 4, 9, 10, 8 };
+    int val = 5;
+    std::cout << "minSwaps:: " << minSwaps(arr, val) << std::endl;
+    printArray(arr);
+    return 0;
+}
+
+/*
+minSwaps:: 2
+*/
+
 void seperateEvenAndOdd(std::vector<int> &data)
 {
     int size = data.size();
@@ -183,6 +194,19 @@ void seperateEvenAndOdd(std::vector<int> &data)
         }
     }
 }
+
+// Testing code
+int main4()
+{
+    std::vector<int> array = { 2, 7, 5, 6, 1, 3, 4, 9, 10, 8 };
+    seperateEvenAndOdd(array);
+    printArray(array);
+    return 0;
+}
+
+/*
+[ 2 8 10 6 4 3 1 9 5 7 ]
+*/
 
 bool absMore(int value1, int value2, int ref)
 {
@@ -205,7 +229,7 @@ void absBubbleSort(std::vector<int> &arr, int ref)
 }
 
 // Testing code
-int main3()
+int main5()
 {
     std::vector<int> array = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
     int ref = 5;
@@ -244,7 +268,7 @@ void arrayReduction(std::vector<int> &arr)
 }
 
 // Testing code
-int main4()
+int main6()
 {
     std::vector<int> arr = { 5, 1, 1, 1, 2, 3, 5 };
     arrayReduction(arr);
@@ -303,7 +327,7 @@ void sortByOrder(std::vector<int> &arr, std::vector<int> &arr2)
 }
 
 // Testing code
-int main5()
+int main7()
 {
     std::vector<int> arr = { 2, 1, 2, 5, 7, 1, 9, 3, 6, 8, 8 };
     std::vector<int> arr2 = { 2, 1, 8, 3 };
@@ -345,7 +369,7 @@ void merge(std::vector<int> &arr1, std::vector<int> &arr2)
 }
 
 // Testing code.
-int main6()
+int main8()
 {
     std::vector<int> arr1 = { 1, 5, 9, 10, 15, 20 };
     std::vector<int> arr2 = { 2, 3, 8, 13 };
@@ -389,8 +413,7 @@ bool checkReverse(std::vector<int> &arr)
     if (stop == -1)
         return true;
 
-    // increasing property
-    // after reversal the sub array should fit in the array.
+    // increasing property after reversal the sub array should fit in the array.
     if (arr[start - 1] > arr[stop] || arr[stop + 1] < arr[start])
         return false;
 
@@ -404,14 +427,17 @@ bool checkReverse(std::vector<int> &arr)
     return true;
 }
 
-int min(int X, int Y)
-{
-    if (X < Y)
-    {
-        return X;
-    }
-    return Y;
+
+// Testing code
+int main9() {
+    std::vector<int> arr = {1, 3, 8, 5, 4, 3, 10, 11, 12, 18, 28};
+    std::cout << "checkReverse : " << checkReverse(arr) << std::endl;
+    return 0;
 }
+
+/*
+checkReverse : 1
+*/
 
 void unionIntersectionSorted(std::vector<int> &arr1, std::vector<int> &arr2)
 {
@@ -419,7 +445,8 @@ void unionIntersectionSorted(std::vector<int> &arr1, std::vector<int> &arr2)
     int size2 = arr2.size();
     int first = 0, second = 0;
     std::vector<int> unionArr(size1 + size2, 0);
-    std::vector<int> interArr(min(size1, size2), 0) ;
+    int minlen = (size1 < size2) ? size1 : size2;
+    std::vector<int> interArr(minlen, 0) ;
     int uIndex = 0;
     int iIndex = 0;
 
@@ -466,7 +493,7 @@ void unionIntersectionUnsorted(std::vector<int> &arr1, std::vector<int> &arr2)
     unionIntersectionSorted(arr1, arr2);
 }
 
-int main7()
+int main10()
 {
     std::vector<int> arr1 = { 1, 11, 2, 3, 14, 5, 6, 8, 9 };
     std::vector<int> arr2 = { 2, 4, 5, 12, 7, 8, 13, 10 };
@@ -488,5 +515,8 @@ int main()
     main5();
     main6();
     main7();
+    main8();
+    main9();
+    main10();
     return 0;
 }

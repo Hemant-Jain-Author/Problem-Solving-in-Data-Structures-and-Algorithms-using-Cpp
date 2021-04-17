@@ -1,19 +1,10 @@
-#include "Searching.h"
-
-/*
-int main()
-{
-	std::vector<int> first = {1, 3, 5, 7, 9, 25, 30};
-	std::vector<int> second = {2, 4, 6, 8, 10, 12, 14, 16, 21, 23, 24};
-
-	for (int i = 1; i < 16; i++)
-	{
-		std::cout << "Index : " << i << " Value : ";
-		std::cout << findkth(first, second, i) << std::endl;
-	}
-	return 0;
-}
-*/
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <iostream>
+#include <unordered_set>
+#include <set>
+#include <map>
 
 bool linearSearchUnsorted(std::vector<int> &data, int value)
 {
@@ -70,6 +61,30 @@ bool binarysearch(std::vector<int> &data, int value)
     }
     return false;
 }
+
+
+int binarysearch(std::vector<int> &data, int start, int end, int key, bool isInc)
+{
+    int mid;
+    if (end < start)
+    {
+        return -1;
+    }
+    mid = (start + end) / 2;
+    if (key == data[mid])
+    {
+        return mid;
+    }
+    if (isInc != false && key < data[mid] || isInc == false && key > data[mid])
+    {
+        return binarysearch(data, start, mid - 1, key, isInc);
+    }
+    else
+    {
+        return binarysearch(data, mid + 1, end, key, isInc);
+    }
+}
+
 
 bool binarysearchRecursive(std::vector<int> &data, int low, int high, int value)
 {
@@ -258,9 +273,7 @@ int main4()
     std::vector<int> arr = { 1, 3, 5, 3, 9, 1, 30 };
     removeDuplicates(arr);
     for (auto  i = arr.begin(); i != arr.end(); i++)
-    {
         std::cout << *i << " ";
-    }
     return 0;
 }
 
@@ -1364,7 +1377,7 @@ int main22()
 int getMedian(std::vector<int> &data)
 {
     int size = data.size();
-    sort(data.begin(), data.end()); // Sort(data, size);
+    sort(data.begin(), data.end());
     return data[size / 2];
 }
 
@@ -1383,16 +1396,16 @@ int searchBitonicArrayMax(std::vector<int> &arr)
     while (start <= end)
     {
         mid = (start + end) / 2;
-        if (arr[mid - 1] < arr[mid] && arr[mid + 1] < arr[mid])// maxima
+        if (arr[mid - 1] < arr[mid] && arr[mid + 1] < arr[mid]) // maxima
         {
             maximaFound = 1;
             break;
         }
-        else if (arr[mid - 1] < arr[mid] && arr[mid] < arr[mid + 1])  // increasing
+        else if (arr[mid - 1] < arr[mid] && arr[mid] < arr[mid + 1]) // increasing
         {
             start = mid + 1;
         }
-        else if (arr[mid - 1] > arr[mid] && arr[mid] > arr[mid + 1])  // decreasing
+        else if (arr[mid - 1] > arr[mid] && arr[mid] > arr[mid + 1]) // decreasing
         {
             end = mid - 1;
         }
@@ -1409,22 +1422,7 @@ int searchBitonicArrayMax(std::vector<int> &arr)
     return arr[mid];
 }
 
-int searchBitonicArray(std::vector<int> &arr, int key)
-{
-    int size = arr.size();
-    int max = findMaxBitonicArray(arr);
-    int k = binarysearch(arr, 0, max, key, true);
-    if (k != -1)
-    {
-        return k;
-    }
-    else
-    {
-        return binarysearch(arr, max + 1, size - 1, key, false);
-    }
-}
-
-int findMaxBitonicArray(std::vector<int> &arr)
+int findBitonicArrayMax(std::vector<int> &arr)
 {
     int size = arr.size();
     int start = 0, end = size - 1, mid;
@@ -1436,39 +1434,47 @@ int findMaxBitonicArray(std::vector<int> &arr)
     while (start <= end)
     {
         mid = (start + end) / 2;
-        if (arr[mid - 1] < arr[mid] && arr[mid + 1] < arr[mid])// maxima
-        {
+        if (arr[mid - 1] < arr[mid] && arr[mid + 1] < arr[mid]) // maxima
             return mid;
-        }
         else if (arr[mid - 1] < arr[mid] && arr[mid] < arr[mid + 1])  // increasing
-        {
             start = mid + 1;
-        }
         else if (arr[mid - 1] > arr[mid] && arr[mid] > arr[mid + 1])  // increasing
-        {
             end = mid - 1;
-        }
         else
-        {
             break;
-        }
     }
     std::cout << "error" << std::endl;
     return -1;
 }
 
+int searchBitonicArray(std::vector<int> &arr, int key)
+{
+    int size = arr.size();
+    int max = findBitonicArrayMax(arr);
+    int k = binarysearch(arr, 0, max, key, true);
+    if (k != -1)
+    {
+        return k;
+    }
+    else
+    {
+        return binarysearch(arr, max + 1, size - 1, key, false);
+    }
+}
+
 int main23()
 {
     std::vector<int> first = { 1, 5, 10, 13, 20, 30, 8, 7, 6 };
-
     std::cout << searchBitonicArrayMax(first) << std::endl;
     std::cout << searchBitonicArray(first, 7) << std::endl;
+    std::cout << first[findBitonicArrayMax(first)] << std::endl;
     return 0;
 }
 
 /*
 30
 7
+30
 */
 
 int findKeyCount(std::vector<int> &arr, int key)
@@ -1483,6 +1489,50 @@ int findKeyCount(std::vector<int> &arr, int key)
         }
     }
     return count;
+}
+
+int findLastIndex(std::vector<int> &arr, int start, int end, int key)
+{
+    if (end < start)
+    {
+        return -1;
+    }
+    int mid = (start + end) / 2;
+    if (key == arr[mid] && (mid == end || arr[mid + 1] != key))
+    {
+        return mid;
+    }
+    if (key < arr[mid])// <
+    {
+        return findLastIndex(arr, start, mid - 1, key);
+    }
+    else
+    {
+        return findLastIndex(arr, mid + 1, end, key);
+    }
+}
+
+
+int findFirstIndex(std::vector<int> &arr, int start, int end, int key)
+{
+    int mid;
+    if (end < start)
+    {
+        return -1;
+    }
+    mid = (start + end) / 2;
+    if (key == arr[mid] && (mid == start || arr[mid - 1] != key))
+    {
+        return mid;
+    }
+    if (key <= arr[mid])// <= is us the number.t in sorted array.
+    {
+        return findFirstIndex(arr, start, mid - 1, key);
+    }
+    else
+    {
+        return findFirstIndex(arr, mid + 1, end, key);
+    }
 }
 
 int findKeyCount2(std::vector<int> &arr, int key)
@@ -1513,48 +1563,6 @@ int firstIndex(std::vector<int> &arr, int low, int high, int value)
         return firstIndex(arr, low, mid - 1, value);
 }
 
-int findFirstIndex(std::vector<int> &arr, int start, int end, int key)
-{
-    int mid;
-    if (end < start)
-    {
-        return -1;
-    }
-    mid = (start + end) / 2;
-    if (key == arr[mid] && (mid == start || arr[mid - 1] != key))
-    {
-        return mid;
-    }
-    if (key <= arr[mid])// <= is us the number.t in sorted array.
-    {
-        return findFirstIndex(arr, start, mid - 1, key);
-    }
-    else
-    {
-        return findFirstIndex(arr, mid + 1, end, key);
-    }
-}
-
-int findLastIndex(std::vector<int> &arr, int start, int end, int key)
-{
-    if (end < start)
-    {
-        return -1;
-    }
-    int mid = (start + end) / 2;
-    if (key == arr[mid] && (mid == end || arr[mid + 1] != key))
-    {
-        return mid;
-    }
-    if (key < arr[mid])// <
-    {
-        return findLastIndex(arr, start, mid - 1, key);
-    }
-    else
-    {
-        return findLastIndex(arr, mid + 1, end, key);
-    }
-}
 
 
 bool isMajority(std::vector<int> &arr)
@@ -1671,15 +1679,6 @@ int main26()
 6
 */
 
-int binarysearch01(std::vector<int> &arr)
-{
-    int size = arr.size();
-    if (size == 1 && arr[0] == 1)
-    {
-        return 0;
-    }
-    return binarysearch01Util(arr, 0, size - 1);
-}
 
 int binarysearch01Util(std::vector<int> &arr, int start, int end)
 {
@@ -1700,6 +1699,16 @@ int binarysearch01Util(std::vector<int> &arr, int start, int end)
     {
         return binarysearch01Util(arr, start, mid - 1);
     }
+}
+
+int binarysearch01(std::vector<int> &arr)
+{
+    int size = arr.size();
+    if (size == 1 && arr[0] == 1)
+    {
+        return 0;
+    }
+    return binarysearch01Util(arr, 0, size - 1);
 }
 
 int main27()
@@ -1735,6 +1744,13 @@ int rotationMax(std::vector<int> &arr)
     return rotationMaxUtil(arr, 0, size - 1);
 }
 
+// Testing code
+int main() {
+    std::vector<int> first = {8, 9, 10, 11, 3, 5, 7 };
+    std::cout << "RotationMax is ::" << rotationMax(first) << std::endl;
+    return 0;
+}
+
 int findRotationMaxUtil(std::vector<int> &arr, int start, int end)
 {
     /* single element case. */
@@ -1757,11 +1773,11 @@ int findRotationMax(std::vector<int> &arr)
     return findRotationMaxUtil(arr, 0, size - 1);
 }
 
-int countRotation(std::vector<int> &arr)
+int main()
 {
-    int size = arr.size();
-    int maxIndex = findRotationMaxUtil(arr, 0, size - 1);
-    return (maxIndex + 1) % size;
+    std::vector<int> first =  {8, 9, 10, 11, 3, 5, 7 }
+    std::cout << "findRotationMax is ::" << findRotationMax(first) << std::endl;
+    return 0;
 }
 
 int binarysearchRotateArrayUtil(std::vector<int> &arr, int start, int end, int key)
@@ -1803,6 +1819,13 @@ int binarysearchRotateArray(std::vector<int> &arr, int key)
 {
     int size = arr.size();
     return binarysearchRotateArrayUtil(arr, 0, size - 1, key);
+}
+
+int countRotation(std::vector<int> &arr)
+{
+    int size = arr.size();
+    int maxIndex = findRotationMaxUtil(arr, 0, size - 1);
+    return (maxIndex + 1) % size;
 }
 
 int main28()
@@ -1900,7 +1923,6 @@ int main31()
 {
     char str1[] = "aaaabbbb";
     char str2[] = "bbaaaabb";
-
     std::cout << checkPermutation(str1, sizeof(str1)/sizeof(char), str2, sizeof(str2)/sizeof(char)) << std::endl;
     return 0;
 }
@@ -2078,9 +2100,9 @@ int findFloor(std::vector<int> &arr, int value)
     {
         mid = (start + stop) / 2;
         /*
-         * search value is equal to arr[mid] value.. search value is greater than mid
-         * index value and less than mid+1 index value. value is greater than
-         * arr[size-1] then floor is arr[size-1]
+         * search value is equal to arr[mid] value.. search value is 
+         * greater than mid index value and less than mid+1 index value. 
+         * value is greater than arr[size-1] then floor is arr[size-1]
          */
         if (arr[mid] == value || (arr[mid] < value && (mid == size - 1 || arr[mid + 1] > value)))
             return mid;
@@ -2103,9 +2125,9 @@ int findCeil(std::vector<int> &arr, int value)
     {
         mid = (start + stop) / 2;
         /*
-         * search value is equal to arr[mid] value.. search value is less than mid index
-         * value and greater than mid-1 index value. value is less than arr[0] then ceil
-         * is arr[0]
+         * search value is equal to arr[mid] value.. search value is less 
+         * than mid index value and greater than mid-1 index value. value 
+         * is less than arr[0] then ceil is arr[0]
          */
         if (arr[mid] == value || (arr[mid] > value && (mid == 0 || arr[mid - 1] < value)))
             return mid;
@@ -2687,28 +2709,6 @@ Minimum sum pair : -6 , 6
 Minimum sum pair : -6 , 6
 */
 
-int binarysearch(std::vector<int> &data, int start, int end, int key, bool isInc)
-{
-    int mid;
-    if (end < start)
-    {
-        return -1;
-    }
-    mid = (start + end) / 2;
-    if (key == data[mid])
-    {
-        return mid;
-    }
-    if (isInc != false && key < data[mid] || isInc == false && key > data[mid])
-    {
-        return binarysearch(data, start, mid - 1, key, isInc);
-    }
-    else
-    {
-        return binarysearch(data, mid + 1, end, key, isInc);
-    }
-}
-
 int findMedian(std::vector<int> &dataFirst, int sizeFirst, std::vector<int> &dataSecond, int sizeSecond)
 {
     int medianIndex = ((sizeFirst + sizeSecond) + (sizeFirst + sizeSecond) % 2) / 2; // cealing function.
@@ -2812,7 +2812,7 @@ bool checkPermutation2(std::string data1, std::string data2)
     return true;
 }
 
-int main()
+int main47()
 {
     auto str1 = "aaaabbbb";
     auto str2 = "bbaaaabb";

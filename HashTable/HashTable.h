@@ -3,12 +3,15 @@
 #include <vector>
 #include <iostream>
 
+enum FLAGS 
+{   EMPTY_NODE = 0, 
+    LAZY_DELETED = 1, 
+    FILLED_NODE = 2
+};
+
 class HashTable
 {
 private:
-    static int EMPTY_NODE;
-    static int LAZY_DELETED;
-    static int FILLED_NODE;
     std::vector<int> Key;
     std::vector<int> Value;
     std::vector<int> Flag;

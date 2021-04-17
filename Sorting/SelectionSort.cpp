@@ -1,22 +1,6 @@
 #include "SelectionSort.h"
 #include <iostream>
 
-int main()
-{
-    std::vector<int> data = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
-    SelectionSort ss = SelectionSort(data);
-    ss.sort2();
-    for (int i = 0; i < data.size(); i++)
-    {
-        std::cout << data[i] << " ";
-    }
-    return 0;
-}
-
-/*
-1 2 3 4 5 6 7 8 9
-*/
-
 SelectionSort::SelectionSort(std::vector<int> &data):
     arr(data)
 {
@@ -71,3 +55,19 @@ void SelectionSort::sort2()
         arr[min] = temp;
     }
 }
+
+int main()
+{
+    std::vector<int> data = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
+    SelectionSort ss = SelectionSort(data);
+    ss.sort2();
+    for (int i = 0; i < data.size(); i++)
+    {
+        std::cout << data[i] << " ";
+    }
+    return 0;
+}
+
+/*
+1 2 3 4 5 6 7 8 9
+*/

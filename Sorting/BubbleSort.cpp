@@ -1,30 +1,5 @@
 #include "BubbleSort.h"
 
-int main()
-{
-    std::vector<int> data = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
-    BubbleSort bs = BubbleSort(data);
-    bs.sort();
-    for (int i = 0; i < data.size(); i++)
-    {
-        std::cout << data[i] << " ";
-    }
-    std::cout << std::endl;
-    std::vector<int> data2 = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
-    BubbleSort bs2 = BubbleSort(data2);
-    bs2.sort2();
-    for (int i = 0; i < data2.size(); i++)
-    {
-        std::cout << data2[i] << " ";
-    }
-    return 0;
-}
-
-/*
-1 2 3 4 5 6 7 8 9 
-1 2 3 4 5 6 7 8 9
-*/
-
 BubbleSort::BubbleSort(std::vector<int> &data):
     arr(data)
 {
@@ -78,3 +53,28 @@ void BubbleSort::sort2()
         }
     }
 }
+
+int main()
+{
+    std::vector<int> data = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
+    BubbleSort bs = BubbleSort(data);
+    bs.sort();
+    for (int i = 0; i < data.size(); i++)
+    {
+        std::cout << data[i] << " ";
+    }
+    std::cout << std::endl;
+    std::vector<int> data2 = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
+    BubbleSort bs2 = BubbleSort(data2);
+    bs2.sort2();
+    for (int i = 0; i < data2.size(); i++)
+    {
+        std::cout << data2[i] << " ";
+    }
+    return 0;
+}
+
+/*
+1 2 3 4 5 6 7 8 9 
+1 2 3 4 5 6 7 8 9
+*/

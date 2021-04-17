@@ -1,12 +1,361 @@
 #include <vector>
 #include <stack>
-#include <iostream>
 #include <queue>
 #include <math.h>
 #include<iostream>
 #include<algorithm>
 #include<iterator>
 #include<string>
+
+template<class T>
+void printStackUtil(std::stack<T>& stk)
+{
+    T temp = stk.top();
+    stk.pop();
+    if(stk.size() > 0)
+    printStackUtil(stk);
+    std::cout << temp << " ";
+    stk.push(temp);
+}
+
+template<class T>
+void printStack( std::stack<T>& stk)
+{
+    std::cout << "[ ";
+    printStackUtil(stk);
+    std::cout << "]" << std::endl;
+}
+
+template<class T>
+void printQueue(std::queue<T>& que)
+{
+    int size = que.size();
+    std::cout << "[ ";
+    for(int i =0; i<size; i++)
+    {
+        T temp = que.front();
+        que.pop();
+        std::cout << temp << " ";
+        que.push(temp);
+    }
+    std::cout << "]" << std::endl;
+}
+
+void function2()
+{
+    std::cout << "fun2 line 1" << std::endl;
+}
+
+void function1()
+{
+    std::cout << "fun1 line 1" << std::endl;
+    function2();
+    std::cout << "fun1 line 2" << std::endl;
+}
+
+int main1()
+{
+    std::cout << "main line 1" << std::endl;
+    function1();
+    std::cout << "main line 2" << std::endl;
+    return 0;
+}
+
+/*
+main line 1
+fun1 line 1
+fun2 line 1
+fun1 line 2
+main line 2
+*/
+
+void sortedInsert(std::stack<int>& stk, int element)
+{
+    if (stk.empty() || element > stk.top())
+        stk.push(element);
+    else
+    {
+        int temp = stk.top();
+        stk.pop();
+        sortedInsert(stk, element);
+        stk.push(temp);
+    }
+}
+
+int main2()
+{
+    std::stack<int> stk;
+    stk.push(1);
+    stk.push(2);
+    stk.push(4);
+    stk.push(5);
+    printStack(stk);
+    sortedInsert(stk, 3);
+    printStack(stk);
+    return 0;
+}
+
+/*
+[ 1 2 4 5 ]
+[ 1 2 3 4 5 ]
+*/
+
+void sortStack(std::stack<int>& stk)
+{
+    int temp;
+    if (stk.empty() == false)
+    {
+        temp = stk.top();
+        stk.pop();
+        sortStack(stk);
+        sortedInsert(stk, temp);
+    }
+}
+
+void sortStack2(std::stack<int>& stk)
+{
+    int temp;
+    std::stack<int> stk2;
+    while (stk.empty() == false)
+    {
+        temp = stk.top();
+        stk.pop();
+        while ((stk2.empty() == false) && (stk2.top() < temp))
+        {
+            int temp2 = stk2.top();
+            stk2.pop();
+            stk.push(temp2);
+        }
+        stk2.push(temp);
+    }
+    while (stk2.empty() == false)
+    {
+        int temp2 = stk2.top();
+        stk2.pop();
+        stk.push(temp2);
+    }
+}
+
+int main3()
+{
+    std::stack<int> stk1;
+    stk1.push(1);
+    stk1.push(5);
+    stk1.push(4);
+    stk1.push(3);
+    printStack(stk1);
+    sortStack(stk1);
+    printStack(stk1);
+
+    std::stack<int> stk2;
+    stk2.push(1);
+    stk2.push(5);
+    stk2.push(4);
+    stk2.push(3);
+    printStack(stk2);
+    sortStack2(stk2);
+    printStack(stk2);
+    return 0;
+}
+
+/*
+[ 1 5 4 3 ]
+[ 1 3 4 5 ]
+
+[ 1 5 4 3 ]
+[ 1 3 4 5 ]
+*/
+
+void insertAtBottom(std::stack<int>& stk, int value)
+{
+    if (stk.empty())
+        stk.push(value);
+    else
+    {
+        int out = stk.top();
+        stk.pop();
+        insertAtBottom(stk, value);
+        stk.push(out);
+    }
+}
+
+int main4() {
+    std::stack<int> stk;
+    stk.push(1);
+    stk.push(2);
+    stk.push(3);
+    insertAtBottom(stk, 4);
+    printStack(stk);
+    return 0;
+}
+
+/*
+[4 1 2 3]
+*/
+
+void reverseStack(std::stack<int>& stk)
+{
+    if (stk.empty())
+        return;
+    
+    int value = stk.top();
+    stk.pop();
+    reverseStack(stk);
+    insertAtBottom(stk, value);  
+}
+
+void reverseStack2(std::stack<int>& stk)
+{
+    std::queue<int> que;
+    while (stk.empty() == false)
+    {
+        int temp = stk.top();
+        stk.pop();
+        que.push(temp);
+    }
+
+    while (que.empty() == false)
+    {
+        int temp = que.front();
+        que.pop();
+        stk.push(temp);
+    }
+}
+
+int main5()
+{
+    std::stack<int> stk;
+    stk.push(1);
+    stk.push(2);
+    stk.push(3);
+    stk.push(4);
+    printStack(stk);
+    reverseStack(stk);
+    printStack(stk);
+    reverseStack2(stk);
+    printStack(stk);
+    return 0;
+}
+/*
+[ 1 2 3 4 ]
+[ 4 3 2 1 ]
+[ 1 2 3 4 ]
+*/
+void reverseKElementInStack(std::stack<int>& stk, int k)
+{
+    std::queue<int> que;
+    int i = 0;
+    while (stk.empty() == false && i < k)
+    {
+        int temp = stk.top();
+        stk.pop();
+        que.push(temp);
+        i++;
+    }
+    while (que.empty() == false)
+    {
+        int temp = que.front();
+        que.pop();
+        stk.push(temp);
+    }
+}
+
+int main6()
+{
+    std::stack<int> stk;
+    stk.push(1);
+    stk.push(2);
+    stk.push(3);
+    stk.push(4);
+    printStack(stk);
+    reverseKElementInStack(stk, 2);
+    printStack(stk);
+    return 0;
+}
+/*
+[ 1 2 3 4 ]
+[ 1 2 4 3 ]
+*/
+void reverseQueue(std::queue<int>& que)
+{
+    std::stack<int> stk;
+    while (que.empty() == false)
+    {
+        int temp = que.front();
+        que.pop();
+        stk.push(temp);
+    }
+
+    while (stk.empty() == false)
+    {
+        int temp = stk.top();
+        stk.pop();
+        que.push(temp);
+    }
+}
+
+int main7()
+{
+    std::queue<int> que;
+    que.push(1);
+    que.push(2);
+    que.push(3);
+    que.push(4);
+    printQueue(que);
+    reverseQueue(que);
+    printQueue(que);
+    return 0;
+}
+
+/*
+[ 1 2 3 4 ]
+[ 4 3 2 1 ]
+*/
+
+void reverseKElementInQueue(std::queue<int>& que, int k)
+{
+    std::stack<int> stk;
+    int i = 0, diff, temp;
+    while (que.empty() == false && i < k)
+    {
+        int temp = que.front();
+        que.pop();
+        stk.push(temp);
+        i++;
+    }
+    while (stk.empty() == false)
+    {
+        int temp = stk.top();
+        stk.pop();
+        que.push(temp);
+    }
+    diff = que.size() - k;
+    while (diff > 0)
+    {
+        temp = que.front();
+        que.pop();
+        que.push(temp);
+        diff -= 1;
+    }
+}
+
+int main8()
+{
+    std::queue<int> que;
+    que.push(1);
+    que.push(2);
+    que.push(3);
+    que.push(4);
+    printQueue(que);
+    reverseKElementInQueue(que, 2);
+    printQueue(que);
+    return 0;
+}
+
+/*
+[ 1 2 3 4 ]
+[ 2 1 3 4 ]
+*/
 
 bool isBalancedParenthesis(const std::string &expn)
 {
@@ -50,7 +399,7 @@ bool isBalancedParenthesis(const std::string &expn)
     return stk.empty();
 }
 
-int main1()
+int main9()
 {
     std::string expn = "{()}[]";
     bool value = isBalancedParenthesis(expn);
@@ -64,100 +413,245 @@ Given Expn:{()}[]
 Result aft1er isParenthesisMatched:1
 */
 
-template<typename T> void insertAtBottom(std::stack<int>& stk, T value)
+int maxDepthParenthesis(const std::string & expn, int size)
 {
-    if (stk.empty())
-    {
-        stk.push(value);
-    }
-    else
-    {
-        T out = stk.top();
-        stk.pop();
-        insertAtBottom(stk, value);
-        stk.push(out);
-    }
-}
+    std::stack<char> stk;
+    int maxDepth = 0;
+    int depth = 0;
+    char ch;
 
-template<typename T>
-void reverseStack(std::stack<T>& stk)
-{
-    if (stk.empty())
+    for (int i = 0; i < size; i++)
     {
-        return;
-    }
-    else
-    {
-        T value = stk.top();
-        stk.pop();
-        reverseStack(stk);
-        insertAtBottom(stk, value);
-    }
-}
+        ch = expn[i];
 
-int postfixEvaluate(const std::string &expn)
-{
-    std::stack<int> stk;
-    int digit = 0;
-    int value = 0;
-
-    for (auto ch : expn)
-    {
-        if (isdigit(ch))
+        if (ch == '(')
         {
-            digit = 1;
-            value = value * 10 + (ch - '0');
+            stk.push(ch);
+            depth += 1;
         }
-        else if (ch == ' ')
+        else if (ch == ')')
         {
-            if (digit == 1)
-            {
-                stk.push(value); /* Push the operand */
-                digit = 0;
-                value = 0;
-            }
-        }
-        else
-        {
-            int num1 = stk.top();
             stk.pop();
-            int num2 = stk.top();
-            stk.pop();
-
-            switch (ch)
-            {
-            case '+':
-                stk.push(num1 + num2);
-                break;
-            case '-':
-                stk.push(num1 - num2);
-                break;
-            case '*':
-                stk.push(num1 * num2);
-                break;
-            case '/':
-                stk.push(num1 / num2);
-                break;
-            }
+            depth -= 1;
         }
+        if (depth > maxDepth)
+            maxDepth = depth;
     }
-    int val = stk.top();
-    stk.pop();
-    return val;
+    return maxDepth;
 }
 
-int main2()
+int maxDepthParenthesis2(const std::string & expn, int size)
 {
-    std::string expn = "6 5 2 3 + 8 * + 3 + *";
-    int value = postfixEvaluate(expn);
-    std::cout << "Given Postfix Expn: " << expn << std::endl;
-    std::cout << "Result after Evaluation: " << value << std::endl;
+    int maxDepth = 0;
+    int depth = 0;
+    char ch;
+    for (int i = 0; i < size; i++)
+    {
+        ch = expn[i];
+        if (ch == '(')
+            depth += 1;
+        else if (ch == ')')
+            depth -= 1;
+
+        if (depth > maxDepth)
+            maxDepth = depth;
+    }
+    return maxDepth;
+}
+
+int main10()
+{
+    std::string expn = "((((A)))((((BBB()))))()()()())";
+    int size = expn.size();
+    int value = maxDepthParenthesis(expn, size);
+    int value2 = maxDepthParenthesis2(expn, size);
+
+    std::cout <<"Given expn " << expn << std::endl;
+    std::cout <<"Max depth parenthesis is " << value << std::endl;
+    std::cout <<"Max depth parenthesis is " << value2 << std::endl;
     return 0;
 }
 
 /*
-Given Postfix Expn: 6 5 2 3 + 8 * + 3 + *
-Result after Evaluation: 288
+Given expn ((((A)))((((BBB()))))()()()())
+Max depth parenthesis is 6
+Max depth parenthesis is 6
+*/
+
+int longestContBalParen(const std::string &expn, int size)
+{
+    std::stack<int> stk;
+    stk.push(-1);
+    int length = 0;
+
+    for (int i = 0; i < size; i++)
+    {
+
+        if (expn[i] == '(')
+            stk.push(i);
+        else // string[i] == ')'
+        {
+            stk.pop();
+            if (stk.size() != 0)
+                length = std::max(length, i - stk.top());
+            else
+                stk.push(i);
+        }
+    }
+    return length;
+}
+
+int main11()
+{
+    std::string expn = "())((()))(())()(()";
+    int size = expn.size();
+    int value = longestContBalParen(expn, size);
+    std::cout <<"longestContBalParen " << value << std::endl;
+    return 0;
+}
+
+/*
+longestContBalParen 12
+*/
+
+int reverseParenthesis(const std::string & expn, int size)
+{
+    std::stack<char> stk;
+    int openCount = 0;
+    int closeCount = 0;
+    char ch;
+
+    if (size % 2 == 1)
+    {
+        std::cout <<"Invalid odd length " << size << std::endl;
+        return -1;
+    }
+    for (int i = 0; i < size; i++)
+    {
+        ch = expn[i];
+        if (ch == '(')
+            stk.push(ch);
+        else if (ch == ')')
+            if (stk.size() != 0 && stk.top() == '(')
+                stk.pop();
+            else
+                stk.push(')');
+    }
+    while (stk.size() != 0)
+    {
+        char temp = stk.top();
+        stk.pop();
+        if (temp == '(')
+            openCount += 1;
+        else
+            closeCount += 1;
+    }
+    int reversal = (int) std::ceil(openCount / 2.0) + (int) std::ceil(closeCount / 2.0);
+    return reversal;
+}
+
+int main12()
+{
+    std::string expn = "())((()))(())()(()()()()))";
+    std::string expn2 = ")(())(((";
+    int size = expn2.size();
+    int value = reverseParenthesis(expn2, size);
+    std::cout <<"Given expn : " << expn2 << std::endl;
+    std::cout <<"reverse Parenthesis is : " << value << std::endl;
+    return 0;
+}
+
+/*
+Given expn : )(())(((
+reverse Parenthesis is : 3
+*/
+
+bool findDuplicateParenthesis(const std::string & expn, int size)
+{
+    std::stack<char> stk;
+    char ch;
+    int count;
+
+    for (int i = 0; i < size; i++)
+    {
+        ch = expn[i];
+        if (ch == ')')
+        {
+            count = 0;
+            while (stk.size() != 0 && stk.top() != '(')
+            {
+                stk.pop();
+                count += 1;
+            }
+            if (count <= 1)
+                return true;
+        }
+        else
+            stk.push(ch);
+    }
+    return false;
+}
+
+int main13()
+{
+    // expn = "(((a+(b))+(c+d)))"
+    // expn = "(b)"
+    std::string expn = "(((a+b))+c)";
+    std::cout <<"Given expn : " << expn << std::endl;
+    int size = expn.size();
+    bool value = findDuplicateParenthesis(expn, size);
+    std::cout <<"Duplicate Found : " << value << std::endl;
+    return 0;
+}
+
+/*
+Given expn : (((a+b))+c)
+Duplicate Found : 1
+*/
+
+void printParenthesisNumber(const std::string & expn, int size)
+{
+    char ch;
+    std::stack<int> stk;
+    std::string output;
+    int count = 1;
+    for (int i = 0; i < size; i++)
+    {
+        ch = expn[i];
+        if (ch == '(')
+        {
+            stk.push(count);
+            output += std::to_string(count);
+            count += 1;
+        }
+        else if (ch == ')')
+        {
+            output += std::to_string(stk.top());
+            stk.pop();
+        }    
+    }
+    std::cout << "Parenthesis Count ::" ;
+    std::cout << output << std::endl;
+}
+
+int main14()
+{
+    std::string expn1 = "(((a+(b))+(c+d)))";
+    std::string expn2 = "(((a+b))+c)(((";
+    int size = expn1.size();
+    std::cout <<"Given expn " << expn1 << std::endl;
+    printParenthesisNumber(expn1, size);
+    size = expn2.size();
+    std::cout <<"Given expn " + expn2 << std::endl;
+    printParenthesisNumber(expn2, size);
+    return 0;
+}
+
+/*
+Given expn (((a+(b))+(c+d)))
+Parenthesis Count ::1234435521
+Given expn (((a+b))+c)(((
+Parenthesis Count ::123321456
 */
 
 int precedence(char x)
@@ -180,8 +674,6 @@ int precedence(char x)
     }
     return (4);
 }
-
-
 
 std::string infixToPostfix(std::string &expn)
 {
@@ -239,7 +731,7 @@ std::string infixToPostfix(std::string &expn)
     return output;
 }
 
-int main3()
+int main15()
 {
     std::string expn = "10+((3))*5/(16-4)";
     std::string value = infixToPostfix(expn);
@@ -253,6 +745,20 @@ Infix Expn: 10+((3))*5/(16-4)
 Postfix Expn: 10 3 5 * 16 4 - / + 
 */
 
+void reverseString(std::string &expn)
+{
+    int lower = 0;
+    int upper = expn.size() - 1;
+    char tempChar;
+    while (lower < upper)
+    {
+        tempChar = expn[lower];
+        expn[lower] = expn[upper];
+        expn[upper] = tempChar;
+        lower++;
+        upper--;
+    }
+}
 void replaceParanthesis(std::string &a)
 {
     int lower = 0;
@@ -270,22 +776,6 @@ void replaceParanthesis(std::string &a)
         lower++;
     }
 }
-
-void reverseString(std::string &expn)
-{
-    int lower = 0;
-    int upper = expn.size() - 1;
-    char tempChar;
-    while (lower < upper)
-    {
-        tempChar = expn[lower];
-        expn[lower] = expn[upper];
-        expn[upper] = tempChar;
-        lower++;
-        upper--;
-    }
-}
-
 std::string infixToPrefix( std::string expn)
 {
     reverseString(expn);
@@ -295,7 +785,7 @@ std::string infixToPrefix( std::string expn)
     return expn;
 }
 
-int main4()
+int main16()
 {
     std::string expn = "10+((3))*5/(16-4)";
     std::string value = infixToPrefix(expn);
@@ -307,6 +797,71 @@ int main4()
 /*
 Infix Expn: 10+((3))*5/(16-4)
 Prefix Expn:  +10 * 3 / 5  - 16 4
+*/
+
+int postfixEvaluate(const std::string &expn)
+{
+    std::stack<int> stk;
+    int digit = 0;
+    int value = 0;
+
+    for (auto ch : expn)
+    {
+        if (isdigit(ch))
+        {
+            digit = 1;
+            value = value * 10 + (ch - '0');
+        }
+        else if (ch == ' ')
+        {
+            if (digit == 1)
+            {
+                stk.push(value); /* Push the operand */
+                digit = 0;
+                value = 0;
+            }
+        }
+        else
+        {
+            int num1 = stk.top();
+            stk.pop();
+            int num2 = stk.top();
+            stk.pop();
+
+            switch (ch)
+            {
+            case '+':
+                stk.push(num1 + num2);
+                break;
+            case '-':
+                stk.push(num1 - num2);
+                break;
+            case '*':
+                stk.push(num1 * num2);
+                break;
+            case '/':
+                stk.push(num1 / num2);
+                break;
+            }
+        }
+    }
+    int val = stk.top();
+    stk.pop();
+    return val;
+}
+
+int main17()
+{
+    std::string expn = "6 5 2 3 + 8 * + 3 + *";
+    int value = postfixEvaluate(expn);
+    std::cout << "Given Postfix Expn: " << expn << std::endl;
+    std::cout << "Result after Evaluation: " << value << std::endl;
+    return 0;
+}
+
+/*
+Given Postfix Expn: 6 5 2 3 + 8 * + 3 + *
+Result after Evaluation: 288
 */
 
 std::vector<int> stockSpanRange(std::vector<int> &arr)
@@ -343,18 +898,21 @@ std::vector<int> stockSpanRange2(std::vector<int> &arr)
     return SR;
 }
 
-int main5()
+int main18()
 {
     std::vector<int> arr = { 6, 5, 4, 3, 2, 4, 5, 7, 9 };
     int size = arr.size();
     std::vector<int> value =  stockSpanRange(arr);
-    std::cout << "\nStockSpanRange : ";
+    std::cout << "StockSpanRange : ";
     for (int val : value)
         std::cout << " " << val;
+    std::cout << std::endl;
+
     value = stockSpanRange2(arr);
-    std::cout << "\nStockSpanRange : ";
+    std::cout << "StockSpanRange : ";
     for (int val : value)
         std::cout << " " << val;
+    std::cout << std::endl;
     return 0;
 }
 
@@ -417,7 +975,7 @@ int getMaxArea2(std::vector<int> &arr)
     return maxArea;
 }
 
-int main6()
+int main19()
 {
     std::vector<int> arr = { 7, 6, 5, 4, 4, 1, 6, 3, 1 };
     int value = getMaxArea(arr);
@@ -431,515 +989,6 @@ int main6()
 getMaxArea :: 20
 getMaxArea :: 20
 */
-
-
-template<class T>
-void printStackUtil(std::stack<T>& stk)
-{
-    T temp = stk.top();
-    stk.pop();
-    if(stk.size() > 0)
-    printStackUtil(stk);
-    std::cout << temp << " ";
-    stk.push(temp);
-}
-
-
-template<class T>
-void printStack( std::stack<T>& stk)
-{
-    std::cout << "[ ";
-    printStackUtil(stk);
-    std::cout << "]" << std::endl;
-}
-
-void sortedInsert(std::stack<int>& stk, int element)
-{
-    if (stk.empty() || element > stk.top())
-        stk.push(element);
-    else
-    {
-        int temp = stk.top();
-        stk.pop();
-        sortedInsert(stk, element);
-        stk.push(temp);
-    }
-}
-
-void sortStack(std::stack<int>& stk)
-{
-    int temp;
-    if (stk.empty() == false)
-    {
-        temp = stk.top();
-        stk.pop();
-        sortStack(stk);
-        sortedInsert(stk, temp);
-    }
-}
-
-void sortStack2(std::stack<int>& stk)
-{
-    int temp;
-    std::stack<int> stk2;
-    while (stk.empty() == false)
-    {
-        temp = stk.top();
-        stk.pop();
-        while ((stk2.empty() == false) && (stk2.top() < temp))
-        {
-            int temp2 = stk2.top();
-            stk2.pop();
-            stk.push(temp2);
-        }
-        stk2.push(temp);
-    }
-    while (stk2.empty() == false)
-    {
-        int temp2 = stk2.top();
-        stk2.pop();
-        stk.push(temp2);
-    }
-}
-
-int main7()
-{
-    std::stack<int> stk;
-    stk.push(1);
-    stk.push(2);
-    stk.push(4);
-    stk.push(5);
-    printStack(stk);
-    sortedInsert(stk, 3);
-    printStack(stk);
-
-    std::stack<int> stk2;
-    stk2.push(1);
-    stk2.push(5);
-    stk2.push(4);
-    stk2.push(3);
-    printStack(stk2);
-    sortStack(stk2);
-    printStack(stk2);
-
-    std::stack<int> stk3;
-    stk3.push(1);
-    stk3.push(5);
-    stk3.push(4);
-    stk3.push(3);
-    printStack(stk3);
-    sortStack2(stk3);
-    printStack(stk3);
-    return 0;
-}
-
-/*
-[ 1 2 4 5 ]
-[ 1 2 3 4 5 ]
-
-[ 1 5 4 3 ]
-[ 1 3 4 5 ]
-
-[ 1 5 4 3 ]
-[ 1 3 4 5 ]
-*/
-
-void bottomInsert(std::stack<int>& stk, int element)
-{
-    int temp;
-    if (stk.empty())
-        stk.push(element);
-    else
-    {
-        temp = stk.top();
-        stk.pop();
-        bottomInsert(stk, element);
-        stk.push(temp);
-    }
-}
-
-void reverseStack2(std::stack<int>& stk)
-{
-    std::queue<int> que;
-    while (stk.empty() == false)
-    {
-        int temp = stk.top();
-        stk.pop();
-        que.push(temp);
-    }
-
-    while (que.empty() == false)
-    {
-        int temp = que.front();
-        que.pop();
-        stk.push(temp);
-    }
-}
-
-void reverseKElementInStack(std::stack<int>& stk, int k)
-{
-    std::queue<int> que;
-    int i = 0;
-    while (stk.empty() == false && i < k)
-    {
-        int temp = stk.top();
-        stk.pop();
-        que.push(temp);
-        i++;
-    }
-    while (que.empty() == false)
-    {
-        int temp = que.front();
-        que.pop();
-        stk.push(temp);
-    }
-}
-
-void reverseQueue(std::queue<int>& que)
-{
-    std::stack<int> stk;
-    while (que.empty() == false)
-    {
-        int temp = que.front();
-        que.pop();
-        stk.push(temp);
-    }
-
-    while (stk.empty() == false)
-    {
-        int temp = stk.top();
-        stk.pop();
-        que.push(temp);
-    }
-}
-
-void reverseKElementInQueue(std::queue<int>& que, int k)
-{
-    std::stack<int> stk;
-    int i = 0, diff, temp;
-    while (que.empty() == false && i < k)
-    {
-        int temp = que.front();
-        que.pop();
-        stk.push(temp);
-        i++;
-    }
-    while (stk.empty() == false)
-    {
-        int temp = stk.top();
-        stk.pop();
-        que.push(temp);
-    }
-    diff = que.size() - k;
-    while (diff > 0)
-    {
-        temp = que.front();
-        que.pop();
-        que.push(temp);
-        diff -= 1;
-    }
-}
-
-
-
-template<class T>
-void printQueue(std::queue<T>& que)
-{
-    int size = que.size();
-    std::cout << "[ ";
-    for(int i =0; i<size; i++)
-    {
-        T temp = que.front();
-        que.pop();
-        std::cout << temp << " ";
-        que.push(temp);
-    }
-    std::cout << " ]" << std::endl;
-}
-
-
-
-
-int main8()
-{
-    std::stack<int> stk;
-    stk.push(1);
-    stk.push(2);
-    stk.push(3);
-    stk.push(4);
-    stk.push(5);
-    printStack(stk);
-    reverseStack2(stk);
-    printStack(stk);
-    reverseKElementInStack(stk, 2);
-    printStack(stk);
-    /*
-     * std::cout << std::endl <<stk.sortStack2(stk);
-     */
-    std::queue<int> que;
-    que.push(1);
-    que.push(2);
-    que.push(3);
-    que.push(4);
-    que.push(5);
-    printQueue(que);
-    reverseQueue(que);
-    printQueue(que);
-    reverseKElementInQueue(que, 2);
-    printQueue(que);
-    return 0;
-}
-/*
-[ 1 2 3 4 5 ]
-[ 5 4 3 2 1 ]
-[ 5 4 3 1 2 ]
-
-[ 1 2 3 4 5  ]
-[ 5 4 3 2 1  ]
-[ 4 5 3 2 1  ]
-*/
-
-int maxDepthParenthesis(const std::string & expn, int size)
-{
-    std::stack<char> stk;
-    int maxDepth = 0;
-    int depth = 0;
-    char ch;
-
-    for (int i = 0; i < size; i++)
-    {
-        ch = expn[i];
-
-        if (ch == '(')
-        {
-            stk.push(ch);
-            depth += 1;
-        }
-        else if (ch == ')')
-        {
-            stk.pop();
-            depth -= 1;
-        }
-        if (depth > maxDepth)
-            maxDepth = depth;
-    }
-    return maxDepth;
-}
-
-int maxDepthParenthesis2(const std::string & expn, int size)
-{
-    int maxDepth = 0;
-    int depth = 0;
-    char ch;
-    for (int i = 0; i < size; i++)
-    {
-        ch = expn[i];
-        if (ch == '(')
-            depth += 1;
-        else if (ch == ')')
-            depth -= 1;
-
-        if (depth > maxDepth)
-            maxDepth = depth;
-    }
-    return maxDepth;
-}
-
-int main9()
-{
-    std::string expn = "((((A)))((((BBB()))))()()()())";
-    int size = expn.size();
-    int value = maxDepthParenthesis(expn, size);
-    int value2 = maxDepthParenthesis2(expn, size);
-
-    std::cout <<"Given expn " << expn << std::endl;
-    std::cout <<"Max depth parenthesis is " << value << std::endl;
-    std::cout <<"Max depth parenthesis is " << value2 << std::endl;
-    return 0;
-}
-
-/*
-Given expn ((((A)))((((BBB()))))()()()())
-Max depth parenthesis is 6
-Max depth parenthesis is 6
-*/
-
-int longestContBalParen(const std::string &expn, int size)
-{
-    std::stack<int> stk;
-    stk.push(-1);
-    int length = 0;
-
-    for (int i = 0; i < size; i++)
-    {
-
-        if (expn[i] == '(')
-            stk.push(i);
-        else // string[i] == ')'
-        {
-            stk.pop();
-            if (stk.size() != 0)
-                length = std::max(length, i - stk.top());
-            else
-                stk.push(i);
-        }
-    }
-    return length;
-}
-
-int main10()
-{
-    std::string expn = "())((()))(())()(()";
-    int size = expn.size();
-    int value = longestContBalParen(expn, size);
-    std::cout <<"longestContBalParen " << value << std::endl;
-    return 0;
-}
-
-/*
-longestContBalParen 12
-*/
-
-int reverseParenthesis(const std::string & expn, int size)
-{
-    std::stack<char> stk;
-    int openCount = 0;
-    int closeCount = 0;
-    char ch;
-
-    if (size % 2 == 1)
-    {
-        std::cout <<"Invalid odd length " << size << std::endl;
-        return -1;
-    }
-    for (int i = 0; i < size; i++)
-    {
-        ch = expn[i];
-        if (ch == '(')
-            stk.push(ch);
-        else if (ch == ')')
-            if (stk.size() != 0 && stk.top() == '(')
-                stk.pop();
-            else
-                stk.push(')');
-    }
-    while (stk.size() != 0)
-    {
-        char temp = stk.top();
-        stk.pop();
-        if (temp == '(')
-            openCount += 1;
-        else
-            closeCount += 1;
-    }
-    int reversal = (int) std::ceil(openCount / 2.0) + (int) std::ceil(closeCount / 2.0);
-    return reversal;
-}
-
-int main11()
-{
-    std::string expn = "())((()))(())()(()()()()))";
-    std::string expn2 = ")(())(((";
-    int size = expn2.size();
-    int value = reverseParenthesis(expn2, size);
-    std::cout <<"Given expn : " << expn2 << std::endl;
-    std::cout <<"reverse Parenthesis is : " << value << std::endl;
-    return 0;
-}
-
-/*
-Given expn : )(())(((
-reverse Parenthesis is : 3
-*/
-
-bool findDuplicateParenthesis(const std::string & expn, int size)
-{
-    std::stack<char> stk;
-    char ch;
-    int count;
-
-    for (int i = 0; i < size; i++)
-    {
-        ch = expn[i];
-        if (ch == ')')
-        {
-            count = 0;
-            while (stk.size() != 0 && stk.top() != '(')
-            {
-                stk.pop();
-                count += 1;
-            }
-            if (count <= 1)
-                return true;
-        }
-        else
-            stk.push(ch);
-    }
-    return false;
-}
-
-int main12()
-{
-    // expn = "(((a+(b))+(c+d)))"
-    // expn = "(b)"
-    std::string expn = "(((a+b))+c)";
-    std::cout <<"Given expn : " << expn << std::endl;
-    int size = expn.size();
-    bool value = findDuplicateParenthesis(expn, size);
-    std::cout <<"Duplicate Found : " << value << std::endl;
-    return 0;
-}
-
-/*
-Given expn : (((a+b))+c)
-Duplicate Found : 1
-*/
-
-void printParenthesisNumber(const std::string & expn, int size)
-{
-    char ch;
-    std::stack<int> stk;
-    std::string output;
-    int count = 1;
-    for (int i = 0; i < size; i++)
-    {
-        ch = expn[i];
-        if (ch == '(')
-        {
-            stk.push(count);
-            output += std::to_string(count);
-            count += 1;
-        }
-        else if (ch == ')')
-        {
-            output += std::to_string(stk.top());
-            stk.pop();
-        }    
-    }
-    std::cout << "Parenthesis Count ::" ;
-    std::cout << output << std::endl;
-}
-
-int main13()
-{
-    std::string expn1 = "(((a+(b))+(c+d)))";
-    std::string expn2 = "(((a+b))+c)(((";
-    int size = expn1.size();
-    std::cout <<"Given expn " << expn1 << std::endl;
-    printParenthesisNumber(expn1, size);
-    size = expn2.size();
-    std::cout <<"Given expn " + expn2 << std::endl;
-    printParenthesisNumber(expn2, size);
-    return 0;
-}
-
-/*
-Given expn (((a+(b))+(c+d)))
-Parenthesis Count ::1234435521
-Given expn (((a+b))+c)(((
-Parenthesis Count ::123321456
-*/
-
 
 void nextLargerElement(std::vector<int> &arr)
 {
@@ -997,6 +1046,21 @@ void nextLargerElement2(std::vector<int> &arr)
         std::cout << val << " ";
 }
 
+int main20()
+{
+    std::vector<int> arr = { 13, 21, 3, 6, 20, 3 };
+    nextLargerElement(arr);
+    std::cout<< std::endl;
+    nextLargerElement2(arr);
+    std::cout<< std::endl;
+    return 0;
+}
+
+/*
+21 -1 6 20 -1 -1 
+21 -1 6 20 -1 -1 
+*/
+
 void nextSmallerElement(std::vector<int> &arr)
 {
     std::stack<int> stk;
@@ -1026,21 +1090,15 @@ void nextSmallerElement(std::vector<int> &arr)
         std::cout << val << " ";
 }
 
-int main14()
+int main21()
 {
     std::vector<int> arr = { 13, 21, 3, 6, 20, 3 };
-    nextLargerElement(arr);
-    std::cout<< std::endl;
-    nextLargerElement2(arr);
-    std::cout<< std::endl;
     nextSmallerElement(arr);
     std::cout<< std::endl;
     return 0;
 }
 
 /*
-21 -1 6 20 -1 -1 
-21 -1 6 20 -1 -1 
 3 3 -1 3 3 -1 
 */
 
@@ -1073,7 +1131,7 @@ void nextLargerElementCircular(std::vector<int> &arr)
         std::cout << val << " ";
 }
 
-int main15()
+int main22()
 {
     std::vector<int> arr = { 6, 3, 9, 8, 10, 2, 1, 15, 7 };
     nextLargerElementCircular(arr);
@@ -1084,7 +1142,6 @@ int main15()
 /*
 9 9 10 10 15 15 15 -1 9 
 */
-
 
 void rottenFruitUtil(std::vector<std::vector<int>> &arr, int maxCol,
                      int maxRow, int currCol, int currRow, 
@@ -1139,7 +1196,7 @@ int rottenFruit(std::vector<std::vector<int>> &arr, int maxCol, int maxRow)
     return maxDay;
 }
 
-int main16()
+int main23()
 {
     std::vector<std::vector<int>> arr = { 
         { 1, 0, 1, 1, 0 }, 
@@ -1193,7 +1250,7 @@ int stepsOfKnight(int size, int srcX, int srcY, int dstX, int dstY)
     return retval;
 }
 
-int main17()
+int main24()
 {
     std::cout << "stepsOfKnight :: " << stepsOfKnight(20, 10, 10, 20, 20) << std::endl;
     return 0;
@@ -1250,7 +1307,7 @@ void distNearestFill(std::vector<std::vector<int>> &arr, int maxCol, int maxRow)
     }
 }
 
-int main18()
+int main25()
 {
     std::vector<std::vector<int>> arr= { 
         { 1, 0, 1, 1, 0 }, 
@@ -1315,7 +1372,7 @@ int findLargestIsland(std::vector<std::vector<int>> &arr, int maxCol, int maxRow
     return maxVal;
 }
 
-int main19()
+int main26()
 {
     std::vector<std::vector<int>> arr = { 
         { 1, 0, 1, 1, 0 }, 
@@ -1387,7 +1444,7 @@ int findCelebrity2(std::vector<std::vector<int>> &relation, int count)
     return first;
 }
 
-int main20()
+int main27()
 {
     std::vector<std::vector<int>> arr = { 
         { 1, 0, 1, 1, 0 }, 
@@ -1406,47 +1463,10 @@ Celebrity : 3
 Celebrity : 3
 */
 
-int isMinHeap(std::vector<int> &arr)
-{
-    int size = arr.size();
-    for (int i = 0; i <= (size - 2) / 2; i++)
-    {
-        if (2 * i + 1 < size)
-        {
-            if (arr[i] > arr[2 * i + 1])
-                return 0;
-        }
-        if (2 * i + 2 < size)
-        {
-            if (arr[i] > arr[2 * i + 2])
-                return 0;
-        }
-    }
-    return 1;
-}
 
-int isMaxHeap(std::vector<int> &arr)
-{
-    int size = arr.size();
-    for (int i = 0; i <= (size - 2) / 2; i++)
-    {
-        if (2 * i + 1 < size)
-        {
-            if (arr[i] < arr[2 * i + 1])
-                return 0;
-        }
-        if (2 * i + 2 < size)
-        {
-            if (arr[i] < arr[2 * i + 2])
-                return 0;
-        }
-    }
-    return 1;
-}
 
 int main()
 {
-    /*
     main1();
     main2();
     main3();
@@ -1459,15 +1479,20 @@ int main()
     main10();
     main11();
     main12();
-    
     main13();
     main14();
     main15();
     main16();
-    */
     main17();
     main18();
     main19();
     main20();
+    main21();
+    main22();
+    main23();
+    main24();
+    main25();
+    main26();
+    main27();
     return 0;
 }

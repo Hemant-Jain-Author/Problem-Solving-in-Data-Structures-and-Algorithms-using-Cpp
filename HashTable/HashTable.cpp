@@ -1,9 +1,5 @@
 #include "HashTable.h"
-
-int HashTable::EMPTY_NODE = 0;
-int HashTable::LAZY_DELETED = 1;
-int HashTable::FILLED_NODE = 2;
-
+ 
 HashTable::HashTable(int tSize)
 {
     tableSize = tSize;
@@ -42,20 +38,8 @@ bool HashTable::add(int key, int value)
 
 bool HashTable::add(int value)
 {
-    int hashValue = computeHash(value);
-    for (int i = 0; i < tableSize; i++)
-    {
-        if (Flag[hashValue] == EMPTY_NODE || Flag[hashValue] == LAZY_DELETED)
-        {
-            Key[hashValue] = value;
-            Value[hashValue] = value;
-            Flag[hashValue] = FILLED_NODE;
-            return true;
-        }
-        hashValue += resolverFun(i);
-        hashValue %= tableSize;
-    }
-    return false;
+    int key = value;
+    return add(key, value);
 }
 
 bool HashTable::find(int key)
@@ -121,7 +105,7 @@ bool HashTable::remove(int key)
 
 void HashTable::print()
 {
-    std::cout << "\nValues Stored in HashTable are::" << std::endl;
+    std::cout << "Values Stored in HashTable are::" << std::endl;
     for (int i = 0; i < tableSize; i++)
     {
         if (Flag[i] == FILLED_NODE)

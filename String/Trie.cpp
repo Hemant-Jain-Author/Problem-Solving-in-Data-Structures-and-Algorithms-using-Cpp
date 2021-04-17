@@ -26,18 +26,12 @@ void Trie::add(const std::string &s)
 Trie::Node *Trie::add(Node *curr, const std::string &str, int index)
 {
     if (curr == nullptr)
-    {
         curr = new Node();
-    }
 
     if (str.length() == index)
-    {
         curr->isLastChar = true;
-    }
     else
-    {
         curr->child[str[index] - 'a'] = add(curr->child[str[index] - 'a'], str, index + 1);
-    }
 
     return curr;
 }
@@ -46,6 +40,7 @@ void Trie::remove(const std::string &s)
 {
     if (s == "")
         return;
+
     std::string str = s;
     transform(str.begin(), str.end(), str.begin(), ::tolower);
     remove(root, str, 0);
@@ -58,10 +53,7 @@ void Trie::remove(Node *curr, const std::string &str, int index)
 
     if (str.length() == index)
     {
-        if (curr->isLastChar)
-        {
-            curr->isLastChar = false;
-        }
+        curr->isLastChar = false;
         return;
     }
 
@@ -81,13 +73,11 @@ bool Trie::find(const std::string &s)
 bool Trie::find(Node *curr, const std::string &str, int index)
 {
     if (curr == nullptr)
-    {
         return false;
-    }
+
     if (str.length() == index)
-    {
         return curr->isLastChar;
-    }
+    
     return find(curr->child[str[index] - 'a'], str, index + 1);
 }
 

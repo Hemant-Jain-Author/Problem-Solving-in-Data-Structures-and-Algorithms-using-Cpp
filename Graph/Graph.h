@@ -10,13 +10,11 @@
 
 class Graph
 {
-
 private:
     struct Edge
     {
         int destination;
         int cost;
-
         Edge(int dst, int cst);
     };
 
@@ -37,7 +35,6 @@ public:
     virtual void addUndirectedEdge(int source, int destination, int cost); // bi
     virtual void addUndirectedEdge(int source, int destination); // bi directional edge
     virtual void print();
-
     // Other Methods of graph.
 
     void dfsRec(int index, std::vector<bool> &visited);
@@ -57,11 +54,11 @@ public:
     void transitiveClosure(std::vector<std::vector<int>> &tc);
     int bfsDistance(int source, int dest);
     void bfsLevelNode(int source);
-    bool isCyclePresentUndirecteddfs(int index, int parentIndex, std::vector<bool>& visited);
+    bool isCyclePresentUndirectedDFS(int index, int parentIndex, std::vector<bool>& visited);
     bool isCyclePresentUndirected();
-    bool isCyclePresentdfs(int index, std::vector<bool>& visited, std::vector<int>& marked);
+    bool isCyclePresentDFS(int index, std::vector<bool>& visited, std::vector<int>& marked);
     bool isCyclePresent();
-    bool isCyclePresentdfsColor(int index, std::vector<int>& visited);
+    bool isCyclePresentDFSColor(int index, std::vector<int>& visited);
     bool isCyclePresentColor();
     void transposeGraph(Graph&);
     bool isConnectedUndirected();

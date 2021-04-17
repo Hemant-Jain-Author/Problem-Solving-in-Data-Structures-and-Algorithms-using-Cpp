@@ -32,24 +32,16 @@ StringTree::Node *StringTree::add(const std::string &value, Node *curr)
 {
     int compare;
     if (curr == nullptr)
-    {
         curr = new Node(value);
-    }
     else
     {
         compare = curr->value.compare(value);
         if (compare == 0)
-        {
             curr->count++;
-        }
         else if (compare == 1)
-        {
             curr->lChild = add(value, curr->lChild);
-        }
         else
-        {
             curr->rChild = add(value, curr->rChild);
-        }
     }
     return curr;
 }
@@ -80,24 +72,17 @@ bool StringTree::find(Node *curr, const std::string &value)
 {
     int compare;
     if (curr == nullptr)
-    {
         return false;
-    }
+
     compare = curr->value.compare(value);
     if (compare == 0)
-    {
         return true;
-    }
     else
     {
         if (compare == 1)
-        {
             return find(curr->lChild, value);
-        }
         else
-        {
             return find(curr->rChild, value);
-        }
     }
 }
 
@@ -111,25 +96,17 @@ int StringTree::frequency(Node *curr, const std::string &value)
 {
     int compare;
     if (curr == nullptr)
-    {
         return 0;
-    }
 
     compare = curr->value.compare(value);
     if (compare == 0)
-    {
         return curr->count;
-    }
     else
     {
         if (compare > 0)
-        {
             return frequency(curr->lChild, value);
-        }
         else
-        {
             return frequency(curr->rChild, value);
-        }
     }
 }
 
@@ -139,12 +116,10 @@ int main()
     tt->add("banana");
     tt->add("apple");
     tt->add("mango");
-
     std::cout << "find apple : "  << tt->find("apple") << std::endl;
     std::cout << "find banana : "  << tt->find("banana") << std::endl;
     std::cout << "find grapes : "  << tt->find("grapes") << std::endl;
     std::cout << "find mango : "  << tt->find("mango") << std::endl;
-
     return 0;
 }
 

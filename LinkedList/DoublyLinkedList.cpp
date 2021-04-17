@@ -17,8 +17,8 @@ int main()
     ll->print();
     ll->removeHead();
     ll->print();
-    std::cout << "Search List :: " << ll->searchList(5) << std::endl;
-    std::cout << "Search List :: " << ll->searchList(1) << std::endl;
+    std::cout << "Search List :: " << ll->find(5) << std::endl;
+    std::cout << "Search List :: " << ll->find(1) << std::endl;
     ll->freeList();
     ll->print();
     return 0;
@@ -169,7 +169,7 @@ bool DoublyLinkedList::removeNode(int key)
     return false;
 }
 
-bool DoublyLinkedList::searchList(int key)
+bool DoublyLinkedList::find(int key)
 {
     Node *temp = head;
     while (temp != nullptr)
@@ -216,7 +216,6 @@ void DoublyLinkedList::sortedInsert(int value)
         head = temp;
         tail = temp;
     }
-
     if (head->value <= value) // at the begining
     {
         temp->next = head;
@@ -228,7 +227,6 @@ void DoublyLinkedList::sortedInsert(int value)
     {
         curr = curr->next;
     }
-
     if (curr->next == nullptr) // at the end
     {
         tail = temp;

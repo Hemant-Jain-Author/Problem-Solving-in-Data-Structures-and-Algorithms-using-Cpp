@@ -1,8 +1,5 @@
-#include <string>
 #include <iostream>
-
 #include <vector>
-#include <deque>
 #include <queue>
 
 int circularTour(std::vector<std::vector<int>> &arr, int n)
@@ -98,6 +95,7 @@ int main2()
 7
 Steps count :: 3
 */
+#include <deque>
 
 void maxSlidingWindows(std::vector<int> arr, int size, int k)
 {

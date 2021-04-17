@@ -1,20 +1,5 @@
 #include "QueueLL.h"
 
-int main()
-{
-    Queue que;
-    que.add(1);
-    que.add(2);
-    que.add(3);
-
-    for (int i = 0; i < 3; i++)
-        std::cout << que.remove() << " ";
-}
-
-/*
-1 2 3 
-*/
-
 Queue::Node::Node(int v, Node *n)
 {
     value = v;
@@ -78,3 +63,17 @@ void Queue::print()
     }
 }
 
+int main()
+{
+    Queue que;
+    que.add(1);
+    que.add(2);
+    que.add(3);
+
+    for (int i = 0; i < 3; i++)
+        std::cout << que.remove() << " ";
+}
+
+/*
+1 2 3 
+*/

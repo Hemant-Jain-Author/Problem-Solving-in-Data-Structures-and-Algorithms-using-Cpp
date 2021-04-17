@@ -9,12 +9,12 @@
 void printArray(std::vector<int> &data)
 {
     int count = data.size();
-    std::cout << "Values stored are : ";
+    std::cout << "[ ";
     for (int i = 0; i < count; i++)
     {
-        std::cout << " " << data[i];
+        std::cout << data[i] << " ";
     }
-    std::cout << std::endl;
+    std::cout << "]" << std::endl;
 }
 
 void swap(std::vector<int> &data, int x, int y)
@@ -39,9 +39,13 @@ int sumArray(std::vector<int> &data)
 int main1()
 {
     std::vector<int> data = { 1,2,3,4,5,6,7,8,9 };
-    std::cout << "sum of all the values in array:" << sumArray(data) << std::endl;
+    std::cout << "Sum of all the values in array: " << sumArray(data) << std::endl;
     return 0;
 }
+
+/*
+Sum of all the values in array: 45
+*/
 
 void function2()
 {
@@ -62,6 +66,14 @@ int main2()
     std::cout << "main line 2" << std::endl;
     return 0;
 }
+
+/*
+main line 1
+fun1 line 1
+fun2 line 1
+fun1 line 2
+main line 2
+*/
 
 int sequentialSearch(std::vector<int> &data, int value)
 {
@@ -105,12 +117,15 @@ int binarySearch(std::vector<int> &data, int value)
 int main3()
 {
     std::vector<int> arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-    std::cout << "Sum of values in array:" << sequentialSearch(arr, 7) << std::endl;
-    std::cout << "Sum of values in array:" << binarySearch(arr, 7) << std::endl;
+    std::cout << "Sequential Search: " << sequentialSearch(arr, 7) << std::endl;
+    std::cout << "Binary Search: " << binarySearch(arr, 7) << std::endl;
     return 0;
 }
 
-
+/*
+Sequential Search: 6
+Binary Search: 6
+*/
 
 void reverseArray(std::vector<int> &data, int start, int end)
 {
@@ -147,6 +162,9 @@ int main4()
     printArray(arr);
     return 0;
 }
+/*
+[ 1 2 3 4 5 6  ]
+*/
 
 int maxSubArraySum(std::vector<int> &data)
 {
@@ -166,11 +184,26 @@ int maxSubArraySum(std::vector<int> &data)
 
 int main5()
 {
-    std::vector<int> data = { 1,-2,3,4,-4,6,-14,8,2 };
+    std::vector<int> data = { 1,-2,3,4,-4,6,-4,8,2 };
     std::cout << "Max sub array sum :" << maxSubArraySum(data);
     return 0;
 }
 
+/*
+Max sub array sum :15
+*/
+
+
+
+void waveArray(std::vector<int> &arr)
+{
+    int size = arr.size();
+    std::sort(arr.begin(), arr.end());
+    for(int i = 0 ; i < size -1 ; i+= 2)
+    {
+        swap(arr, i, i+1);
+    }
+}
 void waveArray2(std::vector<int> &arr)
 {
     int size = arr.size();
@@ -188,23 +221,10 @@ void waveArray2(std::vector<int> &arr)
     }
 }
 
-void waveArray(std::vector<int> &arr)
-{
-    int size = arr.size();
-    std::sort(arr.begin(), arr.end());
-    printArray(arr);
-    for(int i = 0 ; i < size -1 ; i+= 2)
-    {
-        swap(arr, i, i+1);
-    }
-}
-
-
 /* Testing code */
 int main6()
 {
     std::vector<int> arr = { 8, 1, 2, 3, 4, 5, 6, 4, 2 };
-    printArray(arr);;
     waveArray(arr);
     printArray(arr);;
     std::vector<int> arr2 = { 8, 1, 2, 3, 4, 5, 6, 4, 2 };
@@ -212,8 +232,11 @@ int main6()
     printArray(arr2);
     return 0;
 }
-
-void indexArray(std::vector<int> arr, int size)
+/*
+[ 2 1 3 2 4 4 6 5 8 ]
+[ 8 1 3 2 5 4 6 2 4 ]
+*/
+void indexArray(std::vector<int>& arr, int size)
 {
     for (int i = 0; i < size; i++)
     {
@@ -236,17 +259,18 @@ void indexArray(std::vector<int> arr, int size)
     }
 }
 
-void indexArray2(std::vector<int> arr, int size)
+void indexArray2(std::vector<int>& arr, int size)
 {
-    int temp;
+    int temp, temp2;
     for (int i = 0; i < size; i++)
     {
         while (arr[i] != -1 && arr[i] != i)
         {
             /* swap arr[i] and arr[arr[i]] */
             temp = arr[i];
+            temp2 = arr[i];
             arr[i] = arr[temp];
-            arr[temp] = temp;
+            arr[temp] = temp2;
         }
     }
 }
@@ -264,7 +288,10 @@ int main7()
     printArray(arr2);
     return 0;
 }
-
+/*
+[ 8 -1 6 1 9 3 2 7 4 -1 ]
+[ 8 -1 6 1 9 3 2 7 4 -1 ]
+*/
 void sort1toN(std::vector<int> &arr, int size)
 {
     int curr, value, next;
@@ -309,6 +336,10 @@ int main8()
     printArray(arr2);
     return 0;
 }
+/*
+[ 1 2 3 4 5 6 7 8 9 10 ]
+[ 1 2 3 4 5 6 7 8 9 10 ]
+*/
 
 int smallestPositiveMissingNumber(std::vector<int> &arr, int size)
 {
@@ -397,12 +428,19 @@ int main9()
     std::vector<int> arr = { 8, 5, 6, 1, 9, 11, 2, 7, 4, 10 };
     int size = arr.size();
 
-    std::cout << "Max sub array sum :" << smallestPositiveMissingNumber(arr, size) << std::endl;
-    std::cout << "Max sub array sum :" << smallestPositiveMissingNumber2(arr, size) << std::endl;
-    std::cout << "Max sub array sum :" << smallestPositiveMissingNumber3(arr, size) << std::endl;
-    std::cout << "Max sub array sum :" << smallestPositiveMissingNumber4(arr, size) << std::endl;
+    std::cout << "Smallest Positive Missing Number: " << smallestPositiveMissingNumber(arr, size) << std::endl;
+    std::cout << "Smallest Positive Missing Number: " << smallestPositiveMissingNumber2(arr, size) << std::endl;
+    std::cout << "Smallest Positive Missing Number: " << smallestPositiveMissingNumber3(arr, size) << std::endl;
+    std::cout << "Smallest Positive Missing Number: " << smallestPositiveMissingNumber4(arr, size) << std::endl;
     return 0;
 }
+
+/*
+Smallest Positive Missing Number: 3
+Smallest Positive Missing Number: 3
+Smallest Positive Missing Number: 3
+Smallest Positive Missing Number: 3
+*/
 
 void maxMinArr(std::vector<int> &arr, int size)
 {
@@ -456,6 +494,11 @@ int main10()
     return 0;
 }
 
+/*
+[ 7 1 6 2 5 3 4 ]
+[ 7 1 6 2 5 3 4 ]
+*/
+
 int maxCircularSum(std::vector<int> &arr, int size)
 {
     int sumAll = 0;
@@ -486,6 +529,10 @@ int main11()
     std::cout << "MaxCirculrSm: " << maxCircularSum(arr, arr.size()) << std::endl;
     return 0;
 }
+
+/*
+MaxCirculrSm: 290
+*/
 
 int arrayIndexMaxDiff(std::vector<int> &arr, int size)
 {
@@ -560,10 +607,13 @@ int main12()
     std::vector<int> arr = { 33, 9, 10, 3, 2, 60, 30, 33, 1 };
     std::cout << "ArrayIndexMaxDiff : " << arrayIndexMaxDiff(arr, arr.size()) << std::endl;
     std::cout << "ArrayIndexMaxDiff : " << arrayIndexMaxDiff2(arr, arr.size()) << std::endl;
-    //  std::cout << "ArrayIndexMaxDiff : " + ArrayIndexMaxDiff3(arr, arr.length));
     return 0;
 }
 
+/*
+ArrayIndexMaxDiff : 6
+ArrayIndexMaxDiff : 6
+*/
 
 int maxPathSum(int arr1[], int size1, int arr2[], int size2)
 {
@@ -616,6 +666,9 @@ int main13()
     return 0;
 }
 
+/*
+Max Path Sum :: 201
+*/
 
 int factorial(int i)
 {
@@ -655,9 +708,7 @@ void printInt(int number, int const base)
 void towerOfHanoi(int num, char src, char dst, char temp)
 {
     if (num < 1)
-    {
         return;
-    }
 
     towerOfHanoi(num - 1, src, temp, dst);
     std::cout << "Move " << num << " disk  from peg " << src << " to peg " << dst << std::endl;
@@ -666,12 +717,21 @@ void towerOfHanoi(int num, char src, char dst, char temp)
 
 int main14()
 {
-    int num = 4;
+    int num = 3;
     std::cout << "The sequence of moves involved in the Tower of Hanoi are :" << std::endl;
     towerOfHanoi(num, 'A', 'C', 'B');
     return 0;
 }
-
+/*
+The sequence of moves involved in the Tower of Hanoi are :
+Move 1 disk  from peg A to peg C
+Move 2 disk  from peg A to peg B
+Move 1 disk  from peg C to peg B
+Move 3 disk  from peg A to peg C
+Move 1 disk  from peg B to peg A
+Move 2 disk  from peg B to peg C
+Move 1 disk  from peg A to peg C
+*/
 int gcd(int m, int n)
 {
     if (m < n)
@@ -684,7 +744,6 @@ int gcd(int m, int n)
     }
     return gcd(n, m % n);
 }
-
 
 int fibonacci(int n)
 {
@@ -722,8 +781,14 @@ int main15()
     permutation(data, 0, 3);
     return 0;
 }
-
-
+/*
+[ 0 1 2 ]
+[ 0 2 1 ]
+[ 1 0 2 ]
+[ 1 2 0 ]
+[ 2 1 0 ]
+[ 2 0 1 ]
+*/
 
 void twoDArrayExample()
 {

@@ -1,34 +1,66 @@
 #include "HeapInt.h"
 
-int main()
+int main1()
 {
-    std::vector<int> a = { 1, 9, 6, 7, 8, -1, 2, 4, 5, 3 };
-    Heap hp = Heap(a, true);
+    Heap hp = Heap(true);
+    hp.add(1);
+    hp.add(9);
+    hp.add(6);
+    hp.add(7);
     hp.print();
-    std::cout << std::endl;
-
-    std::cout << "value pop from heap :: ";
-    for (int i = 0; i < a.size(); i++)
-    {
-        std::cout << hp.remove() << " " ;
+    while(hp.isEmpty() == false)  {
+        std::cout << hp.remove() << " " ; 
     }
     std::cout << std::endl;
+    return 0;
+}
+/*
+Printing content of heap :: 1 7 6 9 
+1 6 7 9 
+*/
+int main2()
+{
+    std::vector<int> a = {1, 0, 2, 4, 5, 3};
+    Heap hp = Heap(a, true);// Min Heap
+    hp.print();
+    while(hp.isEmpty() == false)  {
+        std::cout << hp.remove() << " " ; 
+    }
+    std::cout << std::endl;
+    return 0;
+}  
+/*
+Printing content of heap :: 0 1 2 4 5 3 
+0 1 2 3 4 5 
+*/
 
+int main()
+{
+    std::vector<int> a = {1, 0, 2, 4, 5, 3};
+    Heap hp = Heap(a, false);// Max Heap
+    hp.print();
+    while(hp.isEmpty() == false)  {
+        std::cout << hp.remove() << " " ; 
+    }
+    std::cout << std::endl;
+    return 0;
+}  
+/*
+Printing content of heap :: 0 1 2 4 5 3 
+0 1 2 3 4 5 
+*/
 
+int main4()
+{
+    std::vector<int> a = { 1, 9, 6, 7, 8, -1, 2, 4, 5, 3 };
     Heap::heapSort(a, true);
     std::cout << "value after heap sort :: ";
     for (int i = 0; i < a.size(); i++)
-    {
         std::cout << a[i] << " ";
-    }
     std::cout << std::endl;
-
     return 0;
 }
-
 /*
-Printing content of heap :: -1 3 1 4 8 6 2 7 5 9 
-value pop from heap :: -1 1 2 3 4 5 6 7 8 9 
 value after heap sort :: -1 1 2 3 4 5 6 7 8 9 
 */
 
@@ -51,6 +83,12 @@ Heap::Heap(std::vector<int> &array_in, bool isMin)
         proclateDown(i);
     }
 }
+
+int Heap::length()
+{
+    return arr.size();
+}
+
 
 bool Heap::compare(int first, int second)
 {
@@ -145,7 +183,7 @@ void Heap::print()
     {
         std::cout << arr[i] << " ";
     }
-
+    std::cout << std::endl;
 }
 
 bool Heap::isMinHeapArr(std::vector<int> &arr, int size)

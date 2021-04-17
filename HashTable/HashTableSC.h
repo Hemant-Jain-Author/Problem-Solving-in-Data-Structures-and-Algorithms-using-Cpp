@@ -21,7 +21,6 @@ public:
     HashTableSC();
     virtual void add(int value);
     virtual void add(int key, int value);
-
     virtual bool remove(int key);
     virtual void print();
     virtual bool find(int key);

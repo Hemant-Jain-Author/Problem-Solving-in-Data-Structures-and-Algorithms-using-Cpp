@@ -21,7 +21,7 @@ public:
     virtual int top();
     virtual void push(int value);
     virtual int pop();
-    virtual int gPop();// Self growing stack capacity.
-    virtual void gPush(int value); // Self reducing stack capacity.
+    virtual void gPush(int value); // Self growing stack capacity.
+    virtual int gPop(); // Self reducing stack capacity.
     virtual void print();
 };

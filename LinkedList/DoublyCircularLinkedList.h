@@ -23,14 +23,14 @@ public:
     DoublyCircularLinkedList();
     virtual int size();
     virtual bool isEmpty();
-    virtual int peekHead();
     virtual void addHead(int value);
     virtual int removeHead();
     // Other Methods.
 
+    virtual int peekHead();
     virtual void addTail(int value);
     virtual int removeTail();
-    virtual bool searchList(int key);
+    virtual bool find(int key);
     virtual void freeList();
     virtual void print();
 };

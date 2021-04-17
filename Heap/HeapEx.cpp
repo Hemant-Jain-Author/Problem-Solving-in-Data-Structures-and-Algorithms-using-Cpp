@@ -15,9 +15,7 @@ int main1()
     int value;
 
     for (int i : arr)
-    {
         pq.push(i);
-    }
 
     std::cout << "Dequeue elements of Priority Queue ::";
     while (pq.empty() == false)
@@ -26,6 +24,7 @@ int main1()
         pq.pop();
         std::cout << " " << value;
     }
+    std::cout << std::endl;
     return 0;
 }
 
@@ -95,10 +94,11 @@ int main2()
     std::cout << "Kth Smallest :: " << KthSmallest(arr, 8, 3) << std::endl;
     int arr2[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
     std::cout << "Kth Smallest :: " << KthSmallest2(arr2, 8, 3) << std::endl;
+
     int arr3[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
     std::cout << "isMaxHeap :: " << isMaxHeap(arr3, 8) << std::endl;
-    int arr4[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
 
+    int arr4[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
     std::cout << "isMinHeap :: " << isMinHeap(arr4, 8) << std::endl;
     std::sort(arr4, arr4 + sizeof(arr4)/sizeof(int));
     std::cout << "isMinHeap :: " << isMinHeap(arr4, 8) << std::endl;
@@ -264,9 +264,7 @@ void sortK(int arr[], int size, int k)
     std::priority_queue<int, std::vector<int>, std::greater<int>> pq;;
     int i = 0;
     for (i = 0; i < k; i++)
-    {
         pq.push(arr[i]);
-    }
 
     int* output = new int[size];
     int index = 0;
@@ -284,9 +282,7 @@ void sortK(int arr[], int size, int k)
     }    
 
     for (i = 0; i < size; i++)
-    {
         arr[i] = output[i];
-    }
 }
 
 // Testing Code
@@ -298,7 +294,6 @@ int main5()
     sortK(arr, size, k);
     for(auto i =0 ; i< size; i++)
         std::cout << arr[i] << " ";
-
     return 0;
 }
 
@@ -413,9 +408,7 @@ int JoinRopes2(int ropes[], int size)
     std::priority_queue<int, std::vector<int>, std::greater<int>> pq;;
     int i = 0;
     for (i = 0; i < size; i++)
-    {
         pq.push(ropes[i]);
-    }
 
     int total = 0;
     int value = 0;
@@ -487,3 +480,14 @@ int main()
     return 0;
 }
 */
+
+int main()
+{
+    main1();
+    main2();
+    main3();
+    main4();
+    main5();
+    main6();
+    return 0;
+}

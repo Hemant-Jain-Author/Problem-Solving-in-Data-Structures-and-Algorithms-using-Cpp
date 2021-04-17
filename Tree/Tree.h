@@ -7,9 +7,10 @@
 #include <queue>
 #include <exception>
 #include <limits>
+
 class Tree
 {
-private:
+public:
     struct Node
     {
         int value;
@@ -18,22 +19,20 @@ private:
         Node(int v, Node *l, Node *r);
         Node(int v);
     };
-
     Node *root;
 
 public:
     Tree();
     // Other Tree methods.
 
-
     virtual void levelOrderBinaryTree(int arr[], int size);
 
     virtual Node *levelOrderBinaryTree(int arr[], int start, int size);
 
-    virtual void insertNode(int value);
+    virtual void insert(int value);
 
 private:
-    Node *insertNode(int value, Node *node);
+    Node *insert(int value, Node *node);
 
 public:
     virtual void printPreOrder();
@@ -92,10 +91,10 @@ public:
 
     virtual void freeTree(Node* node);
 
-    virtual void deleteNode(int value);
+    virtual void remove(int value);
 
 private:
-    Node *deleteNode(Node *node, int value);
+    Node *remove(Node *node, int value);
 
 public:
     virtual int treeDepth();
@@ -107,7 +106,7 @@ public:
     virtual bool isEqual(Tree *T2);
 
 private:
-    bool identical(Node *node1, Node *node2);
+    bool isEqual(Node *node1, Node *node2);
 
 public:
     virtual Node *ancestor(int first, int second);
@@ -174,8 +173,9 @@ public:
 
     virtual Node *treeToListRec();
 
-private:
+public:
     Node *treeToListRec(Node *curr);
+    void  printDLL(Node *root);
 
 public:
     virtual void printAllPath();
@@ -216,10 +216,10 @@ private:
 
 public:
     virtual bool searchBT(Node *root, int value);
+    bool searchBT(int value);
+    virtual void createBinarySearchTree(int arr[], int size);
 
-    virtual void createBinaryTree(int arr[], int size);
-
-    virtual Node *createBinaryTree(int arr[], int start, int end);
+    virtual Node *createBinarySearchTree(int arr[], int start, int end);
 
     virtual void printLevelOrderLineByLine();
     virtual void printLevelOrderLineByLine2();

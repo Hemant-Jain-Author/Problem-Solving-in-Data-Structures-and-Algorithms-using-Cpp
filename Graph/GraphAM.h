@@ -9,17 +9,13 @@
 
 class GraphAM
 {
-
 private:
-
     int count;
     std::vector<std::vector<int>> adj;
-
     struct Edge
     {
         int dest;
         int cost;
-
         Edge(int dst, int cst)
         {
             dest = dst;
@@ -36,9 +32,14 @@ private:
 
 public:
     GraphAM(int cnt);
+    void addDirectedEdge(int src, int dst);
     void addDirectedEdge(int src, int dst, int cost);
+    void addUndirectedEdge(int src, int dst);
     void addUndirectedEdge(int src, int dst, int cost);
     void print();
+    //Other Methods.
+};
+
     void dijkstra(int source);
     void prims();
     bool hamiltonianPath();

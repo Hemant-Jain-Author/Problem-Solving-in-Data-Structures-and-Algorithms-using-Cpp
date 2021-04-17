@@ -29,7 +29,7 @@ public:
 
 
     virtual void addTail(int value);
-    virtual bool searchList(int data);
+    virtual bool find(int data);
     virtual bool deleteNode(int delValue);
     virtual void deleteNodes(int delValue);
     virtual Node *reverseRecurseUtil(Node *currentNode, Node *nextNode);
@@ -39,6 +39,8 @@ public:
     virtual LinkedList* copyList();
     virtual bool compareList(LinkedList* ll);
     virtual bool compareList(Node *head1, Node *head2);
+    virtual bool compareList2(LinkedList* ll);
+    virtual bool compareList2(Node *head1, Node *head2);
     virtual int findLength();
     virtual int nthNodeFromBegining(int index);
     virtual int nthNodeFromEnd(int index);

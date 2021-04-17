@@ -22,14 +22,14 @@ public:
     DoublyLinkedList();
     virtual int size();
     virtual bool isEmpty();
-    virtual int peek();
     virtual void addHead(int value);
     virtual int removeHead();
     // Other methods.
 
+    virtual int peek();
     virtual void addTail(int value);
     virtual bool removeNode(int key);
-    virtual bool searchList(int key);
+    virtual bool find(int key);
     virtual void freeList();
     virtual void print();
     virtual void sortedInsert(int value);

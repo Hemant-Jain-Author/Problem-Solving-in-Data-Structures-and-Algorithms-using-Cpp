@@ -188,14 +188,12 @@ int main()
     std::cout << "N = 100, Number of instructions O(n^3):: " << fun6(100) << std::endl;
     std::cout << "N = 100, Number of instructions O(n^2):: " << fun7(100) << std::endl;
     std::cout << "N = 100, Number of instructions O(n^(3/2)):: " << fun8(100) << std::endl;
-    std::cout << "N = 100, Number of instructions O(log(n)):: " << fun9(100) << std::endl;
+    std::cout << "N = 100, Number of instructions O(n):: " << fun9(100) << std::endl;
     std::cout << "N = 100, Number of instructions O(n^2):: " << fun10(100) << std::endl;
     std::cout << "N = 100, Number of instructions O(n^3):: " << fun11(100) << std::endl;
     std::cout << "N = 100, Number of instructions O(n):: " << fun12(100) << std::endl;
     std::cout << "N = 100, Number of instructions O(n):: " << fun13(100) << std::endl;
-
     return 0;
-
 }
 /*
 N = 100, Number of instructions O(n):: 100
@@ -206,7 +204,7 @@ N = 100, Number of instructions O(log(n)):: 7
 N = 100, Number of instructions O(n^3):: 1000000
 N = 100, Number of instructions O(n^2):: 20000
 N = 100, Number of instructions O(n^(3/2)):: 1000
-N = 100, Number of instructions O(log(n)):: 197
+N = 100, Number of instructions O(n):: 197
 N = 100, Number of instructions O(n^2):: 4950
 N = 100, Number of instructions O(n^3):: 166650
 N = 100, Number of instructions O(n):: 100

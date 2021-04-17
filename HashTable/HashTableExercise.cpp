@@ -24,6 +24,24 @@ bool isAnagram(std::string &str1, std::string &str2)
     return (cm->size() == 0);
 }
 
+/* Testing Code */
+int main1()
+{
+    std::string var1 = "hello";
+    std::string var2 = "elloh";
+    std::string var3 = "world";
+
+    std::cout << "isAnagram : " << isAnagram(var1, var2) << std::endl;
+    std::cout << "isAnagram : " << isAnagram(var1, var3) << std::endl;
+
+    return 0;
+}
+
+/*
+isAnagram : 1
+isAnagram : 0
+*/
+
 void removeDuplicate(std::string &str)
 {
     int index = 0;
@@ -39,6 +57,21 @@ void removeDuplicate(std::string &str)
     }
     str[index] = '\0';
 }
+
+/* Testing Code */
+int main2()
+{
+    std::string var1 = "hello";
+    removeDuplicate(var1);
+    for (auto var : var1)
+        std::cout << var;
+    std::cout << std::endl;
+    return 0;
+}
+
+/*
+helo
+*/
 
 int findMissing(std::vector<int> &arr, int start, int end)
 {
@@ -58,6 +91,18 @@ int findMissing(std::vector<int> &arr, int start, int end)
     return std::numeric_limits<int>::max();
 }
 
+/* Testing Code */
+int main3()
+{
+    std::vector<int> arr = { 1, 2, 3, 5, 6, 7, 8, 9, 10 };
+    std::cout << "Missing Number is :: " << findMissing(arr, 1, 10) << std::endl;
+    return 0;
+}
+
+/*
+Missing Number is :: 4
+*/
+
 void printRepeating(std::vector<int> &arr)
 {
     std::unordered_set<int> hs;
@@ -76,6 +121,18 @@ void printRepeating(std::vector<int> &arr)
     }
     std::cout << std::endl;
 }
+
+/* Testing Code */
+int main4()
+{
+    std::vector<int> arr1 = { 1, 2, 3, 4, 4, 5, 6, 7, 8, 9, 1 };
+    printRepeating(arr1);
+    return 0;
+}
+
+/*
+Repeating elements are:4  1  
+*/
 
 void printFirstRepeating(std::vector<int> &arr)
 {
@@ -98,6 +155,18 @@ void printFirstRepeating(std::vector<int> &arr)
     }
 }
 
+/* Testing Code */
+int main5()
+{
+    std::vector<int> arr1 = { 1, 2, 3, 4, 4, 5, 6, 7, 8, 9, 1 };
+    printFirstRepeating(arr1);
+    return 0;
+}
+
+/*
+First Repeating number is : 1
+*/
+
 int hornerHash(std::vector<char> &key, int tableSize)
 {
     int size = key.size();
@@ -112,31 +181,10 @@ int hornerHash(std::vector<char> &key, int tableSize)
 
 int main()
 {
-    std::string var1 = "hello";
-    std::string var2 = "elloh";
-    std::string var3 = "world";
-
-    std::cout << "isAnagram : " << isAnagram(var1, var2) << std::endl;
-    std::cout << "isAnagram : " << isAnagram(var1, var3) << std::endl;
-
-    removeDuplicate(var1);
-    for (auto var : var1)
-        std::cout << var;
-    std::cout << std::endl;
-
-    std::vector<int> arr = { 1, 2, 3, 5, 6, 7, 8, 9, 10 };
-    std::cout << "Missing Number is :: " << findMissing(arr, 1, 10) << std::endl;
-
-    std::vector<int> arr1 = { 1, 2, 3, 4, 4, 5, 6, 7, 8, 9, 1 };
-    printRepeating(arr1);
-    printFirstRepeating(arr1);
+    main1();
+    main2();
+    main3();
+    main4();
+    main5();
     return 0;
 }
-/*
-isAnagram : 1
-isAnagram : 0
-helo
-Missing Number is :: 4
-Repeating elements are:4  1  
-First Repeating number is : 1
-*/

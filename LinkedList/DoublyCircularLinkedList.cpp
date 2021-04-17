@@ -126,7 +126,7 @@ int DoublyCircularLinkedList::removeTail()
     return value;
 }
 
-bool DoublyCircularLinkedList::searchList(int key)
+bool DoublyCircularLinkedList::find(int key)
 {
     Node *temp = head;
     if (head == nullptr)
@@ -196,8 +196,8 @@ int main()
     ll->print();
     ll->removeHead();
     ll->print();
-    std::cout << "Search List :: " << ll->searchList(5) << std::endl;
-    std::cout << "Search List :: " << ll->searchList(1) << std::endl;
+    std::cout << "Search List :: " << ll->find(5) << std::endl;
+    std::cout << "Search List :: " << ll->find(1) << std::endl;
     ll->freeList();
     ll->print();
     

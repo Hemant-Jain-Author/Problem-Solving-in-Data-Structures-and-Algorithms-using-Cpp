@@ -5,21 +5,17 @@
 bool matchExpUtil(const std::string exp, const std::string str, int i, int j)
 {
     if (i == exp.size() && j == str.size())
-    {
         return true;
-    }
+
     if ((i == exp.size() && j != str.size()) || (i != exp.size() && j == str.size()))
-    {
         return false;
-    }
+    
     if (exp[i] == '?' || exp[i] == str[j])
-    {
         return matchExpUtil(exp, str, i + 1, j + 1);
-    }
+    
     if (exp[i] == '*')
-    {
         return matchExpUtil(exp, str, i + 1, j) || matchExpUtil(exp, str, i, j + 1) || matchExpUtil(exp, str, i + 1, j + 1);
-    }
+    
     return false;
 }
 
@@ -36,7 +32,7 @@ void main1()
 1
 */
 
-int match(const std::string &source, const std::string &pattern)
+bool match(const std::string &source, const std::string &pattern)
 {
     int iSource = 0;
     int iPattern = 0;
@@ -45,15 +41,13 @@ int match(const std::string &source, const std::string &pattern)
     for (iSource = 0; iSource < sourceLen; iSource++)
     {
         if (source[iSource] == pattern[iPattern])
-        {
             iPattern++;
-        }
+
         if (iPattern == patternLen)
-        {
-            return 1;
-        }
+            return true;
+
     }
-    return 0;
+    return false;
 }
 
 void main2()
@@ -122,18 +116,15 @@ bool isUniqueChar(const std::string &str)
     {
         char c = str[i];
         if ('A' <= c && 'Z' >= c)
-        {
             c = static_cast<char>(c - 'A');
-        }
         else if ('a' <= c && 'z' >= c)
-        {
             c = static_cast<char>(c - 'a');
-        }
         else
         {
             std::cout << "Unknown Char!" << std::endl;
             return false;
         }
+
         if (bitarr[c] != 0)
         {
             std::cout << "Duplicate detected!" << std::endl;
@@ -162,9 +153,8 @@ char toUpper(const char s)
 {
     char t;
     if (s >= 97 && s <= (97 + 25))
-    {
         t = static_cast<char>(s - 32);
-    }
+    
     return t;
 }
 
@@ -172,9 +162,8 @@ char toLower(const char s)
 {
     char t;
     if (s >= 65 && s <= (65 + 25))
-    {
         t = static_cast<char>(s + 32);
-    }
+    
     return t;
 }
 
@@ -182,13 +171,10 @@ char lowerUpper(const char s)
 {
     char t;
     if (s >= 97 && s <= (97 + 25))
-    {
         t = static_cast<char>(s - 32);
-    }
     else if (s >= 65 && s <= (65 + 25))
-    {
         t = static_cast<char>(s + 32);
-    }
+    
     return t;
 }
 
@@ -216,10 +202,10 @@ bool isPermutation(const std::string &s1, const std::string &s2)
         std::cout << "is permutation return false" << std::endl;
         return false;
     }
+    
     for (int i = 0; i < 256; i++)
-    {
         count[i] = 0;
-    }
+    
     for (int i = 0; i < length; i++)
     {
         char ch = s1[i];
@@ -286,9 +272,7 @@ int pow(const int x, const int n)
 {
     int value;
     if (n == 0)
-    {
-        return (1);
-    }
+        return 1;
     else if (n % 2 == 0)
     {
         value = pow(x, n / 2);
@@ -318,31 +302,19 @@ int myStrcmp(const std::string &a, const std::string &b)
     int len2 = b.length();
     int minlen = len1;
     if (len1 > len2)
-    {
         minlen = len2;
-    }
 
     while (index < minlen && a[index] == b[index])
-    {
         index++;
-    }
 
     if (index == len1 && index == len2)
-    {
         return 0;
-    }
     else if (len1 == index)
-    {
         return -1;
-    }
     else if (len2 == index)
-    {
         return 1;
-    }
     else
-    {
         return a[index] - b[index];
-    }
 }
 
 void main10()
@@ -426,16 +398,21 @@ void printAnagram(std::string &a, int max, int n)
             std::cout << ch;
         std::cout << std::endl;
     }
+    char temp;
     for (int i = -1; i < max - 1; i++)
     {
         if (i != -1)
         {
-            a[i] ^= a[max - 1] ^= a[i] ^= a[max - 1];
+            temp = a[i];
+            a[i] = a[max - 1]; 
+            a[max - 1] = temp;
         }
         printAnagram(a, max - 1, n);
         if (i != -1)
         {
-            a[i] ^= a[max - 1] ^= a[i] ^= a[max - 1];
+            temp = a[i];
+            a[i] = a[max - 1]; 
+            a[max - 1] = temp;        
         }
     }
 }

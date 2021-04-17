@@ -1,21 +1,5 @@
 #include "QueueUsingStack.h"
 
-int main()
-{
-    QueueUsingStack que;
-    que.add(1);
-    que.add(2);
-    que.add(3);
-
-    for (int i = 0; i < 3; i++)
-        std::cout << que.remove() << " ";
-    return 0;
-}
-
-/*
-1 2 3
-*/
-
 void QueueUsingStack::add(int value)
 {
     stk1.push(value);
@@ -42,3 +26,19 @@ int QueueUsingStack::remove()
     stk2.pop();
     return value;
 }
+
+int main()
+{
+    QueueUsingStack que;
+    que.add(1);
+    que.add(2);
+    que.add(3);
+
+    for (int i = 0; i < 3; i++)
+        std::cout << que.remove() << " ";
+    return 0;
+}
+
+/*
+1 2 3
+*/

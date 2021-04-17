@@ -12,18 +12,18 @@ int main()
     std::cout<< "Value at key 2 : " << ht.get(2) << std::endl;
 
     ht.remove(2);
-    std::cout<< "After deleting node with key 2.." << std::endl;
+    std::cout<< "After deleting node with key 2." << std::endl;
     std::cout<< "find key 2 : " << ht.find(2) << std::endl;
     return 0;
 }
 
 /*
-Printing for index [ 1 ] are :: (1,10)
-Printing for index [ 2 ] are :: (2,10)
-Printing for index [ 3 ] are :: (3,30)
+Printing for index [ 1 ] are :: (1,10) 
+Printing for index [ 2 ] are :: (2,10) 
+Printing for index [ 3 ] are :: (3,30) 
 find key 2 : 1
 Value at key 2 : 10
-After deleting node with key 2..
+After deleting node with key 2.
 find key 2 : 0
 */
 

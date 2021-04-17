@@ -1,6 +1,8 @@
 {
     "files.associations": {
+        "*.js": "bat",
         "sstream": "cpp",
-        "streambuf": "cpp"
+        "streambuf": "cpp",
+        "iostream": "cpp"
     }
 }

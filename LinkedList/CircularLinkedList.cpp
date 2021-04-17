@@ -148,11 +148,10 @@ bool CircularLinkedList::removeNode(int key)
         prev = curr;
         curr = curr->next;
     }
-
     return false;
 }
 
-bool CircularLinkedList::searchList(int data)
+bool CircularLinkedList::find(int data)
 {
     Node *temp = tail;
     for (int i = 0; i < length; i++)
@@ -198,8 +197,8 @@ int main()
     ll->print();
     ll->removeHead();
     ll->print();
-    std::cout << "Search List :: " << ll->searchList(5) << std::endl;
-    std::cout << "Search List :: " << ll->searchList(1) << std::endl;
+    std::cout << "Search List :: " << ll->find(5) << std::endl;
+    std::cout << "Search List :: " << ll->find(1) << std::endl;
     ll->removeNode(1);
     ll->print();
     ll->freeList();
