@@ -69,7 +69,6 @@ int main()
     que.add(1);
     que.add(2);
     que.add(3);
-
     for (int i = 0; i < 3; i++)
         std::cout << que.remove() << " ";
 }

@@ -1,17 +1,12 @@
-#include "InsertionSort.h"
+#include <vector>
 #include <iostream>
 
-InsertionSort::InsertionSort(std::vector<int> &data):
-    arr(data)
-{
-}
-
-bool InsertionSort::more(int value1, int value2)
+bool more(int value1, int value2)
 {
     return value1 > value2;
 }
 
-void InsertionSort::sort()
+void insertionSort(std::vector<int> &arr)
 {
     int size = arr.size();
     int temp, j;
@@ -29,8 +24,7 @@ void InsertionSort::sort()
 int main()
 {
     std::vector<int> data = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
-    InsertionSort is = InsertionSort(data);
-    is.sort();
+    insertionSort(data);
     for (int i = 0; i < data.size(); i++)
     {
         std::cout << data[i] << " ";

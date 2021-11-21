@@ -1,43 +1,76 @@
-#include "BucketSort.h"
+#include <vector>
+#include <algorithm>
 #include <iostream>
+#include <cmath>
 
-BucketSort::BucketSort(std::vector<int> &arr, int lowerRange, int upperRange):
-    data(arr)
+void bucketSort(std::vector<int> &arr, int maxValue, int numBucket)
 {
-    range = upperRange - lowerRange;
-    this->lowerRange = lowerRange;
+	int length = arr.size();
+	if (length == 0)
+	{
+		return;
+	}
+
+	// Create empty buckets
+	std::vector<std::vector<int>> bucket(numBucket);
+	for (int i = 0; i < numBucket; i++)
+		bucket.push_back(std::vector<int>());
+
+	int div = std::ceil(static_cast<double>(maxValue) / numBucket);
+
+	// Add elements into the buckets
+	for (int i = 0; i < length; i++)
+	{
+		if (arr[i] < 0 || arr[i] > maxValue)
+		{
+			std::cout << "Value out of range." << std::endl;
+			return;
+		}
+
+		int bucketIndex = (arr[i] / div);
+
+		// Maximum value will be assigned to last bucket.
+		if (bucketIndex >= numBucket)
+		{
+			bucketIndex = numBucket - 1;
+		}
+		bucket[bucketIndex].push_back(arr[i]);
+	}
+
+	// Sort the elements of each bucket.
+	for (int i = 0; i < numBucket; i++)
+		std::sort(bucket[i].begin(), bucket[i].end());
+
+	// Populate output from the sorted subarray.
+	int index = 0, count;
+	for (int i = 0; i < numBucket; i++)
+	{
+		std::vector<int> temp = bucket[i];
+		count = temp.size();
+		for (int j = 0; j < count; j++)
+		{
+			arr[index++] = temp[j];
+		}
+	}
 }
 
-void BucketSort::sort()
+void bucketSort(std::vector<int> &arr, int maxValue)
 {
-    int i, j;
-    int size = data.size();
-    std::vector<int> count(range);
-    for (i = 0; i < range; i++)
-        count[i] = 0;
-    for (i = 0; i < size; i++)
-        count[data[i] - lowerRange]++;
-
-    j = 0;
-    for (i = 0; i < range; i++)
-    {
-        for (; count[i] > 0; count[i]--)
-            data[j++] = i + lowerRange;
-    }
+	int numBucket = 5;
+	bucketSort(arr, maxValue, numBucket);
 }
 
 int main()
 {
-    std::vector<int> data = { 23, 24, 22, 21, 26, 25, 27, 28, 21, 21 };
-    BucketSort m = BucketSort(data, 20, 30);
-    m.sort();
-    for (int i = 0; i < data.size(); i++)
-    {
-        std::cout << data[i] << " ";
-    }
-    return 0;
+	std::vector<int> array = {1, 34, 7, 99, 5, 23, 45, 88, 77, 19, 91, 100};
+	int maxValue = 100;
+	bucketSort(array, maxValue);
+	for (int i = 0; i < array.size(); i++)
+	{
+		std::cout << array[i] << " ";
+	}
 }
 
 /*
-21 21 21 22 23 24 25 26 27 28
+1 5 7 19 23 34 45 77 88 91 99 100 
 */

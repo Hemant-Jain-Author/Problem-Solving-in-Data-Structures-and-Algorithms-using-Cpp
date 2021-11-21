@@ -107,17 +107,13 @@ void printRepeating(std::vector<int> &arr)
 {
     std::unordered_set<int> hs;
 
-    std::cout << "Repeating elements are:";
+    std::cout << "Repeating elements are: ";
     for (auto val : arr)
     {
         if (hs.find(val) != hs.end())
-        {
             std::cout << val << "  ";
-        }
         else
-        {
             hs.insert(val);
-        }
     }
     std::cout << std::endl;
 }
@@ -131,7 +127,7 @@ int main4()
 }
 
 /*
-Repeating elements are:4  1  
+Repeating elements are: 4  1  
 */
 
 void printFirstRepeating(std::vector<int> &arr)

@@ -18,219 +18,219 @@ public:
         Node *rChild;
         Node(int v, Node *l, Node *r);
         Node(int v);
+        ~Node();
     };
     Node *root;
 
 public:
     Tree();
+    ~Tree();
     // Other Tree methods.
 
-    virtual void levelOrderBinaryTree(int arr[], int size);
+    void levelOrderBinaryTree(int arr[], int size);
 
-    virtual Node *levelOrderBinaryTree(int arr[], int start, int size);
+    Node *levelOrderBinaryTree(int arr[], int start, int size);
 
-    virtual void insert(int value);
+    void insert(int value);
 
 private:
     Node *insert(int value, Node *node);
 
 public:
-    virtual void printPreOrder();
+    void printPreOrder();
 
 private:
     void printPreOrder(Node *node); // pre order
 
 public:
-    virtual void nthPreOrder(int index);
+    void nthPreOrder(int index);
 
 private:
     void nthPreOrder(Node *node, int index, int& counter); // pre order
 
 public:
-    virtual void printPostOrder();
+    void printPostOrder();
 
 private:
     void printPostOrder(Node *node); // post order
 
 public:
-    virtual void nthPostOrder(int index);
+    void nthPostOrder(int index);
 
 private:
     void nthPostOrder(Node *node, int index, int& counter); // post order
 
 public:
-    virtual void printInOrder();
+    void printInOrder();
 
 private:
     void printInOrder(Node *node); // In order
 
 public:
-    virtual void nthInOrder(int index);
+    void nthInOrder(int index);
 
 private:
     void nthInOrder(Node *node, int index, int& counter);
 
 public:
-    virtual void printBredthFirst();
+    void printBredthFirst();
 
-    virtual void printDepthFirst();
+    void printDepthFirst();
 
-    virtual bool find(int value);
+    bool find(int value);
 
-    virtual bool find2(int value);
+    bool find2(int value);
 
-    virtual int findMin();
+    int findMin();
 
-    virtual int findMax();
+    int findMax();
 
-    virtual Node *findMax(Node *curr);
 
-    virtual Node *findMin(Node *curr);
 
-    virtual void free();
+    void remove(int value);
 
-    virtual void freeTree(Node* node);
-
-    virtual void remove(int value);
+    void empty();
 
 private:
+    Node *findMax(Node *curr);
+
+    Node *findMin(Node *curr);
+
     Node *remove(Node *node, int value);
 
 public:
-    virtual int treeDepth();
+    int treeDepth();
 
 private:
     int treeDepth(Node *root);
 
 public:
-    virtual bool isEqual(Tree *T2);
+    bool isEqual(Tree *T2);
 
 private:
     bool isEqual(Node *node1, Node *node2);
 
 public:
-    virtual Node *ancestor(int first, int second);
+    Node *ancestor(int first, int second);
 
 private:
     Node *ancestor(Node *curr, int first, int second);
 
 public:
-    virtual Tree *copyTree();
+    Tree *copyTree();
 
 private:
     Node *copyTree(Node *curr);
 
 public:
-    virtual Tree *copyMirrorTree();
+    Tree *copyMirrorTree();
 
 private:
     Node *copyMirrorTree(Node *curr);
 
 public:
-    virtual int numNodes();
+    int numNodes();
 
-    virtual int numNodes(Node *curr);
+    int numNodes(Node *curr);
 
-    virtual int numFullNodesBT();
+    int numFullNodesBT();
 
-    virtual int numFullNodesBT(Node *curr);
+    int numFullNodesBT(Node *curr);
 
-    virtual int maxLengthPathBT();
+    int maxLengthPathBT();
 
 private:
     int maxLengthPathBT(Node *curr); // diameter
 
 public:
-    virtual int numLeafNodes();
+    int numLeafNodes();
 
 private:
     int numLeafNodes(Node *curr);
 
 public:
-    virtual int sumAllBT();
+    int sumAllBT();
 
 private:
     int sumAllBT(Node *curr);
 
 public:
-    virtual void iterativePreOrder();
+    void iterativePreOrder();
 
-    virtual void iterativePostOrder();
+    void iterativePostOrder();
 
-    virtual void iterativeInOrder();
+    void iterativeInOrder();
 
-    virtual bool isBST3(Node *root);
-    virtual bool isBST3();
+    bool isBST3(Node *root);
+    bool isBST3();
 
-    virtual bool isBST();
+    bool isBST();
 
-    virtual bool isBST(Node *curr, int min, int max);
+    bool isBST(Node *curr, int min, int max);
 
 public:
-    virtual bool isBST2();
+    bool isBST2();
 
-    virtual bool isBST2(Node *root, int &count); // in order traversal
+    bool isBST2(Node *root, int &count); // in order traversal
 
-    virtual Node *treeToListRec();
+    Node *treeToListRec();
 
 public:
     Node *treeToListRec(Node *curr);
     void  printDLL(Node *root);
 
 public:
-    virtual void printAllPath();
+    void printAllPath();
 
 
 private:
     void printAllPath(Node *curr, std::vector<int>& stk);
 
 public:
-    virtual int lca(int first, int second);
+    int lca(int first, int second);
 
 private:
     Node *lca(Node *curr, int first, int second);
 
 public:
-    virtual int lcaBST(int first, int second);
+    int lcaBST(int first, int second);
 
-    virtual int lcaBST(Node *curr, int first, int second);
+    int lcaBST(Node *curr, int first, int second);
 
-    virtual void trimOutsideRange(int min, int max);
+    void trimOutsideRange(int min, int max);
 
-    virtual Node *trimOutsideRange(Node *curr, int min, int max);
+    Node *trimOutsideRange(Node *curr, int min, int max);
 
-    virtual void printInRange(int min, int max);
+    void printInRange(int min, int max);
 
 private:
     void printInRange(Node *root, int min, int max);
 
 public:
-    virtual int floorBST(int val);
+    int floorBST(int val);
 
-    virtual int ceilBST(int val);
+    int ceilBST(int val);
 
-    virtual int findMaxBT();
+    int findMaxBT();
 
 private:
     int findMaxBT(Node *curr);
 
 public:
-    virtual bool searchBT(Node *root, int value);
+    bool searchBT(Node *root, int value);
     bool searchBT(int value);
-    virtual void createBinarySearchTree(int arr[], int size);
-
-    virtual Node *createBinarySearchTree(int arr[], int start, int end);
-
-    virtual void printLevelOrderLineByLine();
-    virtual void printLevelOrderLineByLine2();
-    virtual void printSpiralTree();
+    void createBinarySearchTree(int arr[], int size);
+    void printLevelOrderLineByLine();
+    void printLevelOrderLineByLine2();
+    void printSpiralTree();
     bool isCompleteTree();
-    bool isCompleteTreeUtil(Node* curr, int index, int count);
     bool isCompleteTree2();
-    bool isHeapUtil(Node* curr, int parentValue);
     bool isHeap();
-    bool isHeapUtil2(Node* curr, int index, int count, int parentValue);
     bool isHeap2();
 
-
+private:
+    bool isCompleteTreeUtil(Node* curr, int index, int count);
+    bool isHeapUtil(Node* curr, int parentValue);
+    bool isHeapUtil2(Node* curr, int index, int count, int parentValue);
+    Node *createBinarySearchTree(int arr[], int start, int end);
 };

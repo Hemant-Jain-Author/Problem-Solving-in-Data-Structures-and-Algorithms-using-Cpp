@@ -78,7 +78,6 @@ void GraphAM::dijkstra(int source)
 
     dist[source] = 0;
     previous[source] = -1;
-
     std::priority_queue<Edge*, std::vector<Edge*>, EdgeComparator> queue;
     Edge* node = new Edge(source, 0);
     queue.push(node);
@@ -97,7 +96,6 @@ void GraphAM::dijkstra(int source)
                 int alt = cost + dist[source];
                 if (dist[dest] > alt && visited[dest] == false)
                 {
-
                     dist[dest] = alt;
                     previous[dest] = source;
                     node = new Edge(dest, alt);
@@ -110,13 +108,13 @@ void GraphAM::dijkstra(int source)
     for (int i = 0; i < count; i++)
     {
         if (dist[i] == std::numeric_limits<int>::max())
-            std::cout << " node id " << i << "  prev " << previous[i] << " distance : Unreachable" << std::endl;
+            std::cout << "Node id " << i << "  prev " << previous[i] << " distance : Unreachable" << std::endl;
         else
-            std::cout << " node id " << i << "  prev " << previous[i] << " distance : " << dist[i] << std::endl;
+            std::cout << "Node id " << i << "  prev " << previous[i] << " distance : " << dist[i] << std::endl;
     }
 }
 
-void GraphAM::prims()
+void GraphAM::primsMST()
 {
     std::vector<int> previous(count, -1) ;
     std::vector<int> dist(count, std::numeric_limits<int>::max()) ;; // infinite
@@ -125,9 +123,7 @@ void GraphAM::prims()
     int source = 0;
     dist[source] = 0;
     previous[source] = -1;
-
     std::priority_queue<Edge*, std::vector<Edge*>, EdgeComparator> queue;
-
     Edge* node = new Edge(source, 0);
     queue.push(node);
 
@@ -145,7 +141,6 @@ void GraphAM::prims()
                 int alt = cost;
                 if (dist[dest] > alt && visited[dest] == false)
                 {
-
                     dist[dest] = alt;
                     previous[dest] = source;
                     node = new Edge(dest, alt);
@@ -155,13 +150,18 @@ void GraphAM::prims()
         }
     }
 
+    // printing result.
+    int total = 0;
+    std::cout << "Edges are " ;
     for (int i = 0; i < count; i++)
     {
         if (dist[i] == std::numeric_limits<int>::max())
-            std::cout << " node id " << i << "  prev " << previous[i] << " distance : Unreachable" << std::endl;
-        else
-            std::cout << " node id " << i << "  prev " << previous[i] << " distance : " << dist[i] << std::endl;
+            std::cout << "(" << previous[i] << ", " << i << ", " << "infinity) ";
+        else if (previous[i] != -1)
+            std::cout << "(" << previous[i] << ", " << i << ", " << dist[i] << ") ";
+        total += dist[i];
     }
+    std::cout << "\nTotal MST cost: " << total << std::endl;
 }
 
 /* Testing Code */
@@ -183,33 +183,25 @@ int main2()
     gph.addUndirectedEdge(6, 8, 6);
     gph.addUndirectedEdge(7, 8, 7);
 
-    gph.dijkstra(1);
-    gph.prims();
+    gph.dijkstra(0);
+    gph.primsMST();
     return 0;
 }
 
 /*
- node id 0  prev 1 distance : 4
- node id 1  prev -1 distance : 0
- node id 2  prev 1 distance : 8
- node id 3  prev 2 distance : 15
- node id 4  prev 5 distance : 22
- node id 5  prev 2 distance : 12
- node id 6  prev 7 distance : 12
- node id 7  prev 1 distance : 11
- node id 8  prev 2 distance : 10
+Node id 0  prev -1 distance : 0
+Node id 1  prev 0 distance : 4
+Node id 2  prev 1 distance : 12
+Node id 3  prev 2 distance : 19
+Node id 4  prev 5 distance : 21
+Node id 5  prev 6 distance : 11
+Node id 6  prev 7 distance : 9
+Node id 7  prev 0 distance : 8
+Node id 8  prev 2 distance : 14
 
-
- node id 0  prev -1 distance : 0
- node id 1  prev 0 distance : 4
- node id 2  prev 5 distance : 4
- node id 3  prev 2 distance : 7
- node id 4  prev 3 distance : 9
- node id 5  prev 6 distance : 2
- node id 6  prev 7 distance : 1
- node id 7  prev 0 distance : 8
- node id 8  prev 2 distance : 2
- */
+Edges are (0, 1, 4) (5, 2, 4) (2, 3, 7) (3, 4, 9) (6, 5, 2) (7, 6, 1) (0, 7, 8) (2, 8, 2) 
+Total MST cost: 37
+*/
 
 
 bool GraphAM::hamiltonianPathUtil(std::vector<int>& path, int pSize, std::vector<int>& added)
@@ -228,8 +220,8 @@ bool GraphAM::hamiltonianPathUtil(std::vector<int>& path, int pSize, std::vector
             path[pSize++] = vertex;
             added[vertex] = 1;
             if (hamiltonianPathUtil(path, pSize, added))
-                return true;
-            // backtracking
+                return true; // backtracking
+            
             pSize--;
             added[vertex] = 0;
         }
@@ -250,7 +242,6 @@ bool GraphAM::hamiltonianPath()
 
         return true;
     }
-
     std::cout << "\nHamiltonian Path not found";
     return false;
 }
@@ -260,16 +251,29 @@ int main3()
 {
     int count = 5;
     GraphAM graph = GraphAM(count);
-    std::vector<std::vector<int>> adj = { { 0, 1, 0, 1, 0 }, { 1, 0, 1, 1, 0 }, { 0, 1, 0, 0, 1 }, { 1, 1, 0, 0, 1 }, { 0, 1, 1, 1, 0 } };
+    std::vector<std::vector<int>> adj = 
+    { 
+        { 0, 1, 0, 1, 0 }, 
+        { 1, 0, 1, 1, 0 }, 
+        { 0, 1, 0, 0, 1 }, 
+        { 1, 1, 0, 0, 1 }, 
+        { 0, 1, 1, 1, 0 } 
+    };
 
     for (int i = 0; i < count; i++)
         for (int j = 0; j < count; j++)
             if (adj[i][j] == 1)
                 graph.addDirectedEdge(i, j, 1);
+    
     graph.hamiltonianPath();
 
     GraphAM graph2 = GraphAM(count);
-    std::vector<std::vector<int>> adj2 = { { 0, 1, 0, 1, 0 }, { 1, 0, 1, 1, 0 }, { 0, 1, 0, 0, 1 }, { 1, 1, 0, 0, 0 },
+    std::vector<std::vector<int>> adj2 = 
+    { 
+        { 0, 1, 0, 1, 0 }, 
+        { 1, 0, 1, 1, 0 }, 
+        { 0, 1, 0, 0, 1 }, 
+        { 1, 1, 0, 0, 0 },
         { 0, 1, 1, 0, 0 }
     };
     for (int i = 0; i < count; i++)
@@ -333,14 +337,19 @@ bool GraphAM::hamiltonianCycle()
     return false;
 }
 
-
-
 /* Testing Code */
-int main()
+int main4()
 {
     int count = 5;
     GraphAM graph = GraphAM(count);
-    std::vector<std::vector<int>> adj = { { 0, 1, 0, 1, 0 }, { 1, 0, 1, 1, 0 }, { 0, 1, 0, 0, 1 }, { 1, 1, 0, 0, 1 }, { 0, 1, 1, 1, 0 } };
+    std::vector<std::vector<int>> adj = 
+    { 
+        { 0, 1, 0, 1, 0 }, 
+        { 1, 0, 1, 1, 0 }, 
+        { 0, 1, 0, 0, 1 }, 
+        { 1, 1, 0, 0, 1 }, 
+        { 0, 1, 1, 1, 0 } 
+    };
 
     for (int i = 0; i < count; i++)
         for (int j = 0; j < count; j++)
@@ -349,7 +358,12 @@ int main()
     graph.hamiltonianCycle();
 
     GraphAM graph2 = GraphAM(count);
-    std::vector<std::vector<int>> adj2 = { { 0, 1, 0, 1, 0 }, { 1, 0, 1, 1, 0 }, { 0, 1, 0, 0, 1 }, { 1, 1, 0, 0, 0 },
+    std::vector<std::vector<int>> adj2 = 
+    { 
+        { 0, 1, 0, 1, 0 }, 
+        { 1, 0, 1, 1, 0 }, 
+        { 0, 1, 0, 0, 1 }, 
+        { 1, 1, 0, 0, 0 },
         { 0, 1, 1, 0, 0 }
     };
     for (int i = 0; i < count; i++)
@@ -365,3 +379,8 @@ int main()
 Hamiltonian Cycle found ::  0 1 2 4 3 0
 Hamiltonian Cycle not found
 */
+
+int main(){
+    main2();
+    return 0;
+}

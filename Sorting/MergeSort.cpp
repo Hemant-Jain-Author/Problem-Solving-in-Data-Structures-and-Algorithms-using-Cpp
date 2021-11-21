@@ -1,7 +1,7 @@
-#include "MergeSort.h"
+#include <vector>
 #include <iostream>
 
-void MergeSort::merge(std::vector<int> &arr, std::vector<int> &tempArray, int lowerIndex, int middleIndex, int upperIndex)
+void merge(std::vector<int> &arr, std::vector<int> &tempArray, int lowerIndex, int middleIndex, int upperIndex)
 {
     int lowerStart = lowerIndex;
     int lowerStop = middleIndex;
@@ -33,7 +33,7 @@ void MergeSort::merge(std::vector<int> &arr, std::vector<int> &tempArray, int lo
     }
 }
 
-void MergeSort::mergeSrt(std::vector<int> &arr, std::vector<int> &tempArray, int lowerIndex, int upperIndex)
+void mergeSrt(std::vector<int> &arr, std::vector<int> &tempArray, int lowerIndex, int upperIndex)
 {
     if (lowerIndex >= upperIndex)
     {
@@ -45,23 +45,17 @@ void MergeSort::mergeSrt(std::vector<int> &arr, std::vector<int> &tempArray, int
     merge(arr, tempArray, lowerIndex, middleIndex, upperIndex);
 }
 
-void MergeSort::sort()
+void mergeSort(std::vector<int> &arr)
 {
     int size = arr.size();
     std::vector<int> tempArray(size);
     mergeSrt(arr, tempArray, 0, size - 1);
 }
 
-MergeSort::MergeSort(std::vector<int> &data):
-    arr(data)
-{
-}
-
 int main()
 {
     std::vector<int> data = { 3, 4, 2, 1, 6, 5, 7, 8, 1, 1 };
-    MergeSort m = MergeSort(data);
-    m.sort();
+    mergeSort(data);
     for (int i = 0; i < data.size(); i++)
     {
         std::cout << data[i] << " ";

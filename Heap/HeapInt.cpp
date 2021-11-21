@@ -14,6 +14,7 @@ int main1()
     std::cout << std::endl;
     return 0;
 }
+
 /*
 Printing content of heap :: 1 7 6 9 
 1 6 7 9 
@@ -180,9 +181,7 @@ void Heap::print()
 {
     std::cout << "Printing content of heap :: " ;
     for (int i = 0; i < size; i++)
-    {
         std::cout << arr[i] << " ";
-    }
     std::cout << std::endl;
 }
 

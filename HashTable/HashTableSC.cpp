@@ -1,32 +1,5 @@
 #include "HashTableSC.h"
 
-int main()
-{
-    HashTableSC ht = HashTableSC();
-    ht.add(1, 10);
-    ht.add(2, 10);
-    ht.add(3, 30);
-    ht.print();
-
-    std::cout<< "find key 2 : " << ht.find(2) << std::endl;
-    std::cout<< "Value at key 2 : " << ht.get(2) << std::endl;
-
-    ht.remove(2);
-    std::cout<< "After deleting node with key 2." << std::endl;
-    std::cout<< "find key 2 : " << ht.find(2) << std::endl;
-    return 0;
-}
-
-/*
-Printing for index [ 1 ] are :: (1,10) 
-Printing for index [ 2 ] are :: (2,10) 
-Printing for index [ 3 ] are :: (3,30) 
-find key 2 : 1
-Value at key 2 : 10
-After deleting node with key 2.
-find key 2 : 0
-*/
-
 HashTableSC::Node::Node(int k, int v)
 {
     key = k;
@@ -76,20 +49,19 @@ bool HashTableSC::remove(int key)
 
 void HashTableSC::print()
 {
+    std::cout << "HashTable contains :: ";
     for (int i = 0; i < tableSize; i++)
     {
         std::vector<Node> lst = listArray[i];
         if(lst.size() > 0)
         {
-            std::cout << "Printing for index [ " << i << " ] are :: ";
             for(auto iter : lst)
             {
-                std::cout <<"("<< iter.key <<","<< iter.value << ") ";
+                std::cout <<"("<< iter.key <<" => "<< iter.value << ") ";
             }
-            std::cout<< std::endl;
         }
     }
-
+    std::cout<< std::endl;
 }
 
 bool HashTableSC::find(int key)
@@ -117,3 +89,29 @@ int HashTableSC::get(int key)
     }
     return -1;
 }
+
+
+int main()
+{
+    HashTableSC ht = HashTableSC();
+    ht.add(1, 10);
+    ht.add(2, 20);
+    ht.add(3, 30);
+    ht.print();
+
+    std::cout<< "Find key 2 : " << ht.find(2) << std::endl;
+    std::cout<< "Value at key 2 : " << ht.get(2) << std::endl;
+
+    ht.remove(2);
+    std::cout<< "After deleting node with key 2.." << std::endl;
+    std::cout<< "Find key 2 : " << ht.find(2) << std::endl;
+    return 0;
+}
+
+/*
+HashTable contains :: (1 => 10) (2 => 20) (3 => 30) 
+Find key 2 : 1
+Value at key 2 : 20
+After deleting node with key 2..
+Find key 2 : 0
+*/

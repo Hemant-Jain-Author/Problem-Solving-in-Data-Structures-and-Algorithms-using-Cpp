@@ -4,6 +4,30 @@
 
 int circularTour(std::vector<std::vector<int>> &arr, int n)
 {
+	for (int i = 0;i < n;i++)
+	{
+		int total = 0;
+		bool found = true;
+		for (int j = 0;j < n;j++)
+		{
+			total += (arr[(i + j) % n][0] - arr[(i + j) % n][1]);
+			if (total < 0)
+			{
+				found = false;
+				break;
+			}
+		}
+		if (found)
+		{
+			return i;
+		}
+	}
+	return -1;
+}
+
+
+int circularTour2(std::vector<std::vector<int>> &arr, int n)
+{
     std::queue<int> que;
     int nextPump = 0, prevPump;
     int count = 0;
@@ -43,6 +67,7 @@ int main()
     // Testing code
     std::vector<std::vector<int>> tour = { { 8, 6 }, { 1, 4 }, { 7, 6 } };
     std::cout << "Circular Tour : " << circularTour(tour, 3) << std::endl;
+    std::cout << "Circular Tour : " << circularTour2(tour, 3) << std::endl;
     return 0;
 }
 
@@ -95,9 +120,24 @@ int main2()
 7
 Steps count :: 3
 */
+
 #include <deque>
 
-void maxSlidingWindows(std::vector<int> arr, int size, int k)
+void maxSlidingWindows(std::vector<int> &arr, int size, int k)
+{
+	for (int i = 0;i < size - k + 1;i++)
+	{
+		int max = arr[i];
+		for (int j = 1;j < k;j++)
+		{
+			max = std::max(max, arr[i + j]);
+		}
+		std::wcout << max << " ";
+	}
+	std::wcout << std::endl;
+}
+
+void maxSlidingWindows2(std::vector<int> arr, int size, int k)
 {
     std::deque<int> que;
     for (int i = 0; i < size; i++)
@@ -125,6 +165,7 @@ int main4()
     std::vector<int> arr = { 11, 2, 75, 92, 59, 90, 55 };
     int k = 3;
     maxSlidingWindows(arr, 7, 3);
+    maxSlidingWindows2(arr, 7, 3);
     return 0;
 }
 

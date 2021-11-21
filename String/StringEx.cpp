@@ -63,7 +63,7 @@ bool isPrime(const int n)
 {
     bool answer = (n > 1) ? true : false;
 
-    for (int i = 2; i * i < n; ++i)
+    for (int i = 2; i * i <= n; ++i)
     {
         if (n % i == 0)
         {
@@ -77,14 +77,14 @@ bool isPrime(const int n)
 void main3()
 {
     std::cout << "Prime numbers under 100 :: ";
-    for (int i = 0; i < 20; i++)
+    for (int i = 0; i < 10; i++)
         if (isPrime(i))
             std::cout << i << " ";
     std::cout << std::endl;
 }
 
 /*
-Prime numbers under 100 :: 2 3 4 5 7 9 11 13 17 19 
+Prime numbers under 100 :: 2 3 4 5 7 
 */
 
 int myAtoi(const std::string &str)
@@ -257,15 +257,13 @@ bool isPalindrome(const std::string &str)
 
 void main8()
 {
-    std::cout << isPalindrome("hello") << std::endl;
-    std::cout << isPalindrome("eoloe") << std::endl;
+    isPalindrome("hello");
+    isPalindrome("oyo");
 }
 
 /*
 String is not a Palindrome
-0
 String is a Palindrome
-1
 */
 
 int pow(const int x, const int n)

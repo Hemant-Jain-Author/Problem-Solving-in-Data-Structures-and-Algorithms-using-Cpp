@@ -1,21 +1,17 @@
-#include "BubbleSort.h"
+#include <vector>
+#include <iostream>
 
-BubbleSort::BubbleSort(std::vector<int> &data):
-    arr(data)
-{
-}
-
-bool BubbleSort::less(int value1, int value2)
+bool less(int value1, int value2)
 {
     return value1 < value2;
 }
 
-bool BubbleSort::more(int value1, int value2)
+bool more(int value1, int value2)
 {
     return value1 > value2;
 }
 
-void BubbleSort::sort()
+void bubbleSort(std::vector<int> &arr)
 {
     int size = arr.size();
     int i, j, temp;
@@ -34,7 +30,7 @@ void BubbleSort::sort()
     }
 }
 
-void BubbleSort::sort2()
+void bubbleSort2(std::vector<int> &arr)
 {
     int size = arr.size();
     int i, j, temp, swapped = 1;
@@ -57,16 +53,14 @@ void BubbleSort::sort2()
 int main()
 {
     std::vector<int> data = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
-    BubbleSort bs = BubbleSort(data);
-    bs.sort();
+    bubbleSort(data);
     for (int i = 0; i < data.size(); i++)
     {
         std::cout << data[i] << " ";
     }
     std::cout << std::endl;
     std::vector<int> data2 = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
-    BubbleSort bs2 = BubbleSort(data2);
-    bs2.sort2();
+    bubbleSort2(data2);
     for (int i = 0; i < data2.size(); i++)
     {
         std::cout << data2[i] << " ";

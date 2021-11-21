@@ -38,13 +38,12 @@ public:
     void addUndirectedEdge(int src, int dst, int cost);
     void print();
     //Other Methods.
-};
-
     void dijkstra(int source);
-    void prims();
+    void primsMST();
     bool hamiltonianPath();
-    bool hamiltonianPathUtil(std::vector<int>& path, int pSize, std::vector<int>& added);
     bool hamiltonianCycle();
+    
+private:
+    bool hamiltonianPathUtil(std::vector<int>& path, int pSize, std::vector<int>& added);
     bool hamiltonianCycleUtil(std::vector<int>& path, int pSize, std::vector<int>& added);
-
 };

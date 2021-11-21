@@ -48,7 +48,6 @@ int Queue::size()
     return length;
 }
 
-
 int main()
 {
     Queue que;

@@ -1,22 +1,17 @@
-#include "SelectionSort.h"
+#include <vector>
 #include <iostream>
 
-SelectionSort::SelectionSort(std::vector<int> &data):
-    arr(data)
-{
-}
-
-bool SelectionSort::less(int value1, int value2)
+bool less(int value1, int value2)
 {
     return value1 < value2;
 }
 
-bool SelectionSort::more(int value1, int value2)
+bool more(int value1, int value2)
 {
     return value1 > value2;
 }
 
-void SelectionSort::sort()
+void selectionSort(std::vector<int> &arr)
 {
     int size = arr.size();
     int i, j, max, temp;
@@ -36,7 +31,7 @@ void SelectionSort::sort()
     }
 }
 
-void SelectionSort::sort2()
+void selectionSort2(std::vector<int> &arr)
 {
     int size = arr.size();
     int i, j, min, temp;
@@ -59,11 +54,18 @@ void SelectionSort::sort2()
 int main()
 {
     std::vector<int> data = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
-    SelectionSort ss = SelectionSort(data);
-    ss.sort2();
+    selectionSort(data);
     for (int i = 0; i < data.size(); i++)
     {
         std::cout << data[i] << " ";
+    }
+    std::cout << std::endl;
+    
+    std::vector<int> data2 = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
+    selectionSort2(data2);
+    for (int i = 0; i < data2.size(); i++)
+    {
+        std::cout << data2[i] << " ";
     }
     return 0;
 }

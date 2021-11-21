@@ -23,15 +23,14 @@ private:
     bool compare(int first, int second);
     void doubleSize();
 
-
 public:
-    virtual void add(int value);
-    virtual int remove();
-    virtual void print();
-    virtual int length();
-    virtual bool isMinHeapArr(std::vector<int> &arr, int size);
-    virtual bool isMaxHeapArr(std::vector<int> &arr, int size);
-    virtual bool isEmpty();
-    virtual int peek();
+    void add(int value);
+    int remove();
+    void print();
+    int length();
+    bool isMinHeapArr(std::vector<int> &arr, int size);
+    bool isMaxHeapArr(std::vector<int> &arr, int size);
+    bool isEmpty();
+    int peek();
     static void heapSort(std::vector<int> &array, bool inc);
 };

@@ -14,9 +14,20 @@ Tree::Node::Node(int v)
     rChild = nullptr;
 }
 
+Tree::Node::~Node()
+{
+    delete lChild;
+    delete rChild;
+}
+
 Tree::Tree()
 {
     root = nullptr;
+}
+
+Tree::~Tree()
+{
+    delete root;
 }
 
 void Tree::levelOrderBinaryTree(int arr[], int size)
@@ -674,20 +685,10 @@ findMax:: 10
 findMin:: 1
 */
 
-void Tree::free()
+void Tree::empty()
 {
-    freeTree(root);
+    delete root;
     root = nullptr;
-}
-
-void Tree::freeTree(Node* node)
-{
-    if (node)
-    {
-        freeTree(node->lChild);
-        freeTree(node->rChild);
-        delete(node);
-    }
 }
 
 void Tree::remove(int value)
@@ -752,7 +753,6 @@ int main7()
     t.createBinarySearchTree(arr, 10);
     t.remove(6);
     t.printPreOrder();
-    t.free();
     t.printPreOrder();
     return 0;
 }
@@ -1557,6 +1557,7 @@ Tree::Node *Tree::treeToListRec(Node *curr)
 
     Head->lChild = Tail;
     Tail->rChild = Head;
+    root = nullptr;
     return Head;
 }
 
@@ -1591,7 +1592,7 @@ DLL nodes are : 1 2 3 4 5 6 7 8 9 10
 
 int main()
 {
-    main1();
+    /*main1();
     main2();
     main3();
     main4();
@@ -1605,7 +1606,7 @@ int main()
     main12();
     main13();
     main14();
-    main15();
+    main15();*/
     main16();
     return 0;
 }

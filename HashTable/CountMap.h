@@ -1,17 +1,18 @@
 #pragma once
 
 #include <string>
-#include <unordered_map>
+#include <map>
 #include <vector>
 #include <iostream>
 
 template<typename T>
+
 class CountMap
 {
 public:
-    std::unordered_map<T, int> hm;
+    std::map<T, int> hm;
 
-    virtual void add(T key)
+    void add(T key)
     {
         if (hm.find(key) != hm.end())
         {
@@ -24,7 +25,7 @@ public:
         }
     }
 
-    virtual void remove(T key)
+    void remove(T key)
     {
         if (hm.find(key) != hm.end())
         {
@@ -34,13 +35,12 @@ public:
             }
             else
             {
-                int count = hm[key];
-                hm[key] = count - 1;
+                hm[key] = hm[key] - 1;
             }
         }
     }
 
-    virtual int get(T key)
+    int get(T key)
     {
         if (hm.find(key) != hm.end())
         {
@@ -49,12 +49,12 @@ public:
         return 0;
     }
 
-    virtual bool containsKey(T key)
+    bool containsKey(T key)
     {
         return hm.find(key) != hm.end();
     }
 
-    virtual int size()
+    int size()
     {
         return hm.size();
     }

@@ -176,7 +176,7 @@ int main3()
 minSwaps:: 2
 */
 
-void seperateEvenAndOdd(std::vector<int> &data)
+void seperateEvenAndOdd2(std::vector<int> &data)
 {
     int size = data.size();
     int left = 0, right = size - 1;
@@ -199,7 +199,7 @@ void seperateEvenAndOdd(std::vector<int> &data)
 int main4()
 {
     std::vector<int> array = { 2, 7, 5, 6, 1, 3, 4, 9, 10, 8 };
-    seperateEvenAndOdd(array);
+    seperateEvenAndOdd2(array);
     printArray(array);
     return 0;
 }

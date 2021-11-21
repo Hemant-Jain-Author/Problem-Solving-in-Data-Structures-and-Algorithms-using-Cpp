@@ -163,7 +163,7 @@ int main4()
     return 0;
 }
 /*
-[ 1 2 3 4 5 6  ]
+[ 3 4 5 6 1 2 ]
 */
 
 int maxSubArraySum(std::vector<int> &data)
@@ -184,13 +184,13 @@ int maxSubArraySum(std::vector<int> &data)
 
 int main5()
 {
-    std::vector<int> data = { 1,-2,3,4,-4,6,-4,8,2 };
+    std::vector<int> data = { 1,-2,3,4,-4,6,-4,3,2 };
     std::cout << "Max sub array sum :" << maxSubArraySum(data);
     return 0;
 }
 
 /*
-Max sub array sum :15
+Max sub array sum :10
 */
 
 
@@ -289,9 +289,10 @@ int main7()
     return 0;
 }
 /*
-[ 8 -1 6 1 9 3 2 7 4 -1 ]
-[ 8 -1 6 1 9 3 2 7 4 -1 ]
+[ -1 1 2 3 4 -1 6 7 8 9 ]
+[ -1 1 2 3 4 -1 6 7 8 9 ]
 */
+
 void sort1toN(std::vector<int> &arr, int size)
 {
     int curr, value, next;
@@ -428,18 +429,18 @@ int main9()
     std::vector<int> arr = { 8, 5, 6, 1, 9, 11, 2, 7, 4, 10 };
     int size = arr.size();
 
-    std::cout << "Smallest Positive Missing Number: " << smallestPositiveMissingNumber(arr, size) << std::endl;
-    std::cout << "Smallest Positive Missing Number: " << smallestPositiveMissingNumber2(arr, size) << std::endl;
-    std::cout << "Smallest Positive Missing Number: " << smallestPositiveMissingNumber3(arr, size) << std::endl;
-    std::cout << "Smallest Positive Missing Number: " << smallestPositiveMissingNumber4(arr, size) << std::endl;
+    std::cout << "Smallest Positive Missing Number : " << smallestPositiveMissingNumber(arr, size) << std::endl;
+    std::cout << "Smallest Positive Missing Number : " << smallestPositiveMissingNumber2(arr, size) << std::endl;
+    std::cout << "Smallest Positive Missing Number : " << smallestPositiveMissingNumber3(arr, size) << std::endl;
+    std::cout << "Smallest Positive Missing Number : " << smallestPositiveMissingNumber4(arr, size) << std::endl;
     return 0;
 }
 
 /*
-Smallest Positive Missing Number: 3
-Smallest Positive Missing Number: 3
-Smallest Positive Missing Number: 3
-Smallest Positive Missing Number: 3
+Smallest Positive Missing Number : 3
+Smallest Positive Missing Number : 3
+Smallest Positive Missing Number : 3
+Smallest Positive Missing Number : 3
 */
 
 void maxMinArr(std::vector<int> &arr, int size)
@@ -541,9 +542,9 @@ int arrayIndexMaxDiff(std::vector<int> &arr, int size)
     for (int i = 0; i < size; i++)
     {
         j = size - 1;
-        while (j > i)
+        while (i < j)
         {
-            if (arr[j] > arr[i])
+            if (arr[i] <= arr[j])
             {
                 maxDiff = std::max(maxDiff, j - i);
                 break;
@@ -556,46 +557,18 @@ int arrayIndexMaxDiff(std::vector<int> &arr, int size)
 
 int arrayIndexMaxDiff2(std::vector<int> &arr, int size)
 {
-    std::vector<int> leftMin(size);
     std::vector<int> rightMax(size);
-    leftMin[0] = arr[0];
-    int i, j;
-    int maxDiff;
-    for (i = 1; i < size; i++)
-    {
-        if (leftMin[i - 1] < arr[i])
-        {
-            leftMin[i] = leftMin[i - 1];
-        }
-        else
-        {
-            leftMin[i] = arr[i];
-        }
-    }
     rightMax[size - 1] = arr[size - 1];
-    for (i = size - 2; i >= 0; i--)
-    {
-        if (rightMax[i + 1] > arr[i])
-        {
-            rightMax[i] = rightMax[i + 1];
-        }
-        else
-        {
-            rightMax[i] = arr[i];
-        }
-    }
-    i = 0;
-    j = 0;
-    maxDiff = -1;
-    while (j < size && i < size)
-    {
-        if (leftMin[i] < rightMax[j])
-        {
-            maxDiff = std::max(maxDiff, j - i);
+    for (int i = size - 2; i >= 0; i--)
+        rightMax[i] = std::max(rightMax[i + 1], arr[i]);
+        
+    int maxDiff = -1;
+    for(int i=0, j=1; i < size && j < size;) {
+        if (arr[i] <= rightMax[j]) {
+            if(i < j)
+                maxDiff = std::max(maxDiff, j - i);
             j = j + 1;
-        }
-        else
-        {
+        } else {
             i = i + 1;
         }
     }
@@ -611,8 +584,8 @@ int main12()
 }
 
 /*
-ArrayIndexMaxDiff : 6
-ArrayIndexMaxDiff : 6
+ArrayIndexMaxDiff : 7
+ArrayIndexMaxDiff : 7
 */
 
 int maxPathSum(int arr1[], int size1, int arr2[], int size2)

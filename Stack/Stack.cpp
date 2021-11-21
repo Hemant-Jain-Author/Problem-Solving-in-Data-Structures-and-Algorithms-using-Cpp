@@ -50,7 +50,7 @@ void Stack::push(int value)
 {
     if (size() == capacity)
     {
-        throw "StackOvarflowException";
+        throw "StackOverflowException";
     }
     stack_top++;
     data[stack_top] = value;
@@ -80,7 +80,6 @@ void Stack::print()
 {
     for (int i = stack_top; i > -1; i--)
         std::cout << data[i] << " ";
-
     std::cout << std::endl;
 }
 

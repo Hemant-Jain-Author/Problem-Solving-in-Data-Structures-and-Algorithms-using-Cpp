@@ -1,14 +1,14 @@
-#include "QuickSelect.h"
+#include <vector>
 #include <iostream>
 
-void QuickSelect::swap(std::vector<int> &arr, int first, int second)
+void swap(std::vector<int> &arr, int first, int second)
 {
     int temp = arr[first];
     arr[first] = arr[second];
     arr[second] = temp;
 }
 
-void QuickSelect::quickSelect(std::vector<int> &arr, int lower, int upper, int k)
+void quickSelect(std::vector<int> &arr, int lower, int upper, int k)
 {
     if (upper <= lower)
     {
@@ -50,19 +50,20 @@ void QuickSelect::quickSelect(std::vector<int> &arr, int lower, int upper, int k
 
 }
 
-void QuickSelect::quickSelect(std::vector<int> &arr, int k)
+int quickSelect(std::vector<int> &arr, int k)
 {
     quickSelect(arr, 0, arr.size() - 1, k);
+    return arr[k-1];
 }
 
 int main()
 {
     std::vector<int> data = { 3, 4, 2, 1, 6, 5, 7, 8, 10, 9 };
-    QuickSelect::quickSelect(data, 5);
-    std::cout << "value at index 5 is : " << data[4];
+    int value = quickSelect(data, 5);
+    std::cout << "Value at index 5 is " << value;
     return 0;
 }
 
 /*
-value at index 5 is : 5
+Value at index 5 is 5
 */

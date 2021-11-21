@@ -2,7 +2,6 @@
 #include <vector>
 #include <algorithm>
 #include <iostream>
-#include <unordered_set>
 #include <set>
 #include <map>
 
@@ -36,7 +35,7 @@ bool linearSearchSorted(std::vector<int> &data, int value)
     return false;
 }
 
-bool binarysearch(std::vector<int> &data, int value)
+bool binarySearch(std::vector<int> &data, int value)
 {
     int size = data.size();
     int low = 0;
@@ -63,7 +62,7 @@ bool binarysearch(std::vector<int> &data, int value)
 }
 
 
-int binarysearch(std::vector<int> &data, int start, int end, int key, bool isInc)
+int binarySearch(std::vector<int> &data, int start, int end, int key, bool isInc)
 {
     int mid;
     if (end < start)
@@ -77,16 +76,16 @@ int binarysearch(std::vector<int> &data, int start, int end, int key, bool isInc
     }
     if (isInc != false && key < data[mid] || isInc == false && key > data[mid])
     {
-        return binarysearch(data, start, mid - 1, key, isInc);
+        return binarySearch(data, start, mid - 1, key, isInc);
     }
     else
     {
-        return binarysearch(data, mid + 1, end, key, isInc);
+        return binarySearch(data, mid + 1, end, key, isInc);
     }
 }
 
 
-bool binarysearchRecursive(std::vector<int> &data, int low, int high, int value)
+bool binarySearchRecursive(std::vector<int> &data, int low, int high, int value)
 {
     if (low > high)
     {
@@ -99,21 +98,66 @@ bool binarysearchRecursive(std::vector<int> &data, int low, int high, int value)
     }
     else if (data[mid] < value)
     {
-        return binarysearchRecursive(data, mid + 1, high, value);
+        return binarySearchRecursive(data, mid + 1, high, value);
     }
     else
     {
-        return binarysearchRecursive(data, low, mid - 1, value);
+        return binarySearchRecursive(data, low, mid - 1, value);
     }
 }
 
-bool binarysearchRec(std::vector<int> &arr, int value)
+bool binarySearchRec(std::vector<int> &arr, int value)
 {
     int size = arr.size();
     int low = 0;
     int high = size - 1;
-    return binarysearchRecursive(arr, low, high, value);
+    return binarySearchRecursive(arr, low, high, value);
 }
+
+bool fibonacciSearch(std::vector<int> &arr, int value)
+{
+	int size = arr.size();
+    /* Initialize fibonacci numbers */
+	int fibNMn2 = 0;
+	int fibNMn1 = 1;
+	int fibN = fibNMn2 + fibNMn1;
+
+	while (fibN < size)
+	{
+		fibNMn2 = fibNMn1;
+		fibNMn1 = fibN;
+		fibN = fibNMn2 + fibNMn1;
+	}
+
+	int low = 0;
+	while (fibN > 1)
+	{ // fibonacci series start with 0, 1, 1, 2
+		int i = std::min(low + fibNMn2, size-1);
+		if (arr[i] == value)
+		{
+			return true;
+		}
+		else if (arr[i] < value)
+		{
+			fibN = fibNMn1;
+			fibNMn1 = fibNMn2;
+			fibNMn2 = fibN - fibNMn1;
+			low = i;
+		}
+		else
+		{ // for feb2 <= 1, these will be invalid.
+			fibN = fibNMn2;
+			fibNMn1 = fibNMn1 - fibNMn2;
+			fibNMn2 = fibN - fibNMn1;
+		}
+	}
+	if (arr[low + fibNMn2] == value) // above loop does not check when fibNMn2 = 0
+	{
+		return true;
+	}
+	return false;
+}
+
 
 int main1()
 {
@@ -125,11 +169,14 @@ int main1()
     std::cout << linearSearchSorted(first, 8) << std::endl;
     std::cout << linearSearchSorted(first, 25) << std::endl;
 
-    std::cout << binarysearch(first, 8) << std::endl;
-    std::cout << binarysearch(first, 25) << std::endl;
+    std::cout << binarySearch(first, 8) << std::endl;
+    std::cout << binarySearch(first, 25) << std::endl;
 
-    std::cout << binarysearchRec(first, 8) << std::endl;
-    std::cout << binarysearchRec(first, 25) << std::endl;
+    std::cout << binarySearchRec(first, 8) << std::endl;
+    std::cout << binarySearchRec(first, 25) << std::endl;
+
+    std::cout << fibonacciSearch(first, 8) << std::endl;
+    std::cout << fibonacciSearch(first, 25) << std::endl;
     return 0;
 }
 
@@ -142,6 +189,9 @@ int main1()
 1
 0
 1
+0
+1
+
 */
 
 void swap(std::vector<int> &data, int first, int second)
@@ -164,28 +214,55 @@ int firstRepeated(std::vector<int> &data)
     }
     return 0;
 }
+int firstRepeated2(std::vector<int> &arr)
+{
+    int size = arr.size();
+	std::map<int, int> hm;
 
+	for (int i = 0; i < size; i++)
+	{
+		if (hm.find(arr[i]) != hm.end())
+		{
+			hm[arr[i]] = 2;
+		}
+		else
+		{
+			hm[arr[i]] = 1;
+		}
+	}
+
+	for (int i = 0; i < size; i++)
+	{
+		if (hm[arr[i]] == 2)
+		{
+			return arr[i];
+		}
+	}
+	return 0;
+}
 int main2()
 {
-    std::vector<int> first = { 34, 56, 77, 1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 34, 20, 30 };
+    std::vector<int> first = { 1, 3, 5, 3, 9, 1, 30  };
     std::cout << firstRepeated(first) << std::endl;
+    std::cout << firstRepeated2(first) << std::endl;
     return 0;
 }
 
 /*
-34
+1
+1
 */
 
 void printRepeating(std::vector<int> &data)
 {
     int size = data.size();
-    std::cout << " Repeating elements are : ";
+    std::cout << "Repeating elements are : ";
     for (int i = 0; i < size; i++)
     {
         for (int j = i + 1; j < size; j++)
         {
             if (data[i] == data[j])
-                std::cout << " " << data[i];
+                std::cout << data[i] << " ";
         }
     }
 }
@@ -193,25 +270,25 @@ void printRepeating(std::vector<int> &data)
 void printRepeating2(std::vector<int> &data)
 {
     int size = data.size();
-    sort(data.begin(), data.end()); // Sort(data,size);
-    std::cout << " Repeating elements are : ";
+    sort(data.begin(), data.end()); 
+    std::cout << "Repeating elements are : ";
 
     for (int i = 1; i < size; i++)
     {
         if (data[i] == data[i - 1])
-            std::cout << " " << data[i];
+            std::cout << data[i] << " ";
     }
 }
 
 void printRepeating3(std::vector<int> &data)
 {
-    std::unordered_set<int> hs;
+    std::set<int> hs;
     int size = data.size();
-    std::cout << " Repeating elements are : ";
+    std::cout << "Repeating elements are : ";
     for (int i = 0; i < size; i++)
     {
         if (std::find(hs.begin(), hs.end(), data[i]) != hs.end())
-            std::cout << " " << data[i];
+            std::cout << data[i] << " ";
         else
             hs.insert(data[i]);
     }
@@ -226,7 +303,7 @@ void printRepeating4(std::vector<int> &data, int range)
     for (int i = 0; i < size; i++)
     {
         if (count[data[i]] == 1)
-            std::cout << " " << data[i];
+            std::cout << data[i] << " ";
         else
             count[data[i]]++;
     }
@@ -236,8 +313,11 @@ int main3()
 {
     std::vector<int> first = { 1, 3, 5, 3, 9, 1, 30 };
     printRepeating(first);
+    std::cout << std::endl;
     printRepeating2(first);
+    std::cout << std::endl;
     printRepeating3(first);
+    std::cout << std::endl;
     printRepeating4(first, 50);
     return 0;
 }
@@ -251,12 +331,12 @@ Repeating elements are :  1 3
 
 void removeDuplicates(std::vector<int> &data)
 {
-    int j = 0;
     int size = data.size();
     if (size == 0)
         return;
 
     sort(data.begin(), data.end());
+    int j = 0;
     for (int i = 1; i < size; i++)
     {
         if (data[i] != data[j])
@@ -268,23 +348,48 @@ void removeDuplicates(std::vector<int> &data)
     data.erase(data.begin()+j+1, data.end());
 }
 
+void removeDuplicates2(std::vector<int> &arr, int size)
+{
+	std::map<int, int> hm;
+	int j = 0;
+	for (int i = 0; i < size; i++)
+	{
+		if (hm.find(arr[i]) == hm.end())
+		{
+			arr[j] = arr[i];
+			j++;
+			hm[arr[i]] = 1;
+		}
+	}
+
+    arr.erase(arr.begin()+j+1, arr.end());
+}
+
 int main4()
 {
     std::vector<int> arr = { 1, 3, 5, 3, 9, 1, 30 };
     removeDuplicates(arr);
     for (auto  i = arr.begin(); i != arr.end(); i++)
         std::cout << *i << " ";
+	std::cout << std::endl;
+
+    std::vector<int> arr2 = { 1, 3, 5, 3, 9, 1, 30 };
+    removeDuplicates(arr2);
+    for (auto  i = arr2.begin(); i != arr2.end(); i++)
+        std::cout << *i << " ";
+	std::cout << std::endl;
     return 0;
 }
 
 /*
-1 3 5 9 30
+1 3 5 9 30 
+1 3 5 9 30 
 */
 
 int findMissingNumber(std::vector<int> &data)
 {
-    int found;
     int size = data.size();
+    int found;
     for (int i = 1; i <= size; i++)
     {
         found = 0;
@@ -301,15 +406,107 @@ int findMissingNumber(std::vector<int> &data)
             return i;
         }
     }
-    throw ("NoNumberMissing");
+	return std::numeric_limits<int>::max();
 }
 
-int findMissingNumber2(std::vector<int> &data, int range)
+int findMissingNumber2(std::vector<int> &arr)
+{
+	int size = arr.size();
+    std::sort(arr.begin(), arr.end());
+	for (int i = 0; i < size; i++)
+	{
+		if (arr[i] != i + 1)
+		{
+			return i + 1;
+		}
+	}
+	return std::numeric_limits<int>::max();
+}
+
+
+int findMissingNumber3(std::vector<int> &arr)
+{
+    int size = arr.size();
+	std::map<int, int> hm;
+    for (int i = 0; i < size; i++)
+        hm[arr[i]] = 1;
+
+	for (int i = 1; i <= size; i++)
+	{
+		if (hm.find(i) == hm.end())
+		{
+			return i;
+		}
+	}
+	return std::numeric_limits<int>::max();
+}
+
+int findMissingNumber4(std::vector<int> &arr)
+{
+	int size = arr.size();
+    std::vector<int> count(size+1, -1);
+	for (int i = 0; i < size; i++)
+	{
+		count[arr[i] - 1] = 1;
+	}
+
+	for (int i = 0; i <= size; i++)
+	{
+		if (count[i] == -1)
+		{
+			return i + 1;
+		}
+	}
+
+	return std::numeric_limits<int>::max();
+}
+
+int findMissingNumber5(std::vector<int> &arr)
+{
+	int size = arr.size();
+    int sum = 0;
+	// Element value range is from 1 to size+1.
+	for (int i = 1; i < (size+2); i++)
+	{
+		sum += i;
+	}
+	for (int i = 0; i < size; i++)
+	{
+		sum -= arr[i];
+	}
+	return sum;
+}
+
+
+int findMissingNumber6(std::vector<int> &arr)
+{
+    int size = arr.size();
+	for (int i = 0; i < size; i++)
+	{
+		// len(arr)+1 value should be ignored.
+		if (arr[i] != size+1 && arr[i] != size * 3 + 1)
+		{
+			// 1 should not become (len(arr)+1) so multiplied by 2
+			arr[(arr[i] - 1) % size] += size * 2;
+		}
+	}
+
+	for (int i = 0; i < size; i++)
+	{
+		if (arr[i] < (size * 2))
+		{
+			return i + 1;
+		}
+	}
+	return std::numeric_limits<int>::max();
+}
+
+int findMissingNumber7(std::vector<int> &data)
 {
     int size = data.size();
     int xorSum = 0;
     // get the XOR of all the numbers from 1 to range
-    for (int i = 1; i <= range; i++)
+    for (int i = 1; i <= size; i++)
     {
         xorSum ^= i;
     }
@@ -321,7 +518,7 @@ int findMissingNumber2(std::vector<int> &data, int range)
     return xorSum;
 }
 
-int findMissingNumber3(std::vector<int> &arr, int upperRange)
+int findMissingNumber8(std::vector<int> &arr)
 {
     std::set<int> st;
     int size = arr.size();
@@ -332,32 +529,77 @@ int findMissingNumber3(std::vector<int> &arr, int upperRange)
         i += 1;
     }
     i = 1;
-    while (i <= upperRange)
+    while (i <= size)
     {
         if (st.count(i) == 0)
             return i;
         i += 1;
     }
     std::cout << "NoNumberMissing" << std::endl;
-    return -1;
+    return std::numeric_limits<int>::max();
 }
 
 int main5()
 {
-    std::vector<int> first= { 1, 3, 5, 4, 6, 8, 7 };
-    std::cout << findMissingNumber(first) << std::endl;
-    std::cout << findMissingNumber2(first, 8) << std::endl;
-    std::cout << findMissingNumber3(first, 8) << std::endl;
+    std::vector<int> first= {1, 5, 4, 3, 2, 7, 8, 9};
+    std::cout << "MissingNumber : " << findMissingNumber(first) << std::endl;
+	std::cout << "MissingNumber : " << findMissingNumber2(first) << std::endl;
+	std::cout << "MissingNumber : " << findMissingNumber3(first) << std::endl;//
+	std::cout << "MissingNumber : " << findMissingNumber4(first) << std::endl;
+	std::cout << "MissingNumber : " << findMissingNumber5(first) << std::endl;
+	//std::cout << "MissingNumber : " << findMissingNumber6(first) << std::endl;
+    //std::cout << "MissingNumber : " << findMissingNumber7(first) << std::endl;//
+    std::cout << "MissingNumber : " << findMissingNumber8(first) << std::endl;//
     return 0;
 }
 
 /*
-2
-2
-2
+MissingNumber : 6
+MissingNumber : 6
+MissingNumber : 6
+MissingNumber : 6
+MissingNumber : 6
+MissingNumber : 6
 */
 
 void missingValues(std::vector<int> &arr)
+{
+	int size = arr.size();
+    int max = arr[0];
+	int min = arr[0];
+	for (int i = 1; i < size; i++)
+	{
+		if (max < arr[i])
+		{
+			max = arr[i];
+		}
+
+		if (min > arr[i])
+		{
+			min = arr[i];
+		}
+	}
+	bool found;
+	for (int i = min + 1; i < max; i++)
+	{
+		found = false;
+		for (int j = 0;j < size; j++)
+		{
+			if (arr[j] == i)
+			{
+				found = true;
+				break;
+			}
+		}
+		if (!found)
+		{
+			std::cout << i << " ";
+		}
+	}
+	std::cout << std::endl;
+}
+
+void missingValues2(std::vector<int> &arr)
 {
     std::sort(arr.begin(), arr.end());
     int size = arr.size();
@@ -378,7 +620,8 @@ void missingValues(std::vector<int> &arr)
     }
 }
 
-void missingValues2(std::vector<int> &arr)
+
+void missingValues3(std::vector<int> &arr)
 {
     std::set<int> st;
     int minVal = 999999;
@@ -405,18 +648,30 @@ void missingValues2(std::vector<int> &arr)
 int main6()
 {
     std::vector<int> arr = { 1, 9, 2, 8, 3, 7, 4, 6 };
-    int size = arr.size();
     missingValues(arr);
     missingValues2(arr);
+    missingValues3(arr);
     return 0;
 }
 
 /*
 5
 5
+5
 */
 
 void oddCount(std::vector<int> &arr)
+{
+	int size = arr.size();
+    int xorSum = 0;
+	for (int i = 0; i < size; i++)
+	{
+		xorSum ^= arr[i];
+	}
+	std::cout << "Odd values: " << xorSum << std::endl;
+}
+
+void oddCount2(std::vector<int> &arr)
 {
     std::map<int, int> ctr;
     int count = 0;
@@ -436,13 +691,12 @@ void oddCount(std::vector<int> &arr)
         {
             std::cout << arr[i] << " ";
             count++;
-            ctr.erase(arr[i]);
         }
     }
     std::cout << std::endl << "Odd elements count is :: " << count << std::endl;
 }
 
-void oddCount2(std::vector<int> &arr)
+void oddCount3(std::vector<int> &arr)
 {
     int xorSum = 0;
     int first = 0;
@@ -475,16 +729,19 @@ void oddCount2(std::vector<int> &arr)
 }
 
 int main7() {
-    std::vector<int> arr = { 1, 9, 6, 2, 8, 1, 4, 3, 7, 8, 4, 9, 7, 6 };
+    std::vector<int> arr = { 10, 25, 30, 10, 15, 25, 15,};
     oddCount(arr);
-    oddCount2(arr);
+    std::vector<int> arr2 = {10, 25, 30, 10, 15, 25, 15, 40};
+    oddCount2(arr2);
+    oddCount3(arr2);
     return 0;
 }
 
 /*
-Odd elements are : 2 3 
+Odd values: 30
+Odd elements are : 30 40 
 Odd elements count is :: 2
-Odd elements are : 3 2
+Odd elements are : 30 40
 */
 
 void sumDistinct(std::vector<int> &arr)
@@ -502,13 +759,13 @@ void sumDistinct(std::vector<int> &arr)
 }
 
 int main8() {
-    std::vector<int> arr = { 1, 9, 2, 4, 3, 5, 4, 5 };
+    std::vector<int> arr = { 1, 2, 3, 1, 1, 4, 5, 6 };
     sumDistinct(arr);
     return 0;
 }
 
 /*
-24
+21  
 */
 
 void minAbsSumPair(std::vector<int> &arr)
@@ -653,13 +910,28 @@ bool findPair3(std::vector<int> &arr, int value)
     }
     return false;
 }
-
+bool findPair4(std::vector<int> &arr, int range, int value)
+{
+    int size = arr.size();
+	std::vector<int> count(range+1, 0);
+	for (int i = 0; i < size; i++)
+	{
+		if (count[value - arr[i]] > 0)
+		{
+			std::cout << "The pair is : " << arr[i] << ", " << (value - arr[i]) << std::endl;
+			return true;
+		}
+		count[arr[i]] += 1;
+	}
+	return false;
+}
 int main10()
 {
     std::vector<int> first = { 1, 5, 4, 3, 2, 7, 8, 9, 6 };
     findPair(first, 8);
     findPair2(first, 8);
     findPair3(first, 8);
+    findPair4(first, 9, 8);
     return 0;
 }
 
@@ -667,6 +939,130 @@ int main10()
 The pair is : 1, 7
 The pair is : 1, 7
 The pair is : 5, 3
+The pair is : 5, 3
+*/
+
+bool findPairTwoLists(std::vector<int> &arr1, std::vector<int> &arr2, int value)
+{
+    int size1 = arr1.size();
+    int size2 = arr2.size();
+	for (int i = 0; i < size1; i++)
+	{
+		for (int j = 0; j < size2; j++)
+		{
+			if ((arr1[i] + arr2[j]) == value)
+			{
+				std::cout << "The pair is : " << arr1[i] << ", " << arr2[j] << std::endl;
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+bool findPairTwoLists2(std::vector<int> &arr1, std::vector<int> &arr2, int value)
+{
+    int size1 = arr1.size();
+    int size2 = arr2.size();
+    std::sort(arr2.begin(), arr2.end());
+	for (int i = 0; i < size1; i++)
+	{
+		if (binarySearch(arr2, value - arr1[i]))
+		{
+			std::cout << "The pair is : " << arr1[i] << ", " << (value - arr1[i]) << std::endl;
+		}
+		return true;
+	}
+	return false;
+}
+
+bool findPairTwoLists3(std::vector<int> &arr1, std::vector<int> &arr2, int value)
+{
+    int size1 = arr1.size();
+    int size2 = arr2.size();
+	int first = 0, second = size2 - 1, curr = 0;
+	std::sort(arr1.begin(), arr1.end());
+	std::sort(arr2.begin(), arr2.end());
+	while (first < size1 && second >= 0)
+	{
+		curr = arr1[first] + arr2[second];
+		if (curr == value)
+		{
+			std::cout << "The pair is : " << arr1[first] << ", " << arr2[second] << std::endl;
+			return true;
+		}
+		else if (curr < value)
+		{
+			first++;
+		}
+		else
+		{
+			second--;
+		}
+	}
+	return false;
+}
+
+bool findPairTwoLists4(std::vector<int> &arr1, std::vector<int> &arr2, int value)
+{
+    int size1 = arr1.size();
+    int size2 = arr2.size();
+	std::set<int> hs;
+	for (int i = 0; i < size2; i++)
+	{
+		hs.insert(arr2[i]);
+	}
+
+	for (int i = 0; i < size1; i++)
+	{
+		if (hs.find(value - arr1[i]) != hs.end())
+		{
+			std::cout << "The pair is : " << arr1[i] << ", " << (value - arr1[i]) << std::endl;
+			return true;
+		}
+	}
+	return false;
+}
+
+bool findPairTwoLists5(std::vector<int> &arr1, std::vector<int> &arr2, int range, int value)
+{
+    int size1 = arr1.size();
+    int size2 = arr2.size();
+	std::vector<int> count(range+1, 0);
+
+	for (int i = 0; i < size2; i++)
+	{
+		count[arr2[i]] = 1;
+	}
+
+	for (int i = 0; i < size1; i++)
+	{
+		if (count[value - arr1[i]] != 0)
+		{
+			std::cout << "The pair is : " << arr1[i] << ", " << (value - arr1[i]) << std::endl;
+			return true;
+		}
+	}
+	return false;
+}
+
+void main11()
+{
+	std::vector<int> first = {1, 5, 4, 3, 2, 7, 8, 9, 6};
+	std::vector<int> second = {1, 5, 4, 3, 2, 7, 8, 9, 6};
+	findPairTwoLists(first, second, 8);
+	findPairTwoLists2(first, second, 8);
+	findPairTwoLists3(first, second, 8);
+	findPairTwoLists4(first, second, 8);
+	findPairTwoLists5(first,  second, 9, 8);
+}
+
+/*
+The pair is : 1, 7
+The pair is : 1, 7
+The pair is : 1, 7
+The pair is : 1, 7
+The pair is : 1, 7
 */
 
 bool findDifference(std::vector<int> &arr, int value)
@@ -698,7 +1094,7 @@ bool findDifference2(std::vector<int> &arr, int value)
         diff = std::abs(arr[first] - arr[second]);
         if (diff == value)
         {
-            std::cout << "The pair is::" << arr[first] << " & " << arr[second] << std::endl;
+            std::cout << "The pair is:: " << arr[first] << " & " << arr[second] << std::endl;
             return true;
         }
         else if (diff > value)
@@ -709,10 +1105,39 @@ bool findDifference2(std::vector<int> &arr, int value)
     return false;
 }
 
+void main12()
+{
+	std::vector<int> second = { 1, 5, 4, 3, 2, 7, 8, 9, 6};
+	findDifference(second, 6);
+	findDifference2(second, 6);
+}
+
+/*
+The pair is:: 1 & 7
+The pair is:: 1 & 7
+*/
+
 int findMinDiff(std::vector<int> &arr)
 {
+	int size = arr.size();
+    int diff = std::numeric_limits<int>::max();
+	for (int i = 0; i < size; i++)
+	{
+		for (int j = i + 1; j < size; j++)
+		{
+			int value = std::abs(arr[i] - arr[j]);
+			if (diff > value)
+			{
+				diff = value;
+			}
+		}
+	}
+	return diff;
+}
+int findMinDiff2(std::vector<int> &arr)
+{
     std::sort(arr.begin(), arr.end());
-    int diff = 9999999;
+    int diff = std::numeric_limits<int>::max();
     int size = arr.size();
 
     for (int i = 0; i < (size - 1); i++)
@@ -720,11 +1145,46 @@ int findMinDiff(std::vector<int> &arr)
         if ((arr[i + 1] - arr[i]) < diff)
             diff = arr[i + 1] - arr[i];
     }
-    std::cout << "Min difference is :: " << diff << std::endl; 
     return diff;
 }
+void main13()
+{
+	std::vector<int> second = {1, 6, 4, 19, 17, 20};
+	std::cout << "findMinDiff : " << findMinDiff(second) << std::endl;
+	std::cout << "findMinDiff : " << findMinDiff2(second) << std::endl;
+}
+
+/*
+findMinDiff : 1
+findMinDiff : 1
+*/
 
 int minDiffPair(std::vector<int> &arr1, std::vector<int> &arr2)
+{
+	int diff = std::numeric_limits<int>::max();
+	int first = 0;
+	int second = 0;
+    int size1 = arr1.size();
+    int size2 = arr2.size();
+	for (int i = 0; i < size1; i++)
+	{
+		for (int j = 0; j < size2; j++)
+		{
+			int value = std::abs(arr1[i] - arr2[j]);
+			if (diff > value)
+			{
+				diff = value;
+				first = arr1[i];
+				second = arr2[j];
+			}
+		}
+	}
+	std::cout << "The pair is :: " << first << " & " << second << std::endl;
+	std::cout << "Minimum difference is :: " << diff << std::endl;
+	return diff;
+}
+
+int minDiffPair2(std::vector<int> &arr1, std::vector<int> &arr2)
 {
     int minDiff = 9999999;
     int size1 = arr1.size();
@@ -748,30 +1208,25 @@ int minDiffPair(std::vector<int> &arr1, std::vector<int> &arr2)
         else
             second += 1;
     }
-    std::cout << "The pair is :: " << out1 << ", "<< out2 << std::endl;
+    std::cout << "The pair is :: " << out1 << " & "<< out2 << std::endl;
     std::cout << "Minimum difference is :: " << minDiff << std::endl;
     return minDiff;
 }
 
-int main11()
+int main14()
 {
-    std::vector<int> first = { 1, 5, 4, 3, 2, 7, 8, 9, 6 };
-    findDifference(first, 6);
-    findDifference2(first, 6);
-    findMinDiff(first);
-
-    std::vector<int> second =  {1, 3, 2, 7, 8, 9};
-    std::vector<int> third = {5, 10 , 15};
+    std::vector<int> second =  {1, 5, 4, 3, 2, 7, 8, 9, 6};
+    std::vector<int> third = {6, 4, 19, 17, 20};
     minDiffPair(second, third);
+    minDiffPair2(second, third);
     return 0;
 }
 
 /*
-The pair is:: 1 & 7
-The pair is::1 & 7
-Min difference is :: 1
-The pair is :: 9, 10
-Minimum difference is :: 1
+The pair is :: 4 & 4
+Minimum difference is :: 0
+The pair is :: 4 & 4
+Minimum difference is :: 0
 */
 
 void closestPair(std::vector<int> &arr, int value)
@@ -833,17 +1288,17 @@ void closestPair2(std::vector<int> &arr, int value)
     std::cout << "closest pair is :: " << first << ", " <<second << std::endl;
 }
 
-int main12()
+int main15()
 {
-    std::vector<int> first = { 1, 5, 4, 3, 2, 7, 8, 9, 6 };
-    closestPair(first, 6);
-    closestPair2(first, 6);
+    std::vector<int> first = { 10, 20, 3, 4, 50, 80  };
+    closestPair(first, 47);
+    closestPair2(first, 47);
     return 0;
 }
 
 /*
-closest pair is :: 1, 5
-closest pair is :: 1, 5
+closest pair is :: 3, 50
+closest pair is :: 3, 50
 */
 
 bool sumPairRestArray(std::vector<int> &arr)
@@ -873,7 +1328,7 @@ bool sumPairRestArray(std::vector<int> &arr)
     return false;
 }
 
-int main13()
+int main16()
 {
     std::vector<int> first = { 1, 2, 4, 3, 7, 3 };
     sumPairRestArray(first);
@@ -926,7 +1381,7 @@ void zeroSumTriplets2(std::vector<int> &arr)
     }
 }
 
-int main14()
+int main17()
 {
     std::vector<int> first = { 1, 2, -4, 3, 7, -3 };
     zeroSumTriplets(first);
@@ -968,7 +1423,7 @@ void findTriplet2(std::vector<int> &arr, int value)
         {
             if (arr[i] + arr[start] + arr[stop] == value)
             {
-                std::cout << "Triplet ::" << arr[i] << " " << arr[start] << " " << arr[stop] << std::endl;
+                std::cout << "Triplet :: " << arr[i] << " " << arr[start] << " " << arr[stop] << std::endl;
                 start += 1;
                 stop -= 1;
             }
@@ -980,7 +1435,7 @@ void findTriplet2(std::vector<int> &arr, int value)
     }
 }
 
-int main15()
+int main18()
 {
     std::vector<int> first = { 1, 2, -4, 3, 7, -3 };
     findTriplet(first, 6);
@@ -992,12 +1447,29 @@ int main15()
 Triplet :: 1 2 3
 Triplet :: 2 7 -3
 Triplet :: -4 3 7
-Triplet ::-4 3 7
-Triplet ::-3 2 7
-Triplet ::1 2 3
+Triplet :: -4 3 7
+Triplet :: -3 2 7
+Triplet :: 1 2 3
 */
 
-void ABCTriplet(std::vector<int> &arr)
+void abcTriplet(std::vector<int> &arr)
+{
+	int size = arr.size();
+    for (int i = 0; i < size-1; i++)
+	{
+        for (int j = i + 1; j < size; j++)
+        {
+            for (int k = 0; k < size; k++)
+            {
+                if (k != i && k != j && arr[i] + arr[j] == arr[k])
+                {
+                    std::cout << "abcTriplet:: " << arr[i] << " " << arr[j] << " " << arr[k] << std::endl;
+                }
+            }
+        }
+	}
+}
+void abcTriplet2(std::vector<int> &arr)
 {
     int start, stop;
     int size = arr.size();
@@ -1010,7 +1482,7 @@ void ABCTriplet(std::vector<int> &arr)
         {
             if (arr[i] == arr[start] + arr[stop])
             {
-                std::cout << "Triplet :: " << arr[i] << " " << arr[start] << " " << arr[stop] << std::endl;
+                std::cout << "abcTriplet :: " << arr[i] << " " << arr[start] << " " << arr[stop] << std::endl;
                 start += 1;
                 stop -= 1;
             }
@@ -1022,20 +1494,44 @@ void ABCTriplet(std::vector<int> &arr)
     }
 }
 
-int main16()
+int main19()
 {
     std::vector<int> first = { 1, 2, -4, 3, 7, -3 };
-    ABCTriplet(first);
+    abcTriplet(first);
+    abcTriplet2(first);
     return 0;
 }
 
 /*
-Triplet :: -3 -4 1
-Triplet :: 3 -4 7
-Triplet :: 3 1 2
+abcTriplet:: 1 2 3
+abcTriplet:: 1 -4 -3
+abcTriplet:: -4 7 3
+abcTriplet :: -3 -4 1
+abcTriplet :: 3 -4 7
+abcTriplet :: 3 1 2
 */
 
 void smallerThenTripletCount(std::vector<int> &arr, int value)
+{
+    int size = arr.size();
+	int count = 0;
+	for (int i = 0; i < size-1; i++)
+	{
+        for (int j = i + 1; j < size; j++)
+        {
+            for (int k = j + 1; k < size; k++)
+            {
+                if (arr[i] + arr[j] + arr[k] < value)
+                {
+                    count += 1;
+                }
+            }
+        }
+	}
+	std::cout << "smallerThenTripletCount:: " << count << std::endl;
+}
+
+void smallerThenTripletCount2(std::vector<int> &arr, int value)
 {
     int start, stop;
     int count = 0;
@@ -1057,18 +1553,19 @@ void smallerThenTripletCount(std::vector<int> &arr, int value)
             }
         }
     }
-    std::cout << count << std::endl;
+	std::cout << "smallerThenTripletCount:: " << count << std::endl;
 }
 
-int main17()
+void main20()
 {
-    std::vector<int> first = { 1, 2, -4, 3, 7, -3 };
-    smallerThenTripletCount(first, 6);
-    return 0;
+    std::vector<int> first = { -2, -1,  0, 1 };
+    smallerThenTripletCount(first, 2);
+    smallerThenTripletCount2(first,2);
 }
 
 /*
-13
+smallerThenTripletCount:: 4
+smallerThenTripletCount:: 4
 */
 
 void APTriplets(std::vector<int> &arr)
@@ -1083,7 +1580,7 @@ void APTriplets(std::vector<int> &arr)
         {
             if (arr[j] + arr[k] == 2 * arr[i])
             {
-                std::cout << "Triplet ::" << arr[j] << " " << arr[i] << " " << arr[k] << std::endl;
+                std::cout << "AP Triplet ::" << arr[j] << " " << arr[i] << " " << arr[k] << std::endl;
                 k += 1;
                 j -= 1;
             }
@@ -1095,7 +1592,7 @@ void APTriplets(std::vector<int> &arr)
     }
 }
 
-int main18()
+int main21()
 {
     std::vector<int> first = { 1, 2, 3, 4, 9, 17, 23 };
     APTriplets(first);
@@ -1120,7 +1617,7 @@ void GPTriplets(std::vector<int> &arr)
         {
             if (arr[j] * arr[k] == arr[i] * arr[i])
             {
-                std::cout << "Triplet is :: " << arr[j] << " " << arr[i] << " " << arr[k] << std::endl;
+                std::cout << "GP Triplet:: " << arr[j] << " " << arr[i] << " " << arr[k] << std::endl;
                 k += 1;
                 j -= 1;
             }
@@ -1132,7 +1629,7 @@ void GPTriplets(std::vector<int> &arr)
     }
 }
 
-int main19()
+int main22()
 {
     std::vector<int> first = { 1, 2, 3, 4, 9, 17, 23 };
     GPTriplets(first);
@@ -1185,7 +1682,7 @@ int numberOfTriangles2(std::vector<int> &arr)
     return count;
 }
 
-int main20()
+int main23()
 {
     std::vector<int> first = { 1, 2, 3, 4, 5 };
     std::cout << "numberOfTriangles : " << numberOfTriangles(first) << std::endl;
@@ -1264,7 +1761,7 @@ int getMax3(std::vector<int> &arr, int range)
     return max;
 }
 
-int main21()
+int main24()
 {
     std::vector<int> first = { 1, 30, 5, 13, 9, 31, 5 };
     std::cout << getMax(first) << std::endl;
@@ -1309,7 +1806,7 @@ int getMajority2(std::vector<int> &data)
     int size = data.size();
     int majIndex = size / 2, count = 1;
     int candidate;
-    sort(data.begin(), data.end()); // Sort(data,size);
+    sort(data.begin(), data.end()); 
     candidate = data[majIndex];
     count = 0;
     for (int i = 0; i < size; i++)
@@ -1359,7 +1856,7 @@ int getMajority3(std::vector<int> &data)
 }
 
 
-int main22()
+int main25()
 {
     std::vector<int> first = { 1, 5, 5, 13, 5, 31, 5 };
     std::cout << getMajority(first) << std::endl;
@@ -1382,7 +1879,73 @@ int getMedian(std::vector<int> &data)
 }
 
 
+void quickSelectUtil(std::vector<int> &arr, int lower, int upper, int k)
+{
+    if (upper <= lower)
+        return;
+
+    int pivot = arr[lower];
+    int start = lower;
+    int stop = upper;
+
+    while (lower < upper)
+    {
+        while (arr[lower] <= pivot)
+        {
+            lower++;
+        }
+        while (arr[upper] > pivot)
+        {
+            upper--;
+        }
+        if (lower < upper)
+        {
+            swap(arr, upper, lower);
+        }
+    }
+
+    swap(arr, upper, start); // upper is the pivot position
+    if (k < upper)
+        quickSelectUtil(arr, start, upper - 1, k); // pivot -1 is the upper for left sub array.
+    if (k > upper)
+        quickSelectUtil(arr, upper + 1, stop, k); // pivot + 1 is the lower for right sub array.
+}
+
+
+int getMedian2(std::vector<int> &arr)
+{
+    int size = arr.size();
+	quickSelectUtil(arr, 0, size - 1, size / 2);
+	return arr[size / 2];
+}
+
+void main26()
+{
+	std::vector<int> first = {1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30};
+	std::cout << getMedian(first) << std::endl;
+	std::cout << getMedian2(first) << std::endl;
+}
+
+/*
+6
+6
+*/
+
 int searchBitonicArrayMax(std::vector<int> &arr)
+{
+    int size = arr.size();
+	for (int i = 0; i < size-2; i++)
+	{
+		if (arr[i] > arr[i + 1])
+		{
+			return arr[i];
+		}
+	}
+	std::cout << "error not a bitonic array" << std::endl;
+	return 0;
+}
+
+int searchBitonicArrayMax2(std::vector<int> &arr)
 {
     int size = arr.size();
     int start = 0, end = size - 1;
@@ -1422,6 +1985,7 @@ int searchBitonicArrayMax(std::vector<int> &arr)
     return arr[mid];
 }
 
+
 int findBitonicArrayMax(std::vector<int> &arr)
 {
     int size = arr.size();
@@ -1447,31 +2011,34 @@ int findBitonicArrayMax(std::vector<int> &arr)
     return -1;
 }
 
+
 int searchBitonicArray(std::vector<int> &arr, int key)
 {
     int size = arr.size();
     int max = findBitonicArrayMax(arr);
-    int k = binarysearch(arr, 0, max, key, true);
+    int k = binarySearch(arr, 0, max, key, true);
     if (k != -1)
     {
         return k;
     }
     else
     {
-        return binarysearch(arr, max + 1, size - 1, key, false);
+        return binarySearch(arr, max + 1, size - 1, key, false);
     }
 }
 
-int main23()
+
+void main27()
 {
-    std::vector<int> first = { 1, 5, 10, 13, 20, 30, 8, 7, 6 };
-    std::cout << searchBitonicArrayMax(first) << std::endl;
-    std::cout << searchBitonicArray(first, 7) << std::endl;
+	std::vector<int> first = {1, 5, 10, 13, 20, 30, 8, 7, 6};
+	std::cout << searchBitonicArrayMax(first) << std::endl;
+	std::cout << searchBitonicArrayMax2(first) << std::endl;
+	std::cout << searchBitonicArray(first, 7) << std::endl;
     std::cout << first[findBitonicArrayMax(first)] << std::endl;
-    return 0;
 }
 
 /*
+30
 30
 7
 30
@@ -1544,6 +2111,18 @@ int findKeyCount2(std::vector<int> &arr, int key)
     return (lastIndex - firstIndex + 1);
 }
 
+int main28()
+{
+    std::vector<int> first = {1, 5, 10, 13, 20, 30, 8, 7, 6  };
+    std::cout << findKeyCount(first, 6) << std::endl;
+    std::cout << findKeyCount2(first, 6) << std::endl;
+    return 0;
+}
+/*
+1
+1
+*/
+
 /* Using binary search method. */
 int firstIndex(std::vector<int> &arr, int low, int high, int value)
 {
@@ -1563,9 +2142,27 @@ int firstIndex(std::vector<int> &arr, int low, int high, int value)
         return firstIndex(arr, low, mid - 1, value);
 }
 
-
-
 bool isMajority(std::vector<int> &arr)
+{
+    int size = arr.size();
+	int count = 0;
+	int mid = arr[size / 2];
+	for (int i = 0;i < size;i++)
+	{
+		if (arr[i] == mid)
+		{
+			count += 1;
+		}
+	}
+
+	if (count > size / 2)
+	{
+		return true;
+	}
+	return false;
+}
+
+bool isMajority2(std::vector<int> &arr)
 {
     int size = arr.size();
     int majority = arr[size / 2];
@@ -1582,22 +2179,45 @@ bool isMajority(std::vector<int> &arr)
 }
 
 
-int main24()
+int main29()
 {
-    std::vector<int> first = {1, 5, 6, 6, 6, 6, 7, 10, 13, 20, 30 };
-    std::cout << findKeyCount(first, 6) << std::endl;
-    std::cout << findKeyCount2(first, 6) << std::endl;
+    std::vector<int> first = {3, 3, 3, 3, 4, 5, 10};
     std::cout << isMajority(first) << std::endl;
+    std::cout << isMajority2(first) << std::endl;
     return 0;
 }
 
 /*
-4
-4
+1
 1
 */
 
+
 int maxProfit(std::vector<int> &stocks)
+{
+    int size = stocks.size();
+	int maxProfit = 0;
+	int buy = 0, sell = 0;
+
+	for (int i = 0;i < size-1;i++)
+	{
+		for (int j = i + 1;j < size ;j++)
+		{
+			if (maxProfit < stocks[j] - stocks[i])
+			{
+				maxProfit = stocks[j] - stocks[i];
+				buy = i;
+				sell = j;
+			}
+		}
+	}
+	std::cout << "Purchase day is " << buy << " at price " << stocks[buy] << std::endl;
+	std::cout << "Sell day is " << sell << " at price " << stocks[sell] << std::endl;
+	std::cout << "Profit is " << maxProfit << std::endl;
+    return maxProfit;
+}
+
+int maxProfit2(std::vector<int> &stocks)
 {
     int size = stocks.size();
     int buy = 0, sell = 0;
@@ -1618,22 +2238,28 @@ int maxProfit(std::vector<int> &stocks)
             maxProfit = currProfit;
         }
     }
-    std::cout << "Purchase day is: " << buy << " at price " << stocks[buy] << std::endl;
-    std::cout << "Sell day is: " << sell << " at price " << stocks[sell] << std::endl;
+    std::cout << "Purchase day is " << buy << " at price " << stocks[buy] << std::endl;
+    std::cout << "Sell day is " << sell << " at price " << stocks[sell] << std::endl;
+    std::cout << "Profit is " << maxProfit << std::endl;
     return maxProfit;
 }
 
-int main25()
+int main30()
 {
     std::vector<int> first = { 10, 150, 6, 67, 61, 16, 86, 6, 67, 78, 150, 3, 28, 143 };
-    std::cout << maxProfit(first) << std::endl;
+    maxProfit(first);
+    maxProfit2(first);
     return 0;
 }
 
 /*
-Purchase day is: 2 at price 6
-Sell day is: 10 at price 150
-144
+Purchase day is 2 at price 6
+Sell day is 10 at price 150
+Profit is 144
+
+Purchase day is 2 at price 6
+Sell day is 10 at price 150
+Profit is 144
 */
 
 int findMedian(std::vector<int> arrFirst, std::vector<int>  arrSecond)
@@ -1641,8 +2267,7 @@ int findMedian(std::vector<int> arrFirst, std::vector<int>  arrSecond)
     int sizeFirst = arrFirst.size();
     int sizeSecond = arrSecond.size();
 
-    int medianIndex = ((sizeFirst + sizeSecond) + (sizeFirst + sizeSecond) % 2) / 2;// cealing
-    // function.
+    int medianIndex = ((sizeFirst + sizeSecond) + (sizeFirst + sizeSecond) % 2) / 2;// ceiling 
     int i = 0, j = 0;
     int count = 0;
     while (count < medianIndex - 1)
@@ -1667,7 +2292,7 @@ int findMedian(std::vector<int> arrFirst, std::vector<int>  arrSecond)
     }
 }
 
-int main26()
+int main31()
 {
     std::vector<int> first = { 1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 };
     std::vector<int> second = { 1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 };
@@ -1679,8 +2304,20 @@ int main26()
 6
 */
 
+int search01(std::vector<int> &arr)
+{
+    int size = arr.size();
+	for (int i = 0;i < size;i++)
+	{
+		if (arr[i] == 1)
+		{
+			return i;
+		}
+	}
+	return -1;
+}
 
-int binarysearch01Util(std::vector<int> &arr, int start, int end)
+int binarySearch01Util(std::vector<int> &arr, int start, int end)
 {
     if (end < start)
     {
@@ -1693,34 +2330,49 @@ int binarysearch01Util(std::vector<int> &arr, int start, int end)
     }
     if (0 == arr[mid])
     {
-        return binarysearch01Util(arr, mid + 1, end);
+        return binarySearch01Util(arr, mid + 1, end);
     }
     else
     {
-        return binarysearch01Util(arr, start, mid - 1);
+        return binarySearch01Util(arr, start, mid - 1);
     }
 }
 
-int binarysearch01(std::vector<int> &arr)
+int binarySearch01(std::vector<int> &arr)
 {
     int size = arr.size();
     if (size == 1 && arr[0] == 1)
     {
         return 0;
     }
-    return binarysearch01Util(arr, 0, size - 1);
+    return binarySearch01Util(arr, 0, size - 1);
 }
 
-int main27()
+int main32()
 {
     std::vector<int> first = { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 };
-    std::cout << binarysearch01(first) << std::endl;
+	std::cout << search01(first) << std::endl;
+    std::cout << binarySearch01(first) << std::endl;
     return 0;
 }
 
 /*
 8
+8
 */
+
+int rotationMax(std::vector<int> &arr)
+{
+    int size = arr.size();
+	for (int i = 0;i < size-1;i++)
+	{
+		if (arr[i] > arr[i + 1])
+		{
+			return arr[i];
+		}
+	}
+	return -1;
+}
 
 int rotationMaxUtil(std::vector<int> &arr, int start, int end)
 {
@@ -1738,18 +2390,38 @@ int rotationMaxUtil(std::vector<int> &arr, int start, int end)
         return rotationMaxUtil(arr, start, mid - 1);
 }
 
-int rotationMax(std::vector<int> &arr)
+int rotationMax2(std::vector<int> &arr)
 {
     int size = arr.size();
     return rotationMaxUtil(arr, 0, size - 1);
 }
 
 // Testing code
-int main() {
+int main33() {
     std::vector<int> first = {8, 9, 10, 11, 3, 5, 7 };
     std::cout << "RotationMax is ::" << rotationMax(first) << std::endl;
+    std::cout << "RotationMax is ::" << rotationMax2(first) << std::endl;
     return 0;
 }
+
+/*
+RotationMax is ::11
+RotationMax is ::11
+*/
+
+int findRotationMax(std::vector<int> &arr)
+{
+    int size = arr.size();
+	for (int i = 0;i < size-1;i++)
+	{
+		if (arr[i] > arr[i + 1])
+		{
+			return i;
+		}
+	}
+	return -1;
+}
+
 
 int findRotationMaxUtil(std::vector<int> &arr, int start, int end)
 {
@@ -1767,20 +2439,56 @@ int findRotationMaxUtil(std::vector<int> &arr, int start, int end)
         return findRotationMaxUtil(arr, start, mid - 1);
 }
 
-int findRotationMax(std::vector<int> &arr)
+int findRotationMax2(std::vector<int> &arr)
 {
     int size = arr.size();
     return findRotationMaxUtil(arr, 0, size - 1);
 }
 
-int main()
+int main34()
 {
-    std::vector<int> first =  {8, 9, 10, 11, 3, 5, 7 }
-    std::cout << "findRotationMax is ::" << findRotationMax(first) << std::endl;
+    std::vector<int> first =  { 34, 56, 77, 1, 5, 6, 6, 8, 10, 20, 30, 34 };
+    std::cout << "findRotationMax is :: " << findRotationMax(first) << std::endl;
+    std::cout << "findRotationMax is :: " << findRotationMax2(first) << std::endl;
     return 0;
 }
 
-int binarysearchRotateArrayUtil(std::vector<int> &arr, int start, int end, int key)
+/*
+findRotationMax is :: 2
+findRotationMax is :: 2
+*/
+
+int countRotation(std::vector<int> &arr)
+{
+    int size = arr.size();
+    int maxIndex = findRotationMaxUtil(arr, 0, size - 1);
+    return (maxIndex + 1) % size;
+}
+
+int main35()
+{
+    std::vector<int> first = { 34, 56, 77, 1, 5, 6, 6, 8, 10, 20, 30, 34 };
+    std::cout << countRotation(first) << std::endl;
+    return 0;
+}
+/*
+3
+*/
+
+int searchRotateArray(std::vector<int> &arr, int key)
+{
+    int size = arr.size();
+	for (int i = 0;i < size-1;i++)
+	{
+		if (arr[i] == key)
+		{
+			return i;
+		}
+	}
+	return -1;
+}
+
+int binarySearchRotateArrayUtil(std::vector<int> &arr, int start, int end, int key)
 {
     if (end < start)
     {
@@ -1795,52 +2503,43 @@ int binarysearchRotateArrayUtil(std::vector<int> &arr, int start, int end, int k
     {
         if (arr[start] <= key && key < arr[mid])
         {
-            return binarysearchRotateArrayUtil(arr, start, mid - 1, key);
+            return binarySearchRotateArrayUtil(arr, start, mid - 1, key);
         }
         else
         {
-            return binarysearchRotateArrayUtil(arr, mid + 1, end, key);
+            return binarySearchRotateArrayUtil(arr, mid + 1, end, key);
         }
     }
     else
     {
         if (arr[mid] < key && key <= arr[end])
         {
-            return binarysearchRotateArrayUtil(arr, mid + 1, end, key);
+            return binarySearchRotateArrayUtil(arr, mid + 1, end, key);
         }
         else
         {
-            return binarysearchRotateArrayUtil(arr, start, mid - 1, key);
+            return binarySearchRotateArrayUtil(arr, start, mid - 1, key);
         }
     }
 }
 
-int binarysearchRotateArray(std::vector<int> &arr, int key)
+int binarySearchRotateArray(std::vector<int> &arr, int key)
 {
     int size = arr.size();
-    return binarysearchRotateArrayUtil(arr, 0, size - 1, key);
+    return binarySearchRotateArrayUtil(arr, 0, size - 1, key);
 }
 
-int countRotation(std::vector<int> &arr)
-{
-    int size = arr.size();
-    int maxIndex = findRotationMaxUtil(arr, 0, size - 1);
-    return (maxIndex + 1) % size;
-}
-
-int main28()
+int main36()
 {
     std::vector<int> first = { 34, 56, 77, 1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 };
-    std::cout << binarysearchRotateArray(first, 20) << std::endl;
-    std::cout << countRotation(first) << std::endl;
-    std::cout << first[findRotationMax(first)] << std::endl;
+	std::cout << searchRotateArray(first, 20) << std::endl;
+    std::cout << binarySearchRotateArray(first, 20) << std::endl;
     return 0;
 }
 
 /*
 15
-3
-77
+15
 */
 
 int minAbsDiffAdjCircular(std::vector<int> &arr)
@@ -1859,7 +2558,7 @@ int minAbsDiffAdjCircular(std::vector<int> &arr)
 /*
  * Testing code
  */
-int main29()
+int main37()
 {
     std::vector<int> arr = { 5, 29, 18, 51, 11 };
     std::cout << minAbsDiffAdjCircular(arr) << std::endl;
@@ -1889,7 +2588,7 @@ void transformArrayAB1(char arr[], int size)
     }
 }
 
-int main30()
+int main38()
 {
     char str[] = "aaaabbbb";
     transformArrayAB1(str, 8);
@@ -1901,33 +2600,89 @@ int main30()
 abababab
 */
 
-bool checkPermutation(char array1[], int size1, char array2[], int size2)
+bool checkPermutation(std::string data1, std::string data2)
 {
+    int size1 = data1.size();
+    int size2 = data2.size();
+
     if (size1 != size2)
-    {
         return false;
-    }
-    std::sort(array1, array1+size1);
-    std::sort(array2, array2+size2);
+
+    sort(data1.begin(), data1.end());
+    sort(data2.begin(), data2.end());
+
     for (int i = 0; i < size1; i++)
     {
-        if (array1[i] != array2[i])
-        {
+        if (data1[i] != data2[i])
             return false;
-        }
     }
     return true;
 }
 
-int main31()
+bool checkPermutation2(std::string data1, std::string data2)
 {
-    char str1[] = "aaaabbbb";
-    char str2[] = "bbaaaabb";
-    std::cout << checkPermutation(str1, sizeof(str1)/sizeof(char), str2, sizeof(str2)/sizeof(char)) << std::endl;
+    int size1 = data1.size();
+    int size2 = data2.size();
+
+    if (size1 != size2)
+        return false;
+
+    std::map<char, int> al;
+
+    for (int i = 0; i < size1; i++)
+    {
+        al[data1[i]] += 1;
+        al[data2[i]] -= 1;
+    }
+
+    for (int i = 0; i < size1; i++)
+    {
+        if (al[data1[i]] != 0)
+            return false;
+    }
+    return true;
+}
+
+bool checkPermutation3(std::string array1, std::string array2)
+{
+    int size1 = array1.size();
+    int size2 = array2.size();
+
+	if (size1 != size2)
+	{
+		return false;
+	}
+	std::vector<int> count(256, 0);
+	for (int i = 0; i < size1; i++)
+	{
+		count[array1[i]]++;
+		count[array2[i]]--;
+	}
+
+	for (int i = 0; i < size1; i++)
+	{
+		if (count[i] != 0)
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+
+int main39()
+{
+    auto str1 = "aaaabbbb";
+    auto str2 = "bbaaaabb";
+    std::cout << checkPermutation(str1, str2) << std::endl;
+    std::cout << checkPermutation2(str1, str2) << std::endl;
+    std::cout << checkPermutation3(str1, str2) << std::endl;
     return 0;
 }
 
 /*
+1
+1
 1
 */
 
@@ -2037,7 +2792,7 @@ bool isAP3(std::vector<int> &arr)
     return true;
 }
 
-int main32()
+int main40()
 {
     std::vector<int> arr = { 3, 6, 9, 12, 15 };
     std::cout << isAP(arr) << std::endl;
@@ -2078,7 +2833,7 @@ int findBalancedPoint(std::vector<int> &arr)
  * Testing code
  */
 
-int main33()
+int main41()
 {
     std::vector<int> arr = { -7, 1, 5, 2, -4, 3, 0 };
     std::cout << findBalancedPoint(arr) << std::endl;
@@ -2086,7 +2841,6 @@ int main33()
 }
 
 /*
-3
 3
 */
 
@@ -2139,7 +2893,7 @@ int findCeil(std::vector<int> &arr, int value)
     return -1;
 }
 
-int main34()
+int main42()
 {
     std::vector<int> arr = { -7, 1, 2, 3, 6, 8, 10 };
     std::cout << findFloor(arr, 4) << std::endl;
@@ -2179,15 +2933,15 @@ int closestNumber(std::vector<int> &arr, int num)
     return output;
 }
 
-int main35()
+int main43()
 {
-    std::vector<int> arr = {-7, 1, 2, 3, 6, 8, 10};
-    std::cout << "closestNumber : " << closestNumber(arr, 4);
+    std::vector<int> arr = {2, 4, 8, 16};
+    std::cout << "closestNumber : " << closestNumber(arr, 7);
     return 0;
 }
 
 /*
-closestNumber : 3
+closestNumber : 8
 */
 
 bool duplicateKDistance(std::vector<int> &arr, int k)
@@ -2209,7 +2963,7 @@ bool duplicateKDistance(std::vector<int> &arr, int k)
     return false;
 }
 
-int main36()
+int main44()
 {
     std::vector<int> arr = { 1, 2, 3, 1, 4, 5 };
     duplicateKDistance(arr, 3);
@@ -2220,7 +2974,65 @@ int main36()
 Value:1 Index: 0 & 3
 */
 
-void frequencyCounts(std::vector<int> &arr)
+void frequencyCounts(std::vector<int> &arr, int size)
+{
+	std::map<int, int> hm;
+	for (int i = 0; i < size; i++)
+	{
+		if (hm.find(arr[i]) != hm.end())
+		{
+			hm[arr[i]] += 1;
+		}
+		else
+		{
+			hm[arr[i]] = 1;
+		}
+	}
+	for (auto key : hm)
+	{
+		std::cout << "(" << key.first << " : " << hm[key.first] << ") ";
+	}
+	std::cout << std::endl;
+}
+
+void frequencyCounts2(std::vector<int> &arr, int size)
+{
+	std::sort(arr.begin(), arr.end());
+	int count = 1;
+	for (int i = 1; i < size; i++)
+	{
+		if (arr[i] == arr[i - 1])
+		{
+			count++;
+		}
+		else
+		{
+			std::cout << "(" << arr[i - 1] << " : " << count << ") ";
+			count = 1;
+		}
+	}
+	std::cout << "(" << arr[size-1] << " : " << count << ") ";
+	std::cout << std::endl;
+}
+
+void frequencyCounts3(std::vector<int> &arr, int size)
+{
+	std::vector<int> aux(size+1);
+	for (int i = 0; i < size; i++)
+	{
+		aux[arr[i]] += 1;
+	}
+	for (int i = 0; i < size+1; i++)
+	{
+		if (aux[i] > 0)
+		{
+			std::cout << "(" << i << " : " << aux[i] << ") ";
+		}
+	}
+	std::cout << std::endl;
+}
+
+void frequencyCounts4(std::vector<int> &arr)
 {
     int index;
     int size = arr.size();
@@ -2242,22 +3054,25 @@ void frequencyCounts(std::vector<int> &arr)
         }
     }
     for (int i = 0; i < size; i++)
-        std::cout << (i + 1) << " "<<std::abs(arr[i]) << std::endl;
+        if (arr[i] != 0)
+            std::cout  << "(" << (i + 1) << " : " << std::abs(arr[i]) << ")" << std::endl;
 }
 
-int main37()
+int main45()
 {
     std::vector<int> arr = {1, 2, 2, 2, 1};
-    frequencyCounts(arr);
+    frequencyCounts(arr, arr.size());
+	frequencyCounts2(arr, arr.size());
+	frequencyCounts3(arr, arr.size());
+    frequencyCounts4(arr);
     return 0;
 }
 
 /*
-1 2
-2 3
-3 0
-4 0
-5 0
+(1 : 2) (2 : 3) 
+(1 : 2) (2 : 3) 
+(1 : 2) (2 : 3) 
+(1 : 2) (2 : 3)
 */
 
 int kLargestElements(std::vector<int> &arrIn, int k)
@@ -2279,38 +3094,6 @@ int kLargestElements(std::vector<int> &arrIn, int k)
     return -1;
 }
 
-void quickSelectUtil(std::vector<int> &arr, int lower, int upper, int k)
-{
-    if (upper <= lower)
-        return;
-
-    int pivot = arr[lower];
-    int start = lower;
-    int stop = upper;
-
-    while (lower < upper)
-    {
-        while (arr[lower] <= pivot)
-        {
-            lower++;
-        }
-        while (arr[upper] > pivot)
-        {
-            upper--;
-        }
-        if (lower < upper)
-        {
-            swap(arr, upper, lower);
-        }
-    }
-
-    swap(arr, upper, start); // upper is the pivot position
-    if (k < upper)
-        quickSelectUtil(arr, start, upper - 1, k); // pivot -1 is the upper for left sub array.
-    if (k > upper)
-        quickSelectUtil(arr, upper + 1, stop, k); // pivot + 1 is the lower for right sub array.
-}
-
 int kLargestElements2(std::vector<int> & arrIn, int k)
 {
     int size = arrIn.size();
@@ -2330,17 +3113,17 @@ int kLargestElements2(std::vector<int> & arrIn, int k)
     return -1;
 }
 
-int main38()
+int main46()
 {
-    std::vector<int> arr = {1, 3, 4, 2, 2, 1, 5, 9, 3};
-    kLargestElements(arr, 7);
-    kLargestElements2(arr, 7);
+    std::vector<int> arr = {10, 50, 30, 60, 15};
+    kLargestElements(arr, 2);
+    kLargestElements2(arr, 2);
     return 0;
 }
 
 /*
-3 4 2 2 5 9 3 
-3 4 2 2 5 9 3 
+50 60 
+50 60 
 */
 
 /* linear search method */
@@ -2376,17 +3159,17 @@ int fixPoint2(std::vector<int> &arr)
     return -1;
 }
 
-int main39()
+int main47()
 {
-    std::vector<int> arr = {-1, 0, 2, 3, 6, 7, 9, 10, 18};
+    std::vector<int> arr = {-10, -2, 0, 3, 11, 12, 35, 51, 200};
     std::cout << fixPoint(arr) << std::endl;
     std::cout << fixPoint2(arr) << std::endl;
     return 0;
 }
 
 /*
-2
-2
+3
+3
 */
 
 bool subArraySums(std::vector<int> &arr, int value)
@@ -2418,15 +3201,15 @@ bool subArraySums(std::vector<int> &arr, int value)
     return false;
 }
 
-int main40()
+int main48()
 {
-    std::vector<int> arr = {1, 3, 4, 4, 6, 7, 7, 8, 8};
-    std::cout << subArraySums(arr, 17) << std::endl;
+    std::vector<int> arr = {15, 5, 5, 20, 10, 5, 5, 20, 10, 10};
+    std::cout << subArraySums(arr, 20) << std::endl;
     return 0;
 }
 
 /*
-1 & 4
+0 & 1
 1
 */
 
@@ -2447,7 +3230,7 @@ int maxConSub(std::vector<int> &arr)
     return maximum;
 }
 
-int main41()
+int main49()
 {
     std::vector<int> arr = {1, -2, 3, 4, -4, 6, -4, 8, 2};
     maxConSub(arr);
@@ -2493,7 +3276,7 @@ int maxConSubArr2(std::vector<int> &A, std::vector<int> &B)
 
     for (int i = 0; i < sizeA; i++)
     {
-        if (binarysearch(B, A[i]))
+        if (binarySearch(B, A[i]))
             currMax = 0;
         else
         {
@@ -2507,7 +3290,7 @@ int maxConSubArr2(std::vector<int> &A, std::vector<int> &B)
     return maximum;
 }
 
-int main42()
+int main50()
 {
     std::vector<int> arr1 = {1, 2, 3, 4, 4, 6, 4, 8, 2};
     std::vector<int> arr2 = {2,4, 8, 18, 10};
@@ -2582,14 +3365,16 @@ int rainWater2(std::vector<int> &arr)
     return water;
 }
 
-int main43()
+int main51()
 {
     std::vector<int> arr = {4, 0, 1, 5};
     rainWater(arr);
+    rainWater2(arr);
     return 0;
 }
 
 /*
+Water : 7
 Water : 7
 */
 
@@ -2616,7 +3401,7 @@ void seperateEvenAndOdd(std::vector<int> &arr)
     }
 }
 
-int main44()
+int main52()
 {
     std::vector<int> first = { 1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 };
     seperateEvenAndOdd(first);
@@ -2624,89 +3409,12 @@ int main44()
     {
         std::cout << val << " " ;
     }
+    std::cout << std::endl;
     return 0;
 }
 
 /*
 30 20 6 6 6 6 6 6 10 8 7 13 5 1
-*/
-/*
-void minAbsSumPair(std::vector<int> &data)
-{
-    int minSum, sum, minFirst, minSecond;
-    int size = data.size();
-    // Array should have at least two elements
-    if (size < 2)
-    {
-        throw ("InvalidInput");
-    }
-    // Initialization of values
-    minFirst = 0;
-    minSecond = 1;
-    minSum = std::abs(data[0] + data[1]);
-    for (int l = 0; l < size - 1; l++)
-    {
-        for (int r = l + 1; r < size; r++)
-        {
-            sum = std::abs(data[l] + data[r]);
-            if (sum < minSum)
-            {
-                minSum = sum;
-                minFirst = l;
-                minSecond = r;
-            }
-        }
-    }
-    std::cout << " The two elements with minimum sum are : " << data[minFirst] << " , " << data[minSecond] << std::endl;
-}
-
-void minAbsSumPair2(std::vector<int> &data)
-{
-    int minSum, sum, minFirst, minSecond;
-    int size = data.size();
-    // Array should have at least two elements
-    if (size < 2)
-    {
-        throw ("InvalidInput");
-    }
-    sort(data.begin(), data.end()); // Sort(data, size);
-
-    // Initialization of values
-    minFirst = 0;
-    minSecond = size - 1;
-    minSum = std::abs(data[minFirst] + data[minSecond]);
-    for (int l = 0, r = size - 1; l < r;)
-    {
-        sum = (data[l] + data[r]);
-        if (std::abs(sum) < minSum)
-        {
-            minSum = std::abs(sum); /// just corrected......hemant
-            minFirst = l;
-            minSecond = r;
-        }
-
-        if (sum < 0)
-            l++;
-        else if (sum > 0)
-            r--;
-        else
-            break;
-    }
-    std::cout << " The two elements with minimum sum are : " << data[minFirst] << " , " << data[minSecond] << std::endl;
-}
-*/
-
-int main45()
-{
-    std::vector<int> arr = { 1, 5, -10, 3, 2, -6, 8, 9, 6 };
-    minAbsSumPair(arr);
-    minAbsSumPair2(arr);
-    return 0;
-}
-
-/*
-Minimum sum pair : -6 , 6
-Minimum sum pair : -6 , 6
 */
 
 int findMedian(std::vector<int> &dataFirst, int sizeFirst, std::vector<int> &dataSecond, int sizeSecond)
@@ -2736,7 +3444,7 @@ int findMedian(std::vector<int> &dataFirst, int sizeFirst, std::vector<int> &dat
     }
 }
 
-int main46()
+int main53()
 {
     std::vector<int> first = {1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 };
     std::vector<int> second = { 1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 };
@@ -2769,63 +3477,6 @@ void transformArrayAB1(std::vector<int> &data)
     }
 }
 
-bool checkPermutation(std::string data1, std::string data2)
-{
-    int size1 = data1.size();
-    int size2 = data2.size();
-
-    if (size1 != size2)
-        return false;
-
-    sort(data1.begin(), data1.end());
-    sort(data2.begin(), data2.end());
-
-    for (int i = 0; i < size1; i++)
-    {
-        if (data1[i] != data2[i])
-            return false;
-    }
-    return true;
-}
-
-bool checkPermutation2(std::string data1, std::string data2)
-{
-    int size1 = data1.size();
-    int size2 = data2.size();
-
-    if (size1 != size2)
-        return false;
-
-    std::map<char, int> al;
-
-    for (int i = 0; i < size1; i++)
-    {
-        al[data1[i]] += 1;
-        al[data2[i]] -= 1;
-    }
-
-    for (int i = 0; i < size1; i++)
-    {
-        if (al[data1[i]] != 0)
-            return false;
-    }
-    return true;
-}
-
-int main47()
-{
-    auto str1 = "aaaabbbb";
-    auto str2 = "bbaaaabb";
-    std::cout << checkPermutation(str1, str2) << std::endl;
-    std::cout << checkPermutation2(str1, str2) << std::endl;
-
-    return 0;
-}
-
-/*
-1
-1
-*/
 
 bool findElementIn2DArray(int **data, int r, int c, int value)
 {
@@ -2847,4 +3498,62 @@ bool findElementIn2DArray(int **data, int r, int c, int value)
         }
     }
     return false;
+}
+
+int main()
+{
+    main1();
+    main2();
+    main3();
+    main4();
+    main5();
+    main6();
+    main7();
+    main8();
+    main9();
+    main10();
+    main11();
+    main12();
+    main13();
+    main14();
+    main15();
+    main16();
+    main17();
+    main18();
+    main19();
+    main20();
+    main21();
+    main22();
+    main23();
+    main24();
+    main25();
+    main26();
+    main27();
+    main28();
+    main29();
+    main30();
+    main31();
+    main32();
+    main33();
+    main34();
+    main35();
+    main36();
+    main37();
+    main38();
+    main39();
+    main40();
+    main41();
+    main42();
+    main43();
+    main44();
+    main45();
+    main46();
+    main47();
+    main48();
+    main49();
+    main50();
+    main51();
+    main52();
+    main53();
+    return 0;
 }

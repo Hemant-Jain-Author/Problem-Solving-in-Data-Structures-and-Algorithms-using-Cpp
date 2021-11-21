@@ -1,19 +1,14 @@
-#include "QuickSort.h"
+#include <vector>
 #include <iostream>
 
-QuickSort::QuickSort(std::vector<int> &data):
-    arr(data)
-{
-}
-
-void QuickSort::swap(std::vector<int> &arr, int first, int second)
+void swap(std::vector<int> &arr, int first, int second)
 {
     int temp = arr[first];
     arr[first] = arr[second];
     arr[second] = temp;
 }
 
-void QuickSort::quickSortUtil(std::vector<int> &arr, int lower, int upper)
+void quickSortUtil(std::vector<int> &arr, int lower, int upper)
 {
     if (upper <= lower)
     {
@@ -44,7 +39,7 @@ void QuickSort::quickSortUtil(std::vector<int> &arr, int lower, int upper)
     quickSortUtil(arr, upper + 1, stop); // pivot + 1 is the lower for right sub array.
 }
 
-void QuickSort::sort()
+void quickSort(std::vector<int> &arr)
 {
     int size = arr.size();
     quickSortUtil(arr, 0, size - 1);
@@ -53,8 +48,7 @@ void QuickSort::sort()
 int main()
 {
     std::vector<int> data = { 3, 4, 2, 1, 6, 5, 7, 8, 1, 1 };
-    QuickSort q = QuickSort(data);
-    q.sort();
+    quickSort(data);
     for (int i = 0; i < data.size(); i++)
     {
         std::cout << data[i] << " ";
