@@ -1,4 +1,6 @@
-#include "Knapsack.h"
+#include <string>
+#include <vector>
+#include <iostream>
 
 int getMaxCost01Util(std::vector<int> &wt, std::vector<int> &cost, int n,
 		int capacity) {
@@ -91,6 +93,7 @@ int KS01UnboundBU(std::vector<int> &wt, std::vector<int> &cost, int capacity) {
 	return dp[capacity]; // Number of weights considered and final capacity.
 }
 
+// Testing code.
 int main() {
 	std::vector<int> wt = { 10, 40, 20, 30 };
 	std::vector<int> cost = { 60, 40, 90, 120 };

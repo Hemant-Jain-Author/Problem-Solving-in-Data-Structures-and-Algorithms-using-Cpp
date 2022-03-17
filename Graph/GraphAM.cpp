@@ -33,7 +33,7 @@ void GraphAM::print() {
 	}
 }
 
-/* Testing Code */
+// Testing code.
 int main1() {
 	GraphAM graph = GraphAM(4);
 	graph.addUndirectedEdge(0, 1, 1);
@@ -146,7 +146,7 @@ void GraphAM::primsMST() {
 	std::cout << "\nTotal MST cost: " << total << std::endl;
 }
 
-/* Testing Code */
+// Testing code.
 int main2() {
 	GraphAM gph = GraphAM(9);
 	gph.addUndirectedEdge(0, 1, 4);
@@ -222,7 +222,7 @@ bool GraphAM::hamiltonianPath() {
 	return false;
 }
 
-/* Testing Code */
+// Testing code.
 int main3() {
 	int count = 5;
 	GraphAM graph = GraphAM(count);
@@ -294,7 +294,7 @@ bool GraphAM::hamiltonianCycle() {
 	return false;
 }
 
-/* Testing Code */
+// Testing code.
 int main4() {
 	int count = 5;
 	GraphAM graph = GraphAM(count);
@@ -324,6 +324,8 @@ int main4() {
  Hamiltonian Cycle not found
  */
 
+// Testing code.
+// Testing code.
 int main() {
 	main2();
 	return 0;

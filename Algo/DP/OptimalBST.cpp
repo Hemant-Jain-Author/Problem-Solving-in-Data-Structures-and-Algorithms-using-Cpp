@@ -118,6 +118,7 @@ int optCostBU2(std::vector<int> &keys, std::vector<int> &freq) {
 	return cost[0][n - 1];
 }
 
+// Testing code.
 int main() {
 	std::vector<int> keys = { 9, 15, 25 };
 	std::vector<int> freq = { 30, 10, 40 };

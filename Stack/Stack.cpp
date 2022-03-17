@@ -1,6 +1,7 @@
 #include "Stack.h"
 #include <exception>
 
+// Testing code.
 int main() {
 	Stack s(100);
 	s.push(1);

@@ -72,6 +72,7 @@ int maxProfitTC2(std::vector<int> &arr, int t) {
 	return dp[n - 1][1];
 }
 
+// Testing code.
 int main() {
 	std::vector<int> arr = { 10, 12, 9, 23, 25, 55, 49, 70 };
 	std::cout << "Total profit: " << maxProfit(arr) << std::endl;

@@ -48,6 +48,7 @@ int chotaBhim2(std::vector<int> &cups) {
 	return total;
 }
 
+// Testing code.
 int main() {
 	std::vector<int> cups = { 2, 1, 7, 4, 2 };
 	chotaBhim(cups);

@@ -50,6 +50,7 @@ void makePairs(std::vector<int> &nuts, std::vector<int> &bolts) {
 	printArray(bolts);
 }
 
+// Testing code.
 int main() {
 	std::vector<int> nuts = { 1, 2, 6, 5, 4, 3 };
 	std::vector<int> bolts = { 6, 4, 5, 1, 3, 2 };

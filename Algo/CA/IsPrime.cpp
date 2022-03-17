@@ -13,6 +13,7 @@ bool isPrime(int n) {
 	return answer;
 }
 
+// Testing code.
 int main() {
 	std::cout << isPrime(7) << std::endl;
 	return 0;

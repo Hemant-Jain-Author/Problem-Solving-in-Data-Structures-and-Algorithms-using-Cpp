@@ -21,6 +21,7 @@ int minCost(std::vector<int> &days, std::vector<int> &costs) {
 	return dp[max];
 }
 
+// Testing code.
 int main() {
 	std::vector<int> days = { 1, 3, 5, 7, 12, 20, 30 };
 	std::vector<int> costs = { 2, 7, 20 };

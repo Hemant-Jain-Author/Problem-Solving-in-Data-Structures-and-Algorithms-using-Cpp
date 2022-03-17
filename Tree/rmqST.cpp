@@ -95,6 +95,7 @@ int rmqST::updateUtil(int segStart, int segEnd, int ind, int val, int index) {
 	return segArr[index];
 }
 
+// Testing code.
 int main() {
 	std::vector<int> arr = { 2, 3, 1, 7, 12, 5 };
 	rmqST *tree = new rmqST(arr);

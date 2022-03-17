@@ -70,6 +70,7 @@ int findSumBU(std::vector<int> &arr) {
 	return dp[0][n - 1];
 }
 
+// Testing code.
 int main() {
 	std::vector<int> arr = { 6, 2, 4 };
 	std::cout << "Total cost: " << findSumTD(arr) << std::endl;

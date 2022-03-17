@@ -28,6 +28,7 @@ void shellSort(std::vector<int> &arr) {
 	}
 }
 
+// Testing code.
 int main() {
 	std::vector<int> array = { 36, 32, 11, 6, 19, 31, 17, 3 };
 	shellSort(array);

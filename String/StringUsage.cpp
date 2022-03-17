@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 
+// Testing code.
 int main1() {
 	std::string str1 = "hello";
 	std::string str2 = "hello";
@@ -14,6 +15,7 @@ int main1() {
 	return 0;
 }
 
+// Testing code.
 int main() {
 	std::string str;
 	std::string text = "Hello, World!";

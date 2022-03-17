@@ -64,6 +64,7 @@ int editDistDP(const std::string &str1, const std::string &str2) {
 	return dp[m][n];
 }
 
+// Testing code.
 int main() {
 	std::string str1 = "sunday";
 	std::string str2 = "saturday";

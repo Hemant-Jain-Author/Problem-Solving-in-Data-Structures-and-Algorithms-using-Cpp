@@ -23,7 +23,7 @@ bool isAnagram(std::string &str1, std::string &str2) {
 	return (cm->size() == 0);
 }
 
-/* Testing Code */
+// Testing code.
 int main1() {
 	std::string var1 = "hello";
 	std::string var2 = "elloh";
@@ -53,7 +53,7 @@ void removeDuplicate(std::string &str) {
 	str[index] = '\0';
 }
 
-/* Testing Code */
+// Testing code.
 int main2() {
 	std::string var1 = "hello";
 	removeDuplicate(var1);
@@ -81,7 +81,7 @@ int findMissing(std::vector<int> &arr, int start, int end) {
 	return std::numeric_limits<int>::max();
 }
 
-/* Testing Code */
+// Testing code.
 int main3() {
 	std::vector<int> arr = { 1, 2, 3, 5, 6, 7, 8, 9, 10 };
 	std::cout << "Missing Number is :: " << findMissing(arr, 1, 10)
@@ -106,7 +106,7 @@ void printRepeating(std::vector<int> &arr) {
 	std::cout << std::endl;
 }
 
-/* Testing Code */
+// Testing code.
 int main4() {
 	std::vector<int> arr1 = { 1, 2, 3, 4, 4, 5, 6, 7, 8, 9, 1 };
 	printRepeating(arr1);
@@ -134,7 +134,7 @@ void printFirstRepeating(std::vector<int> &arr) {
 	}
 }
 
-/* Testing Code */
+// Testing code.
 int main5() {
 	std::vector<int> arr1 = { 1, 2, 3, 4, 4, 5, 6, 7, 8, 9, 1 };
 	printFirstRepeating(arr1);
@@ -155,6 +155,7 @@ int hornerHash(std::vector<char> &key, int tableSize) {
 	return h;
 }
 
+// Testing code.
 int main() {
 	main1();
 	main2();

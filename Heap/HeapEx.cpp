@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <cmath>
 
+// Testing code.
 int main1() {
 	std::priority_queue<int, std::vector<int>, std::greater<int>> pq;
 	;
@@ -82,6 +83,7 @@ bool isMaxHeap(int arr[], int size) {
 	return true;
 }
 
+// Testing code.
 int main2() {
 	int arr[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
 	std::cout << "Kth Smallest :: " << KthSmallest(arr, 8, 3) << std::endl;
@@ -173,6 +175,7 @@ int KSmallestProduct2(int arr[], int size, int k) {
 	return product;
 }
 
+// Testing code.
 int main3() {
 	int arr[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
 	std::cout << "Kth Smallest product:: " << KSmallestProduct(arr, 8, 3)
@@ -223,6 +226,7 @@ void PrintLargerHalf3(int arr[], int size) {
 	std::cout << std::endl;
 }
 
+// Testing code.
 int main4() {
 	int arr[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
 	PrintLargerHalf(arr, 8);
@@ -264,6 +268,7 @@ void sortK(int arr[], int size, int k) {
 }
 
 // Testing Code
+// Testing code.
 int main5() {
 	int k = 3;
 	int arr[] = { 1, 5, 4, 10, 50, 9 };
@@ -390,6 +395,7 @@ int JoinRopes2(int ropes[], int size) {
 	return total;
 }
 
+// Testing code.
 int main6() {
 	int cups[] = { 2, 1, 7, 4, 2 };
 	ChotaBhim(cups, 5);
@@ -438,13 +444,15 @@ int main6() {
  }
  }
 
- int main()
+ // Testing code.
+int main()
  {
  kthLargestStream(3);
  return 0;
  }
  */
 
+// Testing code.
 int main() {
 	main1();
 	main2();

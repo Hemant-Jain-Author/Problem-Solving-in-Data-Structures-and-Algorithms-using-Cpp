@@ -46,6 +46,7 @@ int quickSelect(std::vector<int> &arr, int k) {
 	return arr[k - 1];
 }
 
+// Testing code.
 int main() {
 	std::vector<int> data = { 3, 4, 2, 1, 6, 5, 7, 8, 10, 9 };
 	int value = quickSelect(data, 5);

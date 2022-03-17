@@ -50,8 +50,8 @@ int circularTour2(std::vector<std::vector<int>> &arr, int n) {
 		return -1;
 }
 
+// Testing code.
 int main() {
-	// Testing code
 	std::vector<std::vector<int>> tour = { { 8, 6 }, { 1, 4 }, { 7, 6 } };
 	std::cout << "Circular Tour : " << circularTour(tour, 3) << std::endl;
 	std::cout << "Circular Tour : " << circularTour2(tour, 3) << std::endl;
@@ -91,6 +91,7 @@ int convertXY(int src, int dst) {
 	return -1;
 }
 
+// Testing code.
 int main2() {
 	convertXY(2, 7);
 	return 0;
@@ -137,6 +138,7 @@ void maxSlidingWindows2(std::vector<int> arr, int size, int k) {
 	}
 }
 
+// Testing code.
 int main4() {
 	std::vector<int> arr = { 11, 2, 75, 92, 59, 90, 55 };
 	int k = 3;
@@ -174,6 +176,7 @@ int minOfMaxSlidingWindows(std::vector<int> arr, int size, int k) {
 	return minVal;
 }
 
+// Testing code.
 int main5() {
 	std::vector<int> arr = { 11, 2, 75, 92, 59, 90, 55 };
 	int k = 3;
@@ -206,6 +209,7 @@ void maxOfMinSlidingWindows(std::vector<int> arr, int size, int k) {
 	std::cout << "Max of min is :: " << maxVal << std::endl;
 }
 
+// Testing code.
 int main6() {
 	std::vector<int> arr = { 11, 2, 75, 92, 59, 90, 55 };
 	int k = 3;
@@ -240,6 +244,7 @@ void firstNegSlidingWindows(std::vector<int> arr, int size, int k) {
 	}
 }
 
+// Testing code.
 int main7() {
 	std::vector<int> arr = { 3, -2, -6, 10, -14, 50, 14, 21 };
 	int k = 3;

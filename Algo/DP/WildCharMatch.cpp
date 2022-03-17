@@ -64,6 +64,7 @@ bool matchExpDP(const std::string &exp, const std::string &str) {
 	return matchExpDPUtil(exp, str, exp.length(), str.length());
 }
 
+// Testing code.
 int main() {
 	std::cout << matchExp("*llo,?World?", "Hello, World!") << std::endl;
 	std::cout << matchExpDP("*llo,?World?", "Hello, World!") << std::endl;

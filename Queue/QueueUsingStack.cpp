@@ -23,6 +23,7 @@ int QueueUsingStack::remove() {
 	return value;
 }
 
+// Testing code.
 int main() {
 	QueueUsingStack que;
 	que.add(1);

@@ -31,6 +31,7 @@ int sumArray(std::vector<int> &data) {
 	return total;
 }
 
+// Testing code.
 int main1() {
 	std::vector<int> data = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 	std::cout << "Sum of all the values in array: " << sumArray(data)
@@ -52,6 +53,7 @@ void function1() {
 	std::cout << "fun1 line 2" << std::endl;
 }
 
+// Testing code.
 int main2() {
 	std::cout << "main line 1" << std::endl;
 	function1();
@@ -96,6 +98,7 @@ int binarySearch(std::vector<int> &data, int value) {
 	return -1;
 }
 
+// Testing code.
 int main3() {
 	std::vector<int> arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 	std::cout << "Sequential Search: " << sequentialSearch(arr, 7) << std::endl;
@@ -131,6 +134,7 @@ void rotateArray(std::vector<int> &data, int k) {
 	reverseArray(data, k, n - 1);
 	reverseArray(data, 0, n - 1);
 }
+// Testing code.
 int main4() {
 	std::vector<int> arr = { 1, 2, 3, 4, 5, 6 };
 	rotateArray(arr, 2);
@@ -155,6 +159,7 @@ int maxSubArraySum(std::vector<int> &data) {
 	return maxSoFar;
 }
 
+// Testing code.
 int main5() {
 	std::vector<int> data = { 1, -2, 3, 4, -4, 6, -4, 3, 2 };
 	std::cout << "Max sub array sum :" << maxSubArraySum(data);
@@ -185,7 +190,7 @@ void waveArray2(std::vector<int> &arr) {
 	}
 }
 
-/* Testing code */
+// Testing code.
 int main6() {
 	std::vector<int> arr = { 8, 1, 2, 3, 4, 5, 6, 4, 2 };
 	waveArray(arr);
@@ -232,7 +237,7 @@ void indexArray2(std::vector<int> &arr, int size) {
 	}
 }
 
-/* Testing code */
+// Testing code.
 int main7() {
 	std::vector<int> arr = { 8, -1, 6, 1, 9, 3, 2, 7, 4, -1 };
 	int size = arr.size();
@@ -275,6 +280,7 @@ void sort1toN2(std::vector<int> &arr, int size) {
 	}
 }
 
+// Testing code.
 int main8() {
 	std::vector<int> arr = { 8, 5, 6, 1, 9, 3, 2, 7, 4, 10 };
 	int size = arr.size();
@@ -354,6 +360,7 @@ int smallestPositiveMissingNumber4(std::vector<int> &arr, int size) {
 	return -1;
 }
 
+// Testing code.
 int main9() {
 	std::vector<int> arr = { 8, 5, 6, 1, 9, 11, 2, 7, 4, 10 };
 	int size = arr.size();
@@ -405,7 +412,7 @@ void maxMinArr2(std::vector<int> &arr, int size) {
 	}
 }
 
-/* Testing code */
+// Testing code.
 int main10() {
 	std::vector<int> arr = { 1, 2, 3, 4, 5, 6, 7 };
 	int size = arr.size();
@@ -442,7 +449,7 @@ int maxCircularSum(std::vector<int> &arr, int size) {
 	return maxVal;
 }
 
-/* Testing code */
+// Testing code.
 int main11() {
 	std::vector<int> arr = { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
 	std::cout << "MaxCirculrSm: " << maxCircularSum(arr, arr.size())
@@ -489,6 +496,7 @@ int arrayIndexMaxDiff2(std::vector<int> &arr, int size) {
 	return maxDiff;
 }
 
+// Testing code.
 int main12() {
 	std::vector<int> arr = { 33, 9, 10, 3, 2, 60, 30, 33, 1 };
 	std::cout << "ArrayIndexMaxDiff : " << arrayIndexMaxDiff(arr, arr.size())
@@ -536,7 +544,7 @@ int maxPathSum(int arr1[], int size1, int arr2[], int size2) {
 	return result;
 }
 
-/* Testing code */
+// Testing code.
 int main13() {
 	int arr1[] = { 12, 13, 18, 20, 22, 26, 70 };
 	int arr2[] = { 11, 15, 18, 19, 20, 26, 30, 31 };
@@ -558,6 +566,17 @@ int factorial(int i) {
 	return i * factorial(i - 1);
 }
 
+// Testing code.
+int main14B() {
+	int num = 3;
+	std::cout << "Factorial: " << factorial(5) << std::endl;
+	return 0;
+}
+
+/*
+Factorial: 120
+*/
+
 void printInt1(int number) {
 	char digit = static_cast<char>(number % 10 + '0');
 	number = number / 10;
@@ -574,8 +593,18 @@ void printInt(int number, int const base) {
 	if (number != 0) {
 		printInt(number, base);
 	}
-	std::cout << " " << conversion[digit];
+	std::cout << conversion[digit];
 }
+
+// Testing code.
+int main14C() {
+	printInt(500, 16);
+	return 0;
+}
+
+/*
+1F4
+*/
 
 void towerOfHanoi(int num, char src, char dst, char temp) {
 	if (num < 1)
@@ -587,6 +616,7 @@ void towerOfHanoi(int num, char src, char dst, char temp) {
 	towerOfHanoi(num - 1, temp, dst, src);
 }
 
+// Testing code.
 int main14() {
 	int num = 3;
 	std::cout << "The sequence of moves involved in the Tower of Hanoi are :"
@@ -635,6 +665,7 @@ void permutation(std::vector<int> &data, int i, int length) {
 	return;
 }
 
+// Testing code.
 int main15() {
 	std::vector<int> data(3);
 	for (int i = 0; i < 3; i++) {
@@ -687,7 +718,7 @@ bool binarySearchRecursive(std::vector<int> &data, int low, int high,
 	}
 }
 
-/* Testing code */
+// Testing code.
 int main16() {
 	std::vector<int> arr = { 1, 2, 3, 4, 5, 6, 7, 9 };
 	std::cout << binarySearchRecursive(arr, 0, arr.size() - 1, 6) << std::endl;
@@ -700,6 +731,7 @@ int main16() {
  0
  */
 
+// Testing code.
 int main() {
 	main1();
 	main2();
@@ -717,5 +749,7 @@ int main() {
 	main14();
 	main15();
 	main16();
+	main14B();
+	main14C();
 	return 0;
 }

@@ -86,6 +86,7 @@ bool graphColouring(std::vector<std::vector<bool>> &graph, int V, int m) {
 	return false;
 }
 
+// Testing code.
 int main() {
 	std::vector<std::vector<bool>> graph = {
 			{ false, true, false, false, true }, { true, false, true, false,

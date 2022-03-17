@@ -106,6 +106,7 @@ int maxValueJobsBU(std::vector<int> &s, std::vector<int> &f,
 	return dp[n - 1];
 }
 
+// Testing code.
 int main() {
 	std::vector<int> start = { 1, 5, 0, 3, 5, 6, 8 };
 	std::vector<int> finish = { 2, 6, 5, 4, 9, 7, 9 };

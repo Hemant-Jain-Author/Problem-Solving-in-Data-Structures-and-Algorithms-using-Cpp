@@ -67,6 +67,7 @@ void partition012(std::vector<int> &arr) {
 }
 
 // Testing code
+// Testing code.
 int main1() {
 	std::vector<int> arr = { 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1 };
 	partition01(arr);
@@ -103,6 +104,7 @@ void rangePartition(std::vector<int> &arr, int lower, int higher) {
 }
 
 // Testing code
+// Testing code.
 int main2() {
 	std::vector<int> arr = { 15, 16, 19, 18, 5, 17, 6, 7, 8, 14, 9, 13, 10, 12,
 			11 };
@@ -137,6 +139,7 @@ int minSwaps(std::vector<int> &arr, int val) {
 }
 
 // Testing code
+// Testing code.
 int main3() {
 	std::vector<int> arr = { 2, 7, 5, 6, 1, 3, 4, 9, 10, 8 };
 	int val = 5;
@@ -166,6 +169,7 @@ void seperateEvenAndOdd2(std::vector<int> &data) {
 }
 
 // Testing code
+// Testing code.
 int main4() {
 	std::vector<int> array = { 2, 7, 5, 6, 1, 3, 4, 9, 10, 8 };
 	seperateEvenAndOdd2(array);
@@ -193,6 +197,7 @@ void absBubbleSort(std::vector<int> &arr, int ref) {
 }
 
 // Testing code
+// Testing code.
 int main5() {
 	std::vector<int> array = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
 	int ref = 5;
@@ -227,6 +232,7 @@ void arrayReduction(std::vector<int> &arr) {
 }
 
 // Testing code
+// Testing code.
 int main6() {
 	std::vector<int> arr = { 5, 1, 1, 1, 2, 3, 5 };
 	arrayReduction(arr);
@@ -274,6 +280,7 @@ void sortByOrder(std::vector<int> &arr, std::vector<int> &arr2) {
 }
 
 // Testing code
+// Testing code.
 int main7() {
 	std::vector<int> arr = { 2, 1, 2, 5, 7, 1, 9, 3, 6, 8, 8 };
 	std::vector<int> arr2 = { 2, 1, 8, 3 };
@@ -308,6 +315,7 @@ void merge(std::vector<int> &arr1, std::vector<int> &arr2) {
 	}
 }
 
+// Testing code.
 // Testing code.
 int main8() {
 	std::vector<int> arr1 = { 1, 5, 9, 10, 15, 20 };
@@ -360,6 +368,7 @@ bool checkReverse(std::vector<int> &arr) {
 }
 
 // Testing code
+// Testing code.
 int main9() {
 	std::vector<int> arr = { 1, 3, 8, 5, 4, 3, 10, 11, 12, 18, 28 };
 	std::cout << "checkReverse : " << checkReverse(arr) << std::endl;
@@ -414,6 +423,7 @@ void unionIntersectionUnsorted(std::vector<int> &arr1, std::vector<int> &arr2) {
 	unionIntersectionSorted(arr1, arr2);
 }
 
+// Testing code.
 int main10() {
 	std::vector<int> arr1 = { 1, 11, 2, 3, 14, 5, 6, 8, 9 };
 	std::vector<int> arr2 = { 2, 4, 5, 12, 7, 8, 13, 10 };
@@ -426,6 +436,7 @@ int main10() {
  [ 2 5 8 ]
  */
 
+// Testing code.
 int main() {
 	main1();
 	main2();

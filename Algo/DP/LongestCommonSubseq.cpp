@@ -44,6 +44,7 @@ int LCSubStr(const std::string &st1, const std::string &st2) {
 	return dp[m][n];
 }
 
+// Testing code.
 int main() {
 	std::string X = "carpenter";
 	std::string Y = "sharpener";

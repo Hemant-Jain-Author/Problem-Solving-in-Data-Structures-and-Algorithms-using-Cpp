@@ -40,6 +40,7 @@ void bubbleSort2(std::vector<int> &arr) {
 	}
 }
 
+// Testing code.
 int main() {
 	std::vector<int> data = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
 	bubbleSort(data);

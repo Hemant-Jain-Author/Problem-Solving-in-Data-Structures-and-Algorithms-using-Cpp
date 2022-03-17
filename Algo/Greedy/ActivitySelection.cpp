@@ -36,6 +36,7 @@ void maxActivities(std::vector<int> &s, std::vector<int> &f, int n) {
 	}
 }
 
+// Testing code.
 int main() {
 	std::vector<int> s = { 1, 5, 0, 3, 5, 6, 8 };
 	std::vector<int> f = { 2, 6, 5, 4, 9, 7, 9 };

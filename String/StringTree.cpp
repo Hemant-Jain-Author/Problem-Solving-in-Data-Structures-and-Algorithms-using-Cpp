@@ -94,6 +94,7 @@ int StringTree::frequency(Node *curr, const std::string &value) {
 	}
 }
 
+// Testing code.
 int main() {
 	StringTree *tt = new StringTree();
 	tt->add("banana");

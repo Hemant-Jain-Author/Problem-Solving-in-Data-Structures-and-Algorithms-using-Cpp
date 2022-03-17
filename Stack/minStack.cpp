@@ -68,6 +68,7 @@ bool Stack::min(int &min) {
 	return true;
 }
 
+// Testing code.
 int main() {
 	Stack s;
 	int value;

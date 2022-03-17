@@ -42,6 +42,7 @@ void floydWarshall(std::vector<std::vector<int>> &graph, int V) {
 	printSolution(dist, V);
 }
 
+// Testing code.
 int main() {
 	std::vector<std::vector<int>> graph = { { 0, 2, 4, INF, INF, INF, INF }, {
 			2, 0, 4, 1, INF, INF, INF }, { 4, 4, 0, 2, 8, 4, INF }, { INF, 1, 2,

@@ -34,6 +34,7 @@ void subsetSum(std::vector<int> &arr, int n, int target) {
 	subsetSum(arr, n, flags, 0, 0, target);
 }
 
+// Testing code.
 int main() {
 	std::vector<int> arr = { 15, 22, 14, 26, 32, 9, 16, 8 };
 	int target = 53;

@@ -151,6 +151,7 @@ void DoublyCircularLinkedList::print() {
 	std::cout << std::endl;
 }
 
+// Testing code.
 int main() {
 	DoublyCircularLinkedList *ll = new DoublyCircularLinkedList();
 	;

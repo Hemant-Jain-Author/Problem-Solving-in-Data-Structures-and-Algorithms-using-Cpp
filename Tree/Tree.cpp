@@ -82,6 +82,7 @@ void Tree::printInOrder(Node *node) {
 	}
 }
 
+// Testing code.
 int main1() {
 	Tree t;
 	int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -115,6 +116,7 @@ Tree::Node* Tree::insert(int value, Node *node) {
 	return node;
 }
 
+// Testing code.
 int main2() {
 	Tree t;
 	t.insert(5);
@@ -182,6 +184,7 @@ void Tree::nthInOrder(Node *node, int index, int &counter) {
 	}
 }
 
+// Testing code.
 int main3() {
 	Tree t;
 	int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -351,6 +354,7 @@ void Tree::printAllPath(Node *curr, std::vector<int> &stk) {
 	stk.pop_back();
 }
 
+// Testing code.
 int main4() {
 	Tree t;
 	int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -476,6 +480,7 @@ void Tree::iterativeInOrder() {
 	}
 }
 
+// Testing code.
 int main5() {
 	Tree t;
 	int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -563,6 +568,7 @@ Tree::Node* Tree::findMin(Node *curr) {
 	return node;
 }
 
+// Testing code.
 int main6() {
 	Tree t;
 	int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -625,6 +631,7 @@ Tree::Node* Tree::remove(Node *node, int value) {
 	return node;
 }
 
+// Testing code.
 int main7() {
 	Tree t;
 	int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -743,6 +750,7 @@ int Tree::maxLengthPathBT(Node *curr) {
 	return max;
 }
 
+// Testing code.
 int main8() {
 	Tree t;
 	int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -814,6 +822,7 @@ bool Tree::isEqual(Node *node1, Node *node2) {
 			&& (node1->value == node2->value));
 }
 
+// Testing code.
 int main9() {
 	Tree t;
 	int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -931,6 +940,7 @@ bool Tree::isHeap2() {
 	return isHeapUtil2(root, 0, count, parentValue);
 }
 
+// Testing code.
 int main10() {
 	Tree t;
 	int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -991,6 +1001,7 @@ bool Tree::searchBT(Node *root, int value) {
 	return false;
 }
 
+// Testing code.
 int main11() {
 	Tree t;
 	int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -1113,6 +1124,7 @@ void Tree::printInRange(Node *root, int min, int max) {
 	printInRange(root->rChild, min, max);
 }
 
+// Testing code.
 int main12() {
 	Tree t;
 	int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -1170,6 +1182,7 @@ int Tree::ceilBST(int val) {
 	return ceil;
 }
 
+// Testing code.
 int main13() {
 	Tree t;
 	int arr[] = { 1, 2, 4, 5, 6, 7, 9, 10 };
@@ -1239,6 +1252,7 @@ int Tree::lcaBST(Node *curr, int first, int second) {
 	return curr->value;
 }
 
+// Testing code.
 int main14() {
 	Tree t;
 	int arr[] = { 1, 2, 4, 5, 6, 7, 9, 10 };
@@ -1276,6 +1290,7 @@ bool isBSTArray(int preorder[], int size) {
 	return true;
 }
 
+// Testing code.
 int main15() {
 	int arr1[] = { 5, 2, 4, 6, 9, 10 };
 	std::cout << isBSTArray(arr1, 6) << std::endl;
@@ -1344,6 +1359,7 @@ void Tree::printDLL(Node *root) {
 	std::cout << curr->value << std::endl;
 }
 
+// Testing code.
 int main16() {
 	Tree t;
 	int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -1359,6 +1375,7 @@ int main16() {
  DLL nodes are : 1 2 3 4 5 6 7 8 9 10
  */
 
+// Testing code.
 int main() {
 	/*main1();
 	 main2();

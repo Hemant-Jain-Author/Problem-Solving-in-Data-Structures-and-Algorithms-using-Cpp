@@ -238,6 +238,7 @@ void SPLAYTree::printInOrder(Node *node) {
 	}
 }
 
+// Testing code.
 int main() {
 	SPLAYTree *tree = new SPLAYTree();
 	tree->insert(5);

@@ -41,6 +41,7 @@ double getMaxCostFractional(std::vector<int> &wt, std::vector<int> &cost,
 	return totalCost;
 }
 
+// Testing code.
 int main() {
 	std::vector<int> wt = { 10, 40, 20, 30 };
 	std::vector<int> cost = { 60, 40, 90, 120 };

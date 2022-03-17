@@ -56,6 +56,7 @@ void HuffmanTree::print() {
 	print(root, "");
 }
 
+// Testing code.
 int main() {
 	std::vector<char> ar = { 'A', 'B', 'C', 'D', 'E' };
 	std::vector<int> fr = { 30, 25, 21, 14, 10 };

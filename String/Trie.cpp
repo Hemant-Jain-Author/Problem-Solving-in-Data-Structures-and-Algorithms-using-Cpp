@@ -72,6 +72,7 @@ bool Trie::find(Node *curr, const std::string &str, int index) {
 	return find(curr->child[str[index] - 'a'], str, index + 1);
 }
 
+// Testing code.
 int main() {
 	Trie *tt = new Trie();
 	tt->add("banana");

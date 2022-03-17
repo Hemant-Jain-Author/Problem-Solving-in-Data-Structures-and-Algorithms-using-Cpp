@@ -95,6 +95,7 @@ bool Graph::bfs(int source, int target) {
 	return visited[target];
 }
 
+// Testing code.
 int main1() {
 	Graph gph(4);
 	gph.addUndirectedEdge(0, 1, 1);
@@ -112,6 +113,7 @@ int main1() {
  Vertex 3 is connected to : 2
  */
 
+// Testing code.
 int main2() {
 	Graph gph(8);
 	gph.addUndirectedEdge(0, 3, 1);
@@ -163,6 +165,7 @@ void Graph::topologicalSort() {
 	}
 }
 
+// Testing code.
 int main3() {
 	Graph gph(6);
 	gph.addDirectedEdge(5, 2, 1);
@@ -185,6 +188,7 @@ bool Graph::pathExist(int source, int dest) {
 	return visited[dest];
 }
 
+// Testing code.
 int main4() {
 	Graph gph(5);
 	gph.addDirectedEdge(0, 1, 1);
@@ -221,6 +225,7 @@ int Graph::countAllPath(int src, int dest) {
 	return countAllPathDFS(visited, src, dest);
 }
 
+// Testing code.
 int main5() {
 	Graph gph(5);
 	gph.addDirectedEdge(0, 1, 1);
@@ -275,6 +280,7 @@ void Graph::printAllPath(int src, int dest) {
 	printAllPathDFS(visited, src, dest, path);
 }
 
+// Testing code.
 int main6() {
 	Graph gph(5);
 	gph.addDirectedEdge(0, 1, 1);
@@ -306,6 +312,7 @@ int Graph::rootVertex() {
 	return retVal;
 }
 
+// Testing code.
 int main7() {
 	Graph gph(7);
 	gph.addDirectedEdge(0, 1, 1);
@@ -339,6 +346,7 @@ void Graph::transitiveClosure(std::vector<std::vector<int>> &tc) {
 		transitiveClosureUtil(i, i, tc);
 }
 
+// Testing code.
 int main8() {
 	Graph gph(4);
 	std::vector<std::vector<int>> tc(4, std::vector<int>(4, 0));
@@ -422,6 +430,7 @@ int Graph::bfsDistance(int source, int dest) {
 	return -1;
 }
 
+// Testing code.
 int main9() {
 	Graph gph(7);
 	gph.addUndirectedEdge(0, 1, 1);
@@ -474,6 +483,7 @@ bool Graph::isCyclePresentUndirected() {
 	return false;
 }
 
+// Testing code.
 int main10() {
 	Graph gph(6);
 	gph.addUndirectedEdge(0, 1, 1);
@@ -551,6 +561,7 @@ bool Graph::isCyclePresentColor() {
 	return false;
 }
 
+// Testing code.
 int main11() {
 	Graph gph(5);
 	gph.addDirectedEdge(0, 1, 1);
@@ -578,6 +589,7 @@ void Graph::transposeGraph(Graph &gph) {
 	}
 }
 
+// Testing code.
 int main12() {
 	Graph gph(4);
 	gph.addDirectedEdge(0, 1, 1);
@@ -617,6 +629,7 @@ bool Graph::isConnectedUndirected() {
 	return true;
 }
 
+// Testing code.
 int main100() {
 	Graph gph(6);
 	gph.addUndirectedEdge(0, 1, 1);
@@ -669,6 +682,7 @@ bool Graph::isStronglyConnected() {
 	return true;
 }
 
+// Testing code.
 int main13() {
 	Graph gph(5);
 	gph.addDirectedEdge(0, 1, 1);
@@ -714,6 +728,7 @@ void Graph::stronglyConnectedComponent() {
 	}
 }
 
+// Testing code.
 int main14() {
 	Graph gph(7);
 	gph.addDirectedEdge(0, 1, 1);
@@ -786,6 +801,7 @@ int heightTreeParentArr2(int arr[], int count) {
 	return maxHeight;
 }
 
+// Testing code.
 int main15() {
 	int parentArray[] = { -1, 0, 1, 2, 3 };
 	std::cout << Graph::heightTreeParentArr(parentArray, 5) << std::endl;
@@ -870,6 +886,7 @@ void Graph::primsMST() {
 	std::cout << "\nTotal MST cost: " << total << std::endl;
 }
 
+// Testing code.
 int main16() {
 	Graph graph = Graph(9);
 	graph.addUndirectedEdge(0, 1, 4);
@@ -940,6 +957,7 @@ void Graph::shortestPath(int source)    // unweighted graph
 				<< std::endl;
 }
 
+// Testing code.
 int main17() {
 	Graph gph(9);
 	gph.addUndirectedEdge(0, 1, 4);
@@ -1039,6 +1057,7 @@ void Graph::bellmanFordshortestPath(int source) {
 				<< std::endl;
 }
 
+// Testing code.
 int main18() {
 	Graph gph(5);
 	gph.addDirectedEdge(0, 1, 3);
@@ -1142,6 +1161,7 @@ int Graph::isEulerian() {
 	}
 }
 
+// Testing code.
 int main19() {
 	Graph gph(5);
 	gph.addDirectedEdge(1, 0, 1);
@@ -1218,6 +1238,7 @@ bool Graph::isEulerianCycle() {
 	return true;
 }
 
+// Testing code.
 int main20() {
 	Graph gph(5);
 	gph.addDirectedEdge(0, 1, 1);
@@ -1377,6 +1398,8 @@ void main21() {
 	gph.floydWarshall();
 }
 
+// Testing code.
+// Testing code.
 int main() {
 	/*
 	 main1();

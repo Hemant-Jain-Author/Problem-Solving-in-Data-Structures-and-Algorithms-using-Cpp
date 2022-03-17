@@ -1,5 +1,6 @@
 #include "TwoStack.h"
 
+// Testing code.
 int main() {
 	TwoStack st;
 	for (int i = 0; i < 3; i++)

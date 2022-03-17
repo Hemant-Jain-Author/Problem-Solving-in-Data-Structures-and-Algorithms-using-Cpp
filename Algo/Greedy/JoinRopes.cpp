@@ -44,6 +44,7 @@ int joinRopes2(std::vector<int> &ropes, int size) {
 	return total;
 }
 
+// Testing code.
 int main() {
 	std::vector<int> ropes = { 4, 3, 2, 6 };
 	joinRopes(ropes, ropes.size());

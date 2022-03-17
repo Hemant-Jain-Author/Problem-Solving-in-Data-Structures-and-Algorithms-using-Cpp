@@ -90,6 +90,7 @@ void HashTable::print() {
 	std::cout << std::endl;
 }
 
+// Testing code.
 int main() {
 	HashTable ht(1000);
 	ht.add(1, 10);

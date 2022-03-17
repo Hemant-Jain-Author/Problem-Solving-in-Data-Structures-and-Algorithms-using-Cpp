@@ -43,6 +43,7 @@ int fibonacciTD(int n) {
 	return fibonacciTDUtil(n, dp);
 }
 
+// Testing code.
 int main() {
 	std::cout << fibonacci(6) << std::endl;
 	std::cout << fibonacciBU(6) << std::endl;

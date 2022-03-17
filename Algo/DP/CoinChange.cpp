@@ -86,6 +86,7 @@ int minCoinsBU(std::vector<int> &coins, int n, int val) { // DP bottom up approa
 	return (dp[val] != std::numeric_limits<int>::max()) ? dp[val] : -1;
 }
 
+// Testing code.
 int main() {
 	std::vector<int> coins = { 1, 4, 6, 9, 12 };
 	int value = 15;

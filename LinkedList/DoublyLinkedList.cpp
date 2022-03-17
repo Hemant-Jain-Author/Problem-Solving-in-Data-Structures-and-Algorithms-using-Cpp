@@ -1,6 +1,7 @@
 #include "DoublyLinkedList.h"
 #include <exception>
 
+// Testing code.
 int main() {
 	DoublyLinkedList *ll = new DoublyLinkedList();
 	ll->addHead(1);

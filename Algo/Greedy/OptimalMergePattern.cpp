@@ -23,6 +23,7 @@ int merge(std::vector<int> &lists, int size) {
 	return total;
 }
 
+// Testing code.
 int main() {
 	std::vector<int> lists = { 4, 3, 2, 6 };
 	merge(lists, lists.size());

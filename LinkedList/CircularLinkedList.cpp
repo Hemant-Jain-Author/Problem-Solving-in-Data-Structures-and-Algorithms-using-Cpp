@@ -154,6 +154,7 @@ void CircularLinkedList::freeList() {
 	length = 0;
 }
 
+// Testing code.
 int main() {
 	CircularLinkedList *ll = new CircularLinkedList();
 	ll->addHead(1);

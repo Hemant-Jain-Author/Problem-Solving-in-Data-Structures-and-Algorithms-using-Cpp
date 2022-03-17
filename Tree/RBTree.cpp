@@ -367,6 +367,7 @@ RBTree::Node* RBTree::minimum(Node *node) {
 	return node;
 }
 
+// Testing code.
 int main() {
 	RBTree *tree = new RBTree();
 	tree->insert(1);

@@ -30,6 +30,7 @@ int diffWaysBU2(int n) {
 	return ways[n - 1];
 }
 
+// Testing code.
 int main() {
 	std::cout << "Unique way to reach top:: " << diffWaysBU(4) << std::endl;
 	std::cout << "Unique way to reach top:: " << diffWaysBU2(4) << std::endl;

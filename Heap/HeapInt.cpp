@@ -1,5 +1,6 @@
 #include "HeapInt.h"
 
+// Testing code.
 int main1() {
 	Heap hp = Heap(true);
 	hp.add(1);
@@ -18,6 +19,7 @@ int main1() {
  Printing content of heap :: 1 7 6 9
  1 6 7 9
  */
+// Testing code.
 int main2() {
 	std::vector<int> a = { 1, 0, 2, 4, 5, 3 };
 	Heap hp = Heap(a, true); // Min Heap
@@ -33,6 +35,7 @@ int main2() {
  0 1 2 3 4 5
  */
 
+// Testing code.
 int main() {
 	std::vector<int> a = { 1, 0, 2, 4, 5, 3 };
 	Heap hp = Heap(a, false); // Max Heap
@@ -48,6 +51,7 @@ int main() {
  0 1 2 3 4 5
  */
 
+// Testing code.
 int main4() {
 	std::vector<int> a = { 1, 9, 6, 7, 8, -1, 2, 4, 5, 3 };
 	Heap::heapSort(a, true);

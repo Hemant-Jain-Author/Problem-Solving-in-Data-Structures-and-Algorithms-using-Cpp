@@ -101,6 +101,7 @@ double closestPairDC(std::vector<std::vector<int>> &arr) {
 	return closestPairUtil(p, 0, n - 1, q, n);
 }
 
+// Testing code.
 int main() {
 	std::vector<std::vector<int>> arr = { { 648, 896 }, { 269, 879 },
 			{ 250, 922 }, { 453, 347 }, { 213, 17 } };

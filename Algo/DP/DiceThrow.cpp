@@ -21,6 +21,7 @@ int findWays(int n, int m, int V) {
 	return dp[n][V];
 }
 
+// Testing code.
 int main() {
 	for (int i = 1; i <= 6; i++) {
 		std::cout << findWays(i, 6, 6) << std::endl;

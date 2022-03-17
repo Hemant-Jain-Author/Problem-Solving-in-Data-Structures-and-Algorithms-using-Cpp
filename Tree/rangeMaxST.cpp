@@ -104,6 +104,7 @@ int rangeMaxST::updateUtil(int segStart, int segEnd, int ind, int val,
 	return segArr[index];
 }
 
+// Testing code.
 int main() {
 	std::vector<int> arr = { 1, 8, 2, 7, 3, 6, 4, 5 };
 	rangeMaxST *tree = new rangeMaxST(arr);

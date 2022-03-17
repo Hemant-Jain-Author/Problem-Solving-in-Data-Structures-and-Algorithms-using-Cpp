@@ -72,6 +72,8 @@ int fastestWayTD(std::vector<std::vector<int>> &a,
 	return std::min(f[0][n - 1] + x[0], f[1][n - 1] + x[1]);
 }
 
+// Testing code.
+// Testing code.
 int main() {
 	std::vector<std::vector<int>> a = { { 7, 9, 3, 4, 8, 4 },
 			{ 8, 5, 6, 4, 5, 7 } };

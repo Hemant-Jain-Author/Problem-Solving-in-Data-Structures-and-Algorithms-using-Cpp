@@ -466,6 +466,7 @@ void LinkedList::removeLoop() {
 	secondPtr->next = nullptr;
 }
 
+// Testing code.
 int main() {
 	LinkedList *ll = new LinkedList();
 	ll->addHead(1);

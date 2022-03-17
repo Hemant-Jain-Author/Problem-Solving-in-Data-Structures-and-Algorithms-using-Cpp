@@ -28,6 +28,7 @@ int maxRobbery2(std::vector<int> &house) {
 	return std::max(dp[n - 1][1], dp[n - 1][0]);
 }
 
+// Testing code.
 int main() {
 	std::vector<int> arr = { 10, 12, 9, 23, 25, 55, 49, 70 };
 	std::cout << "Total cash: " << maxRobbery(arr) << std::endl;

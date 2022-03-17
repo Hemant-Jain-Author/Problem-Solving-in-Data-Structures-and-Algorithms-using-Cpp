@@ -34,6 +34,7 @@ int MedianHeap::getMedian() {
 		return minHeap.top();
 }
 
+// Testing code.
 int main() {
 	std::vector<int> arr = { 1, 9, 2, 8, 3, 7 };
 	MedianHeap hp;

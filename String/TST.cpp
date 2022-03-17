@@ -48,6 +48,7 @@ bool TST::find(const std::string &word) {
 	return ret;
 }
 
+// Testing code.
 int main() {
 
 	TST *tt = new TST();

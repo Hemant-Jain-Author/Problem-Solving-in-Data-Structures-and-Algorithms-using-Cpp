@@ -73,6 +73,7 @@ int countBits(int a) {
 	return count;
 }
 
+// Testing code.
 int main() {
 	int a = 4;
 	int b = 8;

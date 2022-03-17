@@ -126,6 +126,7 @@ int compare(int a, int b) {
 	return a - b;
 }
 
+// Testing code.
 int main() {
 	std::vector<int> a = { 1, 9, 6, 7, 8, 0, 2, 4, 5, 3 };
 	Heap<int> *hp = new Heap<int>(a, &compare);

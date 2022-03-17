@@ -51,6 +51,7 @@ void printArray(std::vector<int> &arr) {
 	std::cout << std::endl;
 }
 
+// Testing code.
 int main() {
 	std::vector<int> array = { 100, 49, 65, 91, 702, 29, 4, 55 };
 	RadixSort(array);

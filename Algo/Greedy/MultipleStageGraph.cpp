@@ -37,6 +37,7 @@ int shortestDist(std::vector<std::vector<int>> &graph, int n) {
 	return dist[n - 1];
 }
 
+// Testing code.
 int main() {
 	// Graph stored in the form of an adjacency Matrix
 	std::vector<std::vector<int>> graph = {

@@ -423,6 +423,7 @@ void BTree::merge(Node *node, int index) {
 	return;
 }
 
+// Testing code.
 int main() {
 	BTree t(3); // A B-Tree with max key 3
 	t.insert(1);

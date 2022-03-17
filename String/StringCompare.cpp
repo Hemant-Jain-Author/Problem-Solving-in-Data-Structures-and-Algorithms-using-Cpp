@@ -109,6 +109,7 @@ int kmp(const std::string &text, const std::string &pattern) {
 	return kmp(txt, ptn);
 }
 
+// Testing code.
 int main1() {
 	std::string st1 = "hello, world!";
 	std::string st2 = "world";
@@ -153,6 +154,7 @@ int kmpFindCount(const std::string &text, const std::string &pattern) {
 	return kmpFindCount(txt, ptn);
 }
 
+// Testing code.
 int main() {
 	std::string str = "Only time will tell if we stand the test of time";
 	std::cout << "Frequency of 'time' is : " << kmpFindCount(str, "time")

@@ -47,6 +47,7 @@ void function1() {
 	std::cout << "fun1 line 2" << std::endl;
 }
 
+// Testing code.
 int main1() {
 	std::cout << "main line 1" << std::endl;
 	function1();
@@ -73,6 +74,7 @@ void sortedInsert(std::stack<int> &stk, int element) {
 	}
 }
 
+// Testing code.
 int main2() {
 	std::stack<int> stk;
 	stk.push(1);
@@ -120,6 +122,7 @@ void sortStack2(std::stack<int> &stk) {
 	}
 }
 
+// Testing code.
 int main3() {
 	std::stack<int> stk1;
 	stk1.push(1);
@@ -160,6 +163,7 @@ void insertAtBottom(std::stack<int> &stk, int value) {
 	}
 }
 
+// Testing code.
 int main4() {
 	std::stack<int> stk;
 	stk.push(1);
@@ -199,6 +203,7 @@ void reverseStack2(std::stack<int> &stk) {
 	}
 }
 
+// Testing code.
 int main5() {
 	std::stack<int> stk;
 	stk.push(1);
@@ -233,6 +238,7 @@ void reverseKElementInStack(std::stack<int> &stk, int k) {
 	}
 }
 
+// Testing code.
 int main6() {
 	std::stack<int> stk;
 	stk.push(1);
@@ -263,6 +269,7 @@ void reverseQueue(std::queue<int> &que) {
 	}
 }
 
+// Testing code.
 int main7() {
 	std::queue<int> que;
 	que.push(1);
@@ -303,6 +310,7 @@ void reverseKElementInQueue(std::queue<int> &que, int k) {
 	}
 }
 
+// Testing code.
 int main8() {
 	std::queue<int> que;
 	que.push(1);
@@ -356,6 +364,7 @@ bool isBalancedParenthesis(const std::string &expn) {
 	return stk.empty();
 }
 
+// Testing code.
 int main9() {
 	std::string expn = "{()}[]";
 	bool value = isBalancedParenthesis(expn);
@@ -408,6 +417,7 @@ int maxDepthParenthesis2(const std::string &expn, int size) {
 	return maxDepth;
 }
 
+// Testing code.
 int main10() {
 	std::string expn = "((((A)))((((BBB()))))()()()())";
 	int size = expn.size();
@@ -447,6 +457,7 @@ int longestContBalParen(const std::string &expn, int size) {
 	return length;
 }
 
+// Testing code.
 int main11() {
 	std::string expn = "())((()))(())()(()";
 	int size = expn.size();
@@ -492,6 +503,7 @@ int reverseParenthesis(const std::string &expn, int size) {
 	return reversal;
 }
 
+// Testing code.
 int main12() {
 	std::string expn = "())((()))(())()(()()()()))";
 	std::string expn2 = ")(())(((";
@@ -528,6 +540,7 @@ bool findDuplicateParenthesis(const std::string &expn, int size) {
 	return false;
 }
 
+// Testing code.
 int main13() {
 	// expn = "(((a+(b))+(c+d)))"
 	// expn = "(b)"
@@ -564,6 +577,7 @@ void printParenthesisNumber(const std::string &expn, int size) {
 	std::cout << output << std::endl;
 }
 
+// Testing code.
 int main14() {
 	std::string expn1 = "(((a+(b))+(c+d)))";
 	std::string expn2 = "(((a+b))+c)(((";
@@ -647,6 +661,7 @@ std::string infixToPostfix(std::string &expn) {
 	return output;
 }
 
+// Testing code.
 int main15() {
 	std::string expn = "10+((3))*5/(16-4)";
 	std::string value = infixToPostfix(expn);
@@ -692,6 +707,7 @@ std::string infixToPrefix(std::string expn) {
 	return expn;
 }
 
+// Testing code.
 int main16() {
 	std::string expn = "10+((3))*5/(16-4)";
 	std::string value = infixToPrefix(expn);
@@ -747,6 +763,7 @@ int postfixEvaluate(const std::string &expn) {
 	return val;
 }
 
+// Testing code.
 int main17() {
 	std::string expn = "6 5 2 3 + 8 * + 3 + *";
 	int value = postfixEvaluate(expn);
@@ -788,6 +805,7 @@ std::vector<int> stockSpanRange2(std::vector<int> &arr) {
 	return SR;
 }
 
+// Testing code.
 int main18() {
 	std::vector<int> arr = { 6, 5, 4, 3, 2, 4, 5, 7, 9 };
 	int size = arr.size();
@@ -854,6 +872,7 @@ int getMaxArea2(std::vector<int> &arr) {
 	return maxArea;
 }
 
+// Testing code.
 int main19() {
 	std::vector<int> arr = { 7, 6, 5, 4, 4, 1, 6, 3, 1 };
 	int value = getMaxArea(arr);
@@ -916,6 +935,7 @@ void nextLargerElement2(std::vector<int> &arr) {
 		std::cout << val << " ";
 }
 
+// Testing code.
 int main20() {
 	std::vector<int> arr = { 13, 21, 3, 6, 20, 3 };
 	nextLargerElement(arr);
@@ -955,6 +975,7 @@ void nextSmallerElement(std::vector<int> &arr) {
 		std::cout << val << " ";
 }
 
+// Testing code.
 int main21() {
 	std::vector<int> arr = { 13, 21, 3, 6, 20, 3 };
 	nextSmallerElement(arr);
@@ -991,6 +1012,7 @@ void nextLargerElementCircular(std::vector<int> &arr) {
 		std::cout << val << " ";
 }
 
+// Testing code.
 int main22() {
 	std::vector<int> arr = { 6, 3, 9, 8, 10, 2, 1, 15, 7 };
 	nextLargerElementCircular(arr);
@@ -1052,6 +1074,7 @@ int rottenFruit(std::vector<std::vector<int>> &arr, int maxCol, int maxRow) {
 	return maxDay;
 }
 
+// Testing code.
 int main23() {
 	std::vector<std::vector<int>> arr = { { 1, 0, 1, 1, 0 }, { 2, 1, 0, 1, 0 },
 			{ 0, 0, 0, 2, 1 }, { 0, 2, 0, 0, 1 }, { 1, 1, 0, 0, 1 } };
@@ -1097,6 +1120,7 @@ int stepsOfKnight(int size, int srcX, int srcY, int dstX, int dstY) {
 	return retval;
 }
 
+// Testing code.
 int main24() {
 	std::cout << "stepsOfKnight :: " << stepsOfKnight(20, 10, 10, 20, 20)
 			<< std::endl;
@@ -1153,6 +1177,7 @@ void distNearestFill(std::vector<std::vector<int>> &arr, int maxCol,
 	}
 }
 
+// Testing code.
 int main25() {
 	std::vector<std::vector<int>> arr = { { 1, 0, 1, 1, 0 }, { 1, 1, 0, 1, 0 },
 			{ 0, 0, 0, 0, 1 }, { 0, 0, 0, 0, 1 }, { 0, 0, 0, 0, 1 } };
@@ -1220,6 +1245,7 @@ int findLargestIsland(std::vector<std::vector<int>> &arr, int maxCol,
 	return maxVal;
 }
 
+// Testing code.
 int main26() {
 	std::vector<std::vector<int>> arr = { { 1, 0, 1, 1, 0 }, { 1, 0, 0, 1, 0 },
 			{ 0, 1, 1, 1, 1 }, { 0, 1, 0, 0, 0 }, { 1, 1, 0, 0, 1 } };
@@ -1280,6 +1306,7 @@ int findCelebrity2(std::vector<std::vector<int>> &relation, int count) {
 	return first;
 }
 
+// Testing code.
 int main27() {
 	std::vector<std::vector<int>> arr = { { 1, 0, 1, 1, 0 }, { 1, 0, 0, 1, 0 },
 			{ 0, 0, 1, 1, 1 }, { 0, 0, 0, 0, 0 }, { 1, 1, 0, 1, 1 } };
@@ -1294,6 +1321,7 @@ int main27() {
  Celebrity : 3
  */
 
+// Testing code.
 int main() {
 	main1();
 	main2();

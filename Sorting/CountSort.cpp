@@ -19,6 +19,7 @@ void countSort(std::vector<int> &arr, int lowerRange, int upperRange) {
 	}
 }
 
+// Testing code.
 int main() {
 	std::vector<int> array = { 23, 24, 22, 21, 26, 25, 27, 28, 21, 21 };
 	countSort(array, 20, 30);

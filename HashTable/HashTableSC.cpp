@@ -74,6 +74,7 @@ int HashTableSC::get(int key) {
 	return -1;
 }
 
+// Testing code.
 int main() {
 	HashTableSC ht = HashTableSC();
 	ht.add(1, 10);

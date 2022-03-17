@@ -18,6 +18,7 @@ void toh(int num) {
 	tohUtil(num, 'A', 'C', 'B');
 }
 
+// Testing code.
 int main() {
 	toh(3);
 	return 0;

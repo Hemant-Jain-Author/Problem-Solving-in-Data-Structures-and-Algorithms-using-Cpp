@@ -37,6 +37,7 @@ void quickSort(std::vector<int> &arr) {
 	quickSortUtil(arr, 0, size - 1);
 }
 
+// Testing code.
 int main() {
 	std::vector<int> data = { 3, 4, 2, 1, 6, 5, 7, 8, 1, 1 };
 	quickSort(data);

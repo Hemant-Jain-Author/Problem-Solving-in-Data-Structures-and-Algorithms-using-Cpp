@@ -34,6 +34,7 @@ int AdvanceBulb::getIntersity() {
 	return intensity;
 }
 
+// Testing code.
 int main() {
 	Bulb b;
 

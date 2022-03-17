@@ -52,6 +52,7 @@ void Queue::print() {
 	}
 }
 
+// Testing code.
 int main() {
 	Queue que;
 	que.add(1);

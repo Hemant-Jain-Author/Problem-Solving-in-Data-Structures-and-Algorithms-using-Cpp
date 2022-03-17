@@ -122,6 +122,7 @@ bool fibonacciSearch(std::vector<int> &arr, int value) {
 	return false;
 }
 
+// Testing code.
 int main1() {
 	std::vector<int> first = { 1, 3, 5, 7, 9, 25, 30 };
 	std::cout << linearSearchUnsorted(first, 8) << std::endl;
@@ -190,6 +191,7 @@ int firstRepeated2(std::vector<int> &arr) {
 	}
 	return 0;
 }
+// Testing code.
 int main2() {
 	std::vector<int> first = { 1, 3, 5, 3, 9, 1, 30 };
 	std::cout << firstRepeated(first) << std::endl;
@@ -249,6 +251,7 @@ void printRepeating4(std::vector<int> &data, int range) {
 	}
 }
 
+// Testing code.
 int main3() {
 	std::vector<int> first = { 1, 3, 5, 3, 9, 1, 30 };
 	printRepeating(first);
@@ -298,6 +301,7 @@ void removeDuplicates2(std::vector<int> &arr, int size) {
 	arr.erase(arr.begin() + j + 1, arr.end());
 }
 
+// Testing code.
 int main4() {
 	std::vector<int> arr = { 1, 3, 5, 3, 9, 1, 30 };
 	removeDuplicates(arr);
@@ -440,6 +444,7 @@ int findMissingNumber8(std::vector<int> &arr) {
 	return std::numeric_limits<int>::max();
 }
 
+// Testing code.
 int main5() {
 	std::vector<int> first = { 1, 5, 4, 3, 2, 7, 8, 9 };
 	std::cout << "MissingNumber : " << findMissingNumber(first) << std::endl;
@@ -527,6 +532,7 @@ void missingValues3(std::vector<int> &arr) {
 	}
 }
 
+// Testing code.
 int main6() {
 	std::vector<int> arr = { 1, 9, 2, 8, 3, 7, 4, 6 };
 	missingValues(arr);
@@ -601,6 +607,7 @@ void oddCount3(std::vector<int> &arr) {
 	std::cout << "Odd elements are : " << first << " " << second << std::endl;
 }
 
+// Testing code.
 int main7() {
 	std::vector<int> arr = { 10, 25, 30, 10, 15, 25, 15, };
 	oddCount(arr);
@@ -629,6 +636,7 @@ void sumDistinct(std::vector<int> &arr) {
 	std::cout << sum << std::endl;
 }
 
+// Testing code.
 int main8() {
 	std::vector<int> arr = { 1, 2, 3, 1, 1, 4, 5, 6 };
 	sumDistinct(arr);
@@ -698,6 +706,7 @@ void minAbsSumPair2(std::vector<int> &arr) {
 			<< arr[minSecond] << std::endl;
 }
 
+// Testing code.
 int main9() {
 	std::vector<int> first = { 1, 5, -10, 3, 2, -6, 8, 9, 6 };
 	minAbsSumPair2(first);
@@ -770,6 +779,7 @@ bool findPair4(std::vector<int> &arr, int range, int value) {
 	}
 	return false;
 }
+// Testing code.
 int main10() {
 	std::vector<int> first = { 1, 5, 4, 3, 2, 7, 8, 9, 6 };
 	findPair(first, 8);
@@ -1023,6 +1033,7 @@ int minDiffPair2(std::vector<int> &arr1, std::vector<int> &arr2) {
 	return minDiff;
 }
 
+// Testing code.
 int main14() {
 	std::vector<int> second = { 1, 5, 4, 3, 2, 7, 8, 9, 6 };
 	std::vector<int> third = { 6, 4, 19, 17, 20 };
@@ -1085,6 +1096,7 @@ void closestPair2(std::vector<int> &arr, int value) {
 	std::cout << "closest pair is :: " << first << ", " << second << std::endl;
 }
 
+// Testing code.
 int main15() {
 	std::vector<int> first = { 10, 20, 3, 4, 50, 80 };
 	closestPair(first, 47);
@@ -1121,6 +1133,7 @@ bool sumPairRestArray(std::vector<int> &arr) {
 	return false;
 }
 
+// Testing code.
 int main16() {
 	std::vector<int> first = { 1, 2, 4, 3, 7, 3 };
 	sumPairRestArray(first);
@@ -1166,6 +1179,7 @@ void zeroSumTriplets2(std::vector<int> &arr) {
 	}
 }
 
+// Testing code.
 int main17() {
 	std::vector<int> first = { 1, 2, -4, 3, 7, -3 };
 	zeroSumTriplets(first);
@@ -1214,6 +1228,7 @@ void findTriplet2(std::vector<int> &arr, int value) {
 	}
 }
 
+// Testing code.
 int main18() {
 	std::vector<int> first = { 1, 2, -4, 3, 7, -3 };
 	findTriplet(first, 6);
@@ -1264,6 +1279,7 @@ void abcTriplet2(std::vector<int> &arr) {
 	}
 }
 
+// Testing code.
 int main19() {
 	std::vector<int> first = { 1, 2, -4, 3, 7, -3 };
 	abcTriplet(first);
@@ -1347,6 +1363,7 @@ void APTriplets(std::vector<int> &arr) {
 	}
 }
 
+// Testing code.
 int main21() {
 	std::vector<int> first = { 1, 2, 3, 4, 9, 17, 23 };
 	APTriplets(first);
@@ -1379,6 +1396,7 @@ void GPTriplets(std::vector<int> &arr) {
 	}
 }
 
+// Testing code.
 int main22() {
 	std::vector<int> first = { 1, 2, 3, 4, 9, 17, 23 };
 	GPTriplets(first);
@@ -1425,6 +1443,7 @@ int numberOfTriangles2(std::vector<int> &arr) {
 	return count;
 }
 
+// Testing code.
 int main23() {
 	std::vector<int> first = { 1, 2, 3, 4, 5 };
 	std::cout << "numberOfTriangles : " << numberOfTriangles(first)
@@ -1491,6 +1510,7 @@ int getMax3(std::vector<int> &arr, int range) {
 	return max;
 }
 
+// Testing code.
 int main24() {
 	std::vector<int> first = { 1, 30, 5, 13, 9, 31, 5 };
 	std::cout << getMax(first) << std::endl;
@@ -1572,6 +1592,7 @@ int getMajority3(std::vector<int> &data) {
 		throw("MajorityDoesNotExist");
 }
 
+// Testing code.
 int main25() {
 	std::vector<int> first = { 1, 5, 5, 13, 5, 31, 5 };
 	std::cout << getMajority(first) << std::endl;
@@ -1779,6 +1800,7 @@ int findKeyCount2(std::vector<int> &arr, int key) {
 	return (lastIndex - firstIndex + 1);
 }
 
+// Testing code.
 int main28() {
 	std::vector<int> first = { 1, 5, 10, 13, 20, 30, 8, 7, 6 };
 	std::cout << findKeyCount(first, 6) << std::endl;
@@ -1839,6 +1861,7 @@ bool isMajority2(std::vector<int> &arr) {
 		return false;
 }
 
+// Testing code.
 int main29() {
 	std::vector<int> first = { 3, 3, 3, 3, 4, 5, 10 };
 	std::cout << isMajority(first) << std::endl;
@@ -1898,6 +1921,7 @@ int maxProfit2(std::vector<int> &stocks) {
 	return maxProfit;
 }
 
+// Testing code.
 int main30() {
 	std::vector<int> first = { 10, 150, 6, 67, 61, 16, 86, 6, 67, 78, 150, 3,
 			28, 143 };
@@ -1939,6 +1963,7 @@ int findMedian(std::vector<int> arrFirst, std::vector<int> arrSecond) {
 	}
 }
 
+// Testing code.
 int main31() {
 	std::vector<int> first = { 1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 };
 	std::vector<int> second = { 1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 };
@@ -1983,6 +2008,7 @@ int binarySearch01(std::vector<int> &arr) {
 	return binarySearch01Util(arr, 0, size - 1);
 }
 
+// Testing code.
 int main32() {
 	std::vector<int> first = { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 };
 	std::cout << search01(first) << std::endl;
@@ -2025,6 +2051,7 @@ int rotationMax2(std::vector<int> &arr) {
 }
 
 // Testing code
+// Testing code.
 int main33() {
 	std::vector<int> first = { 8, 9, 10, 11, 3, 5, 7 };
 	std::cout << "RotationMax is ::" << rotationMax(first) << std::endl;
@@ -2067,6 +2094,7 @@ int findRotationMax2(std::vector<int> &arr) {
 	return findRotationMaxUtil(arr, 0, size - 1);
 }
 
+// Testing code.
 int main34() {
 	std::vector<int> first = { 34, 56, 77, 1, 5, 6, 6, 8, 10, 20, 30, 34 };
 	std::cout << "findRotationMax is :: " << findRotationMax(first)
@@ -2087,6 +2115,7 @@ int countRotation(std::vector<int> &arr) {
 	return (maxIndex + 1) % size;
 }
 
+// Testing code.
 int main35() {
 	std::vector<int> first = { 34, 56, 77, 1, 5, 6, 6, 8, 10, 20, 30, 34 };
 	std::cout << countRotation(first) << std::endl;
@@ -2135,6 +2164,7 @@ int binarySearchRotateArray(std::vector<int> &arr, int key) {
 	return binarySearchRotateArrayUtil(arr, 0, size - 1, key);
 }
 
+// Testing code.
 int main36() {
 	std::vector<int> first = { 34, 56, 77, 1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13,
 			20, 30 };
@@ -2163,6 +2193,7 @@ int minAbsDiffAdjCircular(std::vector<int> &arr) {
 /*
  * Testing code
  */
+// Testing code.
 int main37() {
 	std::vector<int> arr = { 5, 29, 18, 51, 11 };
 	std::cout << minAbsDiffAdjCircular(arr) << std::endl;
@@ -2188,6 +2219,7 @@ void transformArrayAB1(char arr[], int size) {
 	}
 }
 
+// Testing code.
 int main38() {
 	char str[] = "aaaabbbb";
 	transformArrayAB1(str, 8);
@@ -2258,6 +2290,7 @@ bool checkPermutation3(std::string array1, std::string array2) {
 	return true;
 }
 
+// Testing code.
 int main39() {
 	auto str1 = "aaaabbbb";
 	auto str2 = "bbaaaabb";
@@ -2359,6 +2392,7 @@ bool isAP3(std::vector<int> &arr) {
 	return true;
 }
 
+// Testing code.
 int main40() {
 	std::vector<int> arr = { 3, 6, 9, 12, 15 };
 	std::cout << isAP(arr) << std::endl;
@@ -2396,6 +2430,7 @@ int findBalancedPoint(std::vector<int> &arr) {
  * Testing code
  */
 
+// Testing code.
 int main41() {
 	std::vector<int> arr = { -7, 1, 5, 2, -4, 3, 0 };
 	std::cout << findBalancedPoint(arr) << std::endl;
@@ -2454,6 +2489,7 @@ int findCeil(std::vector<int> &arr, int value) {
 	return -1;
 }
 
+// Testing code.
 int main42() {
 	std::vector<int> arr = { -7, 1, 2, 3, 6, 8, 10 };
 	std::cout << findFloor(arr, 4) << std::endl;
@@ -2490,6 +2526,7 @@ int closestNumber(std::vector<int> &arr, int num) {
 	return output;
 }
 
+// Testing code.
 int main43() {
 	std::vector<int> arr = { 2, 4, 8, 16 };
 	std::cout << "closestNumber : " << closestNumber(arr, 7);
@@ -2515,6 +2552,7 @@ bool duplicateKDistance(std::vector<int> &arr, int k) {
 	return false;
 }
 
+// Testing code.
 int main44() {
 	std::vector<int> arr = { 1, 2, 3, 1, 4, 5 };
 	duplicateKDistance(arr, 3);
@@ -2589,6 +2627,7 @@ void frequencyCounts4(std::vector<int> &arr) {
 					<< std::endl;
 }
 
+// Testing code.
 int main45() {
 	std::vector<int> arr = { 1, 2, 2, 2, 1 };
 	frequencyCounts(arr, arr.size());
@@ -2637,6 +2676,7 @@ int kLargestElements2(std::vector<int> &arrIn, int k) {
 	return -1;
 }
 
+// Testing code.
 int main46() {
 	std::vector<int> arr = { 10, 50, 30, 60, 15 };
 	kLargestElements(arr, 2);
@@ -2678,6 +2718,7 @@ int fixPoint2(std::vector<int> &arr) {
 	return -1;
 }
 
+// Testing code.
 int main47() {
 	std::vector<int> arr = { -10, -2, 0, 3, 11, 12, 35, 51, 200 };
 	std::cout << fixPoint(arr) << std::endl;
@@ -2713,6 +2754,7 @@ bool subArraySums(std::vector<int> &arr, int value) {
 	return false;
 }
 
+// Testing code.
 int main48() {
 	std::vector<int> arr = { 15, 5, 5, 20, 10, 5, 5, 20, 10, 10 };
 	std::cout << subArraySums(arr, 20) << std::endl;
@@ -2739,6 +2781,7 @@ int maxConSub(std::vector<int> &arr) {
 	return maximum;
 }
 
+// Testing code.
 int main49() {
 	std::vector<int> arr = { 1, -2, 3, 4, -4, 6, -4, 8, 2 };
 	maxConSub(arr);
@@ -2793,6 +2836,7 @@ int maxConSubArr2(std::vector<int> &A, std::vector<int> &B) {
 	return maximum;
 }
 
+// Testing code.
 int main50() {
 	std::vector<int> arr1 = { 1, 2, 3, 4, 4, 6, 4, 8, 2 };
 	std::vector<int> arr2 = { 2, 4, 8, 18, 10 };
@@ -2859,6 +2903,7 @@ int rainWater2(std::vector<int> &arr) {
 	return water;
 }
 
+// Testing code.
 int main51() {
 	std::vector<int> arr = { 4, 0, 1, 5 };
 	rainWater(arr);
@@ -2887,6 +2932,7 @@ void seperateEvenAndOdd(std::vector<int> &arr) {
 	}
 }
 
+// Testing code.
 int main52() {
 	std::vector<int> first = { 1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 };
 	seperateEvenAndOdd(first);
@@ -2922,6 +2968,7 @@ int findMedian(std::vector<int> &dataFirst, int sizeFirst,
 	}
 }
 
+// Testing code.
 int main53() {
 	std::vector<int> first = { 1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 };
 	std::vector<int> second = { 1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 };
@@ -2965,6 +3012,7 @@ bool findElementIn2DArray(int **data, int r, int c, int value) {
 	return false;
 }
 
+// Testing code.
 int main() {
 	main1();
 	main2();

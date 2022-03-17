@@ -21,6 +21,7 @@ int lis(std::vector<int> &arr) {
 	return max;
 }
 
+// Testing code.
 int main() {
 	std::vector<int> arr = { 10, 12, 9, 23, 25, 55, 49, 70 };
 	std::cout << "Length of lis is " << lis(arr) << std::endl;

@@ -52,6 +52,7 @@ void bucketSort(std::vector<int> &arr, int maxValue) {
 	bucketSort(arr, maxValue, numBucket);
 }
 
+// Testing code.
 int main() {
 	std::vector<int> array = { 1, 34, 7, 99, 5, 23, 45, 88, 77, 19, 91, 100 };
 	int maxValue = 100;

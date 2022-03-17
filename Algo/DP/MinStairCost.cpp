@@ -17,6 +17,7 @@ int minCost(std::vector<int> &cost, int n) {
 	return std::min(dp[n - 2], dp[n - 1]);
 }
 
+// Testing code.
 int main() {
 	std::vector<int> a = { 1, 5, 6, 3, 4, 7, 9, 1, 2, 11 };
 	int n = a.size();

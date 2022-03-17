@@ -30,6 +30,7 @@ int palindromicSubstring(const std::string &str) {
 	return max;
 }
 
+// Testing code.
 int main() {
 	std::string str = "ABCAUCBCxxCBA";
 	int length = palindromicSubstring(str);

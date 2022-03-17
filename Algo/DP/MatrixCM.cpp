@@ -69,6 +69,7 @@ int MatrixChainMulBU(std::vector<int> &p, int n) {
 	return dp[1][n - 1];
 }
 
+// Testing code.
 int main() {
 	std::vector<int> arr = { 1, 2, 3, 4 };
 	int n = arr.size();

@@ -44,6 +44,7 @@ int minCostBU(std::vector<std::vector<int>> &cost, int m, int n) {
 	return tc[m - 1][n - 1];
 }
 
+// Testing code.
 int main() {
 	std::vector<std::vector<int>> cost =
 			{ { 1, 3, 4 }, { 4, 7, 5 }, { 1, 5, 3 } };

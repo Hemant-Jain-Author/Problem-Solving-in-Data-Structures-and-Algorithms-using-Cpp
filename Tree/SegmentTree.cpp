@@ -100,6 +100,7 @@ int SegmentTree::setUtil(int segStart, int segEnd, int ind, int val,
 	return diff;
 }
 
+// Testing code.
 int main() {
 	std::vector<int> arr = { 1, 2, 4, 8, 16, 32, 64 };
 	SegmentTree *tree = new SegmentTree(arr);

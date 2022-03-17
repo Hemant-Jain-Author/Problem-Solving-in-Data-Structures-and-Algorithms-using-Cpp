@@ -32,6 +32,7 @@ void nQueens(std::vector<int> &Q, int k, int n) {
 	}
 }
 
+// Testing code.
 int main() {
 	std::vector<int> Q(8);
 	nQueens(Q, 0, 8);

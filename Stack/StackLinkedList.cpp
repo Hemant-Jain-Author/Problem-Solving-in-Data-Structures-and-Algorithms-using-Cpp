@@ -57,6 +57,7 @@ void Stack::print() {
 	std::cout << std::endl;
 }
 
+// Testing code.
 int main() {
 	Stack s;
 	s.push(1);

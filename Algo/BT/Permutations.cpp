@@ -78,6 +78,7 @@ void permutation3(std::vector<int> &arr, int i, int length) {
 	return;
 }
 
+// Testing code.
 int main() {
 	std::vector<int> arr(4);
 	for (int i = 0; i < 4; i++) {

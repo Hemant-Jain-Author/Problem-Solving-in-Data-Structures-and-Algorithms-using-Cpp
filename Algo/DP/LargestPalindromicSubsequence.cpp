@@ -21,6 +21,7 @@ int palindromicSubsequence(const std::string &str) {
 	return dp[0][n - 1];
 }
 
+// Testing code.
 int main() {
 	std::string str = "ABCAUCBCxxCBA";
 	std::cout << "Max Palindromic Subsequence length: "

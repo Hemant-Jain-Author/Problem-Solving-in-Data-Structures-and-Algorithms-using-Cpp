@@ -37,6 +37,7 @@ int Queue::size() {
 	return length;
 }
 
+// Testing code.
 int main() {
 	Queue que;
 	que.add(1);

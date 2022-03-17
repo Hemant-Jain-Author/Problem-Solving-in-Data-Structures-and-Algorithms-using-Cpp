@@ -43,6 +43,7 @@ void mergeSort(std::vector<int> &arr) {
 	mergeSrt(arr, tempArray, 0, size - 1);
 }
 
+// Testing code.
 int main() {
 	std::vector<int> data = { 3, 4, 2, 1, 6, 5, 7, 8, 1, 1 };
 	mergeSort(data);

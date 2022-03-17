@@ -52,6 +52,7 @@ int JobSequencing(std::vector<char> &ids, std::vector<int> &deadlines,
 	return profit;
 }
 
+// Testing code.
 int main() {
 	std::vector<char> id = { 'a', 'b', 'c', 'd', 'e' };
 	std::vector<int> deadline = { 3, 1, 2, 4, 4 };

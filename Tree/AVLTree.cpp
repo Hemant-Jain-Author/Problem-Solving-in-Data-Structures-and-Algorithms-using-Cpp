@@ -212,6 +212,7 @@ int AVLTree::max(int a, int b) {
 	return (a > b) ? a : b;
 }
 
+// Testing code.
 int main() {
 	AVLTree *t = new AVLTree();
 	t->insert(1);
