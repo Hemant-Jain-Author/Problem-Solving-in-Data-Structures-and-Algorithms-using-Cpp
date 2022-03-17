@@ -66,7 +66,6 @@ void partition012(std::vector<int> &arr) {
 	}
 }
 
-// Testing code
 // Testing code.
 int main1() {
 	std::vector<int> arr = { 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1 };
@@ -103,7 +102,6 @@ void rangePartition(std::vector<int> &arr, int lower, int higher) {
 	}
 }
 
-// Testing code
 // Testing code.
 int main2() {
 	std::vector<int> arr = { 15, 16, 19, 18, 5, 17, 6, 7, 8, 14, 9, 13, 10, 12,
@@ -138,7 +136,6 @@ int minSwaps(std::vector<int> &arr, int val) {
 	return swapCount;
 }
 
-// Testing code
 // Testing code.
 int main3() {
 	std::vector<int> arr = { 2, 7, 5, 6, 1, 3, 4, 9, 10, 8 };
@@ -168,7 +165,6 @@ void seperateEvenAndOdd2(std::vector<int> &data) {
 	}
 }
 
-// Testing code
 // Testing code.
 int main4() {
 	std::vector<int> array = { 2, 7, 5, 6, 1, 3, 4, 9, 10, 8 };
@@ -196,7 +192,6 @@ void absBubbleSort(std::vector<int> &arr, int ref) {
 	}
 }
 
-// Testing code
 // Testing code.
 int main5() {
 	std::vector<int> array = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
@@ -231,7 +226,6 @@ void arrayReduction(std::vector<int> &arr) {
 	std::cout << "Total number of reductions " << count << std::endl;
 }
 
-// Testing code
 // Testing code.
 int main6() {
 	std::vector<int> arr = { 5, 1, 1, 1, 2, 3, 5 };
@@ -279,7 +273,6 @@ void sortByOrder(std::vector<int> &arr, std::vector<int> &arr2) {
 	std::cout << std::endl;
 }
 
-// Testing code
 // Testing code.
 int main7() {
 	std::vector<int> arr = { 2, 1, 2, 5, 7, 1, 9, 3, 6, 8, 8 };
@@ -367,7 +360,6 @@ bool checkReverse(std::vector<int> &arr) {
 	return true;
 }
 
-// Testing code
 // Testing code.
 int main9() {
 	std::vector<int> arr = { 1, 3, 8, 5, 4, 3, 10, 11, 12, 18, 28 };

@@ -1399,7 +1399,6 @@ void main21() {
 }
 
 // Testing code.
-// Testing code.
 int main() {
 	/*
 	 main1();
