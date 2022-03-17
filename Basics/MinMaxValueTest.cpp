@@ -3,8 +3,7 @@
 #include <iostream>
 #include <limits>
 
-int main()
-{
+int main() {
 	char maxByte = std::numeric_limits<char>::max();
 	char minByte = std::numeric_limits<char>::min();
 
@@ -23,12 +22,18 @@ int main()
 	double maxDouble = std::numeric_limits<double>::max();
 	double minDouble = std::numeric_limits<double>::min();
 
-	std::cout << "Range of byte :: " << (int)minByte << " to " << (int)maxByte <<  std::endl;
-	std::cout << "Range of short :: " << minShort << " to " << maxShort <<  std::endl;
-	std::cout << "Range of integer :: " << minInteger << " to " << maxInteger <<  std::endl;
-	std::cout << "Range of long :: " << minLong << " to " << maxLong <<  std::endl;
-	std::cout << "Range of float :: " << minFloat << " to " << maxFloat <<  std::endl;
-	std::cout << "Range of double :: " << minDouble << " to " << maxDouble <<  std::endl;
-	
+	std::cout << "Range of byte :: " << (int) minByte << " to " << (int) maxByte
+			<< std::endl;
+	std::cout << "Range of short :: " << minShort << " to " << maxShort
+			<< std::endl;
+	std::cout << "Range of integer :: " << minInteger << " to " << maxInteger
+			<< std::endl;
+	std::cout << "Range of long :: " << minLong << " to " << maxLong
+			<< std::endl;
+	std::cout << "Range of float :: " << minFloat << " to " << maxFloat
+			<< std::endl;
+	std::cout << "Range of double :: " << minDouble << " to " << maxDouble
+			<< std::endl;
+
 	return 0;
 }

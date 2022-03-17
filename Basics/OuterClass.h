@@ -1,25 +1,20 @@
 #pragma once
 
-class OuterClass
-{
+class OuterClass {
 private:
-	class NestedClass
-	{
+	class NestedClass {
 		// NestedClass fields and methods.
 	};
 
 	// OuterClass fields and methods.
 };
 
-
 #pragma once
 
-class LinkedList
-{
+class LinkedList {
 
 private:
-	class Node
-	{
+	class Node {
 	private:
 		int value;
 		Node *next;
@@ -33,14 +28,10 @@ private:
 	// Outer Class LinkedList other fields and methods.
 };
 
-
-
-class Tree
-{
+class Tree {
 
 private:
-	class Node
-	{
+	class Node {
 	private:
 		int value = 0;
 		Node *lChild;

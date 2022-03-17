@@ -5,37 +5,31 @@
 const std::string text = "Hello, World!";
 const double PI = 3.141592653589793;
 
-int main1()
-{
-	std::vector<int> numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+int main1() {
+	std::vector<int> numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 	int sum = 0;
-	for (auto n : numbers)
-	{
+	for (auto n : numbers) {
 		sum += n;
 	}
 	std::cout << "Sum is :: " << sum << std::endl;
 	return 0;
 }
 
-int main2()
-{
-	std::vector<int> numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+int main2() {
+	std::vector<int> numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 	int sum = 0;
-	for (int i = 0; i < numbers.size(); i++)
-	{
+	for (int i = 0; i < numbers.size(); i++) {
 		sum += numbers[i];
 	}
 	std::cout << "Sum is :: " << sum << std::endl;
 	return 0;
 }
 
-int main3()
-{
-	std::vector<int> numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+int main3() {
+	std::vector<int> numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 	int sum = 0;
 	int i = 0;
-	while (i < numbers.size())
-	{
+	while (i < numbers.size()) {
 		sum += numbers[i];
 		i++;
 	}
@@ -43,8 +37,7 @@ int main3()
 	return 0;
 }
 
-int main4()
-{
+int main4() {
 	std::vector<int> numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 	int sum = 0;
 	int i = 0;
@@ -56,8 +49,7 @@ int main4()
 	return 0;
 }
 
-int main()
-{
+int main() {
 	main1();
 	main2();
 	main3();

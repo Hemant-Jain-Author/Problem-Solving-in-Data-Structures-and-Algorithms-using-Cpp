@@ -7,43 +7,40 @@
 #include <queue>
 #include <functional>
 
-class GraphAM
-{
+class GraphAM {
 private:
-    int count;
-    std::vector<std::vector<int>> adj;
-    struct Edge
-    {
-        int dest;
-        int cost;
-        Edge(int dst, int cst)
-        {
-            dest = dst;
-            cost = cst;
-        }
-    };
+	int count;
+	std::vector<std::vector<int>> adj;
+	struct Edge {
+		int dest;
+		int cost;
+		Edge(int dst, int cst) {
+			dest = dst;
+			cost = cst;
+		}
+	};
 
-    class EdgeComparator
-    {
-    public:
-        bool operator()(Edge *x, Edge *y);
-    };
-
+	class EdgeComparator {
+	public:
+		bool operator()(Edge *x, Edge *y);
+	};
 
 public:
-    GraphAM(int cnt);
-    void addDirectedEdge(int src, int dst);
-    void addDirectedEdge(int src, int dst, int cost);
-    void addUndirectedEdge(int src, int dst);
-    void addUndirectedEdge(int src, int dst, int cost);
-    void print();
-    //Other Methods.
-    void dijkstra(int source);
-    void primsMST();
-    bool hamiltonianPath();
-    bool hamiltonianCycle();
-    
+	GraphAM(int cnt);
+	void addDirectedEdge(int src, int dst);
+	void addDirectedEdge(int src, int dst, int cost);
+	void addUndirectedEdge(int src, int dst);
+	void addUndirectedEdge(int src, int dst, int cost);
+	void print();
+	//Other Methods.
+	void dijkstra(int source);
+	void primsMST();
+	bool hamiltonianPath();
+	bool hamiltonianCycle();
+
 private:
-    bool hamiltonianPathUtil(std::vector<int>& path, int pSize, std::vector<int>& added);
-    bool hamiltonianCycleUtil(std::vector<int>& path, int pSize, std::vector<int>& added);
+	bool hamiltonianPathUtil(std::vector<int> &path, int pSize,
+			std::vector<int> &added);
+	bool hamiltonianCycleUtil(std::vector<int> &path, int pSize,
+			std::vector<int> &added);
 };

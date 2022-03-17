@@ -4,11 +4,9 @@
 #include <vector>
 #include <iostream>
 
-class BTree
-{
+class BTree {
 private:
-	struct Node
-	{
+	struct Node {
 		int n = 0; // Current number of keys
 		std::vector<int> keys; // An array of keys
 		std::vector<Node*> arr; // An array of child pointers
@@ -60,25 +58,25 @@ private:
 	void merge(Node *node, int index);
 };
 /*
-        key[0]:1
-    key[0]:2
-        key[0]:3
-key[0]:4
-        key[0]:5
-    key[0]:6
-        key[0]:7
-    key[1]:8
-        key[0]:9
-        key[1]:10
+ key[0]:1
+ key[0]:2
+ key[0]:3
+ key[0]:4
+ key[0]:5
+ key[0]:6
+ key[0]:7
+ key[1]:8
+ key[0]:9
+ key[1]:10
 
-6 : Present
-11 : Not Present
+ 6 : Present
+ 11 : Not Present
 
-    key[0]:1
-    key[1]:2
-key[0]:4
-    key[0]:5
-key[1]:8
-    key[0]:9
-    key[1]:10
-*/
+ key[0]:1
+ key[1]:2
+ key[0]:4
+ key[0]:5
+ key[1]:8
+ key[0]:9
+ key[1]:10
+ */

@@ -1,8 +1,6 @@
-
 #include "Shape.h"
 
-class Rectangle : public Shape
-{
+class Rectangle: public Shape {
 
 private:
 	double width = 0, length = 0;

@@ -1,7 +1,6 @@
 #pragma once
 
-class Calculator
-{
+class Calculator {
 private:
 	int value = 0;
 

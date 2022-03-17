@@ -4,7 +4,6 @@
 #include <vector>
 #include <iostream>
 
-class HelloWorld
-{
+class HelloWorld {
 	static void main(std::vector<std::wstring> &args);
 };
