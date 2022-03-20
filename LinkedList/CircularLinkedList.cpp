@@ -1,19 +1,12 @@
-// CircularLinkedList.cpp : Defines the entry point for the console application.
-//
-
 #include "CircularLinkedList.h"
 
-CircularLinkedList::Node::Node(int v, Node *n) {
+CircularLinkedList::Node::Node(int v, Node *n = nullptr) {
 	value = v;
 	next = n;
 }
 
-CircularLinkedList::Node::Node(int v) {
-	value = v;
-	next = nullptr;
-}
-
 CircularLinkedList::CircularLinkedList() {
+	tail = nullptr;
 	length = 0;
 }
 
@@ -25,7 +18,7 @@ bool CircularLinkedList::isEmpty() {
 	return length == 0;
 }
 
-int CircularLinkedList::peek() {
+int CircularLinkedList::peekHead() {
 	if (isEmpty())
 		throw "EmptyListException";
 
@@ -47,7 +40,7 @@ void CircularLinkedList::print() {
 }
 
 void CircularLinkedList::addHead(int value) {
-	Node *temp = new Node(value, nullptr);
+	Node *temp = new Node(value);
 	if (isEmpty()) {
 		tail = temp;
 		temp->next = temp;
@@ -76,7 +69,7 @@ int CircularLinkedList::removeHead() {
 }
 
 void CircularLinkedList::addTail(int value) {
-	Node *temp = new Node(value, nullptr);
+	Node *temp = new Node(value);
 	if (isEmpty()) {
 		tail = temp;
 		temp->next = temp;
@@ -88,7 +81,7 @@ void CircularLinkedList::addTail(int value) {
 	length++;
 }
 
-bool CircularLinkedList::removeNode(int key) {
+bool CircularLinkedList::deleteNode(int key) {
 	if (isEmpty())
 		return false;
 
@@ -154,42 +147,6 @@ void CircularLinkedList::freeList() {
 	length = 0;
 }
 
-// Testing code.
-int main() {
-	CircularLinkedList *ll = new CircularLinkedList();
-	ll->addHead(1);
-	ll->addHead(2);
-	ll->addHead(3);
-	ll->print();
-	/*
-	 std::cout << "Size is :: " << ll->size() << std::endl;
-	 std::cout << "IsEmpty :: " << ll->isEmpty() << std::endl;
-	 std::cout << "Peek :: " << ll->peek() << std::endl;
-	 /*ll->addTail(4);
-	 ll->print();
-	 ll->removeHead();
-	 ll->print();
-	 std::cout << "Search List :: " << ll->find(5) << std::endl;
-	 std::cout << "Search List :: " << ll->find(1) << std::endl;
-	 ll->removeNode(1);
-	 ll->print();
-	 ll->freeList();
-	 ll->print();
-	 */
-	CircularLinkedList *cl1 = ll->copyList();
-	CircularLinkedList *cl2 = ll->copyListReversed();
-	cl1->print();
-	cl2->print();
-	return 0;
-}
-
-/*
- 3 2 1
- Size is :: 3
- IsEmpty :: 0
- Peek :: 3
- */
-
 CircularLinkedList* CircularLinkedList::copyListReversed() {
 	CircularLinkedList *cl = new CircularLinkedList();
 	Node *curr = tail->next;
@@ -220,4 +177,106 @@ CircularLinkedList* CircularLinkedList::copyList() {
 		curr = curr->next;
 	}
 	return cl;
+}
+
+
+// Testing code.
+int main1() {
+	CircularLinkedList *ll = new CircularLinkedList();
+	ll->addHead(1);
+	ll->addHead(2);
+	ll->addHead(3);
+	ll->print();
+	std::cout << "size : " << ll->size() << std::endl;
+ 	std::cout << "isEmpty : " << ll->isEmpty() << std::endl;
+ 	std::cout << "peek : " << ll->peekHead() << std::endl;
+
+	return 0;
+}
+
+/*
+3 2 1 
+size : 3
+isEmpty : 0
+peek : 3
+ */
+
+// Testing code.
+int main2() {
+	CircularLinkedList *ll = new CircularLinkedList();
+	ll->addHead(1);
+	ll->addHead(2);
+	ll->addHead(3);
+	std::cout << "Find : " << ll->find(4) << std::endl;
+	std::cout << "Find : " << ll->find(2) << std::endl;
+	return 0;
+}
+
+/*
+Find : 0
+Find : 1
+*/
+
+// Testing code.
+int main3() {
+	CircularLinkedList *ll = new CircularLinkedList();
+	ll->addHead(1);
+	ll->addHead(2);
+	ll->addHead(3);
+	ll->addHead(4);
+	ll->print();
+	ll->deleteNode(3);
+	ll->print();
+	return 0;
+}
+
+/*
+4 3 2 1 
+4 2 1 
+*/
+
+// Testing code.
+int main4() {
+	CircularLinkedList *ll = new CircularLinkedList();
+	ll->addHead(1);
+	ll->addHead(2);
+	ll->addHead(3);
+	ll->print();
+	CircularLinkedList *ll2 = ll->copyListReversed();
+ 	ll2->print();
+	CircularLinkedList *ll3 = ll->copyList();
+ 	ll3->print();
+	ll->removeHead();
+	ll->print();
+	return 0;
+}
+
+/*
+3 2 1 
+1 2 3 
+3 2 1 
+2 1
+*/
+
+// Testing code.
+int main5() {
+	CircularLinkedList *ll = new CircularLinkedList();
+	ll->addTail(1);
+	ll->addTail(2);
+	ll->addTail(3);
+	ll->print();
+	return 0;
+}
+
+/*
+1 2 3
+ */
+
+int main(){
+	main1();
+	main2();
+	main3();
+	main4();
+	main5();
+	return 0;
 }

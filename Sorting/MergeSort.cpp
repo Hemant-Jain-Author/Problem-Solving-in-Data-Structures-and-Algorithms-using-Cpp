@@ -26,21 +26,21 @@ void merge(std::vector<int> &arr, std::vector<int> &tempArray, int lowerIndex,
 	}
 }
 
-void mergeSrt(std::vector<int> &arr, std::vector<int> &tempArray,
+void mergeSortUtil(std::vector<int> &arr, std::vector<int> &tempArray,
 		int lowerIndex, int upperIndex) {
 	if (lowerIndex >= upperIndex) {
 		return;
 	}
 	int middleIndex = (lowerIndex + upperIndex) / 2;
-	mergeSrt(arr, tempArray, lowerIndex, middleIndex);
-	mergeSrt(arr, tempArray, middleIndex + 1, upperIndex);
+	mergeSortUtil(arr, tempArray, lowerIndex, middleIndex);
+	mergeSortUtil(arr, tempArray, middleIndex + 1, upperIndex);
 	merge(arr, tempArray, lowerIndex, middleIndex, upperIndex);
 }
 
 void mergeSort(std::vector<int> &arr) {
 	int size = arr.size();
 	std::vector<int> tempArray(size);
-	mergeSrt(arr, tempArray, 0, size - 1);
+	mergeSortUtil(arr, tempArray, 0, size - 1);
 }
 
 // Testing code.

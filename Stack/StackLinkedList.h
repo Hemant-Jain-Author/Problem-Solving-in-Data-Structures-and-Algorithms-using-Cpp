@@ -14,10 +14,9 @@ private:
 	int stack_size = 0;
 public:
 	// Stack class API/methods .
-
 	virtual int size();
 	virtual bool isEmpty();
-	virtual int peek();
+	virtual int top();
 	virtual void push(int value);
 	virtual int pop();
 	virtual void insertAtBottom(int value);

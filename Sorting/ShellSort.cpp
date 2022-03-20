@@ -2,7 +2,7 @@
 #include <vector>
 #include <iostream>
 
-bool more(int value1, int value2) {
+bool greater(int value1, int value2) {
 	return value1 > value2;
 }
 
@@ -18,7 +18,7 @@ void shellSort(std::vector<int> &arr) {
 			// Shift elements of already sorted list
 			// to find right position for curr value.
 			int j;
-			for (j = i; j >= gap && more(arr[j - gap], curr); j -= gap) {
+			for (j = i; j >= gap && greater(arr[j - gap], curr); j -= gap) {
 				arr[j] = arr[j - gap];
 			}
 

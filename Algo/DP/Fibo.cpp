@@ -12,7 +12,7 @@ int fibonacciBU(int n) {
 	if (n < 2)
 		return n;
 
-	int dp[n + 1];
+	std::vector<int> dp(n + 1);
 	dp[0] = 0;
 	dp[1] = 1;
 
@@ -23,7 +23,7 @@ int fibonacciBU(int n) {
 	return dp[n];
 }
 
-int fibonacciTDUtil(int n, int dp[]) {
+int fibonacciTDUtil(int n, std::vector<int>& dp) {
 	if (n < 2) {
 		dp[n] = n;
 		return n;
@@ -36,10 +36,7 @@ int fibonacciTDUtil(int n, int dp[]) {
 }
 
 int fibonacciTD(int n) {
-	int dp[n + 1];
-	for (int i = 0; i <= n; i++) {
-		dp[i] = 0;
-	}
+	std::vector<int> dp(n + 1, 0);
 	return fibonacciTDUtil(n, dp);
 }
 
@@ -52,4 +49,7 @@ int main() {
 }
 
 /*
+8
+8
+8
  */

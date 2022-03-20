@@ -1,5 +1,3 @@
-#pragma once
-
 #include <string>
 #include <list>
 #include <iostream>
@@ -10,17 +8,17 @@ private:
 	struct Node {
 		int value;
 		Node *next;
-		Node(int v, Node *n);
-		Node(int v);
+		Node(int v, Node *n = nullptr);
 	};
 
 	Node *head;
 	int length;
 
 public:
+	LinkedList();
 	virtual int size();
 	virtual bool isEmpty();
-	virtual int peek();
+	virtual int peekHead();
 	virtual void addHead(int value);
 	virtual int removeHead();
 	// Other linked list methods.

@@ -1,12 +1,6 @@
 #include "DoublyCircularLinkedList.h"
 #include <exception>
 
-DoublyCircularLinkedList::Node::Node(int v, Node *nxt, Node *prv) {
-	value = v;
-	next = nxt;
-	prev = prv;
-}
-
 DoublyCircularLinkedList::Node::Node(int v) {
 	value = v;
 	next = this;
@@ -14,6 +8,7 @@ DoublyCircularLinkedList::Node::Node(int v) {
 }
 
 DoublyCircularLinkedList::DoublyCircularLinkedList() {
+	head = nullptr;
 	length = 0;
 }
 
@@ -49,7 +44,7 @@ void DoublyCircularLinkedList::addHead(int value) {
 }
 
 void DoublyCircularLinkedList::addTail(int value) {
-	Node *newNode = new Node(value, nullptr, nullptr);
+	Node *newNode = new Node(value);
 	if (length == 0) {
 		head = tail = newNode;
 		newNode->next = newNode;
@@ -151,38 +146,105 @@ void DoublyCircularLinkedList::print() {
 	std::cout << std::endl;
 }
 
+
 // Testing code.
-int main() {
+int main1() {
 	DoublyCircularLinkedList *ll = new DoublyCircularLinkedList();
-	;
 	ll->addHead(1);
 	ll->addHead(2);
 	ll->addHead(3);
 	ll->print();
-
-	std::cout << "Size is :: " << ll->size() << std::endl;
-	std::cout << "IsEmpty :: " << ll->isEmpty() << std::endl;
-	std::cout << "Peek head :: " << ll->peekHead() << std::endl;
-
-	ll->addTail(4);
-	ll->print();
-	ll->removeHead();
-	ll->print();
-	std::cout << "Search List :: " << ll->find(5) << std::endl;
-	std::cout << "Search List :: " << ll->find(1) << std::endl;
-	ll->freeList();
-	ll->print();
-
+	std::cout << "size : " << ll->size() << std::endl;
+ 	std::cout << "isEmpty : " << ll->isEmpty() << std::endl;
+ 	std::cout << "peek : " << ll->peekHead() << std::endl;
 	return 0;
 }
 
 /*
- 3 2 1
- Size is :: 3
- IsEmpty :: 0
- Peek head :: 3
- 3 2 1 4
- 2 1 4
- Search List :: 0
- Search List :: 1
+3 2 1 
+size : 3
+isEmpty : 0
+peek : 3
  */
+
+// Testing code.
+int main2() {
+	DoublyCircularLinkedList *ll = new DoublyCircularLinkedList();
+	ll->addHead(1);
+	ll->addHead(2);
+	ll->addHead(3);
+	std::cout << "Find : " << ll->find(4) << std::endl;
+	std::cout << "Find : " << ll->find(2) << std::endl;
+	return 0;
+}
+
+/*
+Find : 0
+Find : 1
+*/
+
+// Testing code.
+int main3() {
+	DoublyCircularLinkedList *ll = new DoublyCircularLinkedList();
+	ll->addHead(1);
+	ll->addHead(2);
+	ll->addHead(3);
+	ll->addHead(4);
+	ll->print();
+	ll->removeHead();
+	ll->print();
+	ll->removeTail();
+	ll->print();
+	ll->addTail(5);
+	ll->print();
+	ll->freeList();
+	ll->print();
+	return 0;
+}
+
+/*
+4 3 2 1 
+3 2 1 
+3 2 
+3 2 5 
+*/
+
+// Testing code.
+int main4() {
+	DoublyCircularLinkedList *ll = new DoublyCircularLinkedList();
+	ll->addTail(1);
+	ll->addTail(2);
+	ll->addTail(3);
+	ll->print();
+	return 0;
+}
+
+/*
+1 2 3 
+*/
+
+// Testing code.
+int main5() {
+	DoublyCircularLinkedList *ll = new DoublyCircularLinkedList();
+	ll->addHead(1);
+	ll->addHead(2);
+	ll->addHead(3);
+	ll->print();
+	ll->removeTail();
+	ll->print();
+}
+
+/*
+3 2 1 
+3 2 
+*/
+
+int main(){
+	main1();
+	main2();
+	main3();
+	main4();
+	main5();
+	return 0;
+}
+

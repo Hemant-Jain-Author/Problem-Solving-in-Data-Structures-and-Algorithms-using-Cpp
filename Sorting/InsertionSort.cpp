@@ -1,7 +1,7 @@
 #include <vector>
 #include <iostream>
 
-bool more(int value1, int value2) {
+bool greater(int value1, int value2) {
 	return value1 > value2;
 }
 
@@ -10,7 +10,7 @@ void insertionSort(std::vector<int> &arr) {
 	int temp, j;
 	for (int i = 1; i < size; i++) {
 		temp = arr[i];
-		for (j = i; j > 0 && more(arr[j - 1], temp); j--) {
+		for (j = i; j > 0 && greater(arr[j - 1], temp); j--) {
 			arr[j] = arr[j - 1];
 		}
 		arr[j] = temp;

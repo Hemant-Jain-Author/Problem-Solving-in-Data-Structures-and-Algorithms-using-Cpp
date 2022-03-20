@@ -5,7 +5,7 @@ bool less(int value1, int value2) {
 	return value1 < value2;
 }
 
-bool more(int value1, int value2) {
+bool greater(int value1, int value2) {
 	return value1 > value2;
 }
 

@@ -14,7 +14,7 @@ bool Stack::isEmpty() {
 	return stack_size == 0;
 }
 
-int Stack::peek() {
+int Stack::top() {
 	if (isEmpty())
 		throw "StackEmptyException";
 

@@ -1,5 +1,3 @@
-// HeapMedian.cpp : Defines the entry point for the console application.
-
 #include "HeapMedian.h"
 
 void MedianHeap::insert(int value) {

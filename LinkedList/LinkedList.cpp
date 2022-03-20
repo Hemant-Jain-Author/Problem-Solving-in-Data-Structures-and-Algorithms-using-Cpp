@@ -6,9 +6,9 @@ LinkedList::Node::Node(int v, Node *n) {
 	next = n;
 }
 
-LinkedList::Node::Node(int v) {
-	value = v;
-	next = nullptr;
+LinkedList::LinkedList(){
+	head = nullptr;
+	length = 0;
 }
 
 int LinkedList::size() {
@@ -19,7 +19,7 @@ bool LinkedList::isEmpty() {
 	return length == 0;
 }
 
-int LinkedList::peek() {
+int LinkedList::peekHead() {
 	if (isEmpty()) {
 		throw("EmptyListException");
 	}
@@ -32,7 +32,7 @@ void LinkedList::addHead(int value) {
 }
 
 void LinkedList::addTail(int value) {
-	Node *newNode = new Node(value, nullptr);
+	Node *newNode = new Node(value);
 	Node *curr = head;
 
 	if (head == nullptr)
@@ -185,12 +185,12 @@ LinkedList* LinkedList::copyList() {
 		return ll2;
 	}
 
-	headNode = new Node(curr->value, nullptr);
+	headNode = new Node(curr->value);
 	tailNode = headNode;
 	curr = curr->next;
 
 	while (curr != nullptr) {
-		tempNode = new Node(curr->value, nullptr);
+		tempNode = new Node(curr->value);
 		tailNode->next = tempNode;
 		tailNode = tempNode;
 		curr = curr->next;
@@ -334,7 +334,7 @@ void LinkedList::freeList() {
 }
 
 void LinkedList::sortedInsert(int value) {
-	Node *newNode = new Node(value, nullptr);
+	Node *newNode = new Node(value);
 	Node *curr = head;
 
 	if (curr == nullptr || curr->value > value) {
@@ -467,71 +467,237 @@ void LinkedList::removeLoop() {
 }
 
 // Testing code.
-int main() {
+int main1() {
 	LinkedList *ll = new LinkedList();
 	ll->addHead(1);
 	ll->addHead(2);
 	ll->addHead(3);
 	ll->print();
+	std::cout << "size : " << ll->size() << std::endl;
+ 	std::cout << "isEmpty : " << ll->isEmpty() << std::endl;
+ 	std::cout << "peek : " << ll->peekHead() << std::endl;
 	return 0;
 }
-/*std::cout << "size" << ll->size() << std::endl;
- std::cout << "isEmpty" << ll->isEmpty() << std::endl;
- std::cout << "peek" << ll->peek() << std::endl;
- std::cout << "find" << ll->find(4) << std::endl;
- std::cout << "find" << ll->find(2) << std::endl;
- ll->removeHead();
- ll->print();
- ll->addTail(4);
- ll->addTail(2);
- ll->print();
- ll->deleteNode(4);
- ll->print();
- ll->deleteNodes(2);
- ll->print();
-
- ll->reverse();
- ll->print();
- ll->reverseRecurse();
- ll->print();
- LinkedList* ll2 = ll->copyList();
- std::cout << "Compare list :: " << ll->compareList(ll2)<<std::endl;
- std::cout << "Length :: " << ll->findLength()<<std::endl;
- std::cout << "nthNodeFromBegining :: " << ll->nthNodeFromBegining(2)<<std::endl;
- std::cout << "nthNodeFromEnd :: " << ll->nthNodeFromEnd(2)<<std::endl;
- std::cout << "nthNodeFromEnd2 :: " << ll->nthNodeFromEnd2(2)<<std::endl;
-
- ll->freeList();
- ll->print();
- ll->sortedInsert(2);
- ll->sortedInsert(1);
- ll->sortedInsert(3);
- ll->sortedInsert(3);
- ll->print();
- ll->removeDuplicate();
- ll->print();
-
- ll->makeLoop();
- ll->loopDetect() ;
- ll->reverseListLoopDetect();
- ll->loopTypeDetect() ;
-
+/*
+3 2 1 
+size : 3
+isEmpty : 0
+peek : 3
  */
+
+// Testing code.
+int main2() {
+	LinkedList *ll = new LinkedList();
+	ll->sortedInsert(2);
+	ll->sortedInsert(1);
+	ll->sortedInsert(3);
+	ll->print();
+	return 0;
+}
+/*
+1 2 3 
+ */
+
+// Testing code.
+int main3() {
+	LinkedList *ll = new LinkedList();
+	ll->addHead(1);
+	ll->addHead(2);
+	ll->addHead(3);
+	std::cout << "Find : " << ll->find(4) << std::endl;
+	std::cout << "Find : " << ll->find(2) << std::endl;
+	return 0;
+}
 
 /*
- 3 2 1
- 1 2 3
- 3 2 1
- Compare list :: 1
- Length :: 3
- nthNodeFromBegining :: 2
- nthNodeFromEnd :: 2
- nthNodeFromEnd2 :: 2
+Find : 0
+Find : 1
+*/
 
- 1 2 3 3
- 1 2 3
- loop found
- loop found
- circular list loop found
+// Testing code.
+int main4() {
+	LinkedList *ll = new LinkedList();
+	ll->addHead(1);
+	ll->addHead(2);
+	ll->addHead(3);
+	ll->addHead(4);
+	ll->print();
+	ll->deleteNode(3);
+	ll->print();
+	return 0;
+}
 
- */
+/*
+4 3 2 1 
+4 2 1 
+*/
+
+// Testing code.
+int main5() {
+	LinkedList *ll = new LinkedList();
+	ll->addHead(1);
+	ll->addHead(2);
+	ll->addHead(1);
+	ll->addHead(1);
+	ll->addHead(3);
+	ll->print();
+	ll->deleteNodes(1);
+	ll->print();
+	return 0;
+}
+
+// Testing code.
+int main6() {
+	LinkedList *ll = new LinkedList();
+	ll->addHead(1);
+	ll->addHead(2);
+	ll->addHead(3);
+	ll->print();
+	ll->reverse();
+ 	ll->print();
+ 	ll->reverseRecurse();
+ 	ll->print();
+	return 0;
+}
+
+/*
+3 2 1 
+1 2 3 
+3 2 1 
+*/
+
+// Testing code.
+int main7() {
+	LinkedList *ll = new LinkedList();
+	for(int i =1;i<5;i++) {
+		ll->sortedInsert(i);
+		ll->sortedInsert(i);
+	}
+	ll->print();
+	ll->removeDuplicate();
+	ll->print();
+	return 0;
+}
+
+/*
+1 1 2 2 3 3 4 4 
+1 2 3 4 
+*/
+
+// Testing code.
+int main8() {
+	LinkedList *ll = new LinkedList();
+	ll->addHead(1);
+	ll->addHead(2);
+	ll->addHead(3);
+	ll->print();
+	LinkedList *ll2 = ll->copyListReversed();
+ 	ll2->print();
+	LinkedList *ll3 = ll->copyList();
+ 	ll3->print();
+	return 0;
+}
+
+/*
+3 2 1 
+1 2 3 
+3 2 1 
+*/
+
+// Testing code.
+int main9() {
+	LinkedList *ll = new LinkedList();
+	ll->addHead(1);
+	ll->addHead(2);
+	ll->addHead(3);	
+	LinkedList *ll2 = ll->copyList();
+ 	std::cout << "Compare list :: " << ll->compareList(ll2)<<std::endl;
+	return 0;
+}
+
+/*
+Compare list :: 1
+*/
+
+// Testing code.
+int main10() {
+	LinkedList *ll = new LinkedList();
+	ll->addHead(1);
+	ll->addHead(2);
+	ll->addHead(3);
+	ll->addHead(4);
+ 	ll->print();
+	std::cout << "nthNodeFromBegining :: " << ll->nthNodeFromBegining(2)<<std::endl;
+ 	std::cout << "nthNodeFromEnd :: " << ll->nthNodeFromEnd(2)<<std::endl;
+ 	std::cout << "nthNodeFromEnd2 :: " << ll->nthNodeFromEnd2(2)<<std::endl;
+	return 0;
+}
+
+/*
+4 3 2 1 
+nthNodeFromBegining :: 3
+nthNodeFromEnd :: 2
+nthNodeFromEnd2 :: 2
+*/
+
+// Testing code.
+int main11() {
+	LinkedList *ll = new LinkedList();
+	ll->addHead(1);
+	ll->addHead(2);
+	ll->addHead(3);
+	ll->addHead(4);
+ 	ll->print();
+	std::cout << "nthNodeFromBegining :: " << ll->nthNodeFromBegining(2)<<std::endl;
+ 	std::cout << "nthNodeFromEnd :: " << ll->nthNodeFromEnd(2)<<std::endl;
+ 	std::cout << "nthNodeFromEnd2 :: " << ll->nthNodeFromEnd2(2)<<std::endl;
+	return 0;
+}
+
+/*
+4 3 2 1 
+nthNodeFromBegining :: 3
+nthNodeFromEnd :: 2
+nthNodeFromEnd2 :: 2
+*/
+
+// Testing code.
+int main12() {
+	LinkedList *ll = new LinkedList();
+	ll->addHead(1);
+	ll->addHead(2);
+	ll->addHead(3);
+	ll->addHead(4);
+ 	ll->print();
+	ll->makeLoop();
+	ll->loopDetect();
+ 	ll->reverseListLoopDetect();
+ 	ll->loopTypeDetect();
+	ll->removeLoop();
+	ll->print();
+	return 0;
+}
+
+/*
+4 3 2 1 
+loop found
+loop found
+circular list loop found
+4 3 2 1
+*/
+
+int main(){
+	main1();
+	main2();
+	main3();
+	main4();
+	main5();
+	main6();
+	main7();
+	main8();
+	main9();
+	main10();
+	main11();
+	main12();
+	return 0;
+}

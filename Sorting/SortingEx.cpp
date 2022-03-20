@@ -49,6 +49,36 @@ int partition01(std::vector<int> &arr) {
 
 void partition012(std::vector<int> &arr) {
 	int size = arr.size();
+    int zero = 0, one = 0, two = 0;
+    for (int i =0; i < size;i++) {
+        if (arr[i] == 0) {
+            zero += 1;
+        } else if (arr[i] == 1) {
+            one += 1;
+        } else {
+            two += 1;
+        }
+    }
+
+    int index = 0;
+    while(zero > 0){
+        arr[index++] = 0;
+        zero -= 1;
+    }
+
+    while(one > 0){
+        arr[index++] = 1;
+        one -= 1;
+    }
+
+    while(two > 0){
+        arr[index++] = 2;
+        two -= 1;
+    }
+}
+
+void partition012_(std::vector<int> &arr) {
+	int size = arr.size();
 	int left = 0;
 	int right = size - 1;
 	int i = 0;
@@ -75,6 +105,11 @@ int main1() {
 	std::vector<int> arr2 = { 0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1 };
 	partition012(arr2);
 	printArray(arr2);
+
+	std::vector<int> arr3 = { 0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1 };
+	partition012(arr3);
+	printArray(arr3);
+
 	return 0;
 }
 
@@ -149,7 +184,26 @@ int main3() {
  minSwaps:: 2
  */
 
-void seperateEvenAndOdd2(std::vector<int> &data) {
+void separateEvenAndOdd(std::vector<int> &data) {
+	int size = data.size();
+    int left = 0, right = size - 1;
+    int aux[size];
+
+    for (int i=0;i< size;i++) {
+        if (data[i] % 2 == 0) {
+            aux[left] = data[i];
+            left++;
+        } else if (data[i] % 2 == 1) {
+            aux[right] = data[i];
+            right--;
+        }
+    }
+
+    for (int i=0;i< size;i++)
+        data[i] = aux[i];
+}
+
+void separateEvenAndOdd2(std::vector<int> &data) {
 	int size = data.size();
 	int left = 0, right = size - 1;
 	while (left < right) {
@@ -168,16 +222,21 @@ void seperateEvenAndOdd2(std::vector<int> &data) {
 // Testing code.
 int main4() {
 	std::vector<int> array = { 2, 7, 5, 6, 1, 3, 4, 9, 10, 8 };
-	seperateEvenAndOdd2(array);
+	separateEvenAndOdd(array);
 	printArray(array);
+
+	std::vector<int> array2 = { 2, 7, 5, 6, 1, 3, 4, 9, 10, 8 };
+	separateEvenAndOdd2(array2);
+	printArray(array2);
 	return 0;
 }
 
 /*
- [ 2 8 10 6 4 3 1 9 5 7 ]
- */
+[ 2 6 4 10 8 9 3 1 5 7 ]
+[ 2 8 10 6 4 3 1 9 5 7 ] 
+*/
 
-bool absMore(int value1, int value2, int ref) {
+bool absGreater(int value1, int value2, int ref) {
 	return (std::abs(value1 - ref) > std::abs(value2 - ref));
 }
 
@@ -185,7 +244,7 @@ void absBubbleSort(std::vector<int> &arr, int ref) {
 	int size = arr.size();
 	for (int i = 0; i < (size - 1); i++) {
 		for (int j = 0; j < (size - i - 1); j++) {
-			if (absMore(arr[j], arr[j + 1], ref)) {
+			if (absGreater(arr[j], arr[j + 1], ref)) {
 				swap(arr, j, j + 1);
 			}
 		}
@@ -205,7 +264,7 @@ int main5() {
  [ 5 6 4 7 3 8 2 9 1 ]
  */
 
-bool eqMore(int value1, int value2, int A) {
+bool eqGreater(int value1, int value2, int A) {
 	value1 = A * value1 * value1;
 	value2 = A * value2 * value2;
 	return value1 > value2;
@@ -308,7 +367,6 @@ void merge(std::vector<int> &arr1, std::vector<int> &arr2) {
 	}
 }
 
-// Testing code.
 // Testing code.
 int main8() {
 	std::vector<int> arr1 = { 1, 5, 9, 10, 15, 20 };
@@ -428,9 +486,250 @@ int main10() {
  [ 2 5 8 ]
  */
 
+void reverseArray(std::vector<int> &data, int start, int end) {
+	for (int i = start, j = end; i < j; i++, j--) {
+		int temp = data[i];
+		data[i] = data[j];
+		data[j] = temp;
+	}
+}
+
+void reverseArray(std::vector<int> &data) {
+	int start = 0;
+	int end = data.size() - 1;
+	for (int i = start, j = end; i < j; i++, j--) {
+		int temp = data[i];
+		data[i] = data[j];
+		data[j] = temp;
+	}
+}
+void rotateArray(std::vector<int> &data, int k) {
+	int n = data.size();
+	reverseArray(data, 0, k - 1);
+	reverseArray(data, k, n - 1);
+	reverseArray(data, 0, n - 1);
+}
+// Testing code.
+int main11() {
+	std::vector<int> arr = { 1, 2, 3, 4, 5, 6 };
+	rotateArray(arr, 2);
+	printArray(arr);
+	return 0;
+}
+/*
+ [ 3 4 5 6 1 2 ]
+ */
+
+
+void waveArray(std::vector<int> &arr) {
+	int size = arr.size();
+	std::sort(arr.begin(), arr.end());
+	for (int i = 0; i < size - 1; i += 2) {
+		swap(arr, i, i + 1);
+	}
+}
+void waveArray2(std::vector<int> &arr) {
+	int size = arr.size();
+	/* Odd elements are lesser then even elements. */
+	for (int i = 1; i < size; i += 2) {
+		if ((i - 1) >= 0 && arr[i] > arr[i - 1]) {
+			swap(arr, i, i - 1);
+		}
+		if ((i + 1) < size && arr[i] > arr[i + 1]) {
+			swap(arr, i, i + 1);
+		}
+	}
+}
+
+// Testing code.
+int main12() {
+	std::vector<int> arr = { 8, 1, 2, 3, 4, 5, 6, 4, 2 };
+	waveArray(arr);
+	printArray(arr);
+	;
+	std::vector<int> arr2 = { 8, 1, 2, 3, 4, 5, 6, 4, 2 };
+	waveArray2(arr2);
+	printArray(arr2);
+	return 0;
+}
+/*
+ [ 2 1 3 2 4 4 6 5 8 ]
+ [ 8 1 3 2 5 4 6 2 4 ]
+ */
+void indexArray(std::vector<int> &arr, int size) {
+	for (int i = 0; i < size; i++) {
+		int curr = i;
+		int value = -1;
+
+		/* swaps to move elements in proper position. */
+		while (arr[curr] != -1 && arr[curr] != curr) {
+			int temp = arr[curr];
+			arr[curr] = value;
+			value = curr = temp;
+		}
+
+		/* check if some swaps happened. */
+		if (value != -1) {
+			arr[curr] = value;
+		}
+	}
+}
+
+void indexArray2(std::vector<int> &arr, int size) {
+	int temp, temp2;
+	for (int i = 0; i < size; i++) {
+		while (arr[i] != -1 && arr[i] != i) {
+			/* swap arr[i] and arr[arr[i]] */
+			temp = arr[i];
+			temp2 = arr[i];
+			arr[i] = arr[temp];
+			arr[temp] = temp2;
+		}
+	}
+}
+
+// Testing code.
+int main13() {
+	std::vector<int> arr = { 8, -1, 6, 1, 9, 3, 2, 7, 4, -1 };
+	int size = arr.size();
+	indexArray2(arr, size);
+	printArray(arr);
+	std::vector<int> arr2 = { 8, -1, 6, 1, 9, 3, 2, 7, 4, -1 };
+	size = arr2.size();
+	indexArray(arr2, size);
+	printArray(arr2);
+	return 0;
+}
+/*
+ [ -1 1 2 3 4 -1 6 7 8 9 ]
+ [ -1 1 2 3 4 -1 6 7 8 9 ]
+ */
+
+void sort1toN(std::vector<int> &arr, int size) {
+	int curr, value, next;
+	for (int i = 0; i < size; i++) {
+		curr = i;
+		value = -1;
+		/* swaps to move elements in proper position. */
+		while (curr >= 0 && curr < size && arr[curr] != curr + 1) {
+			next = arr[curr];
+			arr[curr] = value;
+			value = next;
+			curr = next - 1;
+		}
+	}
+}
+
+void sort1toN2(std::vector<int> &arr, int size) {
+	int temp;
+	for (int i = 0; i < size; i++) {
+		while (arr[i] != i + 1 && arr[i] > 1) {
+			temp = arr[i];
+			arr[i] = arr[temp - 1];
+			arr[temp - 1] = temp;
+		}
+	}
+}
+
+// Testing code.
+int main14() {
+	std::vector<int> arr = { 8, 5, 6, 1, 9, 3, 2, 7, 4, 10 };
+	int size = arr.size();
+	sort1toN2(arr, size);
+	printArray(arr);
+	std::vector<int> arr2 = { 8, 5, 6, 1, 9, 3, 2, 7, 4, 10 };
+	size = arr2.size();
+	sort1toN(arr2, size);
+	printArray(arr2);
+	return 0;
+}
+/*
+ [ 1 2 3 4 5 6 7 8 9 10 ]
+ [ 1 2 3 4 5 6 7 8 9 10 ]
+ */
+
+void maxMinArr(std::vector<int> &arr, int size) {
+	std::vector<int> aux = arr;
+	int start = 0;
+	int stop = size - 1;
+	for (int i = 0; i < size; i++) {
+		if (i % 2 == 0) {
+			arr[i] = aux[stop];
+			stop -= 1;
+		} else {
+			arr[i] = aux[start];
+			start += 1;
+		}
+	}
+}
+
+void reverseArr(std::vector<int> &arr, int start, int stop) {
+	while (start < stop) {
+		swap(arr, start, stop);
+		start += 1;
+		stop -= 1;
+	}
+}
+
+void maxMinArr2(std::vector<int> &arr, int size) {
+	for (int i = 0; i < (size - 1); i++) {
+		reverseArr(arr, i, size - 1);
+	}
+}
+
+// Testing code.
+int main15() {
+	std::vector<int> arr = { 1, 2, 3, 4, 5, 6, 7 };
+	int size = arr.size();
+	maxMinArr(arr, size);
+	printArray(arr);
+	std::vector<int> arr2 = { 1, 2, 3, 4, 5, 6, 7 };
+	int size2 = arr.size();
+	maxMinArr2(arr2, size2);
+	printArray(arr2);
+	return 0;
+}
+
+/*
+ [ 7 1 6 2 5 3 4 ]
+ [ 7 1 6 2 5 3 4 ]
+ */
+
+int maxCircularSum(std::vector<int> &arr, int size) {
+	int sumAll = 0;
+	int currVal = 0;
+	int maxVal;
+
+	for (int i = 0; i < size; i++) {
+		sumAll += arr[i];
+		currVal += (i * arr[i]);
+	}
+	maxVal = currVal;
+	for (int i = 1; i < size; i++) {
+		currVal = (currVal + sumAll) - (size * arr[size - i]);
+		if (currVal > maxVal) {
+			maxVal = currVal;
+		}
+	}
+	return maxVal;
+}
+
+// Testing code.
+int main16() {
+	std::vector<int> arr = { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
+	std::cout << "MaxCirculrSum: " << maxCircularSum(arr, arr.size())
+			<< std::endl;
+	return 0;
+}
+
+/*
+ MaxCirculrSum: 290
+ */
+
+
 // Testing code.
 int main() {
-	main1();
+/*	main1();
 	main2();
 	main3();
 	main4();
@@ -440,5 +739,13 @@ int main() {
 	main8();
 	main9();
 	main10();
+
+	main11();
+	main12();
+	main13();
+	main14();
+	*/
+	main15();
+	main16();
 	return 0;
 }

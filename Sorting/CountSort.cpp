@@ -2,17 +2,16 @@
 #include <iostream>
 
 void countSort(std::vector<int> &arr, int lowerRange, int upperRange) {
-	int i, j;
 	int size = arr.size();
 	int range = upperRange - lowerRange;
 	std::vector<int> count(range);
 
-	for (i = 0; i < size; i++) {
+	for (int i = 0; i < size; i++) {
 		count[arr[i] - lowerRange]++;
 	}
 
-	j = 0;
-	for (i = 0; i < range; i++) {
+	int j = 0;
+	for (int i = 0; i < range; i++) {
 		for (; count[i] > 0; count[i]--) {
 			arr[j++] = i + lowerRange;
 		}

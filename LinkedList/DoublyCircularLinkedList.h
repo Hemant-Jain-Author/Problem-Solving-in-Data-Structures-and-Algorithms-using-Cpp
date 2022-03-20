@@ -1,5 +1,3 @@
-#pragma once
-
 #include <string>
 #include <iostream>
 
@@ -9,7 +7,6 @@ private:
 		int value;
 		Node *next;
 		Node *prev;
-		Node(int v, Node *nxt, Node *prv);
 		Node(int v);
 	};
 

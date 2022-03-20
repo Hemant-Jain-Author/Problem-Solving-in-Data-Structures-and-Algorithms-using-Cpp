@@ -2,9 +2,9 @@
 #include <iostream>
 #include <algorithm>
 
-int main1() {
+int main() {
 	std::vector<int> arr(10);
-	for (int i = 0; i < 10; i++) {
+	for (auto i = 0; i < 10; i++) {
 		arr[i] = i;
 	}
 
@@ -18,7 +18,7 @@ int main1() {
  0 1 2 3 4 5 6 7 8 9
  */
 
-int main() {
+int main1() {
 	std::vector<int> arr;
 	arr.push_back(1);
 	arr.push_back(2);

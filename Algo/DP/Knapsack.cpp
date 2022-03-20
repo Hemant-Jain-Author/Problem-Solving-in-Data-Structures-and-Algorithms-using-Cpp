@@ -2,7 +2,7 @@
 #include <vector>
 #include <iostream>
 
-int getMaxCost01Util(std::vector<int> &wt, std::vector<int> &cost, int n,
+int maxCost01Util(std::vector<int> &wt, std::vector<int> &cost, int n,
 		int capacity) {
 	// Base Case
 	if (n == 0 || capacity == 0)
@@ -14,18 +14,18 @@ int getMaxCost01Util(std::vector<int> &wt, std::vector<int> &cost, int n,
 	int first = 0;
 	if (wt[n - 1] <= capacity)
 		first = cost[n - 1]
-				+ getMaxCost01Util(wt, cost, n - 1, capacity - wt[n - 1]);
+				+ maxCost01Util(wt, cost, n - 1, capacity - wt[n - 1]);
 
-	int second = getMaxCost01Util(wt, cost, n - 1, capacity);
+	int second = maxCost01Util(wt, cost, n - 1, capacity);
 	return std::max(first, second);
 }
 
-int getMaxCost01(std::vector<int> &wt, std::vector<int> &cost, int capacity) {
+int maxCost01(std::vector<int> &wt, std::vector<int> &cost, int capacity) {
 	int n = wt.size();
-	return getMaxCost01Util(wt, cost, n, capacity);
+	return maxCost01Util(wt, cost, n, capacity);
 }
 
-int getMaxCost01TDUtil(std::vector<std::vector<int>> &dp, std::vector<int> &wt,
+int maxCost01TDUtil(std::vector<std::vector<int>> &dp, std::vector<int> &wt,
 		std::vector<int> &cost, int i, int w) {
 	if (w == 0 || i == 0)
 		return 0;
@@ -38,21 +38,34 @@ int getMaxCost01TDUtil(std::vector<std::vector<int>> &dp, std::vector<int> &wt,
 	// (2) ith item is not included
 	int first = 0;
 	if (wt[i - 1] <= w)
-		first = getMaxCost01TDUtil(dp, wt, cost, i - 1, w - wt[i - 1])
+		first = maxCost01TDUtil(dp, wt, cost, i - 1, w - wt[i - 1])
 				+ cost[i - 1];
 
-	int second = getMaxCost01TDUtil(dp, wt, cost, i - 1, w);
+	int second = maxCost01TDUtil(dp, wt, cost, i - 1, w);
 	return dp[w][i] = std::max(first, second);
 }
 
-int getMaxCost01TD(std::vector<int> &wt, std::vector<int> &cost, int capacity) {
+int maxCost01TD(std::vector<int> &wt, std::vector<int> &cost, int capacity) {
 	int n = wt.size();
 	std::vector<std::vector<int>> dp = std::vector<std::vector<int>>(
 			capacity + 1, std::vector<int>(n + 1, 0));
-	return getMaxCost01TDUtil(dp, wt, cost, n, capacity);
+	return maxCost01TDUtil(dp, wt, cost, n, capacity);
 }
 
-int getMaxCost01BU(std::vector<int> &wt, std::vector<int> &cost, int capacity) {
+void printItems(int n, std::vector<std::vector<int>>& dp, std::vector<int> &wt, std::vector<int> &cost, int capacity) {
+    int totalProfit = dp[capacity][n];
+    std::cout << "Selected items are: ";
+    for (int i = n-1; i > -1; i--) {
+        if (totalProfit != dp[capacity][i - 1]) {
+            std::cout << "(wt:" << wt[i] << ", cost:" << cost[i] <<") ";
+            capacity -= wt[i];
+            totalProfit -= cost[i];
+		}
+	}
+	std::cout << std::endl;
+}
+
+int maxCost01BU(std::vector<int> &wt, std::vector<int> &cost, int capacity) {
 	int n = wt.size();
 	std::vector<std::vector<int>> dp = std::vector<std::vector<int>>(
 			capacity + 1, std::vector<int>(n + 1, 0));
@@ -72,8 +85,10 @@ int getMaxCost01BU(std::vector<int> &wt, std::vector<int> &cost, int capacity) {
 			dp[w][i] = std::max(first, second);
 		}
 	}
+	printItems(n, dp, wt, cost, capacity);
 	return dp[capacity][n]; // Number of weights considered and final capacity.
 }
+
 
 int KS01UnboundBU(std::vector<int> &wt, std::vector<int> &cost, int capacity) {
 	int n = wt.size();
@@ -90,6 +105,7 @@ int KS01UnboundBU(std::vector<int> &wt, std::vector<int> &cost, int capacity) {
 				dp[w] = std::max(dp[w], dp[w - wt[i - 1]] + cost[i - 1]);
 		}
 	}
+	
 	return dp[capacity]; // Number of weights considered and final capacity.
 }
 
@@ -100,11 +116,11 @@ int main() {
 	int capacity = 50;
 	double maxCost = KS01UnboundBU(wt, cost, capacity);
 	std::cout << "Maximum cost obtained = " << maxCost << std::endl;
-	maxCost = getMaxCost01(wt, cost, capacity);
+	maxCost = maxCost01(wt, cost, capacity);
 	std::cout << "Maximum cost obtained = " << maxCost << std::endl;
-	maxCost = getMaxCost01BU(wt, cost, capacity);
+	maxCost = maxCost01BU(wt, cost, capacity);
 	std::cout << "Maximum cost obtained = " << maxCost << std::endl;
-	maxCost = getMaxCost01TD(wt, cost, capacity);
+	maxCost = maxCost01TD(wt, cost, capacity);
 	std::cout << "Maximum cost obtained = " << maxCost << std::endl;
 	return 0;
 }

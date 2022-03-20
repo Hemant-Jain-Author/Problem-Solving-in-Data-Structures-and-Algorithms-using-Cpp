@@ -1,4 +1,3 @@
-#pragma once
 #include <string>
 #include <iostream>
 
@@ -8,8 +7,7 @@ private:
 		int value;
 		Node *next;
 		Node *prev;
-		Node(int v, Node *nxt, Node *prv);
-		Node(int v);
+		Node(int v, Node *nxt = nullptr, Node *prv = nullptr);
 	};
 
 	Node *head;
@@ -22,17 +20,17 @@ public:
 	virtual bool isEmpty();
 	virtual void addHead(int value);
 	virtual int removeHead();
+	virtual void print();
 	// Other methods.
 
-	virtual int peek();
+	virtual int peekHead();
 	virtual void addTail(int value);
-	virtual bool removeNode(int key);
+	virtual bool deleteNode(int key);
 	virtual bool find(int key);
 	virtual void freeList();
-	virtual void print();
 	virtual void sortedInsert(int value);
 	virtual void reverseList();
 	virtual void removeDuplicate();
-	virtual void copyListReversed(DoublyLinkedList&);
-	virtual void copyList(DoublyLinkedList&);
+	virtual DoublyLinkedList* copyListReversed();
+	virtual DoublyLinkedList* copyList();
 };

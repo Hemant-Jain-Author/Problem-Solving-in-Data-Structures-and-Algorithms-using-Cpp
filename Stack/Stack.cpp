@@ -3,7 +3,7 @@
 
 // Testing code.
 int main() {
-	Stack s(100);
+	Stack s;
 	s.push(1);
 	s.push(2);
 	s.push(3);
@@ -20,10 +20,6 @@ int main() {
  2
  1
  */
-
-Stack::Stack() :
-		Stack(MIN_CAPACITY) {
-}
 
 Stack::Stack(int maxCapacity) {
 	data = new int[maxCapacity];
@@ -72,7 +68,7 @@ void Stack::print() {
 	std::cout << std::endl;
 }
 
-void Stack::gPush(int value) {
+void Stack::dynamicPush(int value) {
 	if (size() == capacity) {
 		int *delMe = data;
 		capacity = 2 * capacity;
@@ -87,7 +83,7 @@ void Stack::gPush(int value) {
 	data[stack_top] = value;
 }
 
-int Stack::gPop() {
+int Stack::dynamicPop() {
 	if (isEmpty()) {
 		throw "StackEmptyException";
 	}
