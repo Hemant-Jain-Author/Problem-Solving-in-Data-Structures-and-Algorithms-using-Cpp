@@ -1,30 +1,31 @@
 #include "TST.h"
 
-TST::Node::Node(TST *outerInstance, char d) {
-	data = d;
-	isLastChar = false;
-	left = equal = right = nullptr;
+TST::Node::Node(char d) {
+    data = d;
+    isLastChar = false;
+    left = equal = right = nullptr;
 }
 
 void TST::add(const std::string &word) {
 	root = add(root, word, 0);
 }
 
-TST::Node* TST::add(Node *curr, const std::string &word, int wordIndex) {
-	if (curr == nullptr)
-		curr = new Node(this, word[wordIndex]);
-
-	if (word[wordIndex] < curr->data)
-		curr->left = add(curr->left, word, wordIndex);
-	else if (word[wordIndex] > curr->data)
-		curr->right = add(curr->right, word, wordIndex);
-	else {
-		if (wordIndex < word.length() - 1)
-			curr->equal = add(curr->equal, word, wordIndex + 1);
-		else
-			curr->isLastChar = true;
-	}
-	return curr;
+TST::Node *TST::add(Node *curr, const std::string &word, int wordIndex) {
+    if (curr == nullptr)
+        curr = new Node(word[wordIndex]);
+    
+    if (word[wordIndex] < curr->data)
+        curr->left = add(curr->left, word, wordIndex);
+    else if (word[wordIndex] > curr->data)
+        curr->right = add(curr->right, word, wordIndex);
+    else
+    {
+        if (wordIndex < word.length() - 1)
+            curr->equal = add(curr->equal, word, wordIndex + 1);
+        else
+            curr->isLastChar = true;
+    }
+    return curr;
 }
 
 bool TST::find(Node *curr, const std::string &word, int wordIndex) {

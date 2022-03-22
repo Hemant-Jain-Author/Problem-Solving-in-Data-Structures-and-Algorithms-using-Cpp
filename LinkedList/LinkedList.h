@@ -23,6 +23,7 @@ public:
 	virtual int removeHead();
 	// Other linked list methods.
 
+
 	virtual void addTail(int value);
 	virtual bool find(int data);
 	virtual bool deleteNode(int delValue);

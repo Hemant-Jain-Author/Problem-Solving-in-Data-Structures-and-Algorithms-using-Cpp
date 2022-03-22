@@ -1,6 +1,7 @@
 #include "LinkedList.h"
 #include <exception>
 
+
 LinkedList::Node::Node(int v, Node *n) {
 	value = v;
 	next = n;

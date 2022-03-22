@@ -190,7 +190,7 @@ int main3() {
  8
  */
 
-void Tree::printBredthFirst() {
+void Tree::printBreadthFirst() {
 	std::queue<Node*> que;
 	Node *temp;
 	if (root != nullptr) {
@@ -658,6 +658,7 @@ int Tree::numNodes(Node *curr) {
 int Tree::numFullNodesBT() {
 	return numFullNodesBT(root);
 }
+
 
 int Tree::numFullNodesBT(Node *curr) {
 	int count;

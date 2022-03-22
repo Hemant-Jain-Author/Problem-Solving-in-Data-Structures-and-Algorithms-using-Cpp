@@ -67,9 +67,10 @@ private:
 	void nthInOrder(Node *node, int index, int &counter);
 
 public:
-	void printBredthFirst();
 
-	void printDepthFirst();
+    void printBreadthFirst();
+
+    void printDepthFirst();
 
 	bool find(int value);
 

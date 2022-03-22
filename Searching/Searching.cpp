@@ -1693,7 +1693,6 @@ int main26() {
  5
  */
 
-
 int getMedian(std::vector<int> &data) {
 	int size = data.size();
 	sort(data.begin(), data.end());
@@ -3236,7 +3235,6 @@ int main() {
 	main50();
 	main51();
 	main52();
-	main53();
 	main54();
 	main55();
 	main56();
