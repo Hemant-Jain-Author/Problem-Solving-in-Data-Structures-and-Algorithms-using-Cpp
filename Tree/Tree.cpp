@@ -157,7 +157,7 @@ int main2()
 }
 
 /*
-1 2 3 4 5 6 7 8 9 
+1 2 3 4 5 6 7 8
 */
 
 void Tree::nthPreOrder(int index)
@@ -237,7 +237,7 @@ int main3()
 8
 */
 
-void Tree::printBredthFirst()
+void Tree::printBreadthFirst()
 {
     std::queue<Node*> que;
     Node *temp;
@@ -420,7 +420,7 @@ int main4()
     Tree t;
     int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
     t.levelOrderBinaryTree(arr, 10);
-    t.printBredthFirst();
+    t.printBreadthFirst();
     t.printDepthFirst();
     t.printLevelOrderLineByLine();
     t.printLevelOrderLineByLine2();
@@ -785,11 +785,10 @@ int Tree::numFullNodesBT()
 
 int Tree::numFullNodesBT(Node *curr)
 {
-    int count;
     if (curr == nullptr)
         return 0;
 
-    count = numFullNodesBT(curr->rChild) + numFullNodesBT(curr->lChild);
+    int count = numFullNodesBT(curr->rChild) + numFullNodesBT(curr->lChild);
     if (curr->rChild != nullptr && curr->lChild != nullptr)
         count++;
 
@@ -975,8 +974,8 @@ int main9()
     t1->printInOrder();
     t2->printInOrder();
 
-    std::cout << "Identical :: " << t.isEqual(t1) << std::endl;
-    std::cout << "Identical :: " << t.isEqual(t2) << std::endl;
+    std::cout << "Equal :: " << t.isEqual(t1) << std::endl;
+    std::cout << "Equal :: " << t.isEqual(t2) << std::endl;
     return 0;
 }
 
@@ -985,8 +984,8 @@ int main9()
 8 4 9 2 10 5 1 6 3 7 
 7 3 6 1 5 10 2 9 4 8 
 
-Identical :: 1
-Identical :: 0
+Equal :: 1
+Equal :: 0
 */
 
 Tree::Node *Tree::ancestor(int first, int second)

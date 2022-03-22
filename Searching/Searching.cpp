@@ -1888,27 +1888,24 @@ void quickSelectUtil(std::vector<int> &arr, int lower, int upper, int k)
     int start = lower;
     int stop = upper;
 
-    while (lower < upper)
-    {
-        while (arr[lower] <= pivot)
-        {
-            lower++;
+
+    while (start < stop) {
+        while (arr[start] <= pivot) {
+            start++;
         }
-        while (arr[upper] > pivot)
-        {
-            upper--;
+        while (arr[stop] > pivot) {
+            stop--;
         }
-        if (lower < upper)
-        {
-            swap(arr, upper, lower);
+        if (start < stop) {
+            swap(arr, start, stop);
         }
     }
+    swap(arr, lower, stop); //stop is at the pivot position
 
-    swap(arr, upper, start); // upper is the pivot position
-    if (k < upper)
-        quickSelectUtil(arr, start, upper - 1, k); // pivot -1 is the upper for left sub array.
-    if (k > upper)
-        quickSelectUtil(arr, upper + 1, stop, k); // pivot + 1 is the lower for right sub array.
+    if (k < stop)
+        quickSelectUtil(arr, lower, stop - 1, k); //pivot -1 is the end for left sub array.
+    if (k > stop)
+        quickSelectUtil(arr, stop + 1, upper, k); // pivot + 1 is the start for right sub array.
 }
 
 

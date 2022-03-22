@@ -71,10 +71,9 @@ main line 2
 
 void sortedInsert(std::stack<int>& stk, int element)
 {
-    if (stk.empty() || element > stk.top())
+    if (stk.empty() || element > stk.top()) {
         stk.push(element);
-    else
-    {
+    } else {
         int temp = stk.top();
         stk.pop();
         sortedInsert(stk, element);

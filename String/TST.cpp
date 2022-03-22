@@ -1,6 +1,6 @@
 #include "TST.h"
 
-TST::Node::Node(TST *outerInstance, char d)
+TST::Node::Node(char d)
 {
     data = d;
     isLastChar = false;
@@ -15,7 +15,7 @@ void TST::add(const std::string &word)
 TST::Node *TST::add(Node *curr, const std::string &word, int wordIndex)
 {
     if (curr == nullptr)
-        curr = new Node(this, word[wordIndex]);
+        curr = new Node(word[wordIndex]);
     
     if (word[wordIndex] < curr->data)
         curr->left = add(curr->left, word, wordIndex);

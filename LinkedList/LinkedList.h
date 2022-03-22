@@ -40,7 +40,6 @@ public:
     virtual bool compareList(LinkedList* ll);
     virtual bool compareList(Node *head1, Node *head2);
     virtual bool compareList2(LinkedList* ll);
-    virtual bool compareList2(Node *head1, Node *head2);
     virtual int findLength();
     virtual int nthNodeFromBegining(int index);
     virtual int nthNodeFromEnd(int index);

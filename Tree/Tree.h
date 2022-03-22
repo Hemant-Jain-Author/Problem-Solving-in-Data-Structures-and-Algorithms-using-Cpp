@@ -73,7 +73,7 @@ private:
     void nthInOrder(Node *node, int index, int& counter);
 
 public:
-    void printBredthFirst();
+    void printBreadthFirst();
 
     void printDepthFirst();
 

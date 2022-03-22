@@ -152,7 +152,6 @@ void LinkedList::deleteNodes(int delValue)
 
 LinkedList::Node *LinkedList::reverseRecurseUtil(Node *currentNode, Node *nextNode)
 {
-    Node *ret;
     if (currentNode == nullptr)
     {
         return nullptr;
@@ -163,7 +162,7 @@ LinkedList::Node *LinkedList::reverseRecurseUtil(Node *currentNode, Node *nextNo
         return currentNode;
     }
 
-    ret = reverseRecurseUtil(currentNode->next, currentNode);
+    Node *ret = reverseRecurseUtil(currentNode->next, currentNode);
     currentNode->next = nextNode;
     return ret;
 }
@@ -206,31 +205,24 @@ LinkedList* LinkedList::copyListReversed()
 
 LinkedList* LinkedList::copyList()
 {
-    Node *headNode = nullptr;
-    Node *tailNode = nullptr;
-    Node *tempNode = nullptr;
     Node *curr = head;
-
+    LinkedList* ll2 = new LinkedList();
     if (curr == nullptr)
     {
-        LinkedList* ll2 = new LinkedList();
         ll2->head = nullptr;
         return ll2;
     }
 
-    headNode = new Node(curr->value, nullptr);
-    tailNode = headNode;
+    ll2->head = new Node(curr->value, nullptr);
+    Node *tailNode = ll2->head;
     curr = curr->next;
 
     while (curr != nullptr)
     {
-        tempNode = new Node(curr->value, nullptr);
-        tailNode->next = tempNode;
-        tailNode = tempNode;
+        tailNode->next = new Node(curr->value, nullptr);
+        tailNode = tailNode->next;
         curr = curr->next;
     }
-    LinkedList* ll2 = new LinkedList();
-    ll2->head = headNode;
     return ll2;
 }
 
@@ -257,11 +249,8 @@ bool LinkedList::compareList(Node *head1, Node *head2)
 
 bool LinkedList::compareList2(LinkedList* ll)
 {
-    return compareList2(head, ll->head);
-}
-
-bool LinkedList::compareList2(Node *head1, Node *head2)
-{
+    Node *head1 = head;
+    Node *head2 = ll->head;
     while (head1 != nullptr && head2 != nullptr)
     {
         if(head1->value != head2->value)
@@ -308,12 +297,11 @@ int LinkedList::nthNodeFromBegining(int index)
 int LinkedList::nthNodeFromEnd(int index)
 {
     int size = findLength();
-    int startIndex;
     if (size != 0 && size < index)
     {
         throw ("TooFewNodes");
     }
-    startIndex = size - index + 1;
+    int startIndex = size - index + 1;
     return nthNodeFromBegining(startIndex);
 }
 
@@ -465,11 +453,11 @@ bool LinkedList::loopDetect()
         fastPtr = fastPtr->next->next;
         if (slowPtr == fastPtr)
         {
-            std::cout << "loop found" << std::endl;
+            std::cout << "Loop found" << std::endl;
             return true;
         }
     }
-    std::cout << "loop not found" << std::endl;
+    std::cout << "Loop not found" << std::endl;
     return false;
 }
 
@@ -569,7 +557,12 @@ int main()
     ll->addHead(1);
     ll->addHead(2);
     ll->addHead(3);
+    ll->addHead(4);
     ll->print();
+    std::cout << "nthNodeFromBegining :: " << ll->nthNodeFromBegining(2)<<std::endl;
+std::cout << "nthNodeFromEnd :: " << ll->nthNodeFromEnd(2)<<std::endl;
+std::cout << "nthNodeFromEnd2 :: " << ll->nthNodeFromEnd2(2)<<std::endl;
+
     return 0;
 }
     /*std::cout << "size" << ll->size() << std::endl;
@@ -594,9 +587,6 @@ ll->print();
 LinkedList* ll2 = ll->copyList();
 std::cout << "Compare list :: " << ll->compareList(ll2)<<std::endl;
 std::cout << "Length :: " << ll->findLength()<<std::endl;
-std::cout << "nthNodeFromBegining :: " << ll->nthNodeFromBegining(2)<<std::endl;
-std::cout << "nthNodeFromEnd :: " << ll->nthNodeFromEnd(2)<<std::endl;
-std::cout << "nthNodeFromEnd2 :: " << ll->nthNodeFromEnd2(2)<<std::endl;
 
 ll->freeList();
 ll->print();

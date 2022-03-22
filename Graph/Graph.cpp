@@ -412,10 +412,6 @@ int main8()
 0 0 0 1
 */
 
-/*
-* Given a directed graph, find transitive closure matrix or reach ability
-* matrix vertex v is reachable form vertex u if their is a previous from u to v.
-*/
 void Graph::bfsLevelNode(int source)
 {
     std::vector<bool> visited(count, false);
@@ -931,7 +927,7 @@ void Graph::primsMST()
     std::vector<int> previous(count, -1) ;
     std::vector<int> dist(count, std::numeric_limits<int>::max()) ;; // infinite
     std::vector<bool> visited(count, false) ;
-    int source = 1;
+    int source = 0;
     dist[source] = 0;
     previous[source] = -1;
     std::priority_queue<Edge*, std::vector<Edge*>, EdgeComparator> queue;
@@ -942,8 +938,8 @@ void Graph::primsMST()
     {
         node = queue.top();
         queue.pop();
-        visited[source] = true;
         source = node->dest;
+        visited[source] = true;
         auto& adl = Adj[source];
         for (auto adn : adl)
         {
@@ -992,11 +988,11 @@ int main16()
     //graph.print();
     
     //std::cout << std::endl;
-    graph.dijkstra(0);
+    //graph.dijkstra(0);
 
     //std::cout << std::endl;
-    //graph.primsMST();
-    //graph.kruskalMST();
+    graph.primsMST();
+    graph.kruskalMST();
     return 0;
 }
 
@@ -1047,20 +1043,20 @@ void Graph::shortestPath(int source)// unweighted graph
 int main17()
 {
     Graph gph(9);
-    gph.addUndirectedEdge(0, 1, 4);
-    gph.addUndirectedEdge(0, 7, 8);
-    gph.addUndirectedEdge(1, 2, 8);
-    gph.addUndirectedEdge(1, 7, 11);
-    gph.addUndirectedEdge(2, 3, 7);
-    gph.addUndirectedEdge(2, 8, 2);
-    gph.addUndirectedEdge(2, 5, 4);
-    gph.addUndirectedEdge(3, 4, 9);
-    gph.addUndirectedEdge(3, 5, 14);
-    gph.addUndirectedEdge(4, 5, 10);
-    gph.addUndirectedEdge(5, 6, 2);
+    gph.addUndirectedEdge(0, 1, 1);
+    gph.addUndirectedEdge(0, 7, 1);
+    gph.addUndirectedEdge(1, 2, 1);
+    gph.addUndirectedEdge(1, 7, 1);
+    gph.addUndirectedEdge(2, 3, 1);
+    gph.addUndirectedEdge(2, 8, 1);
+    gph.addUndirectedEdge(2, 5, 1);
+    gph.addUndirectedEdge(3, 4, 1);
+    gph.addUndirectedEdge(3, 5, 1);
+    gph.addUndirectedEdge(4, 5, 1);
+    gph.addUndirectedEdge(5, 6, 1);
     gph.addUndirectedEdge(6, 7, 1);
-    gph.addUndirectedEdge(6, 8, 6);
-    gph.addUndirectedEdge(7, 8, 7);
+    gph.addUndirectedEdge(6, 8, 1);
+    gph.addUndirectedEdge(7, 8, 1);
     gph.shortestPath(0);
     return 0;
 }
@@ -1181,7 +1177,6 @@ int Graph::bestFirstSearchPQ(int source, int dest)
     std::vector<bool> visited(count, false) ;
     std::priority_queue<Edge*, std::vector<Edge*>, EdgeComparator> pq;
     dist[source] = 0;
-    previous[source] = -1;
     Edge* node = new Edge(source, source, 0);
     pq.push(node);
 
@@ -1426,7 +1421,6 @@ void Graph::kruskalMST()
 	}
 	std::sort(edge.begin(),edge.begin() + (E-1), compare);
 	int sum = 0;
-	std::vector<Edge*> output;
 	std::cout << "Edges are " ;
     for (int i = 0; i < E; i++)
 	{
@@ -1436,7 +1430,6 @@ void Graph::kruskalMST()
 		{
 			std::cout << "(" << edge[i]->src << ", " << edge[i]->dest << ", " << edge[i]->cost << ") ";
 			sum += edge[i]->cost;
-			output.push_back(edge[i]);
 			union_Keyword(sets, x, y);
 		}
 	}
@@ -1563,10 +1556,10 @@ int main()
     main15();
     */
     main16();
-    main17();
+    /*main17();
     main18();
     main19();
     main20();
-    main21();
+    main21();*/
     return 0;
 }

@@ -12,7 +12,7 @@ private:
         char data = '\0';
         bool isLastChar = false;
         Node *left, *equal, *right;
-        Node(TST *outerInstance, char d);
+        Node(char d);
     };
     Node *root;
     Node *add(Node *curr, const std::string &word, int wordIndex);
