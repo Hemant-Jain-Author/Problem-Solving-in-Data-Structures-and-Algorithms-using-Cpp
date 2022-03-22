@@ -31,6 +31,29 @@ bool RBTree::isRed(Node *node) {
 	return (node == nullptr) ? false : (node->colour == true);
 }
 
+void RBTree::printTree() {
+	printTree(root, "", false);
+	std::cout << std::endl;
+}
+
+void RBTree::printTree(Node *node, std::string indent, bool isLeft) {
+	if (node == nullNode) {
+		return;
+	}
+	if (isLeft) {
+		std::cout << indent << "L:";
+		indent += "|  ";
+	} else {
+		std::cout << indent << "R:";
+		indent += "   ";
+	}
+
+	std::cout << node->data << "(" << node->colour << ")" << std::endl;
+	printTree(node->left, indent, true);
+	printTree(node->right, indent, false);
+}
+
+
 RBTree::Node* RBTree::getUncle(Node *node) {
 	// If no parent or grandparent, then no uncle
 	if (node->parent == nullNode || node->parent->parent == nullNode) {
@@ -125,28 +148,6 @@ RBTree::Node* RBTree::find(int data) {
 		}
 	}
 	return nullptr;
-}
-
-void RBTree::printTree() {
-	printTree(root, "", false);
-	std::cout << std::endl;
-}
-
-void RBTree::printTree(Node *node, std::string indent, bool isLeft) {
-	if (node == nullNode) {
-		return;
-	}
-	if (isLeft) {
-		std::cout << indent << "L:";
-		indent += "|  ";
-	} else {
-		std::cout << indent << "R:";
-		indent += "   ";
-	}
-
-	std::cout << node->data << "(" << node->colour << ")" << std::endl;
-	printTree(node->left, indent, true);
-	printTree(node->right, indent, false);
 }
 
 void RBTree::insert(int data) {
@@ -380,13 +381,28 @@ int main() {
 	tree->insert(8);
 	tree->insert(9);
 	tree->printTree();
-
 	tree->remove(4);
 	tree->printTree();
-
-	tree->remove(7);
-	tree->printTree();
-
 	delete tree;
 }
 
+/*
+R:4(0)
+   L:2(1)
+   |  L:1(0)
+   |  R:3(0)
+   R:6(1)
+      L:5(0)
+      R:8(0)
+         L:7(1)
+         R:9(1)
+
+R:5(0)
+   L:2(1)
+   |  L:1(0)
+   |  R:3(0)
+   R:7(1)
+      L:6(0)
+      R:8(0)
+         R:9(1)
+*/

@@ -40,10 +40,8 @@ private:
 public:
 	Graph(int cnt);
 
-	void addDirectedEdge(int source, int dest, int cost);
-	void addDirectedEdge(int source, int dest);
-	void addUndirectedEdge(int source, int dest, int cost); // bi directional edge
-	void addUndirectedEdge(int source, int dest); // bi directional edge
+	void addDirectedEdge(int source, int dest, int cost = 1);
+	void addUndirectedEdge(int source, int dest, int cost = 1); // bi directional edge
 	void print();
 	// Other Methods of graph.
 	bool dfs(int source, int target);
@@ -65,6 +63,7 @@ public:
 	bool isStronglyConnected();
 	void stronglyConnectedComponent();
 	static int heightTreeParentArr(int arr[], int count);
+	static int heightTreeParentArr2(int arr[], int count);
 	void dijkstra(int source);
 	void primsMST();
 	void kruskalMST();

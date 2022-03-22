@@ -43,12 +43,16 @@ int main() {
 	que.add(1);
 	que.add(2);
 	que.add(3);
-	for (int i = 0; i < 3; i++)
-		std::cout << que.remove() << " ";
-
+	std::cout << "isEmpty : " << que.isEmpty() << std::endl;
+	std::cout << "size : " << que.size() << std::endl;
+	std::cout << "Queue remove : " << que.remove() << std::endl;
+	std::cout << "Queue remove : " << que.remove() << std::endl;
 	return 0;
 }
 
 /*
- 1 2 3
+isEmpty : 0
+size : 3
+Queue remove : 1
+Queue remove : 2
  */

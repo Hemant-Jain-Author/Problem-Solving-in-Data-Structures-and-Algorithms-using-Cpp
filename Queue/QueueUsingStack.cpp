@@ -1,4 +1,16 @@
-#include "QueueUsingStack.h"
+#include <string>
+#include <stack>
+#include <iostream>
+
+class QueueUsingStack {
+private:
+	std::stack<int> stk1;
+	std::stack<int> stk2;
+
+public:
+	virtual void add(int value);
+	virtual int remove();
+};
 
 void QueueUsingStack::add(int value) {
 	stk1.push(value);
@@ -29,12 +41,12 @@ int main() {
 	que.add(1);
 	que.add(2);
 	que.add(3);
-
-	for (int i = 0; i < 3; i++)
-		std::cout << que.remove() << " ";
+	std::cout << "Queue remove : " << que.remove() << std::endl;
+	std::cout << "Queue remove : " << que.remove() << std::endl;
 	return 0;
 }
 
 /*
- 1 2 3
- */
+Queue remove : 1
+Queue remove : 2 
+*/

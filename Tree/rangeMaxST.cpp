@@ -108,19 +108,13 @@ int rangeMaxST::updateUtil(int segStart, int segEnd, int ind, int val,
 int main() {
 	std::vector<int> arr = { 1, 8, 2, 7, 3, 6, 4, 5 };
 	rangeMaxST *tree = new rangeMaxST(arr);
-	std::cout << "Max value in the range(1, 5): " << tree->getMax(1, 5)
-			<< std::endl;
-	std::cout << "Max value in the range(2, 7): " << tree->getMax(2, 7)
-			<< std::endl;
-	std::cout << "Max value of all the elements: "
-			<< tree->getMax(0, arr.size() - 1) << std::endl;
+	std::cout << "Max value in the range(1, 5): " << tree->getMax(1, 5)	<< std::endl;
+	std::cout << "Max value in the range(2, 7): " << tree->getMax(2, 7)	<< std::endl;
+	std::cout << "Max value of all the elements: "	<< tree->getMax(0, arr.size() - 1) << std::endl;
 
 	tree->update(2, 9);
-	std::cout << "Max value in the range(1, 5): " << tree->getMax(1, 5)
-			<< std::endl;
-	std::cout << "Max value of all the elements: "
-			<< tree->getMax(0, arr.size() - 1) << std::endl;
-
+	std::cout << "Max value in the range(1, 5): " << tree->getMax(1, 5)	<< std::endl;
+	std::cout << "Max value of all the elements: " << tree->getMax(0, arr.size() - 1) << std::endl;
 	delete tree;
 }
 

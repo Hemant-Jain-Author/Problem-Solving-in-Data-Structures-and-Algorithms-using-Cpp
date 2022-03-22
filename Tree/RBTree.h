@@ -39,32 +39,3 @@ private:
 	void joinParentChild(Node *u, Node *v);
 	Node* minimum(Node *node);
 };
-
-/*
- R:4(false)
- L:2(true)
- |  L:1(false)
- |  R:3(false)
- R:6(true)
- L:5(false)
- R:8(false)
- L:7(true)
- R:9(true)
-
- R:5(false)
- L:2(true)
- |  L:1(false)
- |  R:3(false)
- R:7(true)
- L:6(false)
- R:8(false)
- R:9(true)
-
- R:5(false)
- L:2(true)
- |  L:1(false)
- |  R:3(false)
- R:8(true)
- L:6(false)
- R:9(false)
- */

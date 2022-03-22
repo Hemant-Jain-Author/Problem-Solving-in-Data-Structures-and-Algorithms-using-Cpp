@@ -259,16 +259,16 @@ int main() {
 }
 
 /*
- R:3
- L:2
- |  L:1
- R:6
- L:4
- |  R:5
+R:3
+   L:2
+   |  L:1
+   R:6
+      L:4
+      |  R:5
 
- Value 2 found: true
- R:4
- L:3
- |  L:1
- R:6
+Value 2 found: 1
+R:4
+   L:3
+   |  L:1
+   R:6
  */

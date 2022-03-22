@@ -12,9 +12,7 @@ public:
 		int value;
 		Node *lChild;
 		Node *rChild;
-		Node(int v, Node *l, Node *r);
-		Node(int v);
-		~Node();
+		Node(int v, Node *l = nullptr, Node *r = nullptr);
 	};
 	Node *root;
 
@@ -23,9 +21,9 @@ public:
 	~Tree();
 	// Other Tree methods.
 
-	void levelOrderBinaryTree(int arr[], int size);
+	void createCompleteBinaryTree(int arr[], int size);
 
-	Node* levelOrderBinaryTree(int arr[], int start, int size);
+	Node* createCompleteBinaryTree(int arr[], int start, int size);
 
 	void insert(int value);
 
@@ -84,6 +82,10 @@ public:
 	void remove(int value);
 
 	void empty();
+	
+private:	
+	void empty(Node *curr);
+
 
 private:
 	Node* findMax(Node *curr);
@@ -99,7 +101,7 @@ private:
 	int treeDepth(Node *root);
 
 public:
-	bool isEqual(Tree *T2);
+	bool isEqual(Tree &T2);
 
 private:
 	bool isEqual(Node *node1, Node *node2);
@@ -111,13 +113,13 @@ private:
 	Node* ancestor(Node *curr, int first, int second);
 
 public:
-	Tree* copyTree();
+	void copyTree(Tree& t2);
 
 private:
 	Node* copyTree(Node *curr);
 
 public:
-	Tree* copyMirrorTree();
+	void copyMirrorTree(Tree& t2);
 
 private:
 	Node* copyMirrorTree(Node *curr);

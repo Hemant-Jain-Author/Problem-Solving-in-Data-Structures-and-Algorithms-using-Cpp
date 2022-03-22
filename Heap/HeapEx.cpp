@@ -11,7 +11,6 @@
 // Testing code.
 int main1() {
 	std::priority_queue<int, std::vector<int>, std::greater<int>> pq;
-	;
 	int arr[] = { 1, 2, 10, 8, 7, 3, 4, 6, 5, 9 };
 	int value;
 
@@ -20,9 +19,8 @@ int main1() {
 
 	std::cout << "Dequeue elements of Priority Queue ::";
 	while (pq.empty() == false) {
-		value = pq.top();
+		std::cout << pq.top() << " ";
 		pq.pop();
-		std::cout << " " << value;
 	}
 	std::cout << std::endl;
 	return 0;
@@ -38,21 +36,32 @@ int KthSmallest(int arr[], int size, int k) {
 }
 
 int KthSmallest2(int arr[], int size, int k) {
-	int i = 0;
-	int value = 0;
 	std::priority_queue<int, std::vector<int>, std::greater<int>> pq;
-	;
-
-	for (i = 0; i < size; i++) {
+	for (int i = 0; i < size; i++) {
 		pq.push(arr[i]);
 	}
-	i = 0;
-	while (i < size && i < k) {
+
+	int value = 0;
+	for (int i=0; i < size && i < k; i++) {
 		value = pq.top();
 		pq.pop();
-		i += 1;
 	}
 	return value;
+}
+
+int KthSmallest3(int arr[], int size, int k) {
+	std::priority_queue<int, std::vector<int>, std::less<int>> pq;
+	for (int i = 0; i < size; i++) {
+		if(i < k) {
+            pq.push(arr[i]);
+        } else {
+            if (pq.top() > arr[i]) {
+                pq.push(arr[i]);
+				pq.pop();
+            }
+        }
+	}
+	return pq.top();
 }
 
 bool isMinHeap(int arr[], int size) {
@@ -89,14 +98,15 @@ int main2() {
 	std::cout << "Kth Smallest :: " << KthSmallest(arr, 8, 3) << std::endl;
 	int arr2[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
 	std::cout << "Kth Smallest :: " << KthSmallest2(arr2, 8, 3) << std::endl;
-
 	int arr3[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
-	std::cout << "isMaxHeap :: " << isMaxHeap(arr3, 8) << std::endl;
+	std::cout << "Kth Smallest :: " << KthSmallest3(arr3, 8, 3) << std::endl;
 
 	int arr4[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
-	std::cout << "isMinHeap :: " << isMinHeap(arr4, 8) << std::endl;
-	std::sort(arr4, arr4 + sizeof(arr4) / sizeof(int));
-	std::cout << "isMinHeap :: " << isMinHeap(arr4, 8) << std::endl;
+	std::cout << "isMaxHeap :: " << isMaxHeap(arr4, 8) << std::endl;
+	int arr5[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
+	std::cout << "isMinHeap :: " << isMinHeap(arr5, 8) << std::endl;
+	std::sort(arr5, arr5 + sizeof(arr5) / sizeof(int));
+	std::cout << "isMinHeap :: " << isMinHeap(arr5, 8) << std::endl;
 	return 0;
 }
 
@@ -127,7 +137,6 @@ void QuickSelectUtil(int arr[], int lower, int upper, int k) {
 		return;
 
 	int pivot = arr[lower];
-
 	int start = lower;
 	int stop = upper;
 
@@ -160,13 +169,11 @@ int KSmallestProduct3(int arr[], int size, int k) {
 
 int KSmallestProduct2(int arr[], int size, int k) {
 	std::priority_queue<int, std::vector<int>, std::greater<int>> pq;
-	;
-	int i = 0;
 	int product = 1;
-	for (i = 0; i < size; i++) {
+	for (int i = 0; i < size; i++) {
 		pq.push(arr[i]);
 	}
-	i = 0;
+	int i = 0;
 	while (i < size && i < k) {
 		product *= pq.top();
 		pq.pop();
@@ -175,25 +182,45 @@ int KSmallestProduct2(int arr[], int size, int k) {
 	return product;
 }
 
+int KSmallestProduct4(int arr[], int size, int k) {
+	std::priority_queue<int, std::vector<int>, std::less<int>> pq;    
+	for (int i = 0; i < size; i++) {
+        if(i < k)
+            pq.push(arr[i]);
+        else {
+            if (pq.top() > arr[i]) {
+                pq.push(arr[i]);
+                pq.pop();;
+            }
+        }
+    }    
+    int product = 1;
+    for (int i = 0; i < k; i++) {
+        product *= pq.top(); 
+		pq.pop();;
+    }
+    return product;
+}
+
 // Testing code.
 int main3() {
 	int arr[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
-	std::cout << "Kth Smallest product:: " << KSmallestProduct(arr, 8, 3)
-			<< std::endl;
+	std::cout << "Kth Smallest product:: " << KSmallestProduct(arr, 8, 3) << std::endl;
 	int arr2[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
-	std::cout << "Kth Smallest product:: " << KSmallestProduct2(arr2, 8, 3)
-			<< std::endl;
+	std::cout << "Kth Smallest product:: " << KSmallestProduct2(arr2, 8, 3) << std::endl;
 	int arr3[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
-	std::cout << "Kth Smallest product:: " << KSmallestProduct3(arr3, 8, 3)
-			<< std::endl;
+	std::cout << "Kth Smallest product:: " << KSmallestProduct3(arr3, 8, 3) << std::endl;
+	int arr4[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
+	std::cout << "Kth Smallest product:: " << KSmallestProduct4(arr3, 8, 3) << std::endl;
 	return 0;
 }
 
 /*
- Kth Smallest product:: 10
- Kth Smallest product:: 10
- Kth Smallest product:: 10
- */
+Kth Smallest product:: 10
+Kth Smallest product:: 10
+Kth Smallest product:: 10
+Kth Smallest product:: 10
+*/
 
 void PrintLargerHalf(int arr[], int size) {
 	std::sort(arr, arr + size);
@@ -203,18 +230,15 @@ void PrintLargerHalf(int arr[], int size) {
 }
 
 void PrintLargerHalf2(int arr[], int size) {
-	int product = 1;
-	int value;
 	std::priority_queue<int, std::vector<int>, std::less<int>> pq;
-	;
+
 	for (int i = 0; i < size; i++) {
 		pq.push(arr[i]);
 	}
 	int half = size / 2;
 	for (int i = 0; i < half; i++) {
-		value = pq.top();
+		std::cout << pq.top() << " ";
 		pq.pop();
-		std::cout << value << " ";
 	}
 	std::cout << std::endl;
 }
@@ -226,6 +250,25 @@ void PrintLargerHalf3(int arr[], int size) {
 	std::cout << std::endl;
 }
 
+void PrintLargerHalf4(int arr[], int size, int k) {
+	std::priority_queue<int, std::vector<int>, std::less<int>> pq;
+    for (int i = 0; i < size; i++) {
+        if(i < k) {
+            pq.push(arr[i]);
+        } else {
+            if (pq.top() > arr[i]) {
+                pq.push(arr[i]);
+				pq.pop();
+            }
+        }
+    }
+	for (int i = 0; i < size / 2; i++) {
+		std::cout << pq.top() << " ";
+		pq.pop();
+	}
+	std::cout << std::endl;
+}
+
 // Testing code.
 int main4() {
 	int arr[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
@@ -234,40 +277,35 @@ int main4() {
 	PrintLargerHalf2(arr2, 8);
 	int arr3[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
 	PrintLargerHalf3(arr3, 8);
+	int arr4[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
+	PrintLargerHalf3(arr4, 8);
 	return 0;
 }
 
 /*
- 6 7 7 8
- 8 7 7 6
- 6 7 7 8
+6 7 7 8 
+8 7 7 6 
+6 7 7 8 
+6 7 7 8
  */
 
 void sortK(int arr[], int size, int k) {
 	std::priority_queue<int, std::vector<int>, std::greater<int>> pq;
-	;
-	int i = 0;
-	for (i = 0; i < k; i++)
+	for (int i = 0; i < k; i++)
 		pq.push(arr[i]);
 
-	int *output = new int[size];
 	int index = 0;
-
-	for (i = k; i < size; i++) {
-		output[index++] = pq.top();
+	for (int i = k; i < size; i++) {
+		arr[index++] = pq.top(); 
 		pq.pop();
 		pq.push(arr[i]);
 	}
 	while (pq.size() > 0) {
-		output[index++] = pq.top();
+		arr[index++] = pq.top();
 		pq.pop();
 	}
-
-	for (i = 0; i < size; i++)
-		arr[i] = output[i];
 }
 
-// Testing Code
 // Testing code.
 int main5() {
 	int k = 3;
@@ -276,6 +314,7 @@ int main5() {
 	sortK(arr, size, k);
 	for (auto i = 0; i < size; i++)
 		std::cout << arr[i] << " ";
+	std::cout << std::endl;
 	return 0;
 }
 
@@ -284,9 +323,8 @@ int main5() {
  */
 
 int ChotaBhim(int cups[], int size) {
-	int time = 60;
-	std::sort(cups, cups + size);
-	int total = 0;
+	std::sort(cups, cups + size, std::less<int>());
+	int total = 0, time = 60;
 	int index, temp;
 	while (time > 0) {
 		total += cups[0];
@@ -305,9 +343,8 @@ int ChotaBhim(int cups[], int size) {
 }
 
 int ChotaBhim2(int cups[], int size) {
-	int time = 60;
-	std::sort(cups, cups + size);
-	int total = 0;
+	std::sort(cups, cups + size, std::greater<int>());
+	int total = 0, time = 60;
 	int i, temp;
 	while (time > 0) {
 		total += cups[0];
@@ -329,16 +366,12 @@ int ChotaBhim2(int cups[], int size) {
 }
 
 int ChotaBhim3(int cups[], int size) {
-	int time = 60;
 	std::priority_queue<int, std::vector<int>, std::less<int>> pq;
-	;
-	int i = 0;
-	for (i = 0; i < size; i++) {
+	for (int i = 0; i < size; i++) {
 		pq.push(cups[i]);
 	}
 
-	int total = 0;
-	int value;
+	int total = 0, time = 60, value;
 	while (time > 0) {
 		value = pq.top();
 		pq.pop();
@@ -353,8 +386,7 @@ int ChotaBhim3(int cups[], int size) {
 
 int JoinRopes(int ropes[], int size) {
 	std::sort(ropes, ropes + size, std::greater<>());
-	int total = 0;
-	int value = 0;
+	int total = 0, value = 0;
 	int temp, index;
 	int length = size;
 
@@ -376,18 +408,13 @@ int JoinRopes(int ropes[], int size) {
 
 int JoinRopes2(int ropes[], int size) {
 	std::priority_queue<int, std::vector<int>, std::greater<int>> pq;
-	;
-	int i = 0;
-	for (i = 0; i < size; i++)
+	for (int i = 0; i < size; i++)
 		pq.push(ropes[i]);
 
-	int total = 0;
-	int value = 0;
+	int total = 0, value = 0;
 	while (pq.size() > 1) {
-		value = pq.top();
-		pq.pop();
-		value += pq.top();
-		pq.pop();
+		value = pq.top(); pq.pop();
+		value += pq.top(); pq.pop();
 		pq.push(value);
 		total += value;
 	}

@@ -69,3 +69,10 @@ int main() {
 	std::cout << s.pop() << std::endl;
 	return 0;
 }
+
+/*
+3 2 1 
+3
+2
+1
+*/

@@ -3,18 +3,19 @@
 // Testing code.
 int main() {
 	TwoStack st;
-	for (int i = 0; i < 3; i++)
-		st.push1(i);
-
-	for (int j = 0; j < 3; j++)
-		st.push2(j + 10);
-
-	for (int i = 0; i < 10; i++) {
-		std::cout << "stack one pop value is : " << st.pop1() << std::endl;
-		std::cout << "stack two pop value is : " << st.pop2() << std::endl;
-	}
+	st.push1(1);
+	st.push1(2);
+	st.push2(3);
+	st.push2(4);
+	std::cout << "stack 1 pop value is : " << st.pop1() << std::endl;
+	std::cout << "stack 2 pop value is : " << st.pop2() << std::endl;
 	return 0;
 }
+
+/*
+stack 1 pop value is : 2
+stack 2 pop value is : 4
+*/
 
 TwoStack::TwoStack() {
 	top1 = -1;

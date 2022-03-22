@@ -1,80 +1,15 @@
 #include "HeapInt.h"
 
-// Testing code.
-int main1() {
-	Heap hp = Heap(true);
-	hp.add(1);
-	hp.add(9);
-	hp.add(6);
-	hp.add(7);
-	hp.print();
-	while (hp.isEmpty() == false) {
-		std::cout << hp.remove() << " ";
-	}
-	std::cout << std::endl;
-	return 0;
-}
-
-/*
- Printing content of heap :: 1 7 6 9
- 1 6 7 9
- */
-// Testing code.
-int main2() {
-	std::vector<int> a = { 1, 0, 2, 4, 5, 3 };
-	Heap hp = Heap(a, true); // Min Heap
-	hp.print();
-	while (hp.isEmpty() == false) {
-		std::cout << hp.remove() << " ";
-	}
-	std::cout << std::endl;
-	return 0;
-}
-/*
- Printing content of heap :: 0 1 2 4 5 3
- 0 1 2 3 4 5
- */
-
-// Testing code.
-int main() {
-	std::vector<int> a = { 1, 0, 2, 4, 5, 3 };
-	Heap hp = Heap(a, false); // Max Heap
-	hp.print();
-	while (hp.isEmpty() == false) {
-		std::cout << hp.remove() << " ";
-	}
-	std::cout << std::endl;
-	return 0;
-}
-/*
- Printing content of heap :: 0 1 2 4 5 3
- 0 1 2 3 4 5
- */
-
-// Testing code.
-int main4() {
-	std::vector<int> a = { 1, 9, 6, 7, 8, -1, 2, 4, 5, 3 };
-	Heap::heapSort(a, true);
-	std::cout << "value after heap sort :: ";
-	for (int i = 0; i < a.size(); i++)
-		std::cout << a[i] << " ";
-	std::cout << std::endl;
-	return 0;
-}
-/*
- value after heap sort :: -1 1 2 3 4 5 6 7 8 9
- */
-
-Heap::Heap(bool isMin) {
+Heap::Heap(int(* comp)(int , int)) {
 	arr = std::vector<int>(CAPACITY);
 	size = 0;
-	isMinHeap = isMin;
+	compare = comp;
 }
 
-Heap::Heap(std::vector<int> &array_in, bool isMin) {
-	size = array_in.size();
-	arr = array_in;
-	isMinHeap = isMin;
+Heap::Heap(std::vector<int> &array, int(* comp)(int , int)) {
+	size = array.size();
+	arr = array;
+	compare = comp;
 
 	// Build Heap operation over array
 	for (int i = (size / 2); i >= 0; i--) {
@@ -84,13 +19,6 @@ Heap::Heap(std::vector<int> &array_in, bool isMin) {
 
 int Heap::length() {
 	return arr.size();
-}
-
-bool Heap::compare(int first, int second) {
-	if (isMinHeap)
-		return (first - second) > 0; // Min heap compare
-	else
-		return (first - second) < 0; // Max heap compare
 }
 
 void Heap::proclateDown(int parent) {
@@ -160,7 +88,7 @@ int Heap::remove() {
 }
 
 void Heap::print() {
-	std::cout << "Printing content of heap :: ";
+	std::cout << "Heap :: ";
 	for (int i = 0; i < size; i++)
 		std::cout << arr[i] << " ";
 	std::cout << std::endl;
@@ -209,9 +137,96 @@ int Heap::peek() {
 	return arr[0];
 }
 
+// min heap compare function.
+int Heap::greater(int a, int b) {
+    return a > b;
+}
+
+// max heap compare function.
+int Heap::less(int a, int b) {
+    return a < b;
+}
+
 void Heap::heapSort(std::vector<int> &array, bool inc) {
-	Heap hp = Heap(array, !inc);
-	for (int i = 0; i < array.size(); i++) {
-		array[array.size() - i - 1] = hp.remove();
+	// min heap for decreasing.
+	// max heap for increasing.
+    int(* comp )(int , int);
+	int size1 = array.size();
+	comp = (inc) ? Heap::less : Heap::greater ;
+	Heap hp = Heap(array, comp);
+	for (int i = size1-1; i >=0; i--)
+        array[i] = hp.remove();
+}
+
+
+// Testing code.
+int main1() {
+	Heap hp = Heap(Heap::greater);
+	hp.add(1);
+	hp.add(9);
+	hp.add(6);
+	hp.add(7);
+	hp.print();
+	while (hp.isEmpty() == false) {
+		std::cout << hp.remove() << " ";
 	}
+	std::cout << std::endl;
+	return 0;
+}
+
+/*
+Heap :: 1 7 6 9 
+1 6 7 9 
+ */
+
+// Testing code.
+int main2() {
+	std::vector<int> a = { 1, 0, 2, 4, 5, 3 };
+	Heap hp = Heap(a, Heap::greater); // Min Heap
+	hp.print();
+	while (hp.isEmpty() == false) {
+		std::cout << hp.remove() << " ";
+	}
+	std::cout << std::endl;
+	return 0;
+}
+/*
+Heap :: 0 1 2 4 5 3 
+0 1 2 3 4 5 
+ */
+
+// Testing code.
+int main3() {
+	std::vector<int> a = { 1, 0, 2, 4, 5, 3 };
+	Heap hp = Heap(a, Heap::less); // Max Heap
+	hp.print();
+	while (hp.isEmpty() == false) {
+		std::cout << hp.remove() << " ";
+	}
+	std::cout << std::endl;
+	return 0;
+}
+/*
+Heap :: 5 4 3 1 0 2 
+5 4 3 2 1 0 
+ */
+
+// Testing code.
+int main4() {
+	std::vector<int> a = { 1, 9, 6, 7, 8, -1, 2, 4, 5, 3 };
+	Heap::heapSort(a, true);
+	for (int i = 0; i < a.size(); i++)
+		std::cout << a[i] << " ";
+	std::cout << std::endl;
+	return 0;
+}
+/*
+-1 1 2 3 4 5 6 7 8 9
+ */
+
+int main() {
+	main1();
+	main2();
+	main3();
+	main4();
 }

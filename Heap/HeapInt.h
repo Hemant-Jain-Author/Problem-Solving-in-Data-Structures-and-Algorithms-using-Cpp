@@ -4,22 +4,22 @@
 #include <exception>
 #include <algorithm>
 
+const int CAPACITY = 100;
+
 class Heap {
 private:
-	static const int CAPACITY = 16;
 	int size; // Number of elements in heap.
 	std::vector<int> arr; // Array to store heap.
-	bool isMinHeap;
+	int(* compare)(int , int);
 
 public:
-	Heap(bool isMin);
-	Heap(std::vector<int> &array_in, bool isMin);
+	Heap(int(* comp)(int , int));
+	Heap(std::vector<int> &array_in, int(* comp)(int , int));
 	// Other Methods.
 
 private:
 	void proclateDown(int position);
 	void proclateUp(int position);
-	bool compare(int first, int second);
 	void doubleSize();
 
 public:
@@ -32,4 +32,6 @@ public:
 	bool isEmpty();
 	int peek();
 	static void heapSort(std::vector<int> &array, bool inc);
+	static int greater(int a, int b); 
+	static int less(int a, int b);
 };

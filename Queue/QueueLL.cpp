@@ -20,6 +20,14 @@ int Queue::front() {
 	return head->value;
 }
 
+void Queue::print() {
+	Node *temp = head;
+	while (temp != nullptr) {
+		std::wcout << temp->value << std::wstring(L" ");
+		temp = temp->next;
+	}
+}
+
 void Queue::add(int value) {
 	Node *temp = new Node(value, nullptr);
 
@@ -44,24 +52,21 @@ int Queue::remove() {
 	return value;
 }
 
-void Queue::print() {
-	Node *temp = head;
-	while (temp != nullptr) {
-		std::wcout << temp->value << std::wstring(L" ");
-		temp = temp->next;
-	}
-}
-
 // Testing code.
 int main() {
 	Queue que;
 	que.add(1);
 	que.add(2);
 	que.add(3);
-	for (int i = 0; i < 3; i++)
-		std::cout << que.remove() << " ";
+	std::cout << "isEmpty : " << que.isEmpty() << std::endl;
+	std::cout << "size : " << que.size() << std::endl;
+	std::cout << "Queue remove : " << que.remove() << std::endl;
+	std::cout << "Queue remove : " << que.remove() << std::endl;
 }
 
 /*
- 1 2 3
+isEmpty : 0
+size : 3
+Queue remove : 1
+Queue remove : 2
  */
