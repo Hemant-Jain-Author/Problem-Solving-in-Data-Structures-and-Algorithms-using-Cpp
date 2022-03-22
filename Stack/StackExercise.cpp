@@ -2,36 +2,36 @@
 #include <stack>
 #include <queue>
 #include <math.h>
-#include<iostream>
-#include<algorithm>
-#include<iterator>
-#include<string>
+#include <iostream>
+#include <algorithm>
+#include <iterator>
+#include <string>
 
-template<class T>
-void printStackUtil(std::stack<T>& stk)
+template <class T>
+void printStackUtil(std::stack<T> &stk)
 {
     T temp = stk.top();
     stk.pop();
-    if(stk.size() > 0)
-    printStackUtil(stk);
+    if (stk.size() > 0)
+        printStackUtil(stk);
     std::cout << temp << " ";
     stk.push(temp);
 }
 
-template<class T>
-void printStack( std::stack<T>& stk)
+template <class T>
+void printStack(std::stack<T> &stk)
 {
     std::cout << "[ ";
     printStackUtil(stk);
     std::cout << "]" << std::endl;
 }
 
-template<class T>
-void printQueue(std::queue<T>& que)
+template <class T>
+void printQueue(std::queue<T> &que)
 {
     int size = que.size();
     std::cout << "[ ";
-    for(int i =0; i<size; i++)
+    for (int i = 0; i < size; i++)
     {
         T temp = que.front();
         que.pop();
@@ -53,6 +53,7 @@ void function1()
     std::cout << "fun1 line 2" << std::endl;
 }
 
+// Testing code.
 int main1()
 {
     std::cout << "main line 1" << std::endl;
@@ -62,18 +63,19 @@ int main1()
 }
 
 /*
-main line 1
-fun1 line 1
-fun2 line 1
-fun1 line 2
-main line 2
-*/
+ main line 1
+ fun1 line 1
+ fun2 line 1
+ fun1 line 2
+ main line 2
+ */
 
-void sortedInsert(std::stack<int>& stk, int element)
+void sortedInsert(std::stack<int> &stk, int element)
 {
-    if (stk.empty() || element > stk.top()) {
+    if (stk.empty() || element > stk.top())
         stk.push(element);
-    } else {
+    else
+    {
         int temp = stk.top();
         stk.pop();
         sortedInsert(stk, element);
@@ -81,6 +83,7 @@ void sortedInsert(std::stack<int>& stk, int element)
     }
 }
 
+// Testing code.
 int main2()
 {
     std::stack<int> stk;
@@ -95,11 +98,11 @@ int main2()
 }
 
 /*
-[ 1 2 4 5 ]
-[ 1 2 3 4 5 ]
-*/
+ [ 1 2 4 5 ]
+ [ 1 2 3 4 5 ]
+ */
 
-void sortStack(std::stack<int>& stk)
+void sortStack(std::stack<int> &stk)
 {
     int temp;
     if (stk.empty() == false)
@@ -111,7 +114,7 @@ void sortStack(std::stack<int>& stk)
     }
 }
 
-void sortStack2(std::stack<int>& stk)
+void sortStack2(std::stack<int> &stk)
 {
     int temp;
     std::stack<int> stk2;
@@ -135,6 +138,7 @@ void sortStack2(std::stack<int>& stk)
     }
 }
 
+// Testing code.
 int main3()
 {
     std::stack<int> stk1;
@@ -158,14 +162,14 @@ int main3()
 }
 
 /*
-[ 1 5 4 3 ]
-[ 1 3 4 5 ]
+ [ 1 5 4 3 ]
+ [ 1 3 4 5 ]
 
-[ 1 5 4 3 ]
-[ 1 3 4 5 ]
-*/
+ [ 1 5 4 3 ]
+ [ 1 3 4 5 ]
+ */
 
-void insertAtBottom(std::stack<int>& stk, int value)
+void insertAtBottom(std::stack<int> &stk, int value)
 {
     if (stk.empty())
         stk.push(value);
@@ -178,7 +182,9 @@ void insertAtBottom(std::stack<int>& stk, int value)
     }
 }
 
-int main4() {
+// Testing code.
+int main4()
+{
     std::stack<int> stk;
     stk.push(1);
     stk.push(2);
@@ -189,21 +195,21 @@ int main4() {
 }
 
 /*
-[4 1 2 3]
-*/
+ [4 1 2 3]
+ */
 
-void reverseStack(std::stack<int>& stk)
+void reverseStack(std::stack<int> &stk)
 {
     if (stk.empty())
         return;
-    
+
     int value = stk.top();
     stk.pop();
     reverseStack(stk);
-    insertAtBottom(stk, value);  
+    insertAtBottom(stk, value);
 }
 
-void reverseStack2(std::stack<int>& stk)
+void reverseStack2(std::stack<int> &stk)
 {
     std::queue<int> que;
     while (stk.empty() == false)
@@ -221,6 +227,7 @@ void reverseStack2(std::stack<int>& stk)
     }
 }
 
+// Testing code.
 int main5()
 {
     std::stack<int> stk;
@@ -236,11 +243,11 @@ int main5()
     return 0;
 }
 /*
-[ 1 2 3 4 ]
-[ 4 3 2 1 ]
-[ 1 2 3 4 ]
-*/
-void reverseKElementInStack(std::stack<int>& stk, int k)
+ [ 1 2 3 4 ]
+ [ 4 3 2 1 ]
+ [ 1 2 3 4 ]
+ */
+void reverseKElementInStack(std::stack<int> &stk, int k)
 {
     std::queue<int> que;
     int i = 0;
@@ -259,6 +266,7 @@ void reverseKElementInStack(std::stack<int>& stk, int k)
     }
 }
 
+// Testing code.
 int main6()
 {
     std::stack<int> stk;
@@ -272,10 +280,10 @@ int main6()
     return 0;
 }
 /*
-[ 1 2 3 4 ]
-[ 1 2 4 3 ]
-*/
-void reverseQueue(std::queue<int>& que)
+ [ 1 2 3 4 ]
+ [ 1 2 4 3 ]
+ */
+void reverseQueue(std::queue<int> &que)
 {
     std::stack<int> stk;
     while (que.empty() == false)
@@ -293,6 +301,7 @@ void reverseQueue(std::queue<int>& que)
     }
 }
 
+// Testing code.
 int main7()
 {
     std::queue<int> que;
@@ -307,11 +316,11 @@ int main7()
 }
 
 /*
-[ 1 2 3 4 ]
-[ 4 3 2 1 ]
-*/
+ [ 1 2 3 4 ]
+ [ 4 3 2 1 ]
+ */
 
-void reverseKElementInQueue(std::queue<int>& que, int k)
+void reverseKElementInQueue(std::queue<int> &que, int k)
 {
     std::stack<int> stk;
     int i = 0, diff, temp;
@@ -338,6 +347,7 @@ void reverseKElementInQueue(std::queue<int>& que, int k)
     }
 }
 
+// Testing code.
 int main8()
 {
     std::queue<int> que;
@@ -352,9 +362,9 @@ int main8()
 }
 
 /*
-[ 1 2 3 4 ]
-[ 2 1 3 4 ]
-*/
+ [ 1 2 3 4 ]
+ [ 2 1 3 4 ]
+ */
 
 bool isBalancedParenthesis(const std::string &expn)
 {
@@ -398,6 +408,7 @@ bool isBalancedParenthesis(const std::string &expn)
     return stk.empty();
 }
 
+// Testing code.
 int main9()
 {
     std::string expn = "{()}[]";
@@ -408,11 +419,11 @@ int main9()
 }
 
 /*
-Given Expn:{()}[]
-Result aft1er isParenthesisMatched:1
-*/
+ Given Expn:{()}[]
+ Result aft1er isParenthesisMatched:1
+ */
 
-int maxDepthParenthesis(const std::string & expn, int size)
+int maxDepthParenthesis(const std::string &expn, int size)
 {
     std::stack<char> stk;
     int maxDepth = 0;
@@ -439,7 +450,7 @@ int maxDepthParenthesis(const std::string & expn, int size)
     return maxDepth;
 }
 
-int maxDepthParenthesis2(const std::string & expn, int size)
+int maxDepthParenthesis2(const std::string &expn, int size)
 {
     int maxDepth = 0;
     int depth = 0;
@@ -458,6 +469,7 @@ int maxDepthParenthesis2(const std::string & expn, int size)
     return maxDepth;
 }
 
+// Testing code.
 int main10()
 {
     std::string expn = "((((A)))((((BBB()))))()()()())";
@@ -465,17 +477,17 @@ int main10()
     int value = maxDepthParenthesis(expn, size);
     int value2 = maxDepthParenthesis2(expn, size);
 
-    std::cout <<"Given expn " << expn << std::endl;
-    std::cout <<"Max depth parenthesis is " << value << std::endl;
-    std::cout <<"Max depth parenthesis is " << value2 << std::endl;
+    std::cout << "Given expn " << expn << std::endl;
+    std::cout << "Max depth parenthesis is " << value << std::endl;
+    std::cout << "Max depth parenthesis is " << value2 << std::endl;
     return 0;
 }
 
 /*
-Given expn ((((A)))((((BBB()))))()()()())
-Max depth parenthesis is 6
-Max depth parenthesis is 6
-*/
+ Given expn ((((A)))((((BBB()))))()()()())
+ Max depth parenthesis is 6
+ Max depth parenthesis is 6
+ */
 
 int longestContBalParen(const std::string &expn, int size)
 {
@@ -500,20 +512,21 @@ int longestContBalParen(const std::string &expn, int size)
     return length;
 }
 
+// Testing code.
 int main11()
 {
     std::string expn = "())((()))(())()(()";
     int size = expn.size();
     int value = longestContBalParen(expn, size);
-    std::cout <<"longestContBalParen " << value << std::endl;
+    std::cout << "longestContBalParen " << value << std::endl;
     return 0;
 }
 
 /*
-longestContBalParen 12
-*/
+ longestContBalParen 12
+ */
 
-int reverseParenthesis(const std::string & expn, int size)
+int reverseParenthesis(const std::string &expn, int size)
 {
     std::stack<char> stk;
     int openCount = 0;
@@ -522,7 +535,7 @@ int reverseParenthesis(const std::string & expn, int size)
 
     if (size % 2 == 1)
     {
-        std::cout <<"Invalid odd length " << size << std::endl;
+        std::cout << "Invalid odd length " << size << std::endl;
         return -1;
     }
     for (int i = 0; i < size; i++)
@@ -545,27 +558,28 @@ int reverseParenthesis(const std::string & expn, int size)
         else
             closeCount += 1;
     }
-    int reversal = (int) std::ceil(openCount / 2.0) + (int) std::ceil(closeCount / 2.0);
+    int reversal = (int)std::ceil(openCount / 2.0) + (int)std::ceil(closeCount / 2.0);
     return reversal;
 }
 
+// Testing code.
 int main12()
 {
     std::string expn = "())((()))(())()(()()()()))";
     std::string expn2 = ")(())(((";
     int size = expn2.size();
     int value = reverseParenthesis(expn2, size);
-    std::cout <<"Given expn : " << expn2 << std::endl;
-    std::cout <<"reverse Parenthesis is : " << value << std::endl;
+    std::cout << "Given expn : " << expn2 << std::endl;
+    std::cout << "reverse Parenthesis is : " << value << std::endl;
     return 0;
 }
 
 /*
-Given expn : )(())(((
-reverse Parenthesis is : 3
-*/
+ Given expn : )(())(((
+ reverse Parenthesis is : 3
+ */
 
-bool findDuplicateParenthesis(const std::string & expn, int size)
+bool findDuplicateParenthesis(const std::string &expn, int size)
 {
     std::stack<char> stk;
     char ch;
@@ -591,24 +605,25 @@ bool findDuplicateParenthesis(const std::string & expn, int size)
     return false;
 }
 
+// Testing code.
 int main13()
 {
     // expn = "(((a+(b))+(c+d)))"
     // expn = "(b)"
     std::string expn = "(((a+b))+c)";
-    std::cout <<"Given expn : " << expn << std::endl;
+    std::cout << "Given expn : " << expn << std::endl;
     int size = expn.size();
     bool value = findDuplicateParenthesis(expn, size);
-    std::cout <<"Duplicate Found : " << value << std::endl;
+    std::cout << "Duplicate Found : " << value << std::endl;
     return 0;
 }
 
 /*
-Given expn : (((a+b))+c)
-Duplicate Found : 1
-*/
+ Given expn : (((a+b))+c)
+ Duplicate Found : 1
+ */
 
-void printParenthesisNumber(const std::string & expn, int size)
+void printParenthesisNumber(const std::string &expn, int size)
 {
     char ch;
     std::stack<int> stk;
@@ -627,31 +642,32 @@ void printParenthesisNumber(const std::string & expn, int size)
         {
             output += std::to_string(stk.top());
             stk.pop();
-        }    
+        }
     }
-    std::cout << "Parenthesis Count ::" ;
+    std::cout << "Parenthesis Count ::";
     std::cout << output << std::endl;
 }
 
+// Testing code.
 int main14()
 {
     std::string expn1 = "(((a+(b))+(c+d)))";
     std::string expn2 = "(((a+b))+c)(((";
     int size = expn1.size();
-    std::cout <<"Given expn " << expn1 << std::endl;
+    std::cout << "Given expn " << expn1 << std::endl;
     printParenthesisNumber(expn1, size);
     size = expn2.size();
-    std::cout <<"Given expn " + expn2 << std::endl;
+    std::cout << "Given expn " + expn2 << std::endl;
     printParenthesisNumber(expn2, size);
     return 0;
 }
 
 /*
-Given expn (((a+(b))+(c+d)))
-Parenthesis Count ::1234435521
-Given expn (((a+b))+c)(((
-Parenthesis Count ::123321456
-*/
+ Given expn (((a+(b))+(c+d)))
+ Parenthesis Count ::1234435521
+ Given expn (((a+b))+c)(((
+ Parenthesis Count ::123321456
+ */
 
 int precedence(char x)
 {
@@ -714,7 +730,7 @@ std::string infixToPostfix(std::string &expn)
                     stk.pop();
                     output = output + " " + out + " ";
                 }
-                if(stk.empty() == false && (out = stk.top()) == '(')
+                if (stk.empty() == false && (out = stk.top()) == '(')
                     stk.pop();
                 break;
             }
@@ -730,6 +746,7 @@ std::string infixToPostfix(std::string &expn)
     return output;
 }
 
+// Testing code.
 int main15()
 {
     std::string expn = "10+((3))*5/(16-4)";
@@ -740,9 +757,9 @@ int main15()
 }
 
 /*
-Infix Expn: 10+((3))*5/(16-4)
-Postfix Expn: 10 3 5 * 16 4 - / + 
-*/
+ Infix Expn: 10+((3))*5/(16-4)
+ Postfix Expn: 10 3 5 * 16 4 - / +
+ */
 
 void reverseString(std::string &expn)
 {
@@ -775,7 +792,7 @@ void replaceParanthesis(std::string &a)
         lower++;
     }
 }
-std::string infixToPrefix( std::string expn)
+std::string infixToPrefix(std::string expn)
 {
     reverseString(expn);
     replaceParanthesis(expn);
@@ -784,6 +801,7 @@ std::string infixToPrefix( std::string expn)
     return expn;
 }
 
+// Testing code.
 int main16()
 {
     std::string expn = "10+((3))*5/(16-4)";
@@ -794,9 +812,9 @@ int main16()
 }
 
 /*
-Infix Expn: 10+((3))*5/(16-4)
-Prefix Expn:  +10 * 3 / 5  - 16 4
-*/
+ Infix Expn: 10+((3))*5/(16-4)
+ Prefix Expn:  +10 * 3 / 5  - 16 4
+ */
 
 int postfixEvaluate(const std::string &expn)
 {
@@ -849,6 +867,7 @@ int postfixEvaluate(const std::string &expn)
     return val;
 }
 
+// Testing code.
 int main17()
 {
     std::string expn = "6 5 2 3 + 8 * + 3 + *";
@@ -859,9 +878,9 @@ int main17()
 }
 
 /*
-Given Postfix Expn: 6 5 2 3 + 8 * + 3 + *
-Result after Evaluation: 288
-*/
+ Given Postfix Expn: 6 5 2 3 + 8 * + 3 + *
+ Result after Evaluation: 288
+ */
 
 std::vector<int> stockSpanRange(std::vector<int> &arr)
 {
@@ -897,11 +916,12 @@ std::vector<int> stockSpanRange2(std::vector<int> &arr)
     return SR;
 }
 
+// Testing code.
 int main18()
 {
-    std::vector<int> arr = { 6, 5, 4, 3, 2, 4, 5, 7, 9 };
+    std::vector<int> arr = {6, 5, 4, 3, 2, 4, 5, 7, 9};
     int size = arr.size();
-    std::vector<int> value =  stockSpanRange(arr);
+    std::vector<int> value = stockSpanRange(arr);
     std::cout << "StockSpanRange : ";
     for (int val : value)
         std::cout << " " << val;
@@ -916,9 +936,9 @@ int main18()
 }
 
 /*
-StockSpanRange :  1 1 1 1 1 4 6 8 9
-StockSpanRange :  1 1 1 1 1 4 6 8 9
-*/
+ StockSpanRange :  1 1 1 1 1 4 6 8 9
+ StockSpanRange :  1 1 1 1 1 4 6 8 9
+ */
 
 int getMaxArea(std::vector<int> &arr)
 {
@@ -974,20 +994,21 @@ int getMaxArea2(std::vector<int> &arr)
     return maxArea;
 }
 
+// Testing code.
 int main19()
 {
-    std::vector<int> arr = { 7, 6, 5, 4, 4, 1, 6, 3, 1 };
+    std::vector<int> arr = {7, 6, 5, 4, 4, 1, 6, 3, 1};
     int value = getMaxArea(arr);
-    std::cout <<"getMaxArea :: " << value << std::endl;
+    std::cout << "getMaxArea :: " << value << std::endl;
     value = getMaxArea2(arr);
-    std::cout <<"getMaxArea :: " << value << std::endl;
+    std::cout << "getMaxArea :: " << value << std::endl;
     return 0;
 }
 
 /*
-getMaxArea :: 20
-getMaxArea :: 20
-*/
+ getMaxArea :: 20
+ getMaxArea :: 20
+ */
 
 void nextLargerElement(std::vector<int> &arr)
 {
@@ -1045,20 +1066,21 @@ void nextLargerElement2(std::vector<int> &arr)
         std::cout << val << " ";
 }
 
+// Testing code.
 int main20()
 {
-    std::vector<int> arr = { 13, 21, 3, 6, 20, 3 };
+    std::vector<int> arr = {13, 21, 3, 6, 20, 3};
     nextLargerElement(arr);
-    std::cout<< std::endl;
+    std::cout << std::endl;
     nextLargerElement2(arr);
-    std::cout<< std::endl;
+    std::cout << std::endl;
     return 0;
 }
 
 /*
-21 -1 6 20 -1 -1 
-21 -1 6 20 -1 -1 
-*/
+ 21 -1 6 20 -1 -1
+ 21 -1 6 20 -1 -1
+ */
 
 void nextSmallerElement(std::vector<int> &arr)
 {
@@ -1089,17 +1111,18 @@ void nextSmallerElement(std::vector<int> &arr)
         std::cout << val << " ";
 }
 
+// Testing code.
 int main21()
 {
-    std::vector<int> arr = { 13, 21, 3, 6, 20, 3 };
+    std::vector<int> arr = {13, 21, 3, 6, 20, 3};
     nextSmallerElement(arr);
-    std::cout<< std::endl;
+    std::cout << std::endl;
     return 0;
 }
 
 /*
-3 3 -1 3 3 -1 
-*/
+ 3 3 -1 3 3 -1
+ */
 
 void nextLargerElementCircular(std::vector<int> &arr)
 {
@@ -1130,22 +1153,22 @@ void nextLargerElementCircular(std::vector<int> &arr)
         std::cout << val << " ";
 }
 
+// Testing code.
 int main22()
 {
-    std::vector<int> arr = { 6, 3, 9, 8, 10, 2, 1, 15, 7 };
+    std::vector<int> arr = {6, 3, 9, 8, 10, 2, 1, 15, 7};
     nextLargerElementCircular(arr);
-    std::cout<< std::endl;
+    std::cout << std::endl;
     return 0;
 }
 
 /*
-9 9 10 10 15 15 15 -1 9 
-*/
+ 9 9 10 10 15 15 15 -1 9
+ */
 
-void rottenFruitUtil(std::vector<std::vector<int>> &arr, int maxCol,
-                     int maxRow, int currCol, int currRow, 
-                     std::vector<std::vector<int>> &traversed,
-                     int day)   // Range check
+void rottenFruitUtil(std::vector<std::vector<int>> &arr, int maxCol, int maxRow,
+                     int currCol, int currRow, std::vector<std::vector<int>> &traversed,
+                     int day) // Range check
 {
     if (currCol < 0 || currCol >= maxCol || currRow < 0 || currRow >= maxRow)
         return;
@@ -1155,18 +1178,23 @@ void rottenFruitUtil(std::vector<std::vector<int>> &arr, int maxCol,
     // Update rot time.
     traversed[currCol][currRow] = day;
     // each line corresponding to 4 direction.
-    rottenFruitUtil(arr, maxCol, maxRow, currCol - 1, currRow, traversed, day + 1);
-    rottenFruitUtil(arr, maxCol, maxRow, currCol + 1, currRow, traversed, day + 1);
-    rottenFruitUtil(arr, maxCol, maxRow, currCol, currRow + 1, traversed, day + 1);
-    rottenFruitUtil(arr, maxCol, maxRow, currCol, currRow - 1, traversed, day + 1);
+    rottenFruitUtil(arr, maxCol, maxRow, currCol - 1, currRow, traversed,
+                    day + 1);
+    rottenFruitUtil(arr, maxCol, maxRow, currCol + 1, currRow, traversed,
+                    day + 1);
+    rottenFruitUtil(arr, maxCol, maxRow, currCol, currRow + 1, traversed,
+                    day + 1);
+    rottenFruitUtil(arr, maxCol, maxRow, currCol, currRow - 1, traversed,
+                    day + 1);
 }
 
 int rottenFruit(std::vector<std::vector<int>> &arr, int maxCol, int maxRow)
 {
-    std::vector<std::vector<int>> traversed(maxCol) ;
+    std::vector<std::vector<int>> traversed(maxCol);
     for (int i = 0; i < maxCol; i++)
     {
-        traversed[i] = std::vector<int>(maxRow, std::numeric_limits<int>::max());
+        traversed[i] = std::vector<int>(maxRow,
+                                        std::numeric_limits<int>::max());
     }
 
     for (int i = 0; i < maxCol - 1; i++)
@@ -1195,28 +1223,23 @@ int rottenFruit(std::vector<std::vector<int>> &arr, int maxCol, int maxRow)
     return maxDay;
 }
 
+// Testing code.
 int main23()
 {
-    std::vector<std::vector<int>> arr = { 
-        { 1, 0, 1, 1, 0 }, 
-        { 2, 1, 0, 1, 0 }, 
-        { 0, 0, 0, 2, 1 }, 
-        { 0, 2, 0, 0, 1 }, 
-        { 1, 1, 0, 0, 1 } };
-    std::cout <<"rottenFruit :" << rottenFruit(arr, 5, 5) << std::endl;
+    std::vector<std::vector<int>> arr = {{1, 0, 1, 1, 0}, {2, 1, 0, 1, 0}, {0, 0, 0, 2, 1}, {0, 2, 0, 0, 1}, {1, 1, 0, 0, 1}};
+    std::cout << "rottenFruit :" << rottenFruit(arr, 5, 5) << std::endl;
     return 0;
 }
 
 /*
-rottenFruit :3
-*/
+ rottenFruit :3
+ */
 
-void stepsOfKnightUtil(int size, int currCol, int currRow, 
-std::vector<std::vector<int>> &traversed, int dist)
+void stepsOfKnightUtil(int size, int currCol, int currRow,
+                       std::vector<std::vector<int>> &traversed, int dist)
 {
     // Range check
-    if (currCol < 0 || currCol >= size || 
-        currRow < 0 || currRow >= size)
+    if (currCol < 0 || currCol >= size || currRow < 0 || currRow >= size)
         return;
 
     // Traversable and rot if not already rotten.
@@ -1249,20 +1272,21 @@ int stepsOfKnight(int size, int srcX, int srcY, int dstX, int dstY)
     return retval;
 }
 
+// Testing code.
 int main24()
 {
-    std::cout << "stepsOfKnight :: " << stepsOfKnight(20, 10, 10, 20, 20) << std::endl;
+    std::cout << "stepsOfKnight :: " << stepsOfKnight(20, 10, 10, 20, 20)
+              << std::endl;
     return 0;
 }
 
 /*
-stepsOfKnight :: 8
-*/
+ stepsOfKnight :: 8
+ */
 
-void distNearestFillUtil(std::vector<std::vector<int>> &arr, int maxCol, 
-                            int maxRow, int currCol, int currRow,
-                            std::vector<std::vector<int>> &traversed, 
-                            int dist)   // Range check
+void distNearestFillUtil(std::vector<std::vector<int>> &arr, int maxCol,
+                         int maxRow, int currCol, int currRow,
+                         std::vector<std::vector<int>> &traversed, int dist) // Range check
 {
     if (currCol < 0 || currCol >= maxCol || currRow < 0 || currRow >= maxRow)
         return;
@@ -1272,19 +1296,25 @@ void distNearestFillUtil(std::vector<std::vector<int>> &arr, int maxCol,
     // Update distance.
     traversed[currCol][currRow] = dist;
     // each line corresponding to 4 direction.
-    distNearestFillUtil(arr, maxCol, maxRow, currCol - 1, currRow, traversed, dist + 1);
-    distNearestFillUtil(arr, maxCol, maxRow, currCol + 1, currRow, traversed, dist + 1);
-    distNearestFillUtil(arr, maxCol, maxRow, currCol, currRow + 1, traversed, dist + 1);
-    distNearestFillUtil(arr, maxCol, maxRow, currCol, currRow - 1, traversed, dist + 1);
+    distNearestFillUtil(arr, maxCol, maxRow, currCol - 1, currRow, traversed,
+                        dist + 1);
+    distNearestFillUtil(arr, maxCol, maxRow, currCol + 1, currRow, traversed,
+                        dist + 1);
+    distNearestFillUtil(arr, maxCol, maxRow, currCol, currRow + 1, traversed,
+                        dist + 1);
+    distNearestFillUtil(arr, maxCol, maxRow, currCol, currRow - 1, traversed,
+                        dist + 1);
 }
 
-void distNearestFill(std::vector<std::vector<int>> &arr, int maxCol, int maxRow)
+void distNearestFill(std::vector<std::vector<int>> &arr, int maxCol,
+                     int maxRow)
 {
     std::vector<std::vector<int>> traversed(maxCol);
 
     for (int i = 0; i < maxCol; i++)
     {
-        traversed[i] = std::vector<int>(maxRow, std::numeric_limits<int>::max());
+        traversed[i] = std::vector<int>(maxRow,
+                                        std::numeric_limits<int>::max());
     }
 
     for (int i = 0; i < maxCol; i++)
@@ -1300,35 +1330,31 @@ void distNearestFill(std::vector<std::vector<int>> &arr, int maxCol, int maxRow)
     {
         for (int j = 0; j < maxRow; j++)
         {
-            std::cout << traversed[i][j] << " " ;
+            std::cout << traversed[i][j] << " ";
         }
-        std::cout << std::endl ;
+        std::cout << std::endl;
     }
 }
 
+// Testing code.
 int main25()
 {
-    std::vector<std::vector<int>> arr= { 
-        { 1, 0, 1, 1, 0 }, 
-        { 1, 1, 0, 1, 0 }, 
-        { 0, 0, 0, 0, 1 }, 
-        { 0, 0, 0, 0, 1 }, 
-        { 0, 0, 0, 0, 1 } };
+    std::vector<std::vector<int>> arr = {{1, 0, 1, 1, 0}, {1, 1, 0, 1, 0}, {0, 0, 0, 0, 1}, {0, 0, 0, 0, 1}, {0, 0, 0, 0, 1}};
 
     distNearestFill(arr, 5, 5);
     return 0;
 }
 /*
-0 1 0 0 1
-0 0 1 0 1
-1 1 2 1 0
-2 2 2 1 0
-3 3 2 1 0
-*/
+ 0 1 0 0 1
+ 0 0 1 0 1
+ 1 1 2 1 0
+ 2 2 2 1 0
+ 3 3 2 1 0
+ */
 
-int findLargestIslandUtil(std::vector<std::vector<int>> &arr, 
-            int maxCol, int maxRow, int currCol, int currRow, int value,
-            std::vector<std::vector<int>> &traversed)
+int findLargestIslandUtil(std::vector<std::vector<int>> &arr, int maxCol,
+                          int maxRow, int currCol, int currRow, int value,
+                          std::vector<std::vector<int>> &traversed)
 {
     if (currCol < 0 || currCol >= maxCol || currRow < 0 || currRow >= maxRow)
         return 0;
@@ -1336,17 +1362,11 @@ int findLargestIslandUtil(std::vector<std::vector<int>> &arr,
         return 0;
     traversed[currCol][currRow] = 1;
     // each call corresponding to 8 direction.
-    return 1 + findLargestIslandUtil(arr, maxCol, maxRow, currCol - 1, currRow - 1, value, traversed)
-           + findLargestIslandUtil(arr, maxCol, maxRow, currCol - 1, currRow, value, traversed)
-           + findLargestIslandUtil(arr, maxCol, maxRow, currCol - 1, currRow + 1, value, traversed)
-           + findLargestIslandUtil(arr, maxCol, maxRow, currCol, currRow - 1, value, traversed)
-           + findLargestIslandUtil(arr, maxCol, maxRow, currCol, currRow + 1, value, traversed)
-           + findLargestIslandUtil(arr, maxCol, maxRow, currCol + 1, currRow - 1, value, traversed)
-           + findLargestIslandUtil(arr, maxCol, maxRow, currCol + 1, currRow, value, traversed)
-           + findLargestIslandUtil(arr, maxCol, maxRow, currCol + 1, currRow + 1, value, traversed);
+    return 1 + findLargestIslandUtil(arr, maxCol, maxRow, currCol - 1, currRow - 1, value, traversed) + findLargestIslandUtil(arr, maxCol, maxRow, currCol - 1, currRow, value, traversed) + findLargestIslandUtil(arr, maxCol, maxRow, currCol - 1, currRow + 1, value, traversed) + findLargestIslandUtil(arr, maxCol, maxRow, currCol, currRow - 1, value, traversed) + findLargestIslandUtil(arr, maxCol, maxRow, currCol, currRow + 1, value, traversed) + findLargestIslandUtil(arr, maxCol, maxRow, currCol + 1, currRow - 1, value, traversed) + findLargestIslandUtil(arr, maxCol, maxRow, currCol + 1, currRow, value, traversed) + findLargestIslandUtil(arr, maxCol, maxRow, currCol + 1, currRow + 1, value, traversed);
 }
 
-int findLargestIsland(std::vector<std::vector<int>> &arr, int maxCol, int maxRow)
+int findLargestIsland(std::vector<std::vector<int>> &arr, int maxCol,
+                      int maxRow)
 {
     int maxVal = 0;
     int currVal = 0;
@@ -1354,7 +1374,8 @@ int findLargestIsland(std::vector<std::vector<int>> &arr, int maxCol, int maxRow
 
     for (int i = 0; i < maxCol; i++)
     {
-        traversed[i] = std::vector<int>(maxRow, std::numeric_limits<int>::max());
+        traversed[i] = std::vector<int>(maxRow,
+                                        std::numeric_limits<int>::max());
     }
 
     for (int i = 0; i < maxCol; i++)
@@ -1362,7 +1383,8 @@ int findLargestIsland(std::vector<std::vector<int>> &arr, int maxCol, int maxRow
         for (int j = 0; j < maxRow; j++)
         {
             {
-                currVal = findLargestIslandUtil(arr, maxCol, maxRow, i, j, arr[i][j], traversed);
+                currVal = findLargestIslandUtil(arr, maxCol, maxRow, i, j,
+                                                arr[i][j], traversed);
                 if (currVal > maxVal)
                     maxVal = currVal;
             }
@@ -1371,22 +1393,19 @@ int findLargestIsland(std::vector<std::vector<int>> &arr, int maxCol, int maxRow
     return maxVal;
 }
 
+// Testing code.
 int main26()
 {
-    std::vector<std::vector<int>> arr = { 
-        { 1, 0, 1, 1, 0 }, 
-        { 1, 0, 0, 1, 0 }, 
-        { 0, 1, 1, 1, 1 }, 
-        { 0, 1, 0, 0, 0 }, 
-        { 1, 1, 0, 0, 1 } };
+    std::vector<std::vector<int>> arr = {{1, 0, 1, 1, 0}, {1, 0, 0, 1, 0}, {0, 1, 1, 1, 1}, {0, 1, 0, 0, 0}, {1, 1, 0, 0, 1}};
 
-    std::cout <<"Largest Island : " << findLargestIsland(arr, 5, 5) << std::endl;
+    std::cout << "Largest Island : " << findLargestIsland(arr, 5, 5)
+              << std::endl;
     return 0;
 }
 
 /*
-Largest Island : 12
-*/
+ Largest Island : 12
+ */
 
 bool isKnown(std::vector<std::vector<int>> &relation, int a, int b)
 {
@@ -1443,27 +1462,22 @@ int findCelebrity2(std::vector<std::vector<int>> &relation, int count)
     return first;
 }
 
+// Testing code.
 int main27()
 {
-    std::vector<std::vector<int>> arr = { 
-        { 1, 0, 1, 1, 0 }, 
-        { 1, 0, 0, 1, 0 }, 
-        { 0, 0, 1, 1, 1 }, 
-        { 0, 0, 0, 0, 0 }, 
-        { 1, 1, 0, 1, 1 } };
+    std::vector<std::vector<int>> arr = {{1, 0, 1, 1, 0}, {1, 0, 0, 1, 0}, {0, 0, 1, 1, 1}, {0, 0, 0, 0, 0}, {1, 1, 0, 1, 1}};
 
-    std::cout <<"Celebrity : " << findCelebrity(arr, 5) << std::endl;
-    std::cout <<"Celebrity : " << findCelebrity2(arr, 5) << std::endl;
+    std::cout << "Celebrity : " << findCelebrity(arr, 5) << std::endl;
+    std::cout << "Celebrity : " << findCelebrity2(arr, 5) << std::endl;
     return 0;
 }
 
 /*
-Celebrity : 3
-Celebrity : 3
-*/
+ Celebrity : 3
+ Celebrity : 3
+ */
 
-
-
+// Testing code.
 int main()
 {
     main1();
@@ -1471,7 +1485,7 @@ int main()
     main3();
     main4();
     main5();
-    main6();  
+    main6();
     main7();
     main8();
     main9();

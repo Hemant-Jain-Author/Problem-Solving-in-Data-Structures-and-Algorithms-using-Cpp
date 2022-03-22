@@ -2,96 +2,79 @@
 #include <vector>
 #include <iostream>
 
-int andEx(int a, int b)
-{
+int andEx(int a, int b) {
 	return a & b;
 }
 
-int orEx(int a, int b)
-{
+int orEx(int a, int b) {
 	return a | b;
 }
 
-int xorEx(int a, int b)
-{
+int xorEx(int a, int b) {
 	return a ^ b;
 }
 
 int leftShiftEx(int a) // multiply by 2
-{
+		{
 	return a << 1;
 }
 
 int rightShiftEx(int a) // divide by 2
-{
+		{
 	return a >> 1;
 }
 
-int bitReversalEx(int a)
-{
+int bitReversalEx(int a) {
 	return ~a;
 }
 
-int twoComplementEx(int a)
-{
+int twoComplementEx(int a) {
 	return -a;
 }
 
-bool kthBitCheck(int a, int k)
-{
+bool kthBitCheck(int a, int k) {
 	return (a & 1 << (k - 1)) > 0;
 }
 
-int kthBitSet(int a, int k)
-{
+int kthBitSet(int a, int k) {
 	return (a | 1 << (k - 1));
 }
 
-int kthBitReset(int a, int k)
-{
+int kthBitReset(int a, int k) {
 	return (a & ~(1 << (k - 1)));
 }
 
-int kthBitToggle(int a, int k)
-{
+int kthBitToggle(int a, int k) {
 	return (a ^ (1 << (k - 1)));
 }
 
-int rightMostBit(int a)
-{
+int rightMostBit(int a) {
 	return a & -a;
 }
 
-int resetRightMostBit(int a)
-{
+int resetRightMostBit(int a) {
 	return a & (a - 1);
 }
 
-bool isPowerOf2(int a)
-{
-	if ((a & (a - 1)) == 0)
-	{
+bool isPowerOf2(int a) {
+	if ((a & (a - 1)) == 0) {
 		return true;
-	}
-	else
-	{
+	} else {
 		return false;
 	}
 }
 
-int countBits(int a)
-{
+int countBits(int a) {
 	int count = 0;
-	while (a > 0)
-	{
+	while (a > 0) {
 		count += 1;
 		a = a & (a - 1); // reset least significant bit.
 	}
 	return count;
 }
 
-int main()
-{
+// Testing code.
+int main() {
 	int a = 4;
 	int b = 8;
 	std::cout << andEx(a, b) << std::endl;
@@ -109,36 +92,35 @@ int main()
 	std::cout << resetRightMostBit(a) << std::endl;
 	std::cout << isPowerOf2(a) << std::endl;
 
-	for (int i = 0;i < 10;i++)
-	{
+	for (int i = 0; i < 10; i++) {
 		std::cout << i << " bit count : " << countBits(i) << std::endl;
 	}
 	return 0;
 }
 
 /*
-0
-12
-12
-8
-2
--5
--4
-1
-6
-0
-0
-4
-0
-1
-0 bit count : 0
-1 bit count : 1
-2 bit count : 1
-3 bit count : 2
-4 bit count : 1
-5 bit count : 2
-6 bit count : 2
-7 bit count : 3
-8 bit count : 1
-9 bit count : 2
-*/
+ 0
+ 12
+ 12
+ 8
+ 2
+ -5
+ -4
+ 1
+ 6
+ 0
+ 0
+ 4
+ 0
+ 1
+ 0 bit count : 0
+ 1 bit count : 1
+ 2 bit count : 1
+ 3 bit count : 2
+ 4 bit count : 1
+ 5 bit count : 2
+ 6 bit count : 2
+ 7 bit count : 3
+ 8 bit count : 1
+ 9 bit count : 2
+ */

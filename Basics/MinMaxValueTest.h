@@ -1,8 +1,5 @@
 #pragma once
 
-
-
-class MinMaxValueTest
-{
+class MinMaxValueTest {
 	static void main(std::vector<std::wstring> &args);
 };

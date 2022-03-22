@@ -1,9 +1,7 @@
-
 #include "Shape.h"
 #include <cmath>
 
-class Circle : public Shape
-{
+class Circle: public Shape {
 private:
 	double radius = 0;
 

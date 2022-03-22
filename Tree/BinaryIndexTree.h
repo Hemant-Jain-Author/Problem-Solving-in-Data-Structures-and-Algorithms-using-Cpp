@@ -1,11 +1,8 @@
-#pragma once
-
 #include <string>
 #include <vector>
 #include <iostream>
 
-class BinaryIndexTree
-{
+class BinaryIndexTree {
 private:
 	std::vector<int> BIT;
 	int size = 0;

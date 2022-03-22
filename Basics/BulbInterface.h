@@ -1,23 +1,18 @@
 #include <iostream>
 
-class BulbInterface
-{
+class BulbInterface {
 public:
 	virtual void turnOn() = 0;
 	virtual void turnOff() = 0;
 	virtual bool isOnFun() = 0;
 };
 
-enum class BulbSize
-{
-	SMALL,
-	MEDIUM,
-	LARGE
+enum class BulbSize {
+	SMALL, MEDIUM, LARGE
 };
 
 // implements BulbInterface
-class Bulb : public BulbInterface
-{
+class Bulb: public BulbInterface {
 private:
 	// Class Variables
 	static int TotalBulbCount;
@@ -46,20 +41,17 @@ private:
 	BulbSize size;
 public:
 	// Instance Method
-	BulbSize getBulfSize()
-	{
+	BulbSize getBulfSize() {
 		return size;
 	}
 
 	// Instance Method
-	void setBulbSize(BulbSize s)
-	{
+	void setBulbSize(BulbSize s) {
 		size = s;
 	}
 };
 
-class AdvanceBulb : public Bulb
-{
+class AdvanceBulb: public Bulb {
 private:
 	// Instance Variables
 	int intensity;
@@ -74,8 +66,7 @@ public:
 	virtual int getIntersity();
 };
 
-class Bulb2
-{
+class Bulb2 {
 private:
 	// Instance Variables
 	bool isOn;

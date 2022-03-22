@@ -1,14 +1,10 @@
-#pragma once
-
 #include <string>
 #include <vector>
 #include <iostream>
 
-class SPLAYTree
-{
+class SPLAYTree {
 private:
-	class Node
-	{
+	class Node {
 	public:
 		int data = 0;
 		Node *left, *right, *parent;
@@ -29,16 +25,11 @@ public:
 
 private:
 	void printTree(Node *node, std::string indent, bool isLeft);
-	Node *rightRotate(Node *x); // Function to right rotate subtree rooted with x
-	Node *leftRotate(Node *x); // Function to left rotate subtree rooted with x
-	Node *getParent(Node *node);
+	Node* rightRotate(Node *x); // Function to right rotate subtree rooted with x
+	Node* leftRotate(Node *x); // Function to left rotate subtree rooted with x
+	Node* getParent(Node *node);
 	void splay(Node *node);
-	Node *findMinNode(Node *curr);
+	Node* findMinNode(Node *curr);
 	void printInOrder(Node *node); // In order
 };
-
-
-
-
-
 

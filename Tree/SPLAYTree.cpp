@@ -1,48 +1,38 @@
 #include "SPLAYTree.h"
 
-SPLAYTree::Node::Node(int d, Node *l, Node *r)
-{
+SPLAYTree::Node::Node(int d, Node *l, Node *r) {
 	data = d;
 	left = l;
 	right = r;
 	parent = nullptr;
 }
 
-SPLAYTree::Node::~Node()
-{
+SPLAYTree::Node::~Node() {
 	delete left;
 	delete right;
 }
 
-SPLAYTree::SPLAYTree()
-{
+SPLAYTree::SPLAYTree() {
 	root = nullptr;
 }
 
-SPLAYTree::~SPLAYTree()
-{
+SPLAYTree::~SPLAYTree() {
 	delete root;
 }
 
-void SPLAYTree::printTree()
-{
+void SPLAYTree::printTree() {
 	printTree(root, "", false);
 	std::cout << std::endl;
 }
 
-void SPLAYTree::printTree(Node *node, std::string indent, bool isLeft)
-{
-	if (node == nullptr)
-	{
+void SPLAYTree::printTree(Node *node, std::string indent, bool isLeft) {
+	if (node == nullptr) {
 		return;
 	}
-	if (isLeft)
-	{
+	if (isLeft) {
 		std::cout << indent << "L:";
 		indent += "|  ";
-	}
-	else
-	{
+	} else {
 		std::cout << indent << "R:";
 		indent += "   ";
 	}
@@ -52,8 +42,7 @@ void SPLAYTree::printTree(Node *node, std::string indent, bool isLeft)
 	printTree(node->right, indent, false);
 }
 
-SPLAYTree::Node *SPLAYTree::rightRotate(Node *x)
-{
+SPLAYTree::Node* SPLAYTree::rightRotate(Node *x) {
 	Node *y = x->left;
 	Node *T = y->right;
 
@@ -62,25 +51,20 @@ SPLAYTree::Node *SPLAYTree::rightRotate(Node *x)
 	y->right = x;
 	x->parent = y;
 	x->left = T;
-	if (T != nullptr)
-	{
+	if (T != nullptr) {
 		T->parent = x;
 	}
 
-	if (y->parent != nullptr && y->parent->left == x)
-	{
+	if (y->parent != nullptr && y->parent->left == x) {
 		y->parent->left = y;
-	}
-	else if (y->parent != nullptr && y->parent->right == x)
-	{
+	} else if (y->parent != nullptr && y->parent->right == x) {
 		y->parent->right = y;
 	}
 	// Return new root
 	return y;
 }
 
-SPLAYTree::Node *SPLAYTree::leftRotate(Node *x)
-{
+SPLAYTree::Node* SPLAYTree::leftRotate(Node *x) {
 	Node *y = x->right;
 	Node *T = y->left;
 
@@ -89,194 +73,137 @@ SPLAYTree::Node *SPLAYTree::leftRotate(Node *x)
 	y->left = x;
 	x->parent = y;
 	x->right = T;
-	if (T != nullptr)
-	{
+	if (T != nullptr) {
 		T->parent = x;
 	}
 
-	if (y->parent != nullptr && y->parent->left == x)
-	{
+	if (y->parent != nullptr && y->parent->left == x) {
 		y->parent->left = y;
-	}
-	else if (y->parent != nullptr && y->parent->right == x)
-	{
+	} else if (y->parent != nullptr && y->parent->right == x) {
 		y->parent->right = y;
 	}
 	// Return new root
 	return y;
 }
 
-SPLAYTree::Node *SPLAYTree::getParent(Node *node)
-{
-	if (node == nullptr || node->parent == nullptr)
-	{
+SPLAYTree::Node* SPLAYTree::getParent(Node *node) {
+	if (node == nullptr || node->parent == nullptr) {
 		return nullptr;
 	}
 	return node->parent;
 }
 
-void SPLAYTree::splay(Node *node)
-{
+void SPLAYTree::splay(Node *node) {
 	Node *parent, *grand;
-	while (node != root)
-	{
+	while (node != root) {
 		parent = getParent(node);
 		grand = getParent(parent);
-		if (parent == nullptr)
-		{ // rotations had created new root, always last condition.
+		if (parent == nullptr) { // rotations had created new root, always last condition.
 			root = node;
-		}
-		else if (grand == nullptr)
-		{ // single rotation case.
-			if (parent->left == node)
-			{
-			   node = rightRotate(parent);
-			}
-			else
-			{
+		} else if (grand == nullptr) { // single rotation case.
+			if (parent->left == node) {
+				node = rightRotate(parent);
+			} else {
 				node = leftRotate(parent);
 			}
-		}
-		else if (grand->left == parent && parent->left == node)
-		{ // Zig Zig case.
+		} else if (grand->left == parent && parent->left == node) { // Zig Zig case.
 			rightRotate(grand);
 			node = rightRotate(parent);
-		}
-		else if (grand->right == parent && parent->right == node)
-		{ // Zag Zag case.
+		} else if (grand->right == parent && parent->right == node) { // Zag Zag case.
 			leftRotate(grand);
 			node = leftRotate(parent);
-		}
-		else if (grand->left == parent && parent->right == node)
-		{ //Zig Zag case.
+		} else if (grand->left == parent && parent->right == node) { //Zig Zag case.
 			leftRotate(parent);
 			node = rightRotate(grand);
-		}
-		else if (grand->right == parent && parent->left == node)
-		{ // Zag Zig case.
+		} else if (grand->right == parent && parent->left == node) { // Zag Zig case.
 			rightRotate(parent);
 			node = leftRotate(grand);
 		}
 	}
 }
 
-bool SPLAYTree::find(int data)
-{
+bool SPLAYTree::find(int data) {
 	Node *curr = root;
-	while (curr != nullptr)
-	{
-		if (curr->data == data)
-		{
+	while (curr != nullptr) {
+		if (curr->data == data) {
 			splay(curr);
 			return true;
-		}
-		else if (curr->data > data)
-		{
+		} else if (curr->data > data) {
 			curr = curr->left;
-		}
-		else
-		{
+		} else {
 			curr = curr->right;
 		}
 	}
 	return false;
 }
 
-void SPLAYTree::insert(int data)
-{
+void SPLAYTree::insert(int data) {
 	Node *newNode = new Node(data, nullptr, nullptr);
-	if (root == nullptr)
-	{
+	if (root == nullptr) {
 		root = newNode;
 		return;
 	}
 
 	Node *node = root;
 	Node *parent = nullptr;
-	while (node != nullptr)
-	{
+	while (node != nullptr) {
 		parent = node;
-		if (node->data > data)
-		{
+		if (node->data > data) {
 			node = node->left;
-		}
-		else if (node->data < data)
-		{
+		} else if (node->data < data) {
 			node = node->right;
-		}
-		else
-		{
+		} else {
 			splay(node); // duplicate insertion not allowed but splaying for it.
 			return;
 		}
 	}
 
 	newNode->parent = parent;
-	if (parent->data > data)
-	{
+	if (parent->data > data) {
 		parent->left = newNode;
-	}
-	else
-	{
+	} else {
 		parent->right = newNode;
 	}
 	splay(newNode);
 }
 
-SPLAYTree::Node *SPLAYTree::findMinNode(Node *curr)
-{
+SPLAYTree::Node* SPLAYTree::findMinNode(Node *curr) {
 	Node *node = curr;
-	if (node == nullptr)
-	{
+	if (node == nullptr) {
 		return nullptr;
 	}
-	while (node->left != nullptr)
-	{
+	while (node->left != nullptr) {
 		node = node->left;
 	}
 	return node;
 }
 
-void SPLAYTree::remove(int data)
-{
+void SPLAYTree::remove(int data) {
 	Node *node = root;
 	Node *parent = nullptr;
 	Node *next = nullptr;
-	while (node != nullptr)
-	{
-		if (node->data == data)
-		{
+	while (node != nullptr) {
+		if (node->data == data) {
 			parent = node->parent;
-			if (node->left == nullptr && node->right == nullptr)
-			{
+			if (node->left == nullptr && node->right == nullptr) {
 				next = nullptr;
-			}
-			else if (node->left == nullptr)
-			{
+			} else if (node->left == nullptr) {
 				next = node->right;
-			}
-			else if (node->right == nullptr)
-			{
+			} else if (node->right == nullptr) {
 				next = node->left;
 			}
 
-			if (node->left == nullptr || node->right == nullptr)
-			{
-				if (node == root)
-				{
+			if (node->left == nullptr || node->right == nullptr) {
+				if (node == root) {
 					root = next;
 					return;
 				}
-				if (parent->left == node)
-				{
+				if (parent->left == node) {
 					parent->left = next;
-				}
-				else
-				{
+				} else {
 					parent->right = next;
 				}
-				if (next != nullptr)
-				{
+				if (next != nullptr) {
 					next->parent = parent;
 				}
 				break;
@@ -287,14 +214,10 @@ void SPLAYTree::remove(int data)
 			node->data = data;
 			node = node->right;
 
-		}
-		else if (node->data > data)
-		{
+		} else if (node->data > data) {
 			parent = node;
 			node = node->left;
-		}
-		else
-		{
+		} else {
 			parent = node;
 			node = node->right;
 		}
@@ -302,24 +225,21 @@ void SPLAYTree::remove(int data)
 	splay(parent); // Splaying for the parent of the node deleted.
 }
 
-void SPLAYTree::printInOrder()
-{
+void SPLAYTree::printInOrder() {
 	printInOrder(root);
 	std::cout << std::endl;
 }
 
-void SPLAYTree::printInOrder(Node *node)
-{
-	if (node != nullptr)
-	{
+void SPLAYTree::printInOrder(Node *node) {
+	if (node != nullptr) {
 		printInOrder(node->left);
 		std::cout << node->data << " ";
 		printInOrder(node->right);
 	}
 }
 
-int main()
-{
+// Testing code.
+int main() {
 	SPLAYTree *tree = new SPLAYTree();
 	tree->insert(5);
 	tree->insert(4);
@@ -339,16 +259,16 @@ int main()
 }
 
 /*
-R:3
-   L:2
-   |  L:1
-   R:6
-      L:4
-      |  R:5
+ R:3
+ L:2
+ |  L:1
+ R:6
+ L:4
+ |  R:5
 
-Value 2 found: true
-R:4
-   L:3
-   |  L:1
-   R:6 
-*/
+ Value 2 found: true
+ R:4
+ L:3
+ |  L:1
+ R:6
+ */

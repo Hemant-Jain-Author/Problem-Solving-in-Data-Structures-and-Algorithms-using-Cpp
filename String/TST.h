@@ -1,14 +1,10 @@
-#pragma once
-
 #include <string>
 #include <vector>
 #include <iostream>
 
-class TST
-{
+class TST {
 private:
-    struct  Node
-    {
+    struct  Node {
         char data = '\0';
         bool isLastChar = false;
         Node *left, *equal, *right;
@@ -17,7 +13,7 @@ private:
     Node *root;
     Node *add(Node *curr, const std::string &word, int wordIndex);
 public:
-    virtual void add(const std::string &word);
-    bool find(Node *curr, const std::string &word, int wordIndex);
-    virtual bool find(const std::string &word);
+	virtual void add(const std::string &word);
+	bool find(Node *curr, const std::string &word, int wordIndex);
+	virtual bool find(const std::string &word);
 };

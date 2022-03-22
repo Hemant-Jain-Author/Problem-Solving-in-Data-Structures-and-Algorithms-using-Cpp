@@ -1,8 +1,7 @@
 #pragma once
 
 //Abstract Class
-class Shape
-{
+class Shape {
 public:
 	// Abstract Method
 	virtual double area() = 0;

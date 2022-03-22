@@ -5,8 +5,7 @@
 #include <iostream>
 #include <queue>
 
-struct Node 
-{
+struct Node {
 	char c = '\0';
 	int freq = 0;
 	Node *left;
@@ -15,8 +14,7 @@ struct Node
 	Node(char ch, int fr, Node *l, Node *r);
 };
 
-class HuffmanTree
-{
+class HuffmanTree {
 	Node *root = nullptr;
 public:
 	~HuffmanTree();

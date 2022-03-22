@@ -1,100 +1,81 @@
-
 #include "AVLTree.h"
 
-AVLTree::Node::Node(int d, Node *l, Node *r)
-{
+AVLTree::Node::Node(int d, Node *l, Node *r) {
 	data = d;
 	left = l;
 	right = r;
 	height = 0;
 }
 
-AVLTree::Node::~Node()
-{
+AVLTree::Node::~Node() {
 	delete left;
 	delete right;
 }
 
-AVLTree::AVLTree()
-{
+AVLTree::AVLTree() {
 	root = nullptr;
 }
 
-AVLTree::~AVLTree()
-{
+AVLTree::~AVLTree() {
 	delete root;
 }
 
-int AVLTree::height(Node *n)
-{
-	if (n == nullptr)
-	{
+int AVLTree::height(Node *n) {
+	if (n == nullptr) {
 		return -1;
 	}
 	return n->height;
 }
 
-int AVLTree::getBalance(Node *node)
-{
+int AVLTree::getBalance(Node *node) {
 	return (node == nullptr) ? 0 : height(node->left) - height(node->right);
 }
 
-void AVLTree::insert(int data)
-{
+void AVLTree::insert(int data) {
 	root = insert(root, data);
 }
 
-AVLTree::Node *AVLTree::insert(Node *node, int data)
-{
-	if (node == nullptr)
-	{
+AVLTree::Node* AVLTree::insert(Node *node, int data) {
+	if (node == nullptr) {
 		return new Node(data, nullptr, nullptr);
 	}
 
-	if (node->data > data)
-	{
+	if (node->data > data) {
 		node->left = insert(node->left, data);
-	}
-	else if (node->data < data)
-	{
+	} else if (node->data < data) {
 		node->right = insert(node->right, data);
-	}
-	else
-	{ // Duplicate data not allowed
+	} else { // Duplicate data not allowed
 		return node;
 	}
 
 	node->height = max(height(node->left), height(node->right)) + 1;
 	int balance = getBalance(node);
 
-	if (balance > 1)
-	{
+	if (balance > 1) {
 		if (data < node->left->data) // Left Left Case
-		{
+				{
 			return rightRotate(node);
 		}
 		if (data > node->left->data) // Left Right Case
-		{
+				{
 			return leftRightRotate(node);
 		}
 	}
 
-	if (balance < -1)
-	{
+	if (balance < -1) {
 		if (data > node->right->data) // Right Right Case
-		{
+				{
 			return leftRotate(node);
 		}
 		if (data < node->right->data) // Right Left Case
-		{
+				{
 			return rightLeftRotate(node);
 		}
 	}
 	return node;
 }
 
-AVLTree::Node *AVLTree::rightRotate(Node *x)
-{
+AVLTree::Node* AVLTree::rightRotate(Node *x) {
 	Node *y = x->left;
 	Node *T = y->right;
 
@@ -110,8 +91,7 @@ AVLTree::Node *AVLTree::rightRotate(Node *x)
 	return y;
 }
 
-AVLTree::Node *AVLTree::leftRotate(Node *x)
-{
+AVLTree::Node* AVLTree::leftRotate(Node *x) {
 	Node *y = x->right;
 	Node *T = y->left;
 
@@ -127,59 +107,41 @@ AVLTree::Node *AVLTree::leftRotate(Node *x)
 	return y;
 }
 
-AVLTree::Node *AVLTree::rightLeftRotate(Node *x)
-{
+AVLTree::Node* AVLTree::rightLeftRotate(Node *x) {
 	x->right = rightRotate(x->right);
 	return leftRotate(x);
 }
 
-AVLTree::Node *AVLTree::leftRightRotate(Node *x)
-{
+AVLTree::Node* AVLTree::leftRightRotate(Node *x) {
 	x->left = leftRotate(x->left);
 	return rightRotate(x);
 }
 
-void AVLTree::deleteNode(int data)
-{
+void AVLTree::deleteNode(int data) {
 	root = deleteNode(root, data);
 }
 
-AVLTree::Node *AVLTree::deleteNode(Node *node, int data)
-{
-	if (node == nullptr)
-	{
+AVLTree::Node* AVLTree::deleteNode(Node *node, int data) {
+	if (node == nullptr) {
 		return nullptr;
 	}
 
-	if (node->data == data)
-	{
-		if (node->left == nullptr && node->right == nullptr)
-		{
+	if (node->data == data) {
+		if (node->left == nullptr && node->right == nullptr) {
 			return nullptr;
-		}
-		else if (node->left == nullptr)
-		{
+		} else if (node->left == nullptr) {
 			return node->right; // no need to modify height
-		}
-		else if (node->right == nullptr)
-		{
+		} else if (node->right == nullptr) {
 			return node->left; // no need to modify height
-		}
-		else
-		{
+		} else {
 			Node *minNode = findMin(node->right);
 			node->data = minNode->data;
 			node->right = deleteNode(node->right, minNode->data);
 		}
-	}
-	else
-	{
-		if (node->data > data)
-		{
+	} else {
+		if (node->data > data) {
 			node->left = deleteNode(node->left, data);
-		}
-		else
-		{
+		} else {
 			node->right = deleteNode(node->right, data);
 		}
 	}
@@ -187,67 +149,56 @@ AVLTree::Node *AVLTree::deleteNode(Node *node, int data)
 	node->height = max(height(node->left), height(node->right)) + 1;
 	int balance = getBalance(node);
 
-	if (balance > 1)
-	{
+	if (balance > 1) {
 		if (data >= node->left->data) // Left Left Case
-		{
+				{
 			return rightRotate(node);
 		}
 		if (data < node->left->data) // Left Right Case
-		{
+				{
 			return leftRightRotate(node);
 		}
 	}
 
-	if (balance < -1)
-	{
+	if (balance < -1) {
 		if (data <= node->right->data) // Right Right Case
-		{
+				{
 			return leftRotate(node);
 		}
 		if (data > node->right->data) // Right Left Case
-		{
+				{
 			return rightLeftRotate(node);
 		}
 	}
 	return node;
 }
 
-AVLTree::Node* AVLTree::findMin(Node *curr)
-{
+AVLTree::Node* AVLTree::findMin(Node *curr) {
 	Node *node = curr;
-	if (node == nullptr)
-	{
+	if (node == nullptr) {
 		return nullptr;
 	}
 
-	while (node->left != nullptr)
-	{
+	while (node->left != nullptr) {
 		node = node->left;
 	}
 	return node;
 }
 
-void AVLTree::printTree()
-{
+void AVLTree::printTree() {
 	std::string str = "";
 	printTree(root, str, false);
 	std::cout << std::endl;
 }
 
-void AVLTree::printTree(Node *node, std::string indent, bool isLeft)
-{
-	if (node == nullptr)
-	{
+void AVLTree::printTree(Node *node, std::string indent, bool isLeft) {
+	if (node == nullptr) {
 		return;
 	}
-	if (isLeft)
-	{
+	if (isLeft) {
 		std::cout << indent << "L:";
 		indent += "|  ";
-	}
-	else
-	{
+	} else {
 		std::cout << indent << "R:";
 		indent += "   ";
 	}
@@ -257,13 +208,12 @@ void AVLTree::printTree(Node *node, std::string indent, bool isLeft)
 	printTree(node->right, indent, false);
 }
 
-int AVLTree::max(int a, int b)
-{
+int AVLTree::max(int a, int b) {
 	return (a > b) ? a : b;
 }
 
-int main()
-{
+// Testing code.
+int main() {
 	AVLTree *t = new AVLTree();
 	t->insert(1);
 	t->insert(2);
@@ -288,33 +238,33 @@ int main()
 }
 
 /*
-R:4(3)
-   L:2(1)
-   |  L:1(0)
-   |  R:3(0)
-   R:6(2)
-      L:5(0)
-      R:7(1)
-         R:8(0)
+ R:4(3)
+ L:2(1)
+ |  L:1(0)
+ |  R:3(0)
+ R:6(2)
+ L:5(0)
+ R:7(1)
+ R:8(0)
 
-R:4(2)
-   L:2(1)
-   |  L:1(0)
-   |  R:3(0)
-   R:7(1)
-      L:6(0)
-      R:8(0)
+ R:4(2)
+ L:2(1)
+ |  L:1(0)
+ |  R:3(0)
+ R:7(1)
+ L:6(0)
+ R:8(0)
 
-R:4(2)
-   L:2(1)
-   |  R:3(0)
-   R:7(1)
-      L:6(0)
-      R:8(0)
+ R:4(2)
+ L:2(1)
+ |  R:3(0)
+ R:7(1)
+ L:6(0)
+ R:8(0)
 
-R:4(2)
-   L:3(0)
-   R:7(1)
-      L:6(0)
-      R:8(0)
-*/
+ R:4(2)
+ L:3(0)
+ R:7(1)
+ L:6(0)
+ R:8(0)
+ */

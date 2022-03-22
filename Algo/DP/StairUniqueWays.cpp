@@ -2,15 +2,13 @@
 #include <vector>
 #include <iostream>
 
-int diffWaysBU(int n)
-{
+int diffWaysBU(int n) {
 	if (n <= 2)
 		return n;
 
 	int first = 1, second = 2, temp = 0;
 
-	for (int i = 3; i <= n; i++)
-	{
+	for (int i = 3; i <= n; i++) {
 		temp = first + second;
 		first = second;
 		second = temp;
@@ -18,8 +16,7 @@ int diffWaysBU(int n)
 	return temp;
 }
 
-int diffWaysBU2(int n)
-{
+int diffWaysBU2(int n) {
 	if (n < 2)
 		return n;
 
@@ -33,13 +30,13 @@ int diffWaysBU2(int n)
 	return ways[n - 1];
 }
 
-int main()
-{
+// Testing code.
+int main() {
 	std::cout << "Unique way to reach top:: " << diffWaysBU(4) << std::endl;
 	std::cout << "Unique way to reach top:: " << diffWaysBU2(4) << std::endl;
 }
 
 /*
-Unique way to reach top:: 5
-Unique way to reach top:: 5
-*/
+ Unique way to reach top:: 5
+ Unique way to reach top:: 5
+ */
