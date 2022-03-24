@@ -25,7 +25,7 @@ void Graph::print() {
 		auto &adl = Adj[i];
 		std::cout << "Vertex " << i << " is connected to : ";
 		for (auto adn : adl)
-			std::cout << adn.dest << "(" << adn.cost << ") ";
+			std::cout << adn.dest << "(cost: " << adn.cost << ") ";
 		std::cout << std::endl;
 	}
 }
@@ -42,10 +42,10 @@ int main1() {
 }
 
 /*
- Vertex 0 is connected to : 1 2
- Vertex 1 is connected to : 0 2
- Vertex 2 is connected to : 0 1 3
- Vertex 3 is connected to : 2
+Vertex 0 is connected to : 1(cost: 1) 2(cost: 1) 
+Vertex 1 is connected to : 0(cost: 1) 2(cost: 1) 
+Vertex 2 is connected to : 0(cost: 1) 1(cost: 1) 3(cost: 1) 
+Vertex 3 is connected to : 2(cost: 1) 
  */
 
 void Graph::dfsUtil(int index, std::vector<bool> &visited) {
@@ -68,7 +68,7 @@ bool Graph::dfsStack(int source, int target) {
 	std::stack<int> stk;
 	visited[source] = true;
 	stk.push(source);
-	
+
 	int curr;
 	while (stk.empty() == false) {
 		curr = stk.top();
@@ -105,8 +105,6 @@ bool Graph::bfs(int source, int target) {
 	return visited[target];
 }
 
-
-
 // Testing code.
 int main2() {
 	Graph gph(8);
@@ -127,13 +125,13 @@ int main2() {
 }
 
 /*
- Path between 0 & 6 : 1
- Path between 0 & 6 : 1
- Path between 0 & 6 : 1
+Path between 0 & 6 : 1
+Path between 0 & 6 : 1
+Path between 0 & 6 : 1
  */
 
-
-void Graph::dfsUtil2(int index, std::vector<bool> &visited, std::stack<int> &stk) {
+void Graph::dfsUtil2(int index, std::vector<bool> &visited,
+		std::stack<int> &stk) {
 	visited[index] = true;
 	auto &adl = Adj[index];
 	for (auto adn : adl) {
@@ -173,7 +171,7 @@ int main3() {
 }
 
 /*
- Topological order of given graph is : 5 4 2 3 1 0
+Topological order of given graph is : 5 4 2 3 1 0
  */
 
 bool Graph::pathExist(int source, int dest) {
@@ -196,7 +194,7 @@ int main4() {
 }
 
 /*
- PathExist :: 1
+PathExist :: 1
  */
 
 int Graph::countAllPathDFS(std::vector<bool> &visited, int source, int dest) {
@@ -233,7 +231,7 @@ int main5() {
 }
 
 /*
- Path Count :: 3
+Path Count :: 3
  */
 
 void printStackUtil(std::stack<int> &stk) {
@@ -251,7 +249,6 @@ void printStack(std::stack<int> &stk) {
 	printStackUtil(stk);
 	std::cout << "]" << std::endl;
 }
-
 
 void Graph::printAllPathDFS(std::vector<bool> &visited, int source, int dest,
 		std::stack<int> &path) {
@@ -292,9 +289,9 @@ int main6() {
 }
 
 /*
- 4 3 1 0
- 4 1 0
- 4 3 2 0
+[ 4 3 1 0 ]
+[ 4 1 0 ]
+[ 4 3 2 0 ]
  */
 
 int Graph::rootVertex() {
@@ -326,7 +323,7 @@ int main7() {
 }
 
 /*
- Root vertex is :: 5
+Root vertex is :: 5
  */
 
 void Graph::transitiveClosureUtil(int source, int dest,
@@ -353,7 +350,7 @@ int main8() {
 	gph.addDirectedEdge(2, 0, 1);
 	gph.addDirectedEdge(2, 3, 1);
 	gph.addDirectedEdge(3, 3, 1);
-	
+
 	std::vector<std::vector<int>> tc(4, std::vector<int>(4, 0));
 	gph.transitiveClosure(tc);
 
@@ -366,40 +363,36 @@ int main8() {
 }
 
 /*
- 1 1 1 1
- 1 1 1 1
- 1 1 1 1
- 0 0 0 1
+1 1 1 1
+1 1 1 1
+1 1 1 1
+0 0 0 1
  */
 
-void Graph::bfsLevelNode(int source)
-{
-    std::vector<bool> visited(count, false);
-    std::vector<int> level(count, 0);
-    visited[source] = true;
-    std::queue<int> que;
-    que.push(source);
-    level[source] = 0;
-    std::cout << "Node  - Level" << std::endl;
+void Graph::bfsLevelNode(int source) {
+	std::vector<bool> visited(count, false);
+	std::vector<int> level(count, 0);
+	visited[source] = true;
+	std::queue<int> que;
+	que.push(source);
+	level[source] = 0;
+	std::cout << "Node  - Level" << std::endl;
 
-    while (que.empty() == false)
-    {
-        int curr = que.front();
-        que.pop();
+	while (que.empty() == false) {
+		int curr = que.front();
+		que.pop();
 
-        int depth = level[curr];
-        auto& adl = Adj[curr];
-        std::cout << curr << " - " << depth << std::endl;
-        for (auto adn : adl)
-        {
-            if (visited[adn.dest] == false)
-            {
-                visited[adn.dest] = true;
-                que.push(adn.dest);
-                level[adn.dest] = depth + 1;
-            }
-        }
-    }
+		int depth = level[curr];
+		auto &adl = Adj[curr];
+		std::cout << curr << " - " << depth << std::endl;
+		for (auto adn : adl) {
+			if (visited[adn.dest] == false) {
+				visited[adn.dest] = true;
+				que.push(adn.dest);
+				level[adn.dest] = depth + 1;
+			}
+		}
+	}
 }
 
 int Graph::bfsDistance(int source, int dest) {
@@ -490,19 +483,20 @@ int main10() {
 	gph.addUndirectedEdge(3, 4, 1);
 	gph.addUndirectedEdge(4, 2, 1);
 	gph.addUndirectedEdge(2, 5, 1);
-	//gph.addUndirectedEdge(4, 1, 1);
-	//gph.addUndirectedEdge(3, 5, 1);
-	std::cout << gph.isCyclePresentUndirected() << std::endl;
+	std::cout << "isCyclePresentUndirected : " << gph.isCyclePresentUndirected()
+			<< std::endl;
+	gph.addUndirectedEdge(4, 1, 1);
+	std::cout << "isCyclePresentUndirected : " << gph.isCyclePresentUndirected()
+			<< std::endl;
 	return 0;
 }
 
 /*
- 0
+isCyclePresentUndirected : 0
+isCyclePresentUndirected : 1
  */
 
-/*
- * Given a directed graph find if there is a cycle in it.
- */
+
 bool Graph::isCyclePresentDFS(int index, std::vector<bool> &visited,
 		std::vector<int> &marked) {
 	visited[index] = true;
@@ -569,13 +563,13 @@ int main11() {
 	gph.addDirectedEdge(1, 3);
 	gph.addDirectedEdge(3, 4);
 	gph.addDirectedEdge(4, 1);
-	std::cout << gph.isCyclePresent() << std::endl;
-	std::cout << gph.isCyclePresentColor() << std::endl;
+	std::cout << "isCyclePresent : " << gph.isCyclePresent() << std::endl;
+	std::cout << "isCyclePresent : " << gph.isCyclePresentColor() << std::endl;
 	return 0;
 }
 /*
- 1
- 1
+isCyclePresent : 1
+isCyclePresent : 1
  */
 
 void Graph::transposeGraph(Graph &gph) {
@@ -605,16 +599,17 @@ int main12() {
 }
 
 /*
- Graph is ::
- Vertex 0 is connected to : 1 2
- Vertex 1 is connected to : 2
- Vertex 2 is connected to : 3
- Vertex 3 is connected to :
- Transpose Graph is ::
- Vertex 0 is connected to :
- Vertex 1 is connected to : 0
- Vertex 2 is connected to : 0 1
- Vertex 3 is connected to : 2
+Graph is ::
+Vertex 0 is connected to : 1(cost: 1) 2(cost: 1) 
+Vertex 1 is connected to : 2(cost: 1) 
+Vertex 2 is connected to : 3(cost: 1) 
+Vertex 3 is connected to : 
+
+Transpose Graph is ::
+Vertex 0 is connected to : 
+Vertex 1 is connected to : 0(cost: 1) 
+Vertex 2 is connected to : 0(cost: 1) 1(cost: 1) 
+Vertex 3 is connected to : 2(cost: 1) 
  */
 
 bool Graph::isConnectedUndirected() {
@@ -629,7 +624,7 @@ bool Graph::isConnectedUndirected() {
 }
 
 // Testing code.
-int main100() {
+int main13() {
 	Graph gph(6);
 	gph.addUndirectedEdge(0, 1, 1);
 	gph.addUndirectedEdge(1, 2, 1);
@@ -637,7 +632,6 @@ int main100() {
 	gph.addUndirectedEdge(4, 2, 1);
 	gph.addUndirectedEdge(2, 5, 1);
 	//gph.addUndirectedEdge(4, 1, 1);
-	//gph.addUndirectedEdge(3, 5, 1);
 	std::cout << "IsConnectedUndirected : " << gph.isConnectedUndirected()
 			<< std::endl;
 	return 0;
@@ -645,18 +639,6 @@ int main100() {
 
 /*
  IsConnectedUndirected : 1
- */
-
-/*
- * Kosaraju Algorithm to find strongly connected directed graph based on dfs :
- * 1) Create a visited array of size V, and Initialize all count in visited
- * array as 0. 
- * 2) Choose any vertex and perform a dfs traversal of graph. For all visited 
- * count mark them visited as 1. 
- * 3) If dfs traversal does not mark all count as 1, then return 0. 
- * 4) Find transpose or reverse of graph 
- * 5) Repeat step 1, 2 and 3 for the reversed graph. 6) If dfs traversal mark all
- * the count as 1, then return 1.
  */
 
 bool Graph::isStronglyConnected() {
@@ -682,7 +664,7 @@ bool Graph::isStronglyConnected() {
 }
 
 // Testing code.
-int main13() {
+int main14() {
 	Graph gph(5);
 	gph.addDirectedEdge(0, 1, 1);
 	gph.addDirectedEdge(1, 2, 1);
@@ -690,13 +672,13 @@ int main13() {
 	gph.addDirectedEdge(3, 0, 1);
 	gph.addDirectedEdge(2, 4, 1);
 	gph.addDirectedEdge(4, 2, 1);
-	std::cout << " IsStronglyConnected:: " << gph.isStronglyConnected()
+	std::cout << "IsStronglyConnected:: " << gph.isStronglyConnected()
 			<< std::endl;
 	return 0;
 }
 
 /*
- IsStronglyConnected:: 1
+IsStronglyConnected:: 1
  */
 
 void Graph::stronglyConnectedComponent() {
@@ -705,18 +687,19 @@ void Graph::stronglyConnectedComponent() {
 	for (int i = 0; i < count; i++) {
 		if (visited[i] == false) {
 			dfsUtil2(i, visited, stk);
-		}		
+		}
 	}
-	
+
 	for (int i = 0; i < count; i++) {
 		visited[i] = false;
 	}
-	
+
 	Graph gReversed = Graph(count);
 	transposeGraph(gReversed);
 
 	while (stk.empty() == false) {
-		int index = stk.top();stk.pop();
+		int index = stk.top();
+		stk.pop();
 		if (visited[index] == false) {
 			std::stack<int> stk2;
 			gReversed.dfsUtil2(index, visited, stk2);
@@ -726,7 +709,7 @@ void Graph::stronglyConnectedComponent() {
 }
 
 // Testing code.
-int main14() {
+int main15() {
 	Graph gph(7);
 	gph.addDirectedEdge(0, 1);
 	gph.addDirectedEdge(1, 2);
@@ -799,10 +782,12 @@ int Graph::heightTreeParentArr2(int arr[], int count) {
 }
 
 // Testing code.
-int main15() {
+int main16() {
 	int parentArray[] = { -1, 0, 1, 2, 3 };
-	std::cout << "Height : " << Graph::heightTreeParentArr(parentArray, 5) << std::endl;
-	std::cout << "Height : " << Graph::heightTreeParentArr2(parentArray, 5) << std::endl;
+	std::cout << "Height : " << Graph::heightTreeParentArr(parentArray, 5)
+			<< std::endl;
+	std::cout << "Height : " << Graph::heightTreeParentArr2(parentArray, 5)
+			<< std::endl;
 	return 0;
 }
 
@@ -843,7 +828,7 @@ void Graph::primsMST() {
 	std::vector<int> previous(count, -1);
 	std::vector<int> dist(count, std::numeric_limits<int>::max());
 	std::vector<bool> visited(count, false);
-	
+
 	int source = 0;
 	dist[source] = 0;
 	previous[source] = 0;
@@ -887,7 +872,7 @@ void Graph::primsMST() {
 }
 
 // Testing code.
-int main16() {
+int main17() {
 	Graph graph = Graph(9);
 	graph.addUndirectedEdge(0, 1, 4);
 	graph.addUndirectedEdge(0, 7, 8);
@@ -903,102 +888,107 @@ int main16() {
 	graph.addUndirectedEdge(6, 7, 1);
 	graph.addUndirectedEdge(6, 8, 6);
 	graph.addUndirectedEdge(7, 8, 7);
-	graph.print();
 
 	std::cout << std::endl;
 	graph.dijkstra(0);
 
 	std::cout << std::endl;
 	graph.primsMST();
-	
-	std::cout << std::endl;	
+
+	std::cout << std::endl;
 	graph.kruskalMST();
 	return 0;
 }
 
 /*
- Node id 0  prev -1 distance : 0
- Node id 1  prev 0 distance : 4
- Node id 2  prev 1 distance : 12
- Node id 3  prev 2 distance : 19
- Node id 4  prev 5 distance : 21
- Node id 5  prev 6 distance : 11
- Node id 6  prev 7 distance : 9
- Node id 7  prev 0 distance : 8
- Node id 8  prev 2 distance : 14
+Shortest Paths : (0->1 @ 4) (0->1->2 @ 12) (0->1->2->3 @ 19) (0->7->6->5->4 @ 21) (0->7->6->5 @ 11) (0->7->6 @ 9) (0->7 @ 8) (0->1->2->8 @ 14) 
 
- Edges are (1, 0, 4) (1, 2, 8) (2, 3, 7) (3, 4, 9) (2, 5, 4) (5, 6, 2) (6, 7, 1) (2, 8, 2)
- Total MST cost: 37
- Edges are (6, 7, 1) (5, 6, 2) (8, 2, 2) (2, 5, 4) (1, 0, 4) (3, 2, 7) (0, 7, 8) (4, 3, 9)
- Total MST cost: 37
+Edges are (0, 1, 4) (5, 2, 4) (2, 3, 7) (3, 4, 9) (6, 5, 2) (7, 6, 1) (0, 7, 8) (2, 8, 2)
+Total MST cost: 37
 
- */
+Edges are (6, 7, 1) (5, 6, 2) (8, 2, 2) (2, 5, 4) (1, 0, 4) (3, 2, 7) (0, 7, 8) (4, 3, 9)
+Total MST cost: 37
+*/
 
-void Graph::shortestPath(int source)// unweighted graph
-{
-    std::vector<int> previous(count, -1) ;
-    std::vector<int> distance(count, -1) ;; // infinite
-    std::queue<int> que;
-    que.push(source);
-    distance[source] = 0;
-    while (que.empty() == false)
-    {
-        int curr = que.front();
-        que.pop();
-        auto& adl = Adj[curr];
-        for (auto adn : adl)
-        {
-            if (distance[adn.dest] == -1)
-            {
-                distance[adn.dest] = distance[curr] + 1;
-                previous[adn.dest] = curr;
-                que.push(adn.dest);
-            }
-        }
+void printPathUtil(std::vector<int> &previous, int source, int dest) {
+    if (dest == source)
+    	std::cout << source;
+    else {
+        printPathUtil(previous, source, previous[dest]);
+        std::cout << "->" << dest;
     }
-    for (int i = 0; i < count; i++)
-        std::cout << previous[i] << " to " << i << " weight " << distance[i]<<std::endl;
 }
 
-int main17()
-{
-    Graph gph(9);
-    gph.addUndirectedEdge(0, 1, 1);
-    gph.addUndirectedEdge(0, 7, 1);
-    gph.addUndirectedEdge(1, 2, 1);
-    gph.addUndirectedEdge(1, 7, 1);
-    gph.addUndirectedEdge(2, 3, 1);
-    gph.addUndirectedEdge(2, 8, 1);
-    gph.addUndirectedEdge(2, 5, 1);
-    gph.addUndirectedEdge(3, 4, 1);
-    gph.addUndirectedEdge(3, 5, 1);
-    gph.addUndirectedEdge(4, 5, 1);
-    gph.addUndirectedEdge(5, 6, 1);
-    gph.addUndirectedEdge(6, 7, 1);
-    gph.addUndirectedEdge(6, 8, 1);
-    gph.addUndirectedEdge(7, 8, 1);
-    gph.shortestPath(0);
-    return 0;
+void printPath(std::vector<int> &previous, std::vector<int> &dist, int count, int source) {
+    std::cout << "Shortest Paths : ";
+    for (int i = 0; i < count; i++) {
+        if (dist[i] == std::numeric_limits<int>::max())
+            std::cout << source << "->" << i << " @ Unreachable" << std::endl;
+        else if(i != previous[i]) {
+            std::cout << "(";
+            printPathUtil(previous, source, i);
+            std::cout << " @ " << dist[i] << ") ";
+        }
+    }
+    std::cout << std::endl;
+}
+
+void Graph::shortestPath(int source) {	// unweighted graph
+	std::vector<int> previous(count, -1);
+	std::vector<int> distance(count, std::numeric_limits<int>::max());
+
+	std::queue<int> que;
+	que.push(source);
+	distance[source] = 0;
+	previous[source] = source;
+
+	while (que.empty() == false) {
+		int curr = que.front();
+		que.pop();
+		auto &adl = Adj[curr];
+		for (auto adn : adl) {
+			if (distance[adn.dest] == std::numeric_limits<int>::max()) {
+				distance[adn.dest] = distance[curr] + 1;
+				previous[adn.dest] = curr;
+				que.push(adn.dest);
+			}
+		}
+	}
+	printPath(previous, distance, count, source);
+}
+
+int main18() {
+	Graph gph(9);
+	gph.addUndirectedEdge(0, 1);
+	gph.addUndirectedEdge(0, 7);
+	gph.addUndirectedEdge(1, 2);
+	gph.addUndirectedEdge(1, 7);
+	gph.addUndirectedEdge(2, 3);
+	gph.addUndirectedEdge(2, 8);
+	gph.addUndirectedEdge(2, 5);
+	gph.addUndirectedEdge(3, 4);
+	gph.addUndirectedEdge(3, 5);
+	gph.addUndirectedEdge(4, 5);
+	gph.addUndirectedEdge(5, 6);
+	gph.addUndirectedEdge(6, 7);
+	gph.addUndirectedEdge(6, 8);
+	gph.addUndirectedEdge(7, 8);
+	gph.shortestPath(0);
+	return 0;
 }
 
 /*
- -1 to 0 weight 0
- 0 to 1 weight 1
- 1 to 2 weight 2
- 2 to 3 weight 3
- 3 to 4 weight 4
- 2 to 5 weight 3
- 7 to 6 weight 2
- 0 to 7 weight 1
- 7 to 8 weight 2
+Shortest Paths: (0->1 @ 1) (0->1->2 @ 2) (0->1->2->3 @ 3) 
+(0->1->2->3->4 @ 4) (0->1->2->5 @ 3) (0->7->6 @ 2) (0->7 @ 1) (0->7->8 @ 2) 
  */
 
 void Graph::dijkstra(int source) {
 	std::vector<int> previous(count, -1);
 	std::vector<int> dist(count, std::numeric_limits<int>::max()); // infinite
 	std::vector<bool> visited(count, false);
+
 	dist[source] = 0;
-	previous[source] = -1;
+	previous[source] = source;
 	std::priority_queue<Edge*, std::vector<Edge*>, EdgeComparator> queue;
 	Edge *node = new Edge(source, source, 0);
 	queue.push(node);
@@ -1006,37 +996,31 @@ void Graph::dijkstra(int source) {
 	while (queue.empty() != true) {
 		node = queue.top();
 		queue.pop();
+		int src = node->dest;
+		visited[src] = true;
 
-		visited[source] = true;
-		source = node->dest;
-		auto &adl = Adj[source];
+		auto &adl = Adj[src];
 		for (auto adn : adl) {
 			int dest = adn.dest;
-			int alt = adn.cost + dist[source];
+			int alt = adn.cost + dist[src];
+			
 			if (dist[dest] > alt && visited[dest] == false) {
 				dist[dest] = alt;
-				previous[dest] = source;
-				node = new Edge(source, dest, alt);
+				previous[dest] = src;
+				node = new Edge(src, dest, alt);
 				queue.push(node);
 			}
 		}
 	}
-	// printing result.
 
-	for (int i = 0; i < count; i++) {
-		if (dist[i] == std::numeric_limits<int>::max())
-			std::cout << "Node id " << i << "  prev " << previous[i]
-					<< " distance : Unreachable" << std::endl;
-		else
-			std::cout << "Node id " << i << "  prev " << previous[i]
-					<< " distance : " << dist[i] << std::endl;
-	}
+	printPath(previous, dist, count, source);
 }
 
 void Graph::bellmanFordshortestPath(int source) {
 	std::vector<int> previous(count, -1);
 	std::vector<int> distance(count, std::numeric_limits<int>::max());
 	distance[source] = 0;
+	previous[source] = source;
 	// Outer loop will run (V-1) number of times.
 	// Inner for loop and while loop runs combined will
 	// run for Edges number of times.
@@ -1055,13 +1039,12 @@ void Graph::bellmanFordshortestPath(int source) {
 			}
 		}
 	}
-	for (int i = 0; i < count; i++)
-		std::cout << previous[i] << " to " << i << " weight " << distance[i]
-				<< std::endl;
+
+	printPath(previous, distance, count, source);
 }
 
 // Testing code.
-int main18() {
+int main19() {
 	Graph gph(5);
 	gph.addDirectedEdge(0, 1, 3);
 	gph.addDirectedEdge(0, 4, 2);
@@ -1075,11 +1058,7 @@ int main18() {
 }
 
 /*
--1 to 0 weight 0
-4 to 1 weight 0
-1 to 2 weight 1
-2 to 3 weight 2
-0 to 4 weight 2
+Shortest Paths : (0->4->1 @ 0) (0->4->1->2 @ 1) (0->4->1->2->3 @ 2) (0->4 @ 2) 
 */
 
 /*
@@ -1130,7 +1109,7 @@ int Graph::isEulerian() {
 }
 
 // Testing code.
-int main19() {
+int main20() {
 	Graph gph(5);
 	gph.addDirectedEdge(1, 0, 1);
 	gph.addDirectedEdge(0, 2, 1);
@@ -1158,8 +1137,7 @@ bool Graph::isStronglyConnected2() {
 		if (adl.size() > 0)
 			break;
 	}
-	// dfs traversal of graph from a vertex
-	//with non - zero degree
+	//Dfs traversal of graph from a vertex with non-zero degree
 	dfsUtil(index, visited);
 	for (int i = 0; i < count; i++) {
 		auto &adl = Adj[index];
@@ -1207,7 +1185,7 @@ bool Graph::isEulerianCycle() {
 }
 
 // Testing code.
-int main20() {
+int main21() {
 	Graph gph(5);
 	gph.addDirectedEdge(0, 1, 1);
 	gph.addDirectedEdge(1, 2, 1);
@@ -1266,9 +1244,8 @@ void Graph::kruskalMST() {
 	}
 	std::sort(edge.begin(), edge.begin() + (E - 1), compare);
 	int sum = 0;
-	std::cout << "Edges are " ;
-    for (int i = 0; i < E; i++)
-	{
+	std::cout << "Edges are ";
+	for (int i = 0; i < E; i++) {
 		int x = find(sets, edge[i]->src);
 		int y = find(sets, edge[i]->dest);
 		if (x != y) {
@@ -1279,6 +1256,30 @@ void Graph::kruskalMST() {
 		}
 	}
 	std::cout << "\nTotal MST cost: " << sum << std::endl;
+}
+
+void Graph::printPath2(std::vector<std::vector<int>> &path, int u, int v) {
+	if (path[u][v] == u) {
+		std::cout << u << "->" << v ;
+		return;
+	}
+	printPath2(path, u, path[u][v]);
+	std::cout << "->" << v ;
+}
+
+void Graph::printSolution(std::vector<std::vector<int>> &cost,
+		std::vector<std::vector<int>> &path, int V) {
+	std::cout << "Shortest Paths : ";
+	for (int u = 0; u < V; u++) {
+		for (int v = 0; v < V; v++) {
+			if (u != v && path[u][v] != -1) {
+				std::cout << "(";
+				printPath2(path, u, v);
+				std::cout << " @ " << cost[u][v]<< ") ";
+			}
+		}
+	}
+	std::cout << std::endl;
 }
 
 void Graph::floydWarshall() {
@@ -1304,12 +1305,9 @@ void Graph::floydWarshall() {
 		}
 	}
 
-	// Pick intermediate vertices.
-	for (int k = 0; k < V; k++) {
-		// Pick source vertices one by one.
-		for (int i = 0; i < V; i++) {
-			// Pick destination vertices.
-			for (int j = 0; j < V; j++) {
+	for (int k = 0; k < V; k++) { // Pick intermediate vertices. 
+		for (int i = 0; i < V; i++) { // Pick source vertices one by one.
+			for (int j = 0; j < V; j++) { // Pick destination vertices.
 				// If we have a shorter path from i to j via k.
 				// then update dist[i][j] and  and path[i][j]
 				if (dist[i][k] + dist[k][j] < dist[i][j]) {
@@ -1328,30 +1326,7 @@ void Graph::floydWarshall() {
 	printSolution(dist, path, V);
 }
 
-void Graph::printSolution(std::vector<std::vector<int>> &cost,
-		std::vector<std::vector<int>> &path, int V) {
-	for (int u = 0; u < V; u++) {
-		for (int v = 0; v < V; v++) {
-			if (u != v && path[u][v] != -1) {
-				std::cout << "Shortest Path from " << u << " to " << v;
-				std::cout << " Cost:" << cost[u][v] << " Path: ";
-				printPath(path, u, v);
-				std::cout << std::endl;
-			}
-		}
-	}
-}
-
-void Graph::printPath(std::vector<std::vector<int>> &path, int u, int v) {
-	if (path[u][v] == u) {
-		std::cout << u << " " << v << " ";
-		return;
-	}
-	printPath(path, u, path[u][v]);
-	std::cout << v << " ";
-}
-
-void main21() {
+int main22() {
 	Graph gph(5);
 	gph.addDirectedEdge(0, 0, 0);
 	gph.addDirectedEdge(1, 1, 0);
@@ -1363,32 +1338,35 @@ void main21() {
 	gph.addDirectedEdge(1, 2, 3);
 	gph.addDirectedEdge(2, 3, 1);
 	gph.floydWarshall();
+	return 0;
 }
 
-int main()
-{
-    /*
-    main1();
-    main2();
-    main3();
-    main4();
-    main5();
-    main6();
-    main7();
-    main8();
-    main9();
-    main10();
-    main11(); 
-    main12();
-    main13();
-    main14();
-    main15();
-    */
-    main16();
-    /*main17();
-    main18();
-    main19();
-    main20();
-    main21();*/
-    return 0;
+/*
+Shortest Paths : (0->1 @ 5) (0->1->2 @ 8) (0->1->2->3 @ 9) (1->2 @ 3) (1->2->3 @ 4) (2->3 @ 1) 
+*/
+
+int main() {
+	main1();
+	main2();
+	main3();
+	main4();
+	main5();
+	main6();
+	main7();
+	main8();
+	main9();
+	main10();
+	main11();
+	main12();
+	main13();
+	main14();
+	main15();
+	main16();
+	main17();
+	main18();
+	main19();
+	main20();
+	main21();
+	main22();
+	return 0;
 }

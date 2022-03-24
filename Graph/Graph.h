@@ -94,5 +94,5 @@ private:
 	void union_Keyword(std::vector<Sets*> &sets, int x, int y); // consider x and y are roots of sets.
 	void printSolution(std::vector<std::vector<int>> &cost,
 			std::vector<std::vector<int>> &path, int V);
-	void printPath(std::vector<std::vector<int>> &path, int u, int v);
+	void printPath2(std::vector<std::vector<int>> &path, int u, int v);
 };

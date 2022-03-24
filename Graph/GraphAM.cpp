@@ -24,10 +24,10 @@ void GraphAM::addUndirectedEdge(int src, int dst) {
 
 void GraphAM::print() {
 	for (int i = 0; i < count; i++) {
-		std::cout << "Node index [ " << i << " ] is connected with : ";
+		std::cout << "Vertex " << i << " is connected to : ";
 		for (int j = 0; j < count; j++) {
 			if (adj[i][j] != 0)
-				std::cout << j << " ";
+				std::cout << j << "(cost: " << adj[i][j] << ") ";
 		}
 		std::cout << std::endl;
 	}
@@ -36,19 +36,19 @@ void GraphAM::print() {
 // Testing code.
 int main1() {
 	GraphAM graph = GraphAM(4);
-	graph.addUndirectedEdge(0, 1, 1);
-	graph.addUndirectedEdge(0, 2, 1);
-	graph.addUndirectedEdge(1, 2, 1);
-	graph.addUndirectedEdge(2, 3, 1);
+	graph.addUndirectedEdge(0, 1);
+	graph.addUndirectedEdge(0, 2);
+	graph.addUndirectedEdge(1, 2);
+	graph.addUndirectedEdge(2, 3);
 	graph.print();
 	return 0;
 }
 
 /*
- Node index [ 0 ] is connected with : 1 2
- Node index [ 1 ] is connected with : 0 2
- Node index [ 2 ] is connected with : 0 1 3
- Node index [ 3 ] is connected with : 2
+Vertex 0 is connected to : 1(cost: 1) 2(cost: 1) 
+Vertex 1 is connected to : 0(cost: 1) 2(cost: 1) 
+Vertex 2 is connected to : 0(cost: 1) 1(cost: 1) 3(cost: 1) 
+Vertex 3 is connected to : 2(cost: 1) 
  */
 
 bool GraphAM::EdgeComparator::operator()(Edge *x, Edge *y) {
@@ -58,14 +58,37 @@ bool GraphAM::EdgeComparator::operator()(Edge *x, Edge *y) {
 	return true;
 }
 
+void printPathUtil(std::vector<int> &previous, int source, int dest) {
+    if (dest == source)
+    	std::cout << source;
+    else {
+        printPathUtil(previous, source, previous[dest]);
+        std::cout << "->" << dest;
+    }
+}
+
+void printPath(std::vector<int> &previous, std::vector<int> &dist, int count, int source) {
+    std::cout << "Shortest Paths : ";
+    for (int i = 0; i < count; i++) {
+        if (dist[i] == std::numeric_limits<int>::max())
+            std::cout << source << "->" << i << " @ Unreachable" << std::endl;
+        else if(i != previous[i]) {
+            std::cout << "(";
+            printPathUtil(previous, source, i);
+            std::cout << " @ " << dist[i] << ") ";
+        }
+    }
+    std::cout << std::endl;
+}
+
 void GraphAM::dijkstra(int source) {
 	std::vector<int> previous(count, -1);
 	std::vector<int> dist(count, std::numeric_limits<int>::max());
-	; // infinite
 	std::vector<bool> visited(count, false);
 
 	dist[source] = 0;
-	previous[source] = -1;
+	previous[source] = source;
+
 	std::priority_queue<Edge*, std::vector<Edge*>, EdgeComparator> queue;
 	Edge *node = new Edge(source, 0);
 	queue.push(node);
@@ -73,15 +96,15 @@ void GraphAM::dijkstra(int source) {
 	while (queue.empty() != true) {
 		node = queue.top();
 		queue.pop();
-		source = node->dest;
-		visited[source] = true;
+		int src = node->dest;
+		visited[src] = true;
 		for (int dest = 0; dest < count; dest++) {
-			int cost = adj[source][dest];
+			int cost = adj[src][dest];
 			if (cost != 0) {
-				int alt = cost + dist[source];
+				int alt = cost + dist[src];
 				if (dist[dest] > alt && visited[dest] == false) {
 					dist[dest] = alt;
-					previous[dest] = source;
+					previous[dest] = src;
 					node = new Edge(dest, alt);
 					queue.push(node);
 				}
@@ -89,20 +112,12 @@ void GraphAM::dijkstra(int source) {
 		}
 	}
 
-	for (int i = 0; i < count; i++) {
-		if (dist[i] == std::numeric_limits<int>::max())
-			std::cout << "Node id " << i << "  prev " << previous[i]
-					<< " distance : Unreachable" << std::endl;
-		else
-			std::cout << "Node id " << i << "  prev " << previous[i]
-					<< " distance : " << dist[i] << std::endl;
-	}
+	printPath(previous, dist, count, source);
 }
 
 void GraphAM::primsMST() {
 	std::vector<int> previous(count, -1);
 	std::vector<int> dist(count, std::numeric_limits<int>::max());
-	; // infinite
 	std::vector<bool> visited(count, false);
 
 	int source = 0;
@@ -170,18 +185,11 @@ int main2() {
 }
 
 /*
- Node id 0  prev -1 distance : 0
- Node id 1  prev 0 distance : 4
- Node id 2  prev 1 distance : 12
- Node id 3  prev 2 distance : 19
- Node id 4  prev 5 distance : 21
- Node id 5  prev 6 distance : 11
- Node id 6  prev 7 distance : 9
- Node id 7  prev 0 distance : 8
- Node id 8  prev 2 distance : 14
+Shortest Paths : (0->1 @ 4) (0->1->2 @ 12) (0->1->2->3 @ 19) (0->7->6->5->4 @ 21) (0->7->6->5 @ 11) (0->7->6 @ 9) (0->7 @ 8) (0->1->2->8 @ 14) 
 
- Edges are (0, 1, 4) (5, 2, 4) (2, 3, 7) (3, 4, 9) (6, 5, 2) (7, 6, 1) (0, 7, 8) (2, 8, 2)
- Total MST cost: 37
+
+Edges are (0, 1, 4) (5, 2, 4) (2, 3, 7) (3, 4, 9) (6, 5, 2) (7, 6, 1) (0, 7, 8) (2, 8, 2) 
+Total MST cost: 37
  */
 
 bool GraphAM::hamiltonianPathUtil(std::vector<int> &path, int pSize,
@@ -325,8 +333,10 @@ int main4() {
  */
 
 // Testing code.
-// Testing code.
 int main() {
+	main1();
 	main2();
+	main3();
+	main4();
 	return 0;
 }
