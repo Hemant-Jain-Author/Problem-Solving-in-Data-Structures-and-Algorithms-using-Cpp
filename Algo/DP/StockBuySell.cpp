@@ -7,11 +7,9 @@ int maxProfit(std::vector<int> &arr) {
 	int sellProfit = 0; // Sell stock profit
 	int n = arr.size();
 	for (int i = 1; i < n; i++) {
-		int newBuyProfit =
-				(sellProfit - arr[i] > buyProfit) ?
+		int newBuyProfit = (sellProfit - arr[i] > buyProfit) ? 
 						sellProfit - arr[i] : buyProfit;
-		int newSellProfit =
-				(buyProfit + arr[i] > sellProfit) ?
+		int newSellProfit = (buyProfit + arr[i] > sellProfit) ?
 						buyProfit + arr[i] : sellProfit;
 		buyProfit = newBuyProfit;
 		sellProfit = newSellProfit;
@@ -24,11 +22,9 @@ int maxProfitTC(std::vector<int> &arr, int t) {
 	int sellProfit = 0;
 	int n = arr.size();
 	for (int i = 1; i < n; i++) {
-		int newBuyProfit =
-				((sellProfit - arr[i]) > buyProfit) ?
+		int newBuyProfit = ((sellProfit - arr[i]) > buyProfit) ?
 						(sellProfit - arr[i]) : buyProfit;
-		int newSellProfit =
-				((buyProfit + arr[i] - t) > sellProfit) ?
+		int newSellProfit = ((buyProfit + arr[i] - t) > sellProfit) ?
 						(buyProfit + arr[i] - t) : sellProfit;
 		buyProfit = newBuyProfit;
 		sellProfit = newSellProfit;
@@ -44,14 +40,13 @@ int maxProfit2(std::vector<int> &arr) {
 	dp[0][1] = 0; // Sell stock profit
 
 	for (int i = 1; i < n; i++) {
-		dp[i][0] =
-				(dp[i - 1][1] - arr[i] > dp[i - 1][0]) ?
-						dp[i - 1][1] - arr[i] : dp[i - 1][0];
+		dp[i][0] = (dp[i-1][1] - arr[i] > dp[i-1][0]) ?
+						dp[i-1][1] - arr[i] : dp[i-1][0];
 		dp[i][1] =
-				(dp[i - 1][0] + arr[i] > dp[i - 1][1]) ?
-						dp[i - 1][0] + arr[i] : dp[i - 1][1];
+				(dp[i-1][0] + arr[i] > dp[i-1][1]) ?
+						dp[i-1][0] + arr[i] : dp[i-1][1];
 	}
-	return dp[n - 1][1];
+	return dp[n-1][1];
 }
 
 int maxProfitTC2(std::vector<int> &arr, int t) {
@@ -62,14 +57,12 @@ int maxProfitTC2(std::vector<int> &arr, int t) {
 	dp[0][1] = 0;
 
 	for (int i = 1; i < n; i++) {
-		dp[i][0] =
-				((dp[i - 1][1] - arr[i]) > dp[i - 1][0]) ?
-						(dp[i - 1][1] - arr[i]) : dp[i - 1][0];
-		dp[i][1] =
-				((dp[i - 1][0] + arr[i] - t) > dp[i - 1][1]) ?
-						(dp[i - 1][0] + arr[i] - t) : dp[i - 1][1];
+		dp[i][0] = ((dp[i-1][1] - arr[i]) > dp[i-1][0]) ?
+						(dp[i-1][1] - arr[i]) : dp[i-1][0];
+		dp[i][1] = ((dp[i-1][0] + arr[i] - t) > dp[i-1][1]) ?
+						(dp[i-1][0] + arr[i] - t) : dp[i-1][1];
 	}
-	return dp[n - 1][1];
+	return dp[n-1][1];
 }
 
 // Testing code.

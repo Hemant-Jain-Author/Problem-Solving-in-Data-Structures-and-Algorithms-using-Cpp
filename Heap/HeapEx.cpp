@@ -42,7 +42,7 @@ int KthSmallest2(int arr[], int size, int k) {
 	}
 
 	int value = 0;
-	for (int i=0; i < size && i < k; i++) {
+	for (int i = 0; i < size && i < k; i++) {
 		value = pq.top();
 		pq.pop();
 	}
@@ -52,44 +52,16 @@ int KthSmallest2(int arr[], int size, int k) {
 int KthSmallest3(int arr[], int size, int k) {
 	std::priority_queue<int, std::vector<int>, std::less<int>> pq;
 	for (int i = 0; i < size; i++) {
-		if(i < k) {
-            pq.push(arr[i]);
-        } else {
-            if (pq.top() > arr[i]) {
-                pq.push(arr[i]);
+		if (i < k) {
+			pq.push(arr[i]);
+		} else {
+			if (pq.top() > arr[i]) {
+				pq.push(arr[i]);
 				pq.pop();
-            }
-        }
+			}
+		}
 	}
 	return pq.top();
-}
-
-bool isMinHeap(int arr[], int size) {
-	int lchild, rchild;
-	// last element index size - 1
-	for (int parent = 0; parent < (size / 2 + 1); parent++) {
-		lchild = parent * 2 + 1;
-		rchild = parent * 2 + 2;
-		// heap property check.
-		if (((lchild < size) && (arr[parent] > arr[lchild]))
-				|| ((rchild < size) && (arr[parent] > arr[rchild])))
-			return false;
-	}
-	return true;
-}
-
-bool isMaxHeap(int arr[], int size) {
-	int lchild, rchild;
-	// last element index size - 1
-	for (int parent = 0; parent < (size / 2 + 1); parent++) {
-		lchild = parent * 2 + 1;
-		rchild = lchild + 1;
-		// heap property check.
-		if (((lchild < size) && (arr[parent] < arr[lchild]))
-				|| ((rchild < size) && (arr[parent] < arr[rchild])))
-			return false;
-	}
-	return true;
 }
 
 // Testing code.
@@ -100,22 +72,12 @@ int main2() {
 	std::cout << "Kth Smallest :: " << KthSmallest2(arr2, 8, 3) << std::endl;
 	int arr3[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
 	std::cout << "Kth Smallest :: " << KthSmallest3(arr3, 8, 3) << std::endl;
-
-	int arr4[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
-	std::cout << "isMaxHeap :: " << isMaxHeap(arr4, 8) << std::endl;
-	int arr5[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
-	std::cout << "isMinHeap :: " << isMinHeap(arr5, 8) << std::endl;
-	std::sort(arr5, arr5 + sizeof(arr5) / sizeof(int));
-	std::cout << "isMinHeap :: " << isMinHeap(arr5, 8) << std::endl;
 	return 0;
 }
 
 /*
  Kth Smallest :: 5
  Kth Smallest :: 5
- isMaxHeap :: 1
- isMinHeap :: 0
- isMinHeap :: 1
  */
 
 int KSmallestProduct(int arr[], int size, int k) {
@@ -123,6 +85,19 @@ int KSmallestProduct(int arr[], int size, int k) {
 	int product = 1;
 	for (int i = 0; i < k; i++)
 		product *= arr[i];
+	return product;
+}
+
+int KSmallestProduct2(int arr[], int size, int k) {
+	std::priority_queue<int, std::vector<int>, std::greater<int>> pq;
+	int product = 1;
+	for (int i = 0; i < size; i++)
+		pq.push(arr[i]);
+
+	for (int i = 0; i < size && i < k; i++) {
+		product *= pq.top();
+		pq.pop();
+	}
 	return product;
 }
 
@@ -167,60 +142,51 @@ int KSmallestProduct3(int arr[], int size, int k) {
 	return product;
 }
 
-int KSmallestProduct2(int arr[], int size, int k) {
-	std::priority_queue<int, std::vector<int>, std::greater<int>> pq;
-	int product = 1;
+int KSmallestProduct4(int arr[], int size, int k) {
+	std::priority_queue<int, std::vector<int>, std::less<int>> pq;
 	for (int i = 0; i < size; i++) {
-		pq.push(arr[i]);
+		if (i < k)
+			pq.push(arr[i]);
+		else {
+			if (pq.top() > arr[i]) {
+				pq.push(arr[i]);
+				pq.pop();
+				;
+			}
+		}
 	}
-	int i = 0;
-	while (i < size && i < k) {
+	int product = 1;
+	for (int i = 0; i < k; i++) {
 		product *= pq.top();
 		pq.pop();
-		i += 1;
+		;
 	}
 	return product;
-}
-
-int KSmallestProduct4(int arr[], int size, int k) {
-	std::priority_queue<int, std::vector<int>, std::less<int>> pq;    
-	for (int i = 0; i < size; i++) {
-        if(i < k)
-            pq.push(arr[i]);
-        else {
-            if (pq.top() > arr[i]) {
-                pq.push(arr[i]);
-                pq.pop();;
-            }
-        }
-    }    
-    int product = 1;
-    for (int i = 0; i < k; i++) {
-        product *= pq.top(); 
-		pq.pop();;
-    }
-    return product;
 }
 
 // Testing code.
 int main3() {
 	int arr[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
-	std::cout << "Kth Smallest product:: " << KSmallestProduct(arr, 8, 3) << std::endl;
+	std::cout << "Kth Smallest product:: " << KSmallestProduct(arr, 8, 3)
+			<< std::endl;
 	int arr2[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
-	std::cout << "Kth Smallest product:: " << KSmallestProduct2(arr2, 8, 3) << std::endl;
+	std::cout << "Kth Smallest product:: " << KSmallestProduct2(arr2, 8, 3)
+			<< std::endl;
 	int arr3[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
-	std::cout << "Kth Smallest product:: " << KSmallestProduct3(arr3, 8, 3) << std::endl;
+	std::cout << "Kth Smallest product:: " << KSmallestProduct3(arr3, 8, 3)
+			<< std::endl;
 	int arr4[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
-	std::cout << "Kth Smallest product:: " << KSmallestProduct4(arr3, 8, 3) << std::endl;
+	std::cout << "Kth Smallest product:: " << KSmallestProduct4(arr3, 8, 3)
+			<< std::endl;
 	return 0;
 }
 
 /*
-Kth Smallest product:: 10
-Kth Smallest product:: 10
-Kth Smallest product:: 10
-Kth Smallest product:: 10
-*/
+ Kth Smallest product:: 10
+ Kth Smallest product:: 10
+ Kth Smallest product:: 10
+ Kth Smallest product:: 10
+ */
 
 void PrintLargerHalf(int arr[], int size) {
 	std::sort(arr, arr + size);
@@ -252,16 +218,16 @@ void PrintLargerHalf3(int arr[], int size) {
 
 void PrintLargerHalf4(int arr[], int size, int k) {
 	std::priority_queue<int, std::vector<int>, std::less<int>> pq;
-    for (int i = 0; i < size; i++) {
-        if(i < k) {
-            pq.push(arr[i]);
-        } else {
-            if (pq.top() > arr[i]) {
-                pq.push(arr[i]);
+	for (int i = 0; i < size; i++) {
+		if (i < k) {
+			pq.push(arr[i]);
+		} else {
+			if (pq.top() > arr[i]) {
+				pq.push(arr[i]);
 				pq.pop();
-            }
-        }
-    }
+			}
+		}
+	}
 	for (int i = 0; i < size / 2; i++) {
 		std::cout << pq.top() << " ";
 		pq.pop();
@@ -283,10 +249,10 @@ int main4() {
 }
 
 /*
-6 7 7 8 
-8 7 7 6 
-6 7 7 8 
-6 7 7 8
+ 6 7 7 8
+ 8 7 7 6
+ 6 7 7 8
+ 6 7 7 8
  */
 
 void sortK(int arr[], int size, int k) {
@@ -296,7 +262,7 @@ void sortK(int arr[], int size, int k) {
 
 	int index = 0;
 	for (int i = k; i < size; i++) {
-		arr[index++] = pq.top(); 
+		arr[index++] = pq.top();
 		pq.pop();
 		pq.push(arr[i]);
 	}
@@ -413,8 +379,10 @@ int JoinRopes2(int ropes[], int size) {
 
 	int total = 0, value = 0;
 	while (pq.size() > 1) {
-		value = pq.top(); pq.pop();
-		value += pq.top(); pq.pop();
+		value = pq.top();
+		pq.pop();
+		value += pq.top();
+		pq.pop();
 		pq.push(value);
 		total += value;
 	}
@@ -445,38 +413,106 @@ int main6() {
  Total : 33
  Total : 33
  */
-/*
- int kthLargestStream(int k)
- {
- std::priority_queue<int, std::vector<int>, std::greater<int>> pq;;
- int size = 0;
- int data = 0;
- while (true)
- {
- std::cout << "Enter data: ";
- if (size < k - 1)
- pq.push(data);
- else
- {
- if (size == k - 1)
- pq.push(data);
- else if (pq.top() < data)
- {
- pq.push(data);
- pq.pop();
- }
- std::cout << "Kth larges element is :: " << pq.top() << std::endl;
- }
- size += 1;
- }
- }
 
- // Testing code.
-int main()
- {
- kthLargestStream(3);
- return 0;
- }
+int kthLargestStream(int k) {
+	std::priority_queue<int, std::vector<int>, std::greater<int>> pq;
+	int size = 0;
+	int data = 0;
+	while (true) {
+		std::cout << "Enter data: ";
+		if (size < k - 1)
+			pq.push(data);
+		else {
+			if (size == k - 1)
+				pq.push(data);
+			else if (pq.top() < data) {
+				pq.push(data);
+				pq.pop();
+			}
+			std::cout << "Kth larges element is :: " << pq.top() << std::endl;
+		}
+		size += 1;
+	}
+}
+
+// Testing code.
+int mainSS() {
+	kthLargestStream(3);
+	return 0;
+}
+
+bool isMinHeap(int arr[], int size) {
+	int lchild, rchild;
+	// last element index size - 1
+	for (int parent = 0; parent < (size / 2 + 1); parent++) {
+		lchild = parent * 2 + 1;
+		rchild = parent * 2 + 2;
+		// heap property check.
+		if (((lchild < size) && (arr[parent] > arr[lchild]))
+				|| ((rchild < size) && (arr[parent] > arr[rchild])))
+			return false;
+	}
+	return true;
+}
+
+bool isMinHeapArr(std::vector<int> &arr, int size) {
+	for (int i = 0; i <= (size - 2) / 2; i++) {
+		if (2 * i + 1 < size) {
+			if (arr[i] > arr[2 * i + 1]) {
+				return false;
+			}
+		}
+		if (2 * i + 2 < size) {
+			if (arr[i] > arr[2 * i + 2]) {
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
+bool isMaxHeapArr(std::vector<int> &arr, int size) {
+	for (int i = 0; i <= (size - 2) / 2; i++) {
+		if (2 * i + 1 < size) {
+			if (arr[i] < arr[2 * i + 1]) {
+				return false;
+			}
+		}
+		if (2 * i + 2 < size) {
+			if (arr[i] < arr[2 * i + 2]) {
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
+bool isMaxHeap(int arr[], int size) {
+	int lchild, rchild;
+	// last element index size - 1
+	for (int parent = 0; parent < (size / 2 + 1); parent++) {
+		lchild = parent * 2 + 1;
+		rchild = lchild + 1;
+		// heap property check.
+		if (((lchild < size) && (arr[parent] < arr[lchild]))
+				|| ((rchild < size) && (arr[parent] < arr[rchild])))
+			return false;
+	}
+	return true;
+}
+
+// Testing code.
+int main7() {
+	int arr4[] = { 8, 7, 6, 5, 7, 5, 2, 1 };
+	std::cout << "isMaxHeap :: " << isMaxHeap(arr4, 8) << std::endl;
+	int arr5[] = { 1, 2, 5, 7, 5, 6, 7, 8 };
+	std::cout << "isMinHeap :: " << isMinHeap(arr5, 8) << std::endl;
+	return 0;
+}
+
+/*
+ isMaxHeap :: 1
+ isMinHeap :: 1
  */
 
 // Testing code.
@@ -487,5 +523,6 @@ int main() {
 	main4();
 	main5();
 	main6();
+	main7();
 	return 0;
 }

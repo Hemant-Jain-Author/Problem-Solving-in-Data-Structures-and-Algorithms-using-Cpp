@@ -31,8 +31,7 @@ int lbs(std::vector<int> &arr) {
 
 // Testing code.
 int main() {
-	std::vector<int> arr = { 1, 6, 3, 11, 1, 9, 5, 12, 3, 14, 6, 17, 3, 19, 2,
-			19 };
+	std::vector<int> arr = {1, 6, 3, 11, 1, 9, 5, 12, 3, 14, 6, 17, 3, 19, 2, 19};
 	std::cout << "Length of lbs is " << lbs(arr) << std::endl;
 }
 

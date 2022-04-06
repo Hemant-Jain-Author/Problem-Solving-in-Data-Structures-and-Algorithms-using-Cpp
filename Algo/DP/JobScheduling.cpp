@@ -14,8 +14,7 @@ Job::Job(int s, int f, int v) {
 	value = v;
 }
 
-int comp(Job *j1, Job *j2) // for sorting.
-		{
+int comp(Job *j1, Job *j2) { // for sorting.
 	return j1->stop < j2->stop;
 }
 

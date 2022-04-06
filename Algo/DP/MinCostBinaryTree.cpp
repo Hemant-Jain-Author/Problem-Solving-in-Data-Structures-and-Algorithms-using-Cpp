@@ -14,7 +14,7 @@ int maxVal(std::vector<std::vector<int>> &max, int i, int j) {
 	return max[i][j];
 }
 
-int findSumTDUtil(std::vector<std::vector<int>> &dp,
+int minCostBstTDUtil(std::vector<std::vector<int>> &dp,
 		std::vector<std::vector<int>> &max, int i, int j,
 		std::vector<int> &arr) {
 	if (j <= i)
@@ -25,14 +25,14 @@ int findSumTDUtil(std::vector<std::vector<int>> &dp,
 
 	for (int k = i; k < j; k++) {
 		dp[i][j] = std::min(dp[i][j],
-				findSumTDUtil(dp, max, i, k, arr)
-						+ findSumTDUtil(dp, max, k + 1, j, arr)
+				minCostBstTDUtil(dp, max, i, k, arr)
+						+ minCostBstTDUtil(dp, max, k + 1, j, arr)
 						+ maxVal(max, i, k) * maxVal(max, k + 1, j));
 	}
 	return dp[i][j];
 }
 
-int findSumTD(std::vector<int> &arr) {
+int minCostBstTD(std::vector<int> &arr) {
 	int n = arr.size();
 	std::vector<std::vector<int>> dp = std::vector<std::vector<int>>(n,
 			std::vector<int>(n, std::numeric_limits<int>::max()));
@@ -43,10 +43,10 @@ int findSumTD(std::vector<int> &arr) {
 	for (int i = 0; i < n; i++)
 		max[i][i] = arr[i];
 
-	return findSumTDUtil(dp, max, 0, n - 1, arr);
+	return minCostBstTDUtil(dp, max, 0, n - 1, arr);
 }
 
-int findSumBU(std::vector<int> &arr) {
+int minCostBstBU(std::vector<int> &arr) {
 	int n = arr.size();
 	std::vector<std::vector<int>> dp = std::vector<std::vector<int>>(n,
 			std::vector<int>(n, 0));
@@ -73,8 +73,8 @@ int findSumBU(std::vector<int> &arr) {
 // Testing code.
 int main() {
 	std::vector<int> arr = { 6, 2, 4 };
-	std::cout << "Total cost: " << findSumTD(arr) << std::endl;
-	std::cout << "Total cost: " << findSumBU(arr) << std::endl;
+	std::cout << "Total cost: " << minCostBstTD(arr) << std::endl;
+	std::cout << "Total cost: " << minCostBstBU(arr) << std::endl;
 	return 0;
 }
 

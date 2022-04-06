@@ -20,19 +20,20 @@ private:
 		}
 	};
 
-	class EdgeComparator {
-	public:
-		bool operator()(Edge *x, Edge *y);
+	struct EdgeComparator {
+		bool operator()(Edge *x, Edge *y) {
+			return (x->cost > y->cost);
+		}
 	};
+
 
 public:
 	GraphAM(int cnt);
-	void addDirectedEdge(int src, int dst);
-	void addDirectedEdge(int src, int dst, int cost);
-	void addUndirectedEdge(int src, int dst);
-	void addUndirectedEdge(int src, int dst, int cost);
+	void addDirectedEdge(int src, int dst, int cost = 1);
+	void addUndirectedEdge(int src, int dst, int cost = 1);
 	void print();
 	//Other Methods.
+
 	void dijkstra(int source);
 	void primsMST();
 	bool hamiltonianPath();

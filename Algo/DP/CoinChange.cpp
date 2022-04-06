@@ -120,13 +120,16 @@ int main() {
 	std::cout << "Count is:" << minCoins2(d, n, value) << std::endl;
 	std::cout << "Count is:" << minCoinsBU(d, n, value) << std::endl;
 	std::cout << "Count is:" << minCoinsTD(d, n, value) << std::endl;
-	std::cout << "Count is:" << minCoinsBU2(d, n, value) << std::endl;
+	int count = minCoinsBU2(d, n, value);
+	std::cout << "Count is:" << count << std::endl;
 	return 0;
 }
 
 /*
- Count is:4
- Count is:2
- Count is:2
- Count is:2
+Count is:4
+Count is:2
+Count is:2
+Count is:2
+Coins are : 9 6 
+Count is: 2
  */

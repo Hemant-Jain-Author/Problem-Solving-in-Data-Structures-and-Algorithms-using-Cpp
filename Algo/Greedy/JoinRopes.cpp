@@ -5,9 +5,7 @@
 #include <algorithm>
 
 int joinRopes(std::vector<int> &ropes, int size) {
-	std::sort(ropes.begin(), ropes.end(), [&](int a, int b) {
-		return a > b;
-	});
+	std::sort(ropes.begin(), ropes.end(), [&](int a, int b) { return a > b; });
 	int total = 0, value = 0, index, length = size;
 
 	while (length >= 2) {

@@ -43,3 +43,7 @@ int main() {
 	maxActivities(s, f, s.size());
 	return 0;
 }
+
+/*
+Activities are : (1,2), (3,4), (5,6), (6,7), (8,9)
+*/

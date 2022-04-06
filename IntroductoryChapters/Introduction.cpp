@@ -146,19 +146,38 @@ Gcd is:: 1
 */
 
 int fibonacci(int n) {
-	if (n <= 1) {
+	if (n < 2) {
 		return n;
 	}
 	return fibonacci(n - 1) + fibonacci(n - 2);
 }
 
+int fibonacci2(int n) 
+{
+    if (n < 2)
+        return n;
+
+    int first = 0;
+    int second = 1;
+    int temp;
+
+    for (int i=2; i<=n; i++) {
+        temp = first + second;
+        first = second;
+        second = temp;
+    }
+    return temp;
+}
+
 // Testing code.
 int main6() {
 	std::cout << fibonacci(10) << std::endl;
+	std::cout << fibonacci2(10) << std::endl;
 	return 0;
 }
 
 /*
+55
 55
 */
 

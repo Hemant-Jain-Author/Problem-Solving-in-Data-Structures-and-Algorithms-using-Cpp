@@ -2,7 +2,7 @@
 #include <vector>
 #include <iostream>
 
-int uniqueWays(int m, int n) {
+int gridUniqueWays(int m, int n) {
 	std::vector<std::vector<int>> dp = std::vector<std::vector<int>>(m,
 			std::vector<int>(n, 0));
 	dp[0][0] = 1;
@@ -23,7 +23,7 @@ int uniqueWays(int m, int n) {
 	return dp[m - 1][n - 1];
 }
 
-int unique3Ways(int m, int n) {
+int gridUnique3Ways(int m, int n) {
 	std::vector<std::vector<int>> dp = std::vector<std::vector<int>>(m,
 			std::vector<int>(n, 0));
 	dp[0][0] = 1;
@@ -46,8 +46,8 @@ int unique3Ways(int m, int n) {
 
 // Testing code.
 int main() {
-	std::cout << uniqueWays(3, 3) << std::endl;
-	std::cout << unique3Ways(3, 3) << std::endl;
+	std::cout << gridUniqueWays(3, 3) << std::endl;
+	std::cout << gridUnique3Ways(3, 3) << std::endl;
 	return 0;
 }
 /*

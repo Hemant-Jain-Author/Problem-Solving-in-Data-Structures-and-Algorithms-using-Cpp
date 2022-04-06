@@ -10,10 +10,6 @@ Tree::Tree() {
 	root = nullptr;
 }
 
-Tree::~Tree() {
-	delete root;
-}
-
 void Tree::createCompleteBinaryTree(int arr[], int size) {
 	root = createCompleteBinaryTree(arr, 0, size);
 }

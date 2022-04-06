@@ -4,13 +4,14 @@
 #include <limits>
 
 int MatrixChainMulBruteForceUtil(std::vector<int> &p, int i, int j) {
-	if (i == j)
+	if (i == j) // self product cost 0
 		return 0;
 
 	int min = std::numeric_limits<int>::max();
 
-	// place parenthesis at different places between first and last matrix, recursively calculate
-	// count of multiplications for each parenthesis placement and return the minimum count
+    // place parenthesis at different places between first and last matrix,
+    // recursively calculate count of multiplications for each parenthesis
+    // placement and return the minimum count
 	for (int k = i; k < j; k++) {
 		int count = MatrixChainMulBruteForceUtil(p, i, k)
 				+ MatrixChainMulBruteForceUtil(p, k + 1, j)

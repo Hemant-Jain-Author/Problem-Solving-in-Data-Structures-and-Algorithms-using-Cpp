@@ -2,10 +2,6 @@
 #include <vector>
 #include <iostream>
 
-enum FLAGS {
-	EMPTY_NODE = 0, LAZY_DELETED = 1, FILLED_NODE = 2
-};
-
 class HashTable {
 private:
 	std::vector<int> Key;
@@ -24,3 +20,8 @@ public:
 	virtual bool remove(int key);
 	virtual void print();
 };
+
+enum FLAGS {
+	EMPTY_NODE = 0, LAZY_DELETED = 1, FILLED_NODE = 2
+};
+

@@ -89,9 +89,11 @@ bool graphColouring(std::vector<std::vector<bool>> &graph, int V, int m) {
 // Testing code.
 int main() {
 	std::vector<std::vector<bool>> graph = {
-			{ false, true, false, false, true }, { true, false, true, false,
-					true }, { false, true, false, true, true }, { false, false,
-					true, false, true }, { true, true, true, true, false } };
+			{ false, true, false, false, true }, 
+			{ true, false, true, false, true }, 
+			{ false, true, false, true, true }, 
+			{ false, false, true, false, true }, 
+			{ true, true, true, true, false } };
 	int V = 5; // Number of vertices
 	int m = 4; // Number of colours
 	if (!graphColouring2(graph, V, m)) {

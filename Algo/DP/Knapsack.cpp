@@ -2,7 +2,7 @@
 #include <vector>
 #include <iostream>
 
-int maxCost01Util(std::vector<int> &wt, std::vector<int> &cost, int n,
+int maxCost01KnapsackUtil(std::vector<int> &wt, std::vector<int> &cost, int n,
 		int capacity) {
 	// Base Case
 	if (n == 0 || capacity == 0)
@@ -14,18 +14,18 @@ int maxCost01Util(std::vector<int> &wt, std::vector<int> &cost, int n,
 	int first = 0;
 	if (wt[n - 1] <= capacity)
 		first = cost[n - 1]
-				+ maxCost01Util(wt, cost, n - 1, capacity - wt[n - 1]);
+				+ maxCost01KnapsackUtil(wt, cost, n - 1, capacity - wt[n - 1]);
 
-	int second = maxCost01Util(wt, cost, n - 1, capacity);
+	int second = maxCost01KnapsackUtil(wt, cost, n - 1, capacity);
 	return std::max(first, second);
 }
 
-int maxCost01(std::vector<int> &wt, std::vector<int> &cost, int capacity) {
+int maxCost01Knapsack(std::vector<int> &wt, std::vector<int> &cost, int capacity) {
 	int n = wt.size();
-	return maxCost01Util(wt, cost, n, capacity);
+	return maxCost01KnapsackUtil(wt, cost, n, capacity);
 }
 
-int maxCost01TDUtil(std::vector<std::vector<int>> &dp, std::vector<int> &wt,
+int maxCost01KnapsackTDUtil(std::vector<std::vector<int>> &dp, std::vector<int> &wt,
 		std::vector<int> &cost, int i, int w) {
 	if (w == 0 || i == 0)
 		return 0;
@@ -38,25 +38,26 @@ int maxCost01TDUtil(std::vector<std::vector<int>> &dp, std::vector<int> &wt,
 	// (2) ith item is not included
 	int first = 0;
 	if (wt[i - 1] <= w)
-		first = maxCost01TDUtil(dp, wt, cost, i - 1, w - wt[i - 1])
+		first = maxCost01KnapsackTDUtil(dp, wt, cost, i - 1, w - wt[i - 1])
 				+ cost[i - 1];
 
-	int second = maxCost01TDUtil(dp, wt, cost, i - 1, w);
+	int second = maxCost01KnapsackTDUtil(dp, wt, cost, i - 1, w);
 	return dp[w][i] = std::max(first, second);
 }
 
-int maxCost01TD(std::vector<int> &wt, std::vector<int> &cost, int capacity) {
+int maxCost01KnapsackTD(std::vector<int> &wt, std::vector<int> &cost, int capacity) {
 	int n = wt.size();
 	std::vector<std::vector<int>> dp = std::vector<std::vector<int>>(
 			capacity + 1, std::vector<int>(n + 1, 0));
-	return maxCost01TDUtil(dp, wt, cost, n, capacity);
+	return maxCost01KnapsackTDUtil(dp, wt, cost, n, capacity);
 }
 
-void printItems(int n, std::vector<std::vector<int>>& dp, std::vector<int> &wt, std::vector<int> &cost, int capacity) {
+void printItems(int n, std::vector<std::vector<int>>& dp, 
+			std::vector<int> &wt, std::vector<int> &cost, int capacity) {
     int totalProfit = dp[capacity][n];
     std::cout << "Selected items are: ";
-    for (int i = n-1; i > -1; i--) {
-        if (totalProfit != dp[capacity][i - 1]) {
+	for (int i = n-1; i > -1 && totalProfit > 0; i--) {
+		if (totalProfit != dp[capacity][i - 1]) {
             std::cout << "(wt:" << wt[i] << ", cost:" << cost[i] <<") ";
             capacity -= wt[i];
             totalProfit -= cost[i];
@@ -65,7 +66,7 @@ void printItems(int n, std::vector<std::vector<int>>& dp, std::vector<int> &wt, 
 	std::cout << std::endl;
 }
 
-int maxCost01BU(std::vector<int> &wt, std::vector<int> &cost, int capacity) {
+int maxCost01KnapsackBU(std::vector<int> &wt, std::vector<int> &cost, int capacity) {
 	int n = wt.size();
 	std::vector<std::vector<int>> dp = std::vector<std::vector<int>>(
 			capacity + 1, std::vector<int>(n + 1, 0));
@@ -116,18 +117,19 @@ int main() {
 	int capacity = 50;
 	double maxCost = KS01UnboundBU(wt, cost, capacity);
 	std::cout << "Maximum cost obtained = " << maxCost << std::endl;
-	maxCost = maxCost01(wt, cost, capacity);
+	maxCost = maxCost01Knapsack(wt, cost, capacity);
 	std::cout << "Maximum cost obtained = " << maxCost << std::endl;
-	maxCost = maxCost01BU(wt, cost, capacity);
+	maxCost = maxCost01KnapsackBU(wt, cost, capacity);
 	std::cout << "Maximum cost obtained = " << maxCost << std::endl;
-	maxCost = maxCost01TD(wt, cost, capacity);
+	maxCost = maxCost01KnapsackTD(wt, cost, capacity);
 	std::cout << "Maximum cost obtained = " << maxCost << std::endl;
 	return 0;
 }
 
 /*
- Maximum cost obtained = 300
- Maximum cost obtained = 210
- Maximum cost obtained = 210
- Maximum cost obtained = 210
+Maximum cost obtained = 300
+Maximum cost obtained = 210
+Selected items are: (wt:30, cost:120) (wt:20, cost:90) 
+Maximum cost obtained = 210
+Maximum cost obtained = 210
  */

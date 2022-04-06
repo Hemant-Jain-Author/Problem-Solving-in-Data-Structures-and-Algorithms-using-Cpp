@@ -8,6 +8,14 @@
 #include <functional>
 #include <algorithm>
 
+// Used in kruskal MST algorithm
+class Sets {
+public:
+	int parent = 0;
+	int rank = 0;
+	Sets(int p, int r);
+};
+
 class Graph {
 private:
 	struct Edge {
@@ -20,22 +28,17 @@ private:
 	int count;
 	std::vector<std::vector<Edge>> Adj;
 
-	// for priority queue.
+	// Used in priority queue.
 	struct EdgeComparator {
-		bool operator()(Edge *x, Edge *y);
+		bool operator()(Edge *x, Edge *y) {
+			return (x->cost > y->cost);
+		}
 	};
 
-	// For sorting.
+	// Used in sorting.
 	static bool compare(Edge *e1, Edge *e2) {
 		return (e1->cost < e2->cost);
 	}
-
-	class Sets {
-	public:
-		int parent = 0;
-		int rank = 0;
-		Sets(int p, int r);
-	};
 
 public:
 	Graph(int cnt);
@@ -44,6 +47,7 @@ public:
 	void addUndirectedEdge(int source, int dest, int cost = 1); // bi directional edge
 	void print();
 	// Other Methods of graph.
+
 	bool dfs(int source, int target);
 	bool bfs(int source, int target);
 	bool dfsStack(int source, int target);
@@ -96,3 +100,5 @@ private:
 			std::vector<std::vector<int>> &path, int V);
 	void printPath2(std::vector<std::vector<int>> &path, int u, int v);
 };
+
+

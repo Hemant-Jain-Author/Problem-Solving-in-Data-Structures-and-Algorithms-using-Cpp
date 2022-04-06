@@ -2,13 +2,13 @@
 #include <vector>
 #include <iostream>
 
-int diffWaysBU(int n) {
-	if (n <= 2)
+int stairUniqueWaysBU(int n) {
+	if (n < 2)
 		return n;
 
 	int first = 1, second = 2, temp = 0;
 
-	for (int i = 3; i <= n; i++) {
+	for (int i = 2; i < n; i++) {
 		temp = first + second;
 		first = second;
 		second = temp;
@@ -16,7 +16,7 @@ int diffWaysBU(int n) {
 	return temp;
 }
 
-int diffWaysBU2(int n) {
+int stairUniqueWaysBU2(int n) {
 	if (n < 2)
 		return n;
 
@@ -32,8 +32,8 @@ int diffWaysBU2(int n) {
 
 // Testing code.
 int main() {
-	std::cout << "Unique way to reach top:: " << diffWaysBU(4) << std::endl;
-	std::cout << "Unique way to reach top:: " << diffWaysBU2(4) << std::endl;
+	std::cout << "Unique way to reach top:: " << stairUniqueWaysBU(4) << std::endl;
+	std::cout << "Unique way to reach top:: " << stairUniqueWaysBU2(4) << std::endl;
 }
 
 /*

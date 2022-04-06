@@ -7,7 +7,7 @@ HashTable::HashTable(int tSize) {
 	Flag = std::vector<int>(tSize + 1, EMPTY_NODE);
 }
 
-int HashTable::computeHash(int key) {
+int HashTable::hash(int key) {
 	return key % tableSize;
 }
 
@@ -16,7 +16,7 @@ int HashTable::resolverFun(int index) {
 }
 
 bool HashTable::add(int key, int value) {
-	int hashValue = computeHash(key);
+	int hashValue = hash(key);
 	for (int i = 0; i < tableSize; i++) {
 		if (Flag[hashValue] == EMPTY_NODE || Flag[hashValue] == LAZY_DELETED) {
 			Key[hashValue] = key;
@@ -31,12 +31,11 @@ bool HashTable::add(int key, int value) {
 }
 
 bool HashTable::add(int value) {
-	int key = value;
-	return add(key, value);
+	return add(value, value);
 }
 
 bool HashTable::find(int key) {
-	int hashValue = computeHash(key);
+	int hashValue = hash(key);
 	for (int i = 0; i < tableSize; i++) {
 		if (Flag[hashValue] == EMPTY_NODE)
 			return false;
@@ -51,7 +50,7 @@ bool HashTable::find(int key) {
 }
 
 int HashTable::get(int key) {
-	int hashValue = computeHash(key);
+	int hashValue = hash(key);
 	for (int i = 0; i < tableSize; i++) {
 		if (Flag[hashValue] == EMPTY_NODE)
 			return -1;
@@ -66,7 +65,7 @@ int HashTable::get(int key) {
 }
 
 bool HashTable::remove(int key) {
-	int hashValue = computeHash(key);
+	int hashValue = hash(key);
 	for (int i = 0; i < tableSize; i++) {
 		if (Flag[hashValue] == EMPTY_NODE)
 			return false;

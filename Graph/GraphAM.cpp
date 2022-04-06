@@ -9,17 +9,9 @@ void GraphAM::addDirectedEdge(int src, int dst, int cost) {
 	adj[src][dst] = cost;
 }
 
-void GraphAM::addDirectedEdge(int src, int dst) {
-	adj[src][dst] = 1;
-}
-
 void GraphAM::addUndirectedEdge(int src, int dst, int cost) {
 	addDirectedEdge(src, dst, cost);
 	addDirectedEdge(dst, src, cost);
-}
-
-void GraphAM::addUndirectedEdge(int src, int dst) {
-	addUndirectedEdge(src, dst, 1);
 }
 
 void GraphAM::print() {
@@ -50,13 +42,6 @@ Vertex 1 is connected to : 0(cost: 1) 2(cost: 1)
 Vertex 2 is connected to : 0(cost: 1) 1(cost: 1) 3(cost: 1) 
 Vertex 3 is connected to : 2(cost: 1) 
  */
-
-bool GraphAM::EdgeComparator::operator()(Edge *x, Edge *y) {
-	if (x->cost <= y->cost) {
-		return false;
-	}
-	return true;
-}
 
 void printPathUtil(std::vector<int> &previous, int source, int dest) {
     if (dest == source)
@@ -122,7 +107,8 @@ void GraphAM::primsMST() {
 
 	int source = 0;
 	dist[source] = 0;
-	previous[source] = -1;
+	previous[source] = source;
+	
 	std::priority_queue<Edge*, std::vector<Edge*>, EdgeComparator> queue;
 	Edge *node = new Edge(source, 0);
 	queue.push(node);
@@ -148,13 +134,12 @@ void GraphAM::primsMST() {
 
 	// printing result.
 	int total = 0;
-	std::cout << "Edges are ";
+	std::cout << "Edges are : ";
 	for (int i = 0; i < count; i++) {
 		if (dist[i] == std::numeric_limits<int>::max())
-			std::cout << "(" << previous[i] << ", " << i << ", "
-					<< "infinity) ";
-		else if (previous[i] != -1)
-			std::cout << "(" << previous[i] << ", " << i << ", " << dist[i]
+			std::cout << "(" << i << " is unreachable) ";
+		else if (previous[i] != i)
+			std::cout << "(" << previous[i] << "->" << i << " @ " << dist[i]
 					<< ") ";
 		total += dist[i];
 	}

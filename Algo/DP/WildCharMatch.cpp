@@ -8,7 +8,7 @@ bool matchExpUtil(const std::string &exp, const std::string &str, int m,
 		return true;
 
 	if ((m == exp.size() && n != str.size())
-			|| (m != exp.size() && n == str.size()))
+		|| (m != exp.size() && n == str.size()))
 		return false;
 
 	if (exp[m] == '?' || exp[m] == str[n])

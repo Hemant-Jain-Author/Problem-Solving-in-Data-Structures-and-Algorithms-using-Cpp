@@ -1,7 +1,7 @@
 #include <vector>
 #include <iostream>
 
-int findWays(int n, int m, int V) {
+int diceThrowWaysBU(int n, int m, int V) {
 	std::vector<std::vector<int>> dp = std::vector<std::vector<int>>(n + 1,
 			std::vector<int>(V + 1, 0));
 
@@ -24,15 +24,10 @@ int findWays(int n, int m, int V) {
 // Testing code.
 int main() {
 	for (int i = 1; i <= 6; i++) {
-		std::cout << findWays(i, 6, 6) << std::endl;
+		std::cout << diceThrowWaysBU(i, 6, 6) << " ";
 	}
 }
 
 /*
- 1
- 5
- 10
- 10
- 5
- 1
+1 5 10 10 5 1 
  */

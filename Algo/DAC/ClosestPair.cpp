@@ -19,18 +19,15 @@ double closestPairBF(std::vector<std::vector<int>> &arr) {
 	for (int i = 0; i < n - 1; i++) {
 		for (int j = i + 1; j < n; j++) {
 			dmin = std::min(dmin,
-					std::sqrt(
-							(arr[i][0] - arr[j][0]) * (arr[i][0] - arr[j][0])
-									+ (arr[i][1] - arr[j][1])
-											* (arr[i][1] - arr[j][1])));
+					std::sqrt((arr[i][0] - arr[j][0]) * (arr[i][0] - arr[j][0])
+							+ (arr[i][1] - arr[j][1]) * (arr[i][1] - arr[j][1])));
 		}
 	}
 	return dmin;
 }
 
 double distance(Point *a, Point *b) {
-	return std::sqrt(
-			(a->x - b->x) * (a->x - b->x) + (a->y - b->y) * (a->y - b->y));
+	return std::sqrt((a->x - b->x) * (a->x - b->x) + (a->y - b->y) * (a->y - b->y));
 }
 
 bool xCompare(Point *s1, Point *s2) {

@@ -80,10 +80,7 @@ void permutation3(std::vector<int> &arr, int i, int length) {
 
 // Testing code.
 int main() {
-	std::vector<int> arr(4);
-	for (int i = 0; i < 4; i++) {
-		arr[i] = i + 1;
-	}
+	std::vector<int> arr = { 1, 2, 3, 4 };
 	permutation(arr, 0, 4);
 	std::cout << std::endl;
 	permutation2(arr, 0, 4);

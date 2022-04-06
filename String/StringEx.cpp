@@ -123,15 +123,13 @@ bool isUniqueChar(const std::string &str) {
 }
 
 void main5() {
-	std::cout << isUniqueChar("aple") << std::endl;
-	std::cout << isUniqueChar("apple") << std::endl;
+	isUniqueChar("aple");
+	isUniqueChar("apple");
 }
 
 /*
  No duplicate detected!
- 1
  Duplicate detected!
- 0
  */
 
 char toUpper(const char s) {
@@ -278,11 +276,15 @@ int myStrcmp(const std::string &a, const std::string &b) {
 }
 
 void main10() {
-	std::cout << myStrcmp("abs", "abs") << std::endl;
+	std::cout <<  myStrcmp("applaa", "applha") << std::endl;
+	std::cout <<  myStrcmp("applqa", "applha") << std::endl;
+	std::cout <<  myStrcmp("applha", "applha") << std::endl;
 }
 
 /*
- 0
+-7
+9
+0
  */
 
 void reverseString(std::string &a) {
@@ -339,31 +341,31 @@ void main11() {
  world hello
  */
 
-void printAnagram(std::string &a, int max, int n) {
-	if (max == 1) {
-		for (auto ch : a)
-			std::cout << ch;
-		std::cout << std::endl;
-	}
-	char temp;
-	for (int i = -1; i < max - 1; i++) {
-		if (i != -1) {
-			temp = a[i];
-			a[i] = a[max - 1];
-			a[max - 1] = temp;
-		}
-		printAnagram(a, max - 1, n);
-		if (i != -1) {
-			temp = a[i];
-			a[i] = a[max - 1];
-			a[max - 1] = temp;
-		}
-	}
+
+void printAnagram(std::string &arr, int i, int length) {
+    if (length == i) {
+		std::cout << arr << std::endl;
+        return;
+    }
+    char temp;
+
+    for (int j = i; j < length; j++) {
+        temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+
+        printAnagram(arr, i + 1, length);
+
+        temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+    return;
 }
 
 void printAnagram(std::string &a) {
 	int n = a.size();
-	printAnagram(a, n, n);
+	printAnagram(a, 0, n);
 }
 
 void main12() {
@@ -372,12 +374,12 @@ void main12() {
 }
 
 /* 
- 123
- 213
- 321
- 231
- 132
- 312
+123
+132
+213
+231
+321
+312
  */
 
 void shuffle(std::string &ar) {

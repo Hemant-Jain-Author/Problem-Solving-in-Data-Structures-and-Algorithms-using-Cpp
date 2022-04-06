@@ -2,7 +2,7 @@
 #include <vector>
 #include <iostream>
 
-int bruteForceSearch(std::vector<char> &text, std::vector<char> &pattern) {
+int bruteForceSearch(const std::string &text, const std::string &pattern) {
 	int i = 0, j = 0;
 	const int n = text.size();
 	const int m = pattern.size();
@@ -19,13 +19,7 @@ int bruteForceSearch(std::vector<char> &text, std::vector<char> &pattern) {
 	return -1;
 }
 
-int bruteForceSearch(const std::string &text, const std::string &pattern) {
-	std::vector<char> txt(text.begin(), text.end());
-	std::vector<char> ptn(pattern.begin(), pattern.end());
-	return bruteForceSearch(txt, ptn);
-}
-
-int robinKarp(std::vector<char> &text, std::vector<char> &pattern) {
+int robinKarp(const std::string &text, const std::string &pattern) {
 	int n = text.size();
 	int m = pattern.size();
 	int i, j;
@@ -64,13 +58,7 @@ int robinKarp(std::vector<char> &text, std::vector<char> &pattern) {
 	return -1;
 }
 
-int robinKarp(const std::string &text, const std::string &pattern) {
-	std::vector<char> txt(text.begin(), text.end());
-	std::vector<char> ptn(pattern.begin(), pattern.end());
-	return robinKarp(txt, ptn);
-}
-
-void kmpPreprocess(std::vector<char> &pattern, std::vector<int> &ShiftArr) {
+void kmpPreprocess(const std::string &pattern, std::vector<int> &ShiftArr) {
 	const int m = pattern.size();
 	int i = 0, j = -1;
 	ShiftArr[i] = -1;
@@ -84,7 +72,7 @@ void kmpPreprocess(std::vector<char> &pattern, std::vector<int> &ShiftArr) {
 	}
 }
 
-int kmp(std::vector<char> &text, std::vector<char> &pattern) {
+int kmp(const std::string &text, const std::string &pattern) {
 	int i = 0, j = 0;
 	const int n = text.size();
 	const int m = pattern.size();
@@ -101,12 +89,6 @@ int kmp(std::vector<char> &text, std::vector<char> &pattern) {
 		}
 	}
 	return -1;
-}
-
-int kmp(const std::string &text, const std::string &pattern) {
-	std::vector<char> txt(text.begin(), text.end());
-	std::vector<char> ptn(pattern.begin(), pattern.end());
-	return kmp(txt, ptn);
 }
 
 // Testing code.
@@ -128,7 +110,7 @@ int main1() {
  Using KMP pattern found at index : 7
  */
 
-int kmpFindCount(std::vector<char> &text, std::vector<char> &pattern) {
+int kmpFindCount(const std::string &text, const std::string &pattern) {
 	int i = 0, j = 0, count = 0;
 	const int n = text.size();
 	const int m = pattern.size();
@@ -148,14 +130,8 @@ int kmpFindCount(std::vector<char> &text, std::vector<char> &pattern) {
 	return count;
 }
 
-int kmpFindCount(const std::string &text, const std::string &pattern) {
-	std::vector<char> txt(text.begin(), text.end());
-	std::vector<char> ptn(pattern.begin(), pattern.end());
-	return kmpFindCount(txt, ptn);
-}
-
 // Testing code.
-int main() {
+int main2() {
 	std::string str = "Only time will tell if we stand the test of time";
 	std::cout << "Frequency of 'time' is : " << kmpFindCount(str, "time")
 			<< std::endl;
@@ -165,3 +141,9 @@ int main() {
 /*
  Frequency of 'time' is : 2
  */
+
+int main(){
+	main1();
+	main2();
+	return 0;
+}

@@ -14,10 +14,8 @@ int fastestWayBU2(std::vector<std::vector<int>> &a,
 
 	// Fill the tables f1[] and f2[] using bottom up approach.
 	for (int i = 1; i < n; ++i) {
-		f1[i] = std::min(f1[i - 1] + a[0][i],
-				f2[i - 1] + t[1][i - 1] + a[0][i]);
-		f2[i] = std::min(f2[i - 1] + a[1][i],
-				f1[i - 1] + t[0][i - 1] + a[1][i]);
+		f1[i] = std::min(f1[i - 1] + a[0][i], f2[i - 1] + t[1][i - 1] + a[0][i]);
+		f2[i] = std::min(f2[i - 1] + a[1][i], f1[i - 1] + t[0][i - 1] + a[1][i]);
 	}
 
 	// Consider exit times and return minimum.

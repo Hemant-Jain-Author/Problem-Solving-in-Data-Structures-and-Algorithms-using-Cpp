@@ -25,8 +25,6 @@ int palindromicSubstring(const std::string &str) {
 			}
 		}
 	}
-	std::cout << "Max Length Palindromic Substrings : "
-			<< str.substr(start, max) << std::endl;
 	return max;
 }
 
@@ -39,6 +37,5 @@ int main() {
 }
 
 /*
- Max Length Palindromic Substrings : BCxxCB
  Max Palindromic Substrings len: 6
  */

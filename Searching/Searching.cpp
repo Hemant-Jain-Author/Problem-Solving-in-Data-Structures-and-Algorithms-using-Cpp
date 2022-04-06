@@ -1098,21 +1098,19 @@ void closestPair2(std::vector<int> &arr, int value) {
 	int diff, curr;
 	std::sort(arr.begin(), arr.end());
 	diff = 9999999;
-	{
-		while (start < stop) {
-			curr = (value - (arr[start] + arr[stop]));
-			if (std::abs(curr) < diff) {
-				diff = std::abs(curr);
-				first = arr[start];
-				second = arr[stop];
-			}
-			if (curr == 0) {
-				break;
-			} else if (curr > 0) {
-				start += 1;
-			} else {
-				stop -= 1;
-			}
+	while (start < stop) {
+		curr = (value - (arr[start] + arr[stop]));
+		if (std::abs(curr) < diff) {
+			diff = std::abs(curr);
+			first = arr[start];
+			second = arr[stop];
+		}
+		if (curr == 0) {
+			break;
+		} else if (curr > 0) {
+			start += 1;
+		} else {
+			stop -= 1;
 		}
 	}
 	std::cout << "closest pair is :: " << first << ", " << second << std::endl;

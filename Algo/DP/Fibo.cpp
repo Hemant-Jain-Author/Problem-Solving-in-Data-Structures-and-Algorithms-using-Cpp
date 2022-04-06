@@ -42,14 +42,14 @@ int fibonacciTD(int n) {
 
 // Testing code.
 int main() {
-	std::cout << fibonacci(6) << std::endl;
-	std::cout << fibonacciBU(6) << std::endl;
-	std::cout << fibonacciTD(6) << std::endl;
+	std::cout << fibonacci(10) << std::endl;
+	std::cout << fibonacciBU(10) << std::endl;
+	std::cout << fibonacciTD(10) << std::endl;
 	return 0;
 }
 
 /*
-8
-8
-8
+55
+55
+55
  */

@@ -18,7 +18,7 @@ public:
 
 public:
 	Tree();
-	~Tree();
+
 	// Other Tree methods.
 
 	void createCompleteBinaryTree(int arr[], int size);

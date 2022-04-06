@@ -128,7 +128,7 @@ int main2() {
 Path between 0 & 6 : 1
 Path between 0 & 6 : 1
 Path between 0 & 6 : 1
- */
+*/
 
 void Graph::dfsUtil2(int index, std::vector<bool> &visited,
 		std::stack<int> &stk) {
@@ -159,20 +159,25 @@ void Graph::topologicalSort() {
 
 // Testing code.
 int main3() {
-	Graph gph(6);
-	gph.addDirectedEdge(5, 2);
-	gph.addDirectedEdge(5, 0);
-	gph.addDirectedEdge(4, 0);
-	gph.addDirectedEdge(4, 1);
-	gph.addDirectedEdge(2, 3);
-	gph.addDirectedEdge(3, 1);
+	Graph gph(9);
+	gph.addDirectedEdge(0, 2);
+	gph.addDirectedEdge(1, 2);
+	gph.addDirectedEdge(1, 3);
+	gph.addDirectedEdge(1, 4);
+	gph.addDirectedEdge(3, 2);
+	gph.addDirectedEdge(3, 5);
+	gph.addDirectedEdge(4, 5);
+	gph.addDirectedEdge(4, 6);
+	gph.addDirectedEdge(5, 7);
+	gph.addDirectedEdge(6, 7);
+	gph.addDirectedEdge(7, 8);
 	gph.topologicalSort();
 	return 0;
 }
 
 /*
-Topological order of given graph is : 5 4 2 3 1 0
- */
+Topological order of given graph is : 1 4 6 3 5 7 8 0 2 
+*/
 
 bool Graph::pathExist(int source, int dest) {
 	std::vector<bool> visited(count, false);
@@ -818,12 +823,6 @@ bool Graph::isConnected() {
 	return true;
 }
 
-bool Graph::EdgeComparator::operator()(Edge *x, Edge *y) {
-	if (x->cost <= y->cost)
-		return false;
-	return true;
-}
-
 void Graph::primsMST() {
 	std::vector<int> previous(count, -1);
 	std::vector<int> dist(count, std::numeric_limits<int>::max());
@@ -831,7 +830,7 @@ void Graph::primsMST() {
 
 	int source = 0;
 	dist[source] = 0;
-	previous[source] = 0;
+	previous[source] = source;
 
 	std::priority_queue<Edge*, std::vector<Edge*>, EdgeComparator> queue;
 	Edge *node = new Edge(source, source, 0);
@@ -858,13 +857,12 @@ void Graph::primsMST() {
 	}
 	// printing result.
 	int total = 0;
-	std::cout << "Edges are ";
+	std::cout << "Edges are : ";
 	for (int i = 0; i < count; i++) {
 		if (dist[i] == std::numeric_limits<int>::max())
-			std::cout << "(" << previous[i] << ", " << i << ", "
-					<< "infinity) ";
+			std::cout << "(" << i << " is unreachable) ";
 		else if (previous[i] != i)
-			std::cout << "(" << previous[i] << ", " << i << ", " << dist[i]
+			std::cout << "(" << previous[i] << "->" << i << " @ " << dist[i]
 					<< ") ";
 		total += dist[i];
 	}
@@ -903,10 +901,10 @@ int main17() {
 /*
 Shortest Paths : (0->1 @ 4) (0->1->2 @ 12) (0->1->2->3 @ 19) (0->7->6->5->4 @ 21) (0->7->6->5 @ 11) (0->7->6 @ 9) (0->7 @ 8) (0->1->2->8 @ 14) 
 
-Edges are (0, 1, 4) (5, 2, 4) (2, 3, 7) (3, 4, 9) (6, 5, 2) (7, 6, 1) (0, 7, 8) (2, 8, 2)
+Edges are : (0->1 @ 4) (5->2 @ 4) (2->3 @ 7) (3->4 @ 9) (6->5 @ 2) (7->6 @ 1) (0->7 @ 8) (2->8 @ 2) 
 Total MST cost: 37
 
-Edges are (6, 7, 1) (5, 6, 2) (8, 2, 2) (2, 5, 4) (1, 0, 4) (3, 2, 7) (0, 7, 8) (4, 3, 9)
+Edges are : (6->7 @ 1) (5->6 @ 2) (8->2 @ 2) (2->5 @ 4) (1->0 @ 4) (3->2 @ 7) (0->7 @ 8) (4->3 @ 9)
 Total MST cost: 37
 */
 
@@ -1039,7 +1037,6 @@ void Graph::bellmanFordshortestPath(int source) {
 			}
 		}
 	}
-
 	printPath(previous, distance, count, source);
 }
 
@@ -1061,11 +1058,6 @@ int main19() {
 Shortest Paths : (0->4->1 @ 0) (0->4->1->2 @ 1) (0->4->1->2->3 @ 2) (0->4 @ 2) 
 */
 
-/*
- * The function returns one of the following values Return 0 if graph is not
- * Eulerian Return 1 if graph has an Euler previous (Semi-Eulerian) Return 2 if
- * graph has an Euler Circuit (Eulerian)
- */
 int Graph::isEulerian() {
 	// Check if all non - zero degree nodes are connected
 	int odd;
@@ -1200,7 +1192,7 @@ int main21() {
  1
  */
 
-Graph::Sets::Sets(int p, int r) {
+Sets::Sets(int p, int r) {
 	parent = p;
 	rank = r;
 }
@@ -1244,12 +1236,12 @@ void Graph::kruskalMST() {
 	}
 	std::sort(edge.begin(), edge.begin() + (E - 1), compare);
 	int sum = 0;
-	std::cout << "Edges are ";
+	std::cout << "Edges are : ";
 	for (int i = 0; i < E; i++) {
 		int x = find(sets, edge[i]->src);
 		int y = find(sets, edge[i]->dest);
 		if (x != y) {
-			std::cout << "(" << edge[i]->src << ", " << edge[i]->dest << ", "
+			std::cout << "(" << edge[i]->src << "->" << edge[i]->dest << " @ "
 					<< edge[i]->cost << ") ";
 			sum += edge[i]->cost;
 			union_Keyword(sets, x, y);

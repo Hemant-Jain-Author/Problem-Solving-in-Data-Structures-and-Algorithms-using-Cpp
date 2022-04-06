@@ -9,8 +9,7 @@ int minCost(std::vector<int> &days, std::vector<int> &costs) {
 
 	int j = 0;
 	for (int i = 1; i <= max; i++) {
-		if (days[j] == i) // That days is definitely travelled.
-				{
+		if (days[j] == i) { // That days is definitely traveled.
 			j++;
 			dp[i] = dp[i - 1] + costs[0];
 			dp[i] = std::min(dp[i], dp[std::max(0, i - 7)] + costs[1]);
