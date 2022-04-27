@@ -53,15 +53,15 @@ int tsp(std::vector<std::vector<int>> &graph, int n) {
 int main() {
 	int n = 4;
 	
-	std::vector<std::vector<int>> graph = {{0, 1, 5, 10}, 
-					   					   {1, 0, 25, 15}, 
-					   					   {5, 25, 0, 20}, 
-					   					   {10, 15, 20, 0}};
+	std::vector<std::vector<int>> graph = { { 0, 10, 15, 20 }, 
+											{ 10, 0, 35, 25 }, 
+											{ 15, 35, 0, 30 }, 
+											{ 20, 25, 30, 0 } };
 					   
 	tsp(graph, n);
 	return 0;
 }
 /*
-Shortest Path weight: 41
-Shortest Path is: 0 1 3 2 0  
+Shortest Path weight: 80
+Shortest Path: 0 1 3 2 0 
 */

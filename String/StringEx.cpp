@@ -15,8 +15,7 @@ bool matchExpUtil(const std::string exp, const std::string str, int i, int j) {
 
 	if (exp[i] == '*')
 		return matchExpUtil(exp, str, i + 1, j)
-				|| matchExpUtil(exp, str, i, j + 1)
-				|| matchExpUtil(exp, str, i + 1, j + 1);
+				|| matchExpUtil(exp, str, i, j + 1);
 
 	return false;
 }
@@ -32,7 +31,7 @@ void main1() {
  1
  */
 
-bool match(const std::string &source, const std::string &pattern) {
+bool matchPattern(const std::string &source, const std::string &pattern) {
 	int iSource = 0;
 	int iPattern = 0;
 	int sourceLen = source.size();
@@ -49,7 +48,7 @@ bool match(const std::string &source, const std::string &pattern) {
 }
 
 void main2() {
-	std::cout << match("harrypottermustnotgotoschool", "pottergo") << std::endl;
+	std::cout << matchPattern("harrypottermustnotgotoschool", "potterschool") << std::endl;
 }
 
 /*

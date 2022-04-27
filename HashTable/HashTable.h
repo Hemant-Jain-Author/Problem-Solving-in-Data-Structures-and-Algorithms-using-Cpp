@@ -22,6 +22,8 @@ public:
 };
 
 enum FLAGS {
-	EMPTY_NODE = 0, LAZY_DELETED = 1, FILLED_NODE = 2
+	EMPTY_NODE = 0, 
+	LAZY_DELETED = 1, 
+	FILLED_NODE = 2
 };
 

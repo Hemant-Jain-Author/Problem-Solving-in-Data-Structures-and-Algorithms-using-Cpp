@@ -983,20 +983,10 @@ bool Tree::searchBT(int value) {
 }
 
 bool Tree::searchBT(Node *root, int value) {
-	bool left, right;
-
 	if (root == nullptr)
 		return false;
 
-	if (root->value == value)
-		return true;
-
-	left = searchBT(root->lChild, value);
-	if (left)
-		return true;
-
-	right = searchBT(root->rChild, value);
-	if (right)
+	if (root->value == value || searchBT(root->lChild, value) ||  searchBT(root->rChild, value))
 		return true;
 
 	return false;

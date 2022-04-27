@@ -11,9 +11,9 @@ private:
 		Node(int v, Node *n);
 	};
 	Node *head = nullptr;
-	int stack_size = 0;
+	int length = 0;
 public:
-	// Stack class API/methods .
+	// Stack class API / Methods .
 	virtual int size();
 	virtual bool isEmpty();
 	virtual int top();

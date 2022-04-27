@@ -7,11 +7,11 @@ Stack::Node::Node(int v, Node *n) {
 }
 
 int Stack::size() {
-	return stack_size;
+	return length;
 }
 
 bool Stack::isEmpty() {
-	return stack_size == 0;
+	return length == 0;
 }
 
 int Stack::top() {
@@ -23,7 +23,7 @@ int Stack::top() {
 
 void Stack::push(int value) {
 	head = new Node(value, head);
-	stack_size++;
+	length++;
 }
 
 int Stack::pop() {
@@ -34,7 +34,7 @@ int Stack::pop() {
 	Node *delMe = head;
 	head = head->next;
 	delete delMe;
-	stack_size--;
+	length--;
 	return value;
 }
 
