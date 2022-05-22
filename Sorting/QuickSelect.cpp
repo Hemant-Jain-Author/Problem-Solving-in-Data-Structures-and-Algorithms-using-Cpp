@@ -42,7 +42,7 @@ void quickSelect(std::vector<int> &arr, int lower, int upper, int k) {
 }
 
 int quickSelect(std::vector<int> &arr, int k) {
-	quickSelect(arr, 0, arr.size() - 1, k);
+	quickSelect(arr, 0, arr.size() - 1, k-1);
 	return arr[k - 1];
 }
 
