@@ -120,7 +120,6 @@ void maxSlidingWindows2(std::vector<int> arr, int size, int k) {
 	for (int i = 0; i < size; i++) {
 		// Remove out of range elements
 		if (que.size() > 0 && que.front() <= i - k) {
-			que.front();
 			que.pop_front();
 		} // Remove smaller values at left.
 
@@ -149,22 +148,20 @@ int main3() {
  */
 
 int minOfMaxSlidingWindows(std::vector<int> arr, int size, int k) {
-	std::queue<int> que;
+	std::deque<int> que;
 	int minVal = 999999;
 	for (int i = 0; i < size; i++) {
 		// Remove out of range elements
 		if (que.size() > 0 && que.front() <= i - k) {
-			que.front();
-			que.pop();
+			que.pop_front();
 		}
 
 		// Remove smaller values at left.
 		while (que.size() > 0 && arr[que.back()] <= arr[i]) {
-			que.front();
-			que.pop();
+			que.pop_back();
 		}
 
-		que.push(i);
+		que.push_back(i);
 		// window of size k
 		if (i >= (k - 1) && minVal > arr[que.front()])
 			minVal = arr[que.front()];
@@ -186,19 +183,17 @@ int main4() {
  */
 
 void maxOfMinSlidingWindows(std::vector<int> arr, int size, int k) {
-	std::queue<int> que;
+	std::deque<int> que;
 	int maxVal = -999999;
 	for (int i = 0; i < size; i++) {
 		// Remove out of range elements
 		if (que.size() > 0 && que.front() <= i - k) {
-			que.front();
-			que.pop();
+			que.pop_front();
 		}        // Remove smaller values at left.
 		while (que.size() > 0 && arr[que.back()] >= arr[i]) {
-			que.front();
-			que.pop();
+			que.pop_back();
 		}
-		que.push(i);
+		que.push_back(i);
 		// window of size k
 		if (i >= (k - 1) && maxVal < arr[que.front()])
 			maxVal = arr[que.front()];
@@ -225,7 +220,6 @@ void firstNegSlidingWindows(std::vector<int> arr, int size, int k) {
 	for (int i = 0; i < size; i++) {
 		// Remove out of range elements
 		if (que.size() > 0 && que.front() <= i - k) {
-			que.front();
 			que.pop();
 		}
 
