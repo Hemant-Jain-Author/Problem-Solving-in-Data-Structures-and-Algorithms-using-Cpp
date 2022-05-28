@@ -64,7 +64,7 @@ void Polynomial::add(Polynomial& poly2){
     }
 
     while (p1 != nullptr || p2 != nullptr) {
-        if (p1 == nullptr || p1->pow < p2->pow) {
+        if (p1 == nullptr || (p2 != nullptr && p1->pow < p2->pow)) {
             temp = new Node(p2->coeff, p2->pow);
             temp->next = p1;
             prev->next = temp;
